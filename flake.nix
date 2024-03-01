@@ -39,9 +39,10 @@
           ./nixos/networking.nix
           ./nixos/sound.nix
           ./nixos/language.nix
-          ./nixos/gnome.nix
-          ./nixos/gnome.nix
-          # ./nixos/fingerprint-scanner.nix
+          ./nixos/fingerprint-scanner.nix
+
+          # ./nixos/gnome.nix
+          ./nixos/hyperland.nix
         ];
       };
     };
