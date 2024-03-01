@@ -90,19 +90,25 @@
 
       shellAliases = {
         ll = "ls -l";
-        update = "sudo nixos-rebuild switch /home/andre/.dotfiles/minimal";
+        update = "sudo nixos-rebuild switch --flake ~/.dotfiles/minimal";
         home-update = "home-manager switch /home/andre/.dotfiles/minimal#andre@nixos";
       };
       history.size = 10000;
       history.path = "${config.xdg.dataHome}/zsh/history";
 
-      zplug = {
-        enable = true;
-        plugins = [
-          { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-          { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
-        ];
+      # zplug = {
+      #   enable = true;
+      #   plugins = [
+      #     { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+      #     { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+      #   ];
+      # };
+
+      ohMyZsh = {
+       enable = true;
+       plugins = [ "git" "sudo" "docker" "kubectl" ];
       };
+
     };
   };
 
