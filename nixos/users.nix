@@ -20,7 +20,7 @@
       inputs.home-manager.packages.${pkgs.system}.default
       brave
       discord
-
+      gimp
       ];
     };
   };
