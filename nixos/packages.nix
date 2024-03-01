@@ -7,5 +7,9 @@
     nodejs
     ncdu
     vscode
+
+    # VIRTUAL MACHINES
+    virt-manager
+    qemu
   ];
 }
