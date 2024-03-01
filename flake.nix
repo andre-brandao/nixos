@@ -14,7 +14,7 @@
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -32,7 +32,17 @@
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
-        modules = [./nixos/configuration.nix];
+        modules = [
+          # ./nixos/bootloader.nix
+          ./nixos/configuration.nix
+          ./nixos/users.nix
+          ./nixos/networking.nix
+          ./nixos/sound.nix
+          ./nixos/language.nix
+          ./nixos/gnome.nix
+          ./nixos/gnome.nix
+          # ./nixos/fingerprint-scanner.nix
+        ];
       };
     };
 
@@ -44,7 +54,9 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
-        modules = [./home-manager/home.nix];
+        modules = [
+          ./home-manager/home.nix          
+        ];
       };
     };
   };
