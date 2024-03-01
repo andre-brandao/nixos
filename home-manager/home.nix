@@ -38,65 +38,72 @@
     };
   };
 
-  # TODO: Set your username
+  # HOME CONFIG
   home = {
     username = "andre";
     homeDirectory = "/home/andre";
-  };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
-    home.packages = with pkgs; [ 
-    # steam 
-    firefox
-    thunderbird
-    lf
-    bitwarden
-    spotify
-    # vscode
-    # teams
-    discord
-    
-  ];
-
-  #GIT
-  programs.git = {
-    enable = true;
-    userName  = "andre-brandao";
-    userEmail = "brandaoandre00@gmail.com";
-
-    aliases = {
-      ci = "commit";
-      co = "checkout";
-      s = "status";
-    };
-  };
-  # Enable home-manager
-  programs.home-manager.enable = true;
-  #   # ZSH
-  programs.zsh = {
-  enable = true;
-  enableCompletion = true;
-  enableAutosuggestions = true;
-  # syntaxHighlighting.enable = true;
-
-  shellAliases = {
-    ll = "ls -l";
-    update = "sudo nixos-rebuild switch";
-  };
-  history.size = 10000;
-  history.path = "${config.xdg.dataHome}/zsh/history";
-
-
- zplug = {
-    enable = true;
-    plugins = [
-      { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-      { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+    packages = with pkgs; [ 
+      # steam 
+      firefox
+      thunderbird
+      lf
+      bitwarden
+      spotify
+      # vscode
+      # teams
+      discord
     ];
+    # shell = pkgs.zsh;
   };
 
+  # PROGRAMS
+  programs = {
+    home-manager = {
+      enable = true;
+    };
+    # GIT
+    git = {
+      enable = true;
+      userName  = "andre-brandao";
+      userEmail = "brandaoandre00@gmail.com";
+
+      aliases = {
+        ci = "commit";
+        co = "checkout";
+        s = "status";
+      };
+
+      extraConfig = {
+      credential.helper = "${
+          pkgs.git.override { withLibsecret = true; }
+        }/bin/git-credential-libsecret";
+     };
+
+    };
+     # shell
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      # syntaxHighlighting.enable = true;
+
+      shellAliases = {
+        ll = "ls -l";
+        update = "sudo nixos-rebuild switch /home/andre/.dotfiles/minimal";
+        home-update = "home-manager switch /home/andre/.dotfiles/minimal#andre@nixos";
+      };
+      history.size = 10000;
+      history.path = "${config.xdg.dataHome}/zsh/history";
+
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+          { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+        ];
+      };
+    };
   };
 
   # Nicely reload system units when changing configs

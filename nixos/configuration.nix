@@ -63,20 +63,28 @@
   };
 
   # FIXME: Add the rest of your current configuration
- networking.hostName = "nixos";
+  networking.hostName = "nixos";
   # Enable networking
   networking.networkmanager.enable = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  programs = {
+    # shell (zsh)
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      # enableAutosuggestions = true;
+    };
+  };
   # USERS
   users.users = {
     andre = {
     isNormalUser = true;
     description = "Andre Brandao";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       # firefox
       # thunderbird
