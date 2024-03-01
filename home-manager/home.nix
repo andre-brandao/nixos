@@ -82,6 +82,16 @@
 
     };
      # shell
+
+    kitty = {
+      enable = true;
+       font = {
+        name = "JetBrainsMono Nerd Font";
+        size = 10;
+      };
+      # shellIntegration.enableFishIntegration = true;
+      theme = "Catppuccin-Macchiato";
+    };
     zsh = {
       enable = true;
       enableCompletion = true;
