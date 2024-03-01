@@ -62,11 +62,6 @@
     auto-optimise-store = true;
   };
 
-   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-
   programs = {
     # shell (zsh)
     zsh = {
@@ -76,17 +71,6 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    #  home-manager  
-    nodejs
-    ncdu
-    vscode
-    
-  ];
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

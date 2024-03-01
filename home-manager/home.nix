@@ -45,14 +45,14 @@
 
     packages = with pkgs; [ 
       # steam 
-      firefox
-      thunderbird
-      lf
-      bitwarden
-      spotify
+      # firefox
+      # thunderbird
+      # lf
+      # bitwarden
+      # spotify
       # vscode
       # teams
-      discord
+      # discord
     ];
     # shell = pkgs.zsh;
   };

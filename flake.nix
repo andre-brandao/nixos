@@ -14,7 +14,7 @@
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
-    nix-colors.url = "github:misterio77/nix-colors";
+    # nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -33,16 +33,21 @@
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
         modules = [
-          # ./nixos/bootloader.nix
           ./nixos/configuration.nix
-          ./nixos/users.nix
-          ./nixos/networking.nix
-          ./nixos/sound.nix
-          ./nixos/language.nix
-          ./nixos/fingerprint-scanner.nix
+          ./nixos/sys-config/bootloader.nix
+          ./nixos/sys-config/networking.nix
+          ./nixos/sys-config/sound.nix
+          ./nixos/sys-config/language.nix
+          ./nixos/sys-config/fingerprint-scanner.nix
+          ./nixos/sys-config/printer.nix
+          ./nixos/sys-config/garbage-collection.nix
 
-          # ./nixos/gnome.nix
-          ./nixos/hyperland.nix
+          # ./nixos/sys-config/firewall.nix
+          
+          ./nixos/users.nix
+          ### DESKTOP ENVIRONMENT ###
+          ./nixos/gnome.nix
+          #./nixos/hyperland.nix
         ];
       };
     };
