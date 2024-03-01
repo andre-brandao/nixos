@@ -104,9 +104,10 @@
       #   ];
       # };
 
-      ohMyZsh = {
-       enable = true;
-       plugins = [ "git" "sudo" "docker" "kubectl" ];
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "thefuck" ];
+        theme = "robbyrussell";
       };
 
     };
