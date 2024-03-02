@@ -11,13 +11,13 @@
     shell = pkgs.zsh;
     
     packages = with pkgs; [
+      inputs.home-manager.packages.${pkgs.system}.default
       firefox
       thunderbird
       lf
       bitwarden
       spotify
       # vscode
-      inputs.home-manager.packages.${pkgs.system}.default
       brave
       discord
       gimp
