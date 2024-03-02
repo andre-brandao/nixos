@@ -17,7 +17,7 @@
   systemd.services."autovt@tty1".enable = false;
 
 
-  environment.systemPackages = with pkgs [
+  environment.systemPackages = with pkgs; [
    gnome3.gnome-tweaks
   ];
 
