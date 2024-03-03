@@ -14,10 +14,6 @@
     kitty
     kitty-themes
     ncdu
-
-    # VIRTUAL MACHINES
-    virt-manager
-    qemu
   ];
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
