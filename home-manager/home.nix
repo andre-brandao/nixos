@@ -86,10 +86,11 @@
 
     kitty = {
       enable = true;
-       font = {
+      font = {
         name = "JetBrainsMono Nerd Font";
         size = 10;
       };
+      
       # shellIntegration.enableFishIntegration = true;
       theme = "Catppuccin-Macchiato";
     };
@@ -123,7 +124,7 @@
 
     };
   };
-  # VMS
+  # virt-manager + qemu config (virtual machines)
   dconf.settings = {
   "org/virt-manager/virt-manager/connections" = {
     autoconnect = ["qemu:///system"];
