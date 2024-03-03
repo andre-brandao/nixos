@@ -23,7 +23,6 @@
    gnomeExtensions.gnome-40-ui-improvements
    gnomeExtensions.vitals
    gnomeExtensions.caffeine
-   gnomeExtensions.gnome-clipboard
    gnomeExtensions.dash-to-dock
   ];
 
