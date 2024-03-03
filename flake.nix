@@ -43,7 +43,8 @@
           ./nixos/sys-config/garbage-collection.nix
 
           # ./nixos/sys-config/firewall.nix
-          
+          ./nixos/virtualization.nix
+
           ./nixos/users.nix
           ### DESKTOP ENVIRONMENT ###
           ./nixos/gnome.nix
