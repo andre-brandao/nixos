@@ -4,6 +4,7 @@
   inputs,
   lib,
   config,
+  dconf,
   pkgs,
   ...
 }: {
@@ -120,6 +121,13 @@
         theme = "robbyrussell";
       };
 
+    };
+  };
+  # VMS
+  dconf.settings = {
+  "org/virt-manager/virt-manager/connections" = {
+    autoconnect = ["qemu:///system"];
+    uris = ["qemu:///system"];
     };
   };
 
