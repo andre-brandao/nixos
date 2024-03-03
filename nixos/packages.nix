@@ -10,6 +10,7 @@
     vscode
 
     # TERMINAL UTILS
+    alacritty
     kitty
     kitty-themes
     ncdu

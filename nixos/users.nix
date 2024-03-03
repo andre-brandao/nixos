@@ -17,7 +17,7 @@
       lf
       bitwarden
       spotify
-      # vscode
+      vscode
       brave
       discord
       gimp
