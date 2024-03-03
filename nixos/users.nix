@@ -7,7 +7,7 @@
     andre = {
     isNormalUser = true;
     description = "Andre Brandao";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker"];
     shell = pkgs.zsh;
     
     packages = with pkgs; [
