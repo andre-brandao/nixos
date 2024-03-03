@@ -46,8 +46,8 @@
           
           ./nixos/users.nix
           ### DESKTOP ENVIRONMENT ###
-          ./nixos/gnome.nix
-          # ./nixos/hyperland.nix
+          # ./nixos/gnome.nix
+          ./nixos/hyperland.nix
         ];
       };
     };
