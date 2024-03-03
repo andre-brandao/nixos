@@ -12,15 +12,30 @@
     
     packages = with pkgs; [
       inputs.home-manager.packages.${pkgs.system}.default
+
+      spotify
+      
+      # BROSWERS
+      brave
       firefox
+
+      # CODE
+      vscode
+      
+      # MESSAGING
       thunderbird
+      discord
+
+      # UTILS
       lf
       bitwarden
-      spotify
-      vscode
-      brave
-      discord
       gimp
+      inkscape
+      vlc
+      obs-studio
+
+      # GAMES
+      minecraft
       ];
     };
   };
