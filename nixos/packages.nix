@@ -10,6 +10,7 @@
     vscode
 
     # TERMINAL UTILS
+    wezterm
     alacritty
     kitty
     kitty-themes

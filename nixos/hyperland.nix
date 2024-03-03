@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{pkgs, ...}: let
+  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
 
-{
+  hyprland-flake = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/master.tar.gz";
+  }).defaultNix;
+in {
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -9,28 +13,12 @@
         wayland = true;
     };
   };
-
-  hardware = {
-    opengl.enable = true;
-  };
-  # Enable Hyprland
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    package = hyprland-flake.packages.${pkgs.system}.hyprland;
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
-  environment.systemPackages = with pkgs; [
-    wezterm
-    cool-retro-term
-
-    starship
-    helix
-
-    qutebrowser
-    zathura
-    mpv
-    imv
-  ];
+ 
 }

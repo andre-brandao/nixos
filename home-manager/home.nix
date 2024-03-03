@@ -54,6 +54,7 @@
       # vscode
       # teams
       # discord
+      neofetch
     ];
     # shell = pkgs.zsh;
   };
