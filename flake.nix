@@ -36,6 +36,7 @@
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
         modules = [
+          ###SYSTEM CONFIGURATIONS
           ./nixos/configuration.nix
           ./nixos/sys-config/bootloader.nix
           ./nixos/sys-config/networking.nix
@@ -48,10 +49,15 @@
           # ./nixos/sys-config/firewall.nix
           ./nixos/virtualization.nix
 
+          ### USERS
           ./nixos/users.nix
           ### DESKTOP ENVIRONMENT ###
           ./nixos/gnome.nix
           # ./nixos/hyperland.nix
+
+
+          ### PKGS
+          ./nixos/packages.nix
         ];
       };
     };
@@ -59,7 +65,6 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      # FIXME replace with your username@hostname
       "andre@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};

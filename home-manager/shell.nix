@@ -1,4 +1,10 @@
-{...}:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: 
 
 let
   inherit (builtins) readFile replaceStrings;
@@ -30,6 +36,20 @@ in
         ll = "ls -l";
         update = "sudo nixos-rebuild switch --flake ~/.dotfiles/minimal";
         home-update = "home-manager switch /home/andre/.dotfiles/minimal#andre@nixos";
+
+        a = "git add --patch";
+        b = "git switch --create";
+        c = "git commit";
+        ca = "git commit --amend";
+        cm = "git commit --message";
+        d = "git diff ':!*.lock'";
+        dl = "http --download get";
+        ds = "git diff --staged ':!*.lock'";
+        dsw = "git diff --staged --ignore-all-space ':!*.lock'";
+        dw = "git diff --ignore-all-space ':!*.lock'";
+        # hs = "home-manager switch";
+        rebase = "git rebase --autostash --autosquash --interactive";
+        s = "git status";
       };
       history = {
         size = 1000000;
