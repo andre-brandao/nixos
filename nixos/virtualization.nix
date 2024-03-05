@@ -4,7 +4,9 @@
 {
   ## DOCKER
   virtualisation.docker.enable = true;
-  environment.systemPackages = with pkgs; [lazydocker]
+  environment.systemPackages = with pkgs; [
+    lazydocker
+  ];
 
   ## QEMU + VirtManager
   virtualisation.libvirtd.enable = true;
