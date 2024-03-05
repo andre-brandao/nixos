@@ -6,7 +6,7 @@
     #  home-manager  
 
     # NIX HELPERS
-    alejandra.defaultPackage.${system}
+    alejandra
 
     # WEBDEV
     nodejs
