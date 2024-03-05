@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "andre@nixos XPS-13 config";
 
   inputs = {
     # Nixpkgs
@@ -10,7 +10,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # HyperLand    
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    # NIX formater
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";

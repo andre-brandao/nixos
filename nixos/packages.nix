@@ -5,6 +5,9 @@
     #  wget
     #  home-manager  
 
+    # NIX HELPERS
+    alejandra.defaultPackage.${system}
+
     # WEBDEV
     nodejs
     vscode
@@ -15,6 +18,10 @@
     kitty
     kitty-themes
     ncdu
+    htop
+    thefuck
+    duf
+    fzf
   ];
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
