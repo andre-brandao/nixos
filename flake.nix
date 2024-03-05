@@ -46,7 +46,7 @@
           ./nixos/sys-config/printer.nix
           ./nixos/sys-config/garbage-collection.nix
 
-          # ./nixos/sys-config/firewall.nix
+          ./nixos/sys-config/firewall.nix
           ./nixos/virtualization.nix
 
           ### USERS
