@@ -45,6 +45,11 @@
   home = {
     username = "andre";
     homeDirectory = "/home/andre";
+    sessionVariables = {
+      EDITOR = "vscode";
+      BROWSER = "brave";
+      TERMINAL = "wezterm";
+    };
 
     packages = with pkgs; [ 
       # steam 
@@ -93,7 +98,6 @@
     uris = ["qemu:///system"];
     };
   };
-
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
