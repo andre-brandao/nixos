@@ -24,6 +24,7 @@
    gnomeExtensions.vitals
    gnomeExtensions.caffeine
    gnomeExtensions.dash-to-dock
+   gnomeExtensions.gsconnect
   ];
 
 }
