@@ -39,7 +39,7 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # FIXME replace with your hostname
+      # TODO HOSTNAME HERE
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
@@ -60,8 +60,8 @@
           ### USERS
           ./nixos/users.nix
           ### DESKTOP ENVIRONMENT ###
-          ./nixos/gnome.nix
-          # ./nixos/hyperland.nix
+          ./nixos/desktop-managers/gnome.nix
+          # ./nixos/desktop-managers/hyperland.nix
 
           ### PKGS
           ./nixos/packages.nix
@@ -72,6 +72,7 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
+      # TODO user@hostname
       "andre@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
