@@ -71,6 +71,37 @@
     home-manager = {
       enable = true;
     };
+
+
+    # LF
+    lf = {
+      enable = true;
+
+      commands = {
+        dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
+        editor-open = ''$$EDITOR $f'';
+        mkdir = ''
+        ''${{
+          printf "Directory Name: "
+          read DIR
+          mkdir $DIR    
+        }}
+        '';
+      };
+
+      keybindings = {
+        "." = "set hidden!";
+        "<enter>" = "open";
+
+        do = "dragon-out";
+
+        ee = "editor-open";
+
+        V = ''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
+
+      };
+    };
+
     # GIT
     git = {
       enable = true;

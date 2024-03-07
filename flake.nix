@@ -13,8 +13,8 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     # NIX formater
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    # alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    # alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
 
     # TODO: Add any other flake you might need
@@ -33,6 +33,14 @@
   } @ inputs: let
     inherit (self) outputs;
   in {
+
+
+
+
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+
+
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
