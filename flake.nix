@@ -60,8 +60,8 @@
           ### USERS
           ./nixos/users.nix
           ### DESKTOP ENVIRONMENT ###
-          # ./nixos/desktop-managers/gnome.nix
-          ./nixos/desktop-managers/hyperland.nix
+          ./nixos/desktop-managers/gnome.nix
+          # ./nixos/desktop-managers/hyperland.nix
 
           ### PKGS
           ./nixos/packages.nix
