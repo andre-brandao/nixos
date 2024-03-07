@@ -4,17 +4,12 @@
   config,
   pkgs,
   ...
-}: 
-
-let
+}: let
   inherit (builtins) readFile replaceStrings;
   inherit (lib) concatLines concatStringsSep genAttrs mapAttrsToList toShellVar;
-
   # palette = import ../resources/palette.nix { inherit lib; };
-
   # toAbbrs = kv: concatLines (mapAttrsToList (k: v: "abbr ${toShellVar k v}") kv);
-in
-{
+in {
   programs = {
     kitty = {
       enable = true;
@@ -22,7 +17,7 @@ in
         name = "JetBrainsMono Nerd Font";
         size = 10;
       };
-      
+
       # shellIntegration.enableFishIntegration = true;
       theme = "Catppuccin-Macchiato";
     };
@@ -56,32 +51,31 @@ in
         path = "${config.xdg.dataHome}/zsh/history";
       };
       initExtraBeforeCompInit = with pkgs; ''
-      # Powerlevel10k instant prompt
-      if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
+        # Powerlevel10k instant prompt
+        if [[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
 
-      # Completions
-      fpath+=(${zsh-completions}/src)
+        # Completions
+        fpath+=(${zsh-completions}/src)
       '';
 
-      initExtra = replaceStrings [
-        # "@zsh-abbr@"
-        # "@zsh-click@"
-        "@zsh-powerlevel10k@"
-        "@zsh-prezto-terminal@"
-        "@zsh-syntax-highlighting@"
-      ] (with pkgs; [
-        # "${zsh-abbr}/share/zsh/plugins/zsh-abbr/zsh-abbr.plugin.zsh"
-        # "${zsh-click}/share/zsh/plugins/click/click.plugin.zsh"
-        "${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
-        "${zsh-prezto}/share/zsh-prezto/modules/terminal/init.zsh"
-        "${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-      ]) (readFile ./init-extra.zsh);
-
+      initExtra =
+        replaceStrings [
+          # "@zsh-abbr@"
+          # "@zsh-click@"
+          "@zsh-powerlevel10k@"
+          "@zsh-prezto-terminal@"
+          "@zsh-syntax-highlighting@"
+        ] (with pkgs; [
+          # "${zsh-abbr}/share/zsh/plugins/zsh-abbr/zsh-abbr.plugin.zsh"
+          # "${zsh-click}/share/zsh/plugins/click/click.plugin.zsh"
+          "${zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
+          "${zsh-prezto}/share/zsh-prezto/modules/terminal/init.zsh"
+          "${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+        ]) (readFile ./init-extra.zsh);
     };
   };
 
   home.file.".p10k.zsh".source = ./p10k.zsh;
-  
 }

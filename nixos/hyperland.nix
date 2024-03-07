@@ -1,5 +1,8 @@
-
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -9,12 +12,10 @@
   services.xserver = {
     enable = true;
     displayManager.gdm = {
-        enable = true;
-        wayland = true;
+      enable = true;
+      wayland = true;
     };
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
-
- 
 }

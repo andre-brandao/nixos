@@ -1,41 +1,43 @@
-{ pkgs ,inputs, ...}:
-
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   users.defaultUserShell = pkgs.zsh;
   # USERS
   users.users = {
     andre = {
-    isNormalUser = true;
-    description = "Andre Brandao";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker"];
-    shell = pkgs.zsh;
-    
-    packages = with pkgs; [
-      inputs.home-manager.packages.${pkgs.system}.default
+      isNormalUser = true;
+      description = "Andre Brandao";
+      extraGroups = ["networkmanager" "wheel" "libvirtd" "docker"];
+      shell = pkgs.zsh;
 
-      spotify
-      
-      # BROSWERS
-      brave
-      firefox
+      packages = with pkgs; [
+        inputs.home-manager.packages.${pkgs.system}.default
 
-      # CODE
-      vscode
-      
-      # MESSAGING
-      thunderbird
-      discord
+        spotify
 
-      # UTILS
-      lf
-      bitwarden
-      gimp
-      inkscape
-      vlc
-      obs-studio
+        # BROSWERS
+        brave
+        firefox
 
-      # GAMES
-      minecraft
+        # CODE
+        vscode
+
+        # MESSAGING
+        thunderbird
+        discord
+
+        # UTILS
+        lf
+        bitwarden
+        gimp
+        inkscape
+        vlc
+        obs-studio
+
+        # GAMES
+        minecraft
       ];
     };
   };

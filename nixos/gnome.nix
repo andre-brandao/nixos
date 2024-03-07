@@ -1,7 +1,4 @@
-{pkgs, ...}:
-
-{
-
+{pkgs, ...}: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -16,15 +13,13 @@
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-
   environment.systemPackages = with pkgs; [
-   gnome3.gnome-tweaks
-   gnomeExtensions.blur-my-shell
-   gnomeExtensions.gnome-40-ui-improvements
-   gnomeExtensions.vitals
-   gnomeExtensions.caffeine
-   gnomeExtensions.dash-to-dock
-   gnomeExtensions.gsconnect
+    gnome3.gnome-tweaks
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.gnome-40-ui-improvements
+    gnomeExtensions.vitals
+    gnomeExtensions.caffeine
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.gsconnect
   ];
-
 }

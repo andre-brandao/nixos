@@ -9,13 +9,12 @@
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # HyperLand    
+    # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
 
     # NIX formater
-    # alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    # alejandra.inputs.nixpkgs.follows = "nixpkgs";
-
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
@@ -32,14 +31,10 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+
+    system = "x86_64-linux";
   in {
-
-
-
-
-    formatter = nixpkgs.legacyPackages.${system}.alejandra;
-
-
+    formatter.x86_64-linux = nixpkgs.legacyPackages.${system}.alejandra;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -68,7 +63,6 @@
           ./nixos/gnome.nix
           # ./nixos/hyperland.nix
 
-
           ### PKGS
           ./nixos/packages.nix
         ];
@@ -83,7 +77,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [
-          ./home-manager/home.nix          
+          ./home-manager/home.nix
         ];
       };
     };

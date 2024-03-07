@@ -1,7 +1,4 @@
-
-{pkgs, ...}:
-
-{
+{pkgs, ...}: {
   ## DOCKER
   virtualisation.docker = {
     enable = true;
@@ -9,8 +6,7 @@
       enable = true;
       setSocketVariable = true;
     };
-
-  }; 
+  };
   environment.systemPackages = with pkgs; [
     lazydocker
   ];

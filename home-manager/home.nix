@@ -7,8 +7,7 @@
   dconf,
   pkgs,
   ...
-}: 
-{
+}: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -51,8 +50,8 @@
       TERMINAL = "wezterm";
     };
 
-    packages = with pkgs; [ 
-      # steam 
+    packages = with pkgs; [
+      # steam
       # firefox
       # thunderbird
       # lf
@@ -72,7 +71,6 @@
       enable = true;
     };
 
-
     # LF
     lf = {
       enable = true;
@@ -81,11 +79,11 @@
         dragon-out = ''%${pkgs.xdragon}/bin/xdragon -a -x "$fx"'';
         editor-open = ''$$EDITOR $f'';
         mkdir = ''
-        ''${{
-          printf "Directory Name: "
-          read DIR
-          mkdir $DIR    
-        }}
+          ''${{
+            printf "Directory Name: "
+            read DIR
+            mkdir $DIR
+          }}
         '';
       };
 
@@ -98,14 +96,13 @@
         ee = "editor-open";
 
         V = ''$${pkgs.bat}/bin/bat --paging=always --theme=gruvbox "$f"'';
-
       };
     };
 
     # GIT
     git = {
       enable = true;
-      userName  = "andre-brandao";
+      userName = "andre-brandao";
       userEmail = "brandaoandre00@gmail.com";
 
       aliases = {
@@ -115,18 +112,17 @@
       };
 
       extraConfig = {
-      credential.helper = "${
-          pkgs.git.override { withLibsecret = true; }
+        credential.helper = "${
+          pkgs.git.override {withLibsecret = true;}
         }/bin/git-credential-libsecret";
-     };
-
+      };
     };
   };
   # virt-manager + qemu config (virtual machines)
   dconf.settings = {
-  "org/virt-manager/virt-manager/connections" = {
-    autoconnect = ["qemu:///system"];
-    uris = ["qemu:///system"];
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
     };
   };
   # Nicely reload system units when changing configs
