@@ -22,6 +22,13 @@
 
     stylix.url = "github:danth/stylix";
 
+    # NixVim
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # NIX formater
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
@@ -63,7 +70,7 @@
       name = "Andre Brandao"; # name/identifier
       email = "brandaoandre@gmail.com"; # email (used for certain configurations)
       dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-      theme = "catppuccin-mocha"; # selcted theme from my themes directory (./themes/)
+      theme = "horizon-dark"; # selcted theme from my themes directory (./themes/)
       wm = "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       # window manager type (hyprland or x11) translator
       wmType =

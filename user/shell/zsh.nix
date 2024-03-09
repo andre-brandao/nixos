@@ -9,8 +9,40 @@
   inherit (lib) concatLines concatStringsSep genAttrs mapAttrsToList toShellVar;
   # palette = import ../resources/palette.nix { inherit lib; };
   # toAbbrs = kv: concatLines (mapAttrsToList (k: v: "abbr ${toShellVar k v}") kv);
+
+  aliases = {
+    ls = "eza --icons -l -T -L=1";
+    cat = "bat";
+    htop = "btm";
+    fd = "fd -Lu";
+
+    # ll = "ls -l";
+    update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal";
+    home-update = "home-manager switch ~/dotfiles/minimal#andre@nixos";
+
+    a = "git add --patch";
+    b = "git switch --create";
+    c = "git commit";
+    ca = "git commit --amend";
+    cm = "git commit --message";
+    d = "git diff ':!*.lock'";
+    dl = "http --download get";
+    ds = "git diff --staged ':!*.lock'";
+    dsw = "git diff --staged --ignore-all-space ':!*.lock'";
+    dw = "git diff --ignore-all-space ':!*.lock'";
+
+    # ll = "eza -la";
+    # pyclean = "find . | grep -E '(__pycache__|\.pyc|\.pyo$)' | xargs rm -rf";
+    # pc = "pycharm-community . > /dev/null 2>&1 &";
+  };
 in {
   programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      shellAliases = aliases;
+    };
+
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -32,29 +64,12 @@ in {
       initExtra = ''
         # make nix-shell use zsh
         ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
+
+        #  atach to tmux
+        ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
       '';
 
-      shellAliases = {
-        # ll = "ls -l";
-        update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal";
-        home-update = "home-manager switch ~/dotfiles/minimal#andre@nixos";
-
-        a = "git add --patch";
-        b = "git switch --create";
-        c = "git commit";
-        ca = "git commit --amend";
-        cm = "git commit --message";
-        d = "git diff ':!*.lock'";
-        dl = "http --download get";
-        ds = "git diff --staged ':!*.lock'";
-        dsw = "git diff --staged --ignore-all-space ':!*.lock'";
-        dw = "git diff --ignore-all-space ':!*.lock'";
-
-        cat = "bat";
-        # ll = "eza -la";
-        # pyclean = "find . | grep -E '(__pycache__|\.pyc|\.pyo$)' | xargs rm -rf";
-        # pc = "pycharm-community . > /dev/null 2>&1 &";
-      };
+      shellAliases = aliases;
 
       plugins = [
         {
@@ -95,4 +110,23 @@ in {
   };
 
   home.file.".p10k.zsh".source = ./p10k.zsh;
+  home.packages = with pkgs; [
+    disfetch
+    lolcat
+    cowsay
+    onefetch
+    gnugrep
+    gnused
+    bat
+    eza
+    bottom
+    fd
+    bc
+    direnv
+    nix-direnv
+  ];
+
+  programs.direnv.enable = true;
+  programs.direnv.enableZshIntegration = true;
+  programs.direnv.nix-direnv.enable = true;
 }

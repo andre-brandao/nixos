@@ -12,10 +12,10 @@
       dmenu_command = "fuzzel -d";
       inherit config lib pkgs;
     })
-    (import ./hyprprofiles/hyprprofiles.nix {
-      dmenuCmd = "fuzzel -d";
-      inherit config lib pkgs;
-    })
+    # (import ./hyprprofiles/hyprprofiles.nix {
+    #   dmenuCmd = "fuzzel -d";
+    #   inherit config lib pkgs;
+    # })
   ];
 
   gtk.cursorTheme = {
