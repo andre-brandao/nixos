@@ -5,6 +5,8 @@
   lib,
   config,
   pkgs,
+  stylix,
+  userSettings,
   ...
 }: {
   # You can import other NixOS modules here

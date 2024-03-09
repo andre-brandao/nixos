@@ -94,7 +94,6 @@ in {
         share = true;
       };
 
-
       initExtra = ''
         # make nix-shell use zsh
         ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
