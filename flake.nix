@@ -63,7 +63,7 @@
       name = "Andre Brandao"; # name/identifier
       email = "brandaoandre@gmail.com"; # email (used for certain configurations)
       dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-      theme = "everforest"; # selcted theme from my themes directory (./themes/)
+      theme = "catppuccin-mocha"; # selcted theme from my themes directory (./themes/)
       wm = "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       # window manager type (hyprland or x11) translator
       wmType =

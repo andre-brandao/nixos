@@ -8,5 +8,7 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.gsconnect
     gnomeExtensions.clipboard-indicator
+    gnomeExtensions.tray-icons-reloaded
+    gnomeExtensions.toggle-alacritty
   ];
 }

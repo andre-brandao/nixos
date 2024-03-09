@@ -2,6 +2,7 @@
   pkgs,
   dconf,
   config,
+  userSettings,
   ...
 }: {
   ## DOCKER
@@ -13,7 +14,7 @@
       setSocketVariable = true;
     };
   };
-  # users.users.${userSettings.username}.extraGroups = [ "docker" ];
+  users.users.${userSettings.username}.extraGroups = ["docker" "libvirtd"];
   # users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
   environment.systemPackages = with pkgs; [
     lazydocker
