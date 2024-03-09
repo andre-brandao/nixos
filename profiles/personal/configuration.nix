@@ -22,15 +22,6 @@
     ../../system/hardware-configuration.nix
     ../../system/config/module.nix
 
-    # ../../system/config/bootloader.nix
-
-    # ../../system/config/firewall.nix
-    # ../../system/config/networking.nix
-    # ../../system/config/language.nix
-    # ../../system/config/sound.nix
-    # ../../system/config/printer.nix
-    # ../../system/config/gc.nix
-
     (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     ../../system/style/stylix.nix
   ];
@@ -92,30 +83,6 @@
 
     packages = with pkgs; [
       inputs.home-manager.packages.${pkgs.system}.default
-
-      spotify
-
-      # BROSWERS
-      brave
-      firefox
-
-      # CODE
-      vscode
-
-      # MESSAGING
-      thunderbird
-      discord
-
-      # UTILS
-      lf
-      bitwarden
-      gimp
-      inkscape
-      vlc
-      obs-studio
-
-      # GAMES
-      minecraft
     ];
   };
 

@@ -18,13 +18,13 @@
     # stylix.homeManagerModules.stylix
     # ../../user/style/stylix.nix # Styling and themes for my apps
     (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
+
     ../../user/app/git/git.nix # My git config
 
-
-    ./shell.nix
+    ../../user/shell/zsh.nix # My zsh config
+    ../../user/shell/cli-collection.nix # Useful CLI apps
 
     # ../../user/shell/sh.nix # My zsh and bash config
-    # ../../user/shell/cli-collection.nix # Useful CLI apps
     # ../../user/bin/phoenix.nix # My nix command wrapper
     # ../../user/app/doom-emacs/doom.nix # My doom emacs config
     # ../../user/app/ranger/ranger.nix # My ranger file manager config
@@ -32,7 +32,7 @@
     # (./. + "../../../user/app/browser"+("/"+userSettings.browser)+".nix") # My default browser selected from flake
     # ../../user/app/virtualization/virtualization.nix # Virtual machines
     #../../user/app/flatpak/flatpak.nix # Flatpaks
-    
+
     # ../../user/lang/cc/cc.nix # C and C++ tools
     # ../../user/lang/godot/godot.nix # Game development
     #../../user/pkgs/blockbench.nix # Blockbench ## marked as insecure
@@ -42,46 +42,71 @@
   home.stateVersion = "22.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    spotify
+
+    # BROSWERS
+    brave
+    firefox
+
+    # CODE
+    vscode
+
+    # MESSAGING
+    thunderbird
+    discord
+
+    # UTILS
+    lf
+    bitwarden
+    gimp
+    inkscape
+    vlc
+    obs-studio
+
+    # GAMES
+    minecraft
+
     # Core
     zsh
     alacritty
     # librewolf
     brave
     # qutebrowser
-    # dmenu
-    # rofi
+    dmenu
+    rofi
     git
     # syncthing
 
     # Office
-    # libreoffice-fresh
+    libreoffice-fresh
     # mate.atril
     # xournalpp
-    # glib
+    glib
     # newsflash
-    # gnome.nautilus
-    # gnome.gnome-calendar
-    # gnome.seahorse
-    # gnome.gnome-maps
+    gnome.nautilus
+    gnome.gnome-calendar
+    gnome.seahorse
+    gnome.gnome-maps
     # openvpn
-    # texliveSmall
+    # protonmail-bridge
+    texliveSmall
 
-    # wine
-    # bottles
+    wine
+    bottles
     # The following requires 64-bit FL Studio (FL64) to be installed to a bottle
     # With a bottle name of "FL Studio"
     # (pkgs.writeShellScriptBin "flstudio" ''
-    #   #!/bin/sh
-    #   if [ -z "$1" ]
-    #     then
-    #       bottles-cli run -b "FL Studio" -p FL64
-    #       #flatpak run --command=bottles-cli com.usebottles.bottles run -b FL\ Studio -p FL64
-    #     else
-    #       filepath=$(winepath --windows "$1")
-    #       echo \'"$filepath"\'
-    #       bottles-cli run -b "FL Studio" -p "FL64" --args \'"$filepath"\'
-    #       #flatpak run --command=bottles-cli com.usebottles.bottles run -b FL\ Studio -p FL64 -args "$filepath"
-    #     fi
+    #    #!/bin/sh
+    #    if [ -z "$1" ]
+    #      then
+    #        bottles-cli run -b "FL Studio" -p FL64
+    #        #flatpak run --command=bottles-cli com.usebottles.bottles run -b FL\ Studio -p FL64
+    #      else
+    #        filepath=$(winepath --windows "$1")
+    #        echo \'"$filepath"\'
+    #        bottles-cli run -b "FL Studio" -p "FL64" --args \'"$filepath"\'
+    #        #flatpak run --command=bottles-cli com.usebottles.bottles run -b FL\ Studio -p FL64 -args "$filepath"
+    #      fi
     # '')
     # (pkgs.makeDesktopItem {
     #   name = "flstudio";
@@ -94,13 +119,13 @@
 
     # Media
     gimp-with-plugins
-    # pinta
-    # krita
+    pinta
+    krita
     inkscape
     # musikcube
     vlc
     mpv
-    # yt-dlp
+    yt-dlp
     #freetube
     blender
     #blockbench-electron
@@ -112,17 +137,17 @@
     #   #!/bin/sh
     #   DRI_PRIME=0 kdenlive "$1"
     # '')
-    # movit
-    # mediainfo
-    # libmediainfo
-    # mediainfo-gui
-    # audio-recorder
+    movit
+    mediainfo
+    libmediainfo
+    mediainfo-gui
+    audio-recorder
 
     # Various dev packages
     texinfo
     libffi
     zlib
-    # nodePackages.ungit
+    nodePackages.ungit
   ];
 
   # services.syncthing.enable = true;
@@ -150,14 +175,12 @@
   # };
   # xdg.mime.enable = true;
   # xdg.mimeApps.enable = true;
-  # xdg.mimeApps.associations.added = {
-  #   "application/octet-stream" = "flstudio.desktop;";
-  # };
 
-  # home.sessionVariables = {
-  #   EDITOR = userSettings.editor;
-  #   SPAWNEDITOR = userSettings.spawnEditor;
-  #   TERM = userSettings.term;
-  #   BROWSER = userSettings.browser;
-  # };
+
+  home.sessionVariables = {
+    EDITOR = userSettings.editor;
+    SPAWNEDITOR = userSettings.spawnEditor;
+    TERM = userSettings.term;
+    BROWSER = userSettings.browser;
+  };
 }
