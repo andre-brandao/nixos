@@ -16,8 +16,8 @@
 
   imports = [
     # (if ((userSettings.editor == "emacs") || (userSettings.editor == "emacsclient")) then nix-doom-emacs.hmModule else null)
-    stylix.homeManagerModules.stylix
-    ../../user/style/stylix.nix # Styling and themes for my apps
+    # stylix.homeManagerModules.stylix
+    # ../../user/style/stylix.nix # Styling and themes for my apps
     (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
 
     ../../user/app/git/git.nix # My git config
@@ -153,7 +153,7 @@
 
   # services.syncthing.enable = true;
 
-  # xdg.enable = true;
+  xdg.enable = true;
   # xdg.userDirs = {
   #   enable = true;
   #   createDirectories = true;

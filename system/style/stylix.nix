@@ -22,7 +22,9 @@ in {
     url = backgroundUrl;
     sha256 = backgroundSha256;
   };
+
   stylix.base16Scheme = ./. + themePath;
+
   stylix.fonts = {
     monospace = {
       name = userSettings.font;
@@ -52,4 +54,6 @@ in {
   environment.sessionVariables = {
     QT_QPA_PLATFORMTHEME = "qt5ct";
   };
+
+  stylix.targets.gtk.enable = true;
 }
