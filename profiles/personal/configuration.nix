@@ -22,6 +22,8 @@
     ../../system/hardware-configuration.nix
     ../../system/config/module.nix
 
+    ../../system/app/virtualization/virtualization.nix
+
     (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     ../../system/style/stylix.nix
   ];

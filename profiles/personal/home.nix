@@ -58,7 +58,7 @@
     # UTILS
     lf
     bitwarden
-    gimp
+    # gimp
     inkscape
     vlc
     obs-studio
@@ -175,7 +175,6 @@
   # };
   # xdg.mime.enable = true;
   # xdg.mimeApps.enable = true;
-
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;
