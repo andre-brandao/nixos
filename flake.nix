@@ -60,7 +60,7 @@
     # ----- USER SETTINGS ----- #
     userSettings = rec {
       username = "andre"; # username
-      name = "andre"; # name/identifier
+      name = "Andre Brandao"; # name/identifier
       email = "brandaoandre@gmail.com"; # email (used for certain configurations)
       dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
       theme = "gruvbox-dark-hard"; # selcted theme from my themes directory (./themes/)
@@ -130,6 +130,8 @@
         ];
         specialArgs = {
           inherit inputs outputs;
+          inherit (inputs) stylix;
+          inherit (inputs) hyprland-plugins;
           inherit systemSettings;
           inherit userSettings;
         };
@@ -148,6 +150,7 @@
         ];
         extraSpecialArgs = {
           inherit inputs outputs;
+          inherit (inputs) stylix;
           inherit systemSettings;
           inherit userSettings;
         };

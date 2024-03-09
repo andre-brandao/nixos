@@ -20,15 +20,16 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ../../system/hardware-configuration.nix
-    # ../../system/config/module.nix
+    ../../system/config/module.nix
 
-    ../../system/config/bootloader.nix
-    ../../system/config/firewall.nix
-    ../../system/config/networking.nix
-    ../../system/config/language.nix
-    ../../system/config/sound.nix
-    ../../system/config/printer.nix
-    ../../system/config/gc.nix
+    # ../../system/config/bootloader.nix
+
+    # ../../system/config/firewall.nix
+    # ../../system/config/networking.nix
+    # ../../system/config/language.nix
+    # ../../system/config/sound.nix
+    # ../../system/config/printer.nix
+    # ../../system/config/gc.nix
 
     (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     ../../system/style/stylix.nix
@@ -85,7 +86,7 @@
   # USERS
   users.users.${userSettings.username} = {
     isNormalUser = true;
-    description = userSettings.description;
+    description = userSettings.name;
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
 
@@ -118,13 +119,13 @@
     ];
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal
+  #     pkgs.xdg-desktop-portal-gtk
+  #   ];
+  # };
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
