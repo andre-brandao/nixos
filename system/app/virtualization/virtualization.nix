@@ -1,6 +1,7 @@
 {
   pkgs,
   dconf,
+  config,
   ...
 }: {
   ## DOCKER
@@ -16,17 +17,15 @@
   # users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
   environment.systemPackages = with pkgs; [
     lazydocker
+    virt-manager
+    virtualbox
+    distrobox
   ];
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [virtualbox];
 
   ## QEMU + VirtManager
   virtualisation.libvirtd.enable = true;
   # sudo virsh net-start default (RUN THIS IF NETWORK IS NOT STARTED)
   programs.virt-manager.enable = true;
-  # virt-manager + qemu config (virtual machines)
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-  };
 }

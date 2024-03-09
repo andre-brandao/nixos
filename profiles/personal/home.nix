@@ -1,7 +1,8 @@
 {
   config,
   pkgs,
-  nix-doom-emacs,
+  # nix-doom-emacs,
+  dconf,
   stylix,
   userSettings,
   ...
@@ -15,8 +16,8 @@
 
   imports = [
     # (if ((userSettings.editor == "emacs") || (userSettings.editor == "emacsclient")) then nix-doom-emacs.hmModule else null)
-    # stylix.homeManagerModules.stylix
-    # ../../user/style/stylix.nix # Styling and themes for my apps
+    stylix.homeManagerModules.stylix
+    ../../user/style/stylix.nix # Styling and themes for my apps
     (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
 
     ../../user/app/git/git.nix # My git config
@@ -176,6 +177,13 @@
   # xdg.mime.enable = true;
   # xdg.mimeApps.enable = true;
 
+  # virt-manager + qemu config (virtual machines)
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
   home.sessionVariables = {
     EDITOR = userSettings.editor;
     SPAWNEDITOR = userSettings.spawnEditor;

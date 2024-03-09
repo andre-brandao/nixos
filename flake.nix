@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstalble";
+    # nixpkgs-unstalble.url = "github:nixos/nixpkgs/nixos-unstalble";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-23.11";
@@ -50,11 +50,11 @@
       hostname = "nixos"; # hostname
       profile = "personal"; # select a profile defined from my profiles directory
       timezone = "America/Sao_Paulo"; # select timezone
-      language = "pt_BR.UTF-8"; # select language
-      locale = "en_US.UTF-8"; # select locale
-      bootMode = "uefi"; # uefi or bios
-      bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
-      grubDevice = ""; # device identifier for grub; only used for legacy (bios) boot mode
+      language = "en_US.UTF-8"; # select language
+      locale = "pt_BR.UTF-8"; # select locale
+      # bootMode = "uefi"; # uefi or bios
+      # bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
+      # grubDevice = ""; # device identifier for grub; only used for legacy (bios) boot mode
     };
 
     # ----- USER SETTINGS ----- #
@@ -66,16 +66,16 @@
       theme = "gruvbox-dark-hard"; # selcted theme from my themes directory (./themes/)
       wm = "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
       # window manager type (hyprland or x11) translator
-      wmType =
-        if (wm == "hyprland")
-        then "wayland"
-        else "x11";
-      browser = "qutebrowser"; # Default browser; must select one from ./user/app/browser/
+      # wmType =
+      #   if (wm == "hyprland")
+      #   then "wayland"
+      #   else "x11";
+      browser = "brave"; # Default browser; must select one from ./user/app/browser/
       defaultRoamDir = "Personal.p"; # Default org roam directory relative to ~/Org
       term = "alacritty"; # Default terminal command;
       font = "Intel One Mono"; # Selected font
       fontPkg = pkgs.intel-one-mono; # Font package
-      editor = "emacsclient"; # Default editor;
+      editor = "code"; # Default editor;
       # editor spawning translator
       # generates a command that can be used to spawn editor inside a gui
       # EDITOR and TERM session variables must be set in home.nix or other module

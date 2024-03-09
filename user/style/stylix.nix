@@ -3,6 +3,7 @@
   lib,
   pkgs,
   userSettings,
+  stylix,
   ...
 }: let
   themePath = "../../../themes" + ("/" + userSettings.theme + "/" + userSettings.theme) + ".yaml";
@@ -10,6 +11,7 @@
   backgroundUrl = builtins.readFile (./. + "../../../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt");
   backgroundSha256 = builtins.readFile (./. + "../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt");
 in {
+  imports = [stylix.nixosModules.stylix];
   home.file.".currenttheme".text = userSettings.theme;
   stylix.autoEnable = false;
   stylix.polarity = themePolarity;
@@ -76,14 +78,16 @@ in {
   stylix.targets.kitty.enable = true;
   stylix.targets.gtk.enable = true;
   stylix.targets.rofi.enable =
-    if (userSettings.wmType == "x11")
+    if (userSettings.wm == "gnome")
     then true
     else false;
   stylix.targets.feh.enable =
-    if (userSettings.wmType == "x11")
+    if (userSettings.wm == "gnome")
     then true
     else false;
-  programs.feh.enable = true;
+  # programs.feh.enable = true;
+  # stylix.targets.xyz.enable = false;
+
   home.file.".fehbg-stylix".text =
     ''
       #!/bin/sh
@@ -99,6 +103,7 @@ in {
     + config.stylix.image
     + ''      ;
     '';
+
   home.file.".swaybg-stylix".executable = true;
   home.file.".swayidle-stylix".text = ''
     #!/bin/sh
