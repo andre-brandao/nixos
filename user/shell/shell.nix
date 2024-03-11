@@ -17,8 +17,8 @@
     fd = "fd -Lu";
 
     # ll = "ls -l";
-    update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal";
-    home-update = "home-manager switch ~/dotfiles/minimal#andre@nixos";
+    update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal#user";
+    home-update = "home-manager switch ~/dotfiles/minimal#system";
 
     a = "git add --patch";
     b = "git switch --create";

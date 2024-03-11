@@ -23,7 +23,7 @@
 
     ../../user/app/git/git.nix # My git config
 
-    ../../user/shell/zsh.nix # My zsh config
+    ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
 
 
