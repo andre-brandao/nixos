@@ -20,7 +20,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ../../system/hardware-configuration.nix
-    ../../system/config/module.nix
+    ../../system/config/default.nix
 
     ../../system/app/virtualization/virtualization.nix
 
