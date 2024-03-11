@@ -43,6 +43,15 @@ in {
       shellAliases = aliases;
     };
 
+    # tmux = {
+    #   enable = true;
+    #   extraConfig = ''
+    #     ...
+    #     set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
+    #     run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+    #   '';
+    # };
+
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -66,7 +75,7 @@ in {
         ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
 
         #  atach to tmux
-        ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
+        # ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
       '';
 
       shellAliases = aliases;
