@@ -18,12 +18,16 @@
     # (if ((userSettings.editor == "emacs") || (userSettings.editor == "emacsclient")) then nix-doom-emacs.hmModule else null)
     # stylix.homeManagerModules.stylix
     # ../../user/style/stylix.nix # Styling and themes for my apps
+    
     (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
 
     ../../user/app/git/git.nix # My git config
 
     ../../user/shell/zsh.nix # My zsh config
     ../../user/shell/cli-collection.nix # Useful CLI apps
+
+
+    ../../user/lang/js.nix # My node.js config
 
     # ../../user/shell/sh.nix # My zsh and bash config
     # ../../user/bin/phoenix.nix # My nix command wrapper
@@ -34,7 +38,6 @@
     # ../../user/app/virtualization/virtualization.nix # Virtual machines
     #../../user/app/flatpak/flatpak.nix # Flatpaks
 
-    # ../../user/lang/cc/cc.nix # C and C++ tools
     # ../../user/lang/godot/godot.nix # Game development
     #../../user/pkgs/blockbench.nix # Blockbench ## marked as insecure
     # ../../user/hardware/bluetooth.nix # Bluetooth

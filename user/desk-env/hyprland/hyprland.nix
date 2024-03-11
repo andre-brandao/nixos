@@ -50,7 +50,7 @@
         exec-once = GOMAXPROCS=1 syncthing --no-browser
         exec-once = protonmail-bridge --noninteractive
         exec-once = waybar
-        exec-once = emacs --daemon
+        # exec-once = emacs --daemon
 
         exec-once = swayidle -w timeout 90 '${config.programs.swaylock.package}/bin/swaylock -f' timeout 210 'suspend-unless-render' resume '${pkgs.hyprland}/bin/hyprctl dispatch dpms on' before-sleep "${config.programs.swaylock.package}/bin/swaylock -f"
         exec-once = obs-notification-mute-daemon
