@@ -20,7 +20,7 @@
     bottom
     ripgrep
     rsync
-    tmux
+    # tmux
     htop
     hwinfo
     unzip

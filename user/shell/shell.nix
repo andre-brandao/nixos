@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  nixvim,
   ...
 }: let
   inherit (builtins) readFile replaceStrings;
@@ -17,8 +18,8 @@
     fd = "fd -Lu";
 
     # ll = "ls -l";
-    update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal#user";
-    home-update = "home-manager switch ~/dotfiles/minimal#system";
+    update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal#system";
+    home-update = "home-manager switch ~/dotfiles/minimal#user";
 
     a = "git add --patch";
     b = "git switch --create";
@@ -43,14 +44,53 @@ in {
       shellAliases = aliases;
     };
 
-    # tmux = {
+    # nixvim = {
     #   enable = true;
-    #   extraConfig = ''
-    #     ...
-    #     set -g status-right '#[fg=black,bg=color15] #{cpu_percentage}  %H:%M '
-    #     run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
-    #   '';
+    #   options = {
+    #     number = true; # Show line numbers
+    #     relativenumber = true; # Show relative line numbers
+
+    #     shiftwidth = 2; # Tab width should be 2
+    #   };
+
+    #   plugins = {
+    #     lightline.enable = true;
+    #   };
     # };
+    tmate.enable = true;
+
+    tmux = {
+      enable = true;
+      clock24 = true;
+
+      plugins = with pkgs; [
+        tmuxPlugins.better-mouse-mode
+        tmuxPlugins.catppuccin
+        tmuxPlugins.resurrect
+      ];
+
+      extraConfig = ''
+
+        escapeTime = 0;
+        historyLimit = 50000;
+
+        set -g status "on"
+
+        #keyMode = "vi";
+
+        set -g @catppuccin_flavour 'frappe'
+        set -g @catppuccin_window_tabs_enabled on
+        set -g @catppuccin_date_time "%H:%M"
+
+        # Mouse works as expected
+        set -g mouse on
+
+
+
+        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} | %H:%M '
+        run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+      '';
+    };
 
     zsh = {
       enable = true;
@@ -71,11 +111,13 @@ in {
       };
 
       initExtra = ''
-        # make nix-shell use zsh
-        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
-
-        #  atach to tmux
-        # ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
+              # make nix-shell use zsh
+              ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
+        # check if already inside a tmux session
+        if [ -z "$TMUX" ]; then
+          # atach to tmux session if exists, else create a new one
+          ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
+        fi
       '';
 
       shellAliases = aliases;
