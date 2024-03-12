@@ -17,14 +17,14 @@
   imports = [
     # stylix.homeManagerModules.stylix
     # ../../user/style/stylix.nix # Styling and themes for my apps
-    
+
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
 
     ../../user/app/git/git.nix # My git config
 
     ../../user/shell/shell.nix # My shell config
+    # ../../user/shell/nvim.nix # My neovim config  
     ../../user/shell/cli-collection.nix # Useful CLI apps
-
 
     ../../user/lang/js.nix # My node.js config
   ];
@@ -137,12 +137,12 @@
     texinfo
     libffi
     zlib
-    nodePackages.ungit
+    # nodePackages.ungit
   ];
 
   # services.syncthing.enable = true;
 
-  xdg.enable = true;
+  # xdg.enable = true;
   # xdg.userDirs = {
   #   enable = true;
   #   createDirectories = true;

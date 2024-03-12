@@ -4,6 +4,7 @@
   config,
   pkgs,
   nixvim,
+  userSettings,
   ...
 }: let
   inherit (builtins) readFile replaceStrings;
@@ -18,8 +19,8 @@
     fd = "fd -Lu";
 
     # ll = "ls -l";
-    update = "sudo nixos-rebuild switch --flake ~/dotfiles/minimal#system";
-    home-update = "home-manager switch ~/dotfiles/minimal#user";
+    update = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/minimal#system";
+    home-update = "${pkgs.home-manager}/bin/home-manager switch /home/${userSettings.username}/dotfiles/minimal#user";
 
     a = "git add --patch";
     b = "git switch --create";
@@ -31,6 +32,7 @@
     ds = "git diff --staged ':!*.lock'";
     dsw = "git diff --staged --ignore-all-space ':!*.lock'";
     dw = "git diff --ignore-all-space ':!*.lock'";
+    quit = "exit";
 
     # ll = "eza -la";
     # pyclean = "find . | grep -E '(__pycache__|\.pyc|\.pyo$)' | xargs rm -rf";
@@ -71,12 +73,7 @@ in {
 
       extraConfig = ''
 
-        escapeTime = 0;
-        historyLimit = 50000;
-
-        set -g status "on"
-
-        #keyMode = "vi";
+        # keyMode = "vi";
 
         set -g @catppuccin_flavour 'frappe'
         set -g @catppuccin_window_tabs_enabled on
@@ -87,7 +84,33 @@ in {
 
 
 
-        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} | %H:%M '
+        # start index at 1
+        set -g base-index 1
+        set -g pane-base-index 1
+        set-window-option -g pane-base-index 1
+        set-option -g renumber-windows on
+
+        # open new panes in current dir
+        bind '"' split-window -v -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        # new bind for horizontal split
+        bind-key "|" split-window -h -c "#{pane_current_path}"
+        bind-key "\\" split-window -fh -c "#{pane_current_path}"
+        # new bind for vertical split
+        bind-key "-" split-window -v -c "#{pane_current_path}"
+        bind-key "_" split-window -fv -c "#{pane_current_path}"
+
+
+        # reload tmux config with prefix + r
+        bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded! .config/tmux/tmux.conf"
+
+
+        # set prefix to C-Space
+        unbind C-Space
+        set -g prefix C-Space
+        bind C-Space send-prefix
+
+        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} | %H:%M | %d-%m-%Y'
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
@@ -111,10 +134,12 @@ in {
       };
 
       initExtra = ''
-              # make nix-shell use zsh
-              ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
-        # check if already inside a tmux session
-        if [ -z "$TMUX" ]; then
+          # make nix-shell use zsh
+          ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
+
+
+          # check if already inside a tmux session
+          if [ -z "$TMUX" ]; then
           # atach to tmux session if exists, else create a new one
           ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
         fi
