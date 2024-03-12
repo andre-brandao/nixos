@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./extras/fonts.nix
+  ];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # Configure keymap in X11
