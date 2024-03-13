@@ -46,7 +46,7 @@
     #   fi
     # '')
     vim
-    neovim
+    # neovim
   ];
 
   # imports = [

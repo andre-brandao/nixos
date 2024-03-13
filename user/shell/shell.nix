@@ -61,6 +61,13 @@ in {
     # };
     tmate.enable = true;
 
+    neovim = {
+      enable = true;
+      extraConfig = ''
+        set number relativenumber
+      '';
+    };
+
     tmux = {
       enable = true;
       clock24 = true;
