@@ -61,13 +61,6 @@ in {
     # };
     tmate.enable = true;
 
-    neovim = {
-      enable = true;
-      extraConfig = ''
-        set number relativenumber
-      '';
-    };
-
     tmux = {
       enable = true;
       clock24 = true;
@@ -97,6 +90,9 @@ in {
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
 
+        # AUTOMATIC REMANE
+        setw -g automatic-rename on
+
         # open new panes in current dir
         bind '"' split-window -v -c "#{pane_current_path}"
         bind % split-window -h -c "#{pane_current_path}"
@@ -117,7 +113,10 @@ in {
         set -g prefix C-Space
         bind C-Space send-prefix
 
-        set -g status-right '#[fg=black,bg=color15] #{cpu_percentage} | %H:%M | %d-%m-%Y'
+
+        # STATUS BAR
+        set -g status-right ' #[fg=black,bg=color13] #{pane_current_path} #[fg=black,bg=color15] cpu: #{cpu_percentage} #[fg=color15,bg=color16] %H:%M | %d-%m-%Y '
+
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
