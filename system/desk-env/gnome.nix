@@ -6,10 +6,14 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
+  # services.xserver = {
+  #   layout = "us";
+  #   xkbVariant = "";
+  # };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
