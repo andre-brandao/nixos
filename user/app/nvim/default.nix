@@ -34,6 +34,10 @@
       set autoindent
       set smartindent
       set smarttab
+
+      set scrolloff=8
+
+      
     '';
 
     extraPackages = with pkgs; [
