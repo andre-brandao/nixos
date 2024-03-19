@@ -46,19 +46,6 @@ in {
       shellAliases = aliases;
     };
 
-    # nixvim = {
-    #   enable = true;
-    #   options = {
-    #     number = true; # Show line numbers
-    #     relativenumber = true; # Show relative line numbers
-
-    #     shiftwidth = 2; # Tab width should be 2
-    #   };
-
-    #   plugins = {
-    #     lightline.enable = true;
-    #   };
-    # };
     tmate.enable = true;
 
     tmux = {
@@ -120,7 +107,10 @@ in {
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
-
+    zoxide = {
+      enable = true;
+      enableShellIntegration = true;
+    };
     zsh = {
       enable = true;
       enableAutosuggestions = true;
