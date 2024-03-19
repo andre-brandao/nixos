@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   # nixpkgs = {
   #   overlays = [
   #     (final: prev: {
@@ -14,28 +17,34 @@
   #   ];
   # };
 
-  programs.neovim = 
-  let
+  programs.neovim = let
     toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-  in
-  {
+  in {
     enable = true;
 
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    extraConfig = ''
+      set number relativenumber
+      set shiftwidth=2
+      set tabstop=2
+      set expandtab
+      set autoindent
+      set smartindent
+      set smarttab
+    '';
 
     extraPackages = with pkgs; [
       lua-language-server
-      rnix-lsp
+      # rnix-lsp
 
       xclip
       wl-clipboard
     ];
 
     plugins = with pkgs.vimPlugins; [
-
       {
         plugin = nvim-lspconfig;
         config = toLuaFile ./plugin/lsp.lua;
@@ -53,7 +62,7 @@
 
       neodev-nvim
 
-      nvim-cmp 
+      nvim-cmp
       {
         plugin = nvim-cmp;
         config = toLuaFile ./plugin/cmp.lua;
@@ -72,19 +81,18 @@
       luasnip
       friendly-snippets
 
-
       lualine-nvim
       nvim-web-devicons
 
       {
-        plugin = (nvim-treesitter.withPlugins (p: [
+        plugin = nvim-treesitter.withPlugins (p: [
           p.tree-sitter-nix
           p.tree-sitter-vim
           p.tree-sitter-bash
           p.tree-sitter-lua
           p.tree-sitter-python
           p.tree-sitter-json
-        ]));
+        ]);
         config = toLuaFile ./plugin/treesitter.lua;
       }
 
@@ -98,16 +106,11 @@
 
     extraLuaConfig = ''
       ${builtins.readFile ./options.lua}
+      ${builtins.readFile ./plugin/lsp.lua}
+      ${builtins.readFile ./plugin/cmp.lua}
+      ${builtins.readFile ./plugin/telescope.lua}
+      ${builtins.readFile ./plugin/treesitter.lua}
+      ${builtins.readFile ./plugin/other.lua}
     '';
-
-    # extraLuaConfig = ''
-    #   ${builtins.readFile ./options.lua}
-    #   ${builtins.readFile ./nvim/plugin/lsp.lua}
-    #   ${builtins.readFile ./nvim/plugin/cmp.lua}
-    #   ${builtins.readFile ./nvim/plugin/telescope.lua}
-    #   ${builtins.readFile ./nvim/plugin/treesitter.lua}
-    #   ${builtins.readFile ./nvim/plugin/other.lua}
-    # '';
   };
-
 }

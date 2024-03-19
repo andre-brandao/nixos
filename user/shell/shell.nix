@@ -17,7 +17,7 @@
     cat = "bat";
     htop = "btm";
     fd = "fd -Lu";
-
+    cd = "z";
     # ll = "ls -l";
     update = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/minimal#system";
     home-update = "${pkgs.home-manager}/bin/home-manager switch /home/${userSettings.username}/dotfiles/minimal#user";
@@ -111,10 +111,10 @@ in {
       enable = true;
       # enableShellIntegration = true;
     };
-    
+
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       enableVteIntegration = true;

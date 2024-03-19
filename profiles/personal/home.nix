@@ -21,10 +21,10 @@
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
 
     ../../user/app/git/git.nix # My git config
+    ../../user/app/nvim/default.nix # My nvim config
 
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
-    ../../user/shell/nvim/default.nix # My nvim config
 
     ../../user/lang/js.nix # My node.js config
   ];
