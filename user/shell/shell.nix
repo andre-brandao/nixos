@@ -109,8 +109,9 @@ in {
     };
     zoxide = {
       enable = true;
-      enableShellIntegration = true;
+      # enableShellIntegration = true;
     };
+    
     zsh = {
       enable = true;
       enableAutosuggestions = true;
@@ -130,14 +131,14 @@ in {
       };
 
       initExtra = ''
-          # make nix-shell use zsh
-          ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
+        # make nix-shell use zsh
+        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
 
 
-          # check if already inside a tmux session
-          if [ -z "$TMUX" ]; then
-          # atach to tmux session if exists, else create a new one
-          ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
+        # check if already inside a tmux session
+        if [ -z "$TMUX" ]; then
+        # atach to tmux session if exists, else create a new one
+        ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
         fi
       '';
 

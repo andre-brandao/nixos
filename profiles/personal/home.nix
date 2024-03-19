@@ -24,7 +24,7 @@
 
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
-    ../../user/shell/nvim.nix # My terminal config
+    ../../user/shell/nvim # My terminal config
 
     ../../user/lang/js.nix # My node.js config
   ];
