@@ -1,12 +1,5 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  nixvim,
-  userSettings,
-  ...
-}: let
+{ inputs, lib, config, pkgs, nixvim, userSettings, ... }:
+let
   inherit (builtins) readFile replaceStrings;
   inherit (lib) concatLines concatStringsSep genAttrs mapAttrsToList toShellVar;
   # palette = import ../resources/palette.nix { inherit lib; };
@@ -19,8 +12,10 @@
     fd = "fd -Lu";
     cd = "z";
     # ll = "ls -l";
-    update = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/minimal#system";
-    home-update = "${pkgs.home-manager}/bin/home-manager switch /home/${userSettings.username}/dotfiles/minimal#user";
+    update =
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/minimal#system";
+    home-update =
+      "${pkgs.home-manager}/bin/home-manager switch /home/${userSettings.username}/dotfiles/minimal#user";
 
     a = "git add --patch";
     b = "git switch --create";
@@ -102,7 +97,7 @@ in {
 
 
         # STATUS BAR
-        set -g status-right ' #[fg=black,bg=color13] #{pane_current_path} #[fg=black,bg=color15] cpu: #{cpu_percentage} #[fg=color15,bg=color16] %H:%M | %d-%m-%Y '
+        set -g status-right ' #[fg=black,bg=color15] cpu: #{cpu_percentage} #[fg=color15,bg=color16] %H:%M | %d-%m-%Y '
         set-option -g status-position top
 
 

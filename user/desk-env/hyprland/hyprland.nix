@@ -123,10 +123,6 @@
       + userSettings.term
       + ''
 
-        bind=SUPER,A,exec,''
-      + userSettings.spawnEditor
-      + ''
-
         bind=SUPER,S,exec,''
       + userSettings.browser
       + ''

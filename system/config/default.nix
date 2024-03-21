@@ -1,4 +1,4 @@
-{...}: {
+{ pkgs, ... }: {
   imports = [
     ./bootloader.nix
     ./firewall.nix
@@ -8,4 +8,6 @@
     ./printer.nix
     ./gc.nix
   ];
+
+  environment.systemPackages = with pkgs; [ nixos-conf-editor ];
 }
