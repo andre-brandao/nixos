@@ -37,7 +37,7 @@
 
       set scrolloff=8
 
-      
+
     '';
 
     extraPackages = with pkgs; [
@@ -49,6 +49,11 @@
     ];
 
     plugins = with pkgs.vimPlugins; [
+      {
+        plugin = lsp-zero-nvim;
+        config = toLuaFile ./plugin/zero-lsp.lua;
+      }
+
       {
         plugin = nvim-lspconfig;
         config = toLuaFile ./plugin/lsp.lua;
@@ -108,13 +113,14 @@
       # }
     ];
 
-    extraLuaConfig = ''
-      ${builtins.readFile ./options.lua}
-      ${builtins.readFile ./plugin/lsp.lua}
-      ${builtins.readFile ./plugin/cmp.lua}
-      ${builtins.readFile ./plugin/telescope.lua}
-      ${builtins.readFile ./plugin/treesitter.lua}
-      ${builtins.readFile ./plugin/other.lua}
-    '';
+     extraLuaConfig = ''
+     ${builtins.readFile ./options.lua}
+     -- ${builtins.readFile ./plugin/lsp.lua}
+     ${builtins.readFile ./plugin/cmp.lua}
+     ${builtins.readFile ./plugin/telescope.lua}
+     ${builtins.readFile ./plugin/treesitter.lua}
+     ${builtins.readFile ./plugin/other.lua}
+     ${builtins.readFile ./plugin/zero-lsp.lua}
+     '';
   };
 }
