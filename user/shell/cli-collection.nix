@@ -51,6 +51,10 @@
     nil
     nixd
     nixpkgs-fmt
+
+    nix-tree
+    nix-init
+    statix
   ];
 
   # imports = [
