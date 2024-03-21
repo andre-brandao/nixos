@@ -105,7 +105,7 @@ in {
         set -g status-right ' #[fg=black,bg=color13] #{pane_current_path} #[fg=black,bg=color15] cpu: #{cpu_percentage} #[fg=color15,bg=color16] %H:%M | %d-%m-%Y '
         set-option -g status-position top
 
-        
+
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
@@ -185,7 +185,7 @@ in {
   };
 
   home.file.".p10k.zsh".source = ./p10k.zsh;
-  
+
   home.packages = with pkgs; [
     disfetch
     lolcat

@@ -19,6 +19,9 @@
     # ../../user/style/stylix.nix # Styling and themes for my apps
 
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
+   
+
+    ../../user/app/gaming/gaming.nix
 
     ../../user/app/git/git.nix # My git config
     ../../user/app/nvim/default.nix # My nvim config
