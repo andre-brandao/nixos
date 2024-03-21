@@ -19,17 +19,19 @@
     # ../../user/style/stylix.nix # Styling and themes for my apps
 
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
-   
 
     ../../user/app/gaming/gaming.nix
 
     ../../user/app/git/git.nix # My git config
-    ../../user/app/nvim/default.nix # My nvim config
 
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
 
     ../../user/lang/js.nix # My node.js config
+
+    # EDITORS
+    ../../user/app/editor/nvim/default.nix # My nvim config
+    ../../user/app/editor/helix/default.nix # My emacs config
   ];
 
   home.stateVersion = "22.11"; # Please read the comment before changing.

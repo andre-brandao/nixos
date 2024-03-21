@@ -42,6 +42,13 @@ require('lspconfig').lua_ls.setup {
     }
 }
 
+require('lspconfig').tsserver.setup {
+    capabilities = capabilities
+}
+
+require'lspconfig'.nixd.setup{
+    capabilities = capabilities,
+}
 -- require('lspconfig').rnix.setup {
 --     on_attach = on_attach,
 --     capabilities = capabilities,

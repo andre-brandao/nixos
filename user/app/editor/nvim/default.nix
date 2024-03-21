@@ -43,21 +43,35 @@
     extraPackages = with pkgs; [
       lua-language-server
       # rnix-lsp
+      nil
+      nixd
+
+      typescript
+      nodePackages.typescript-language-server
+      # nodePackages.\@astrojs/language-server
+
+      marksman
+      rust-analyzer
+      yaml-language-server
 
       xclip
       wl-clipboard
     ];
 
     plugins = with pkgs.vimPlugins; [
+      undotree
+      vimfiler-vim
+
       {
         plugin = lsp-zero-nvim;
         config = toLuaFile ./plugin/zero-lsp.lua;
       }
-
-      {
-        plugin = nvim-lspconfig;
-        config = toLuaFile ./plugin/lsp.lua;
-      }
+      coc-eslint
+      coc-tsserver
+      # {
+      #   plugin = nvim-lspconfig;
+      #   config = toLuaFile ./plugin/lsp.lua;
+      # }
 
       {
         plugin = comment-nvim;
@@ -88,11 +102,11 @@
       cmp-nvim-lsp
       cmp-path
       cmp-cmdline
-       
+
       # mason
       # mason-lspconfig
 
-      fidget
+      # fidget
 
       luasnip
       friendly-snippets
@@ -108,6 +122,13 @@
           p.tree-sitter-lua
           p.tree-sitter-python
           p.tree-sitter-json
+          p.tree-sitter-javascript
+          p.tree-sitter-typescript
+          p.tree-sitter-yaml
+          p.tree-sitter-markdown
+          p.tree-sitter-toml
+          p.tree-sitter-go
+          p.tree-sitter-rust
         ]);
         config = toLuaFile ./plugin/treesitter.lua;
       }
@@ -119,16 +140,15 @@
       #   config = "colorscheme onedark";
       # }
     ];
-   
 
-     extraLuaConfig = ''
-     ${builtins.readFile ./options.lua}
-     ${builtins.readFile ./plugin/lsp.lua}
-     ${builtins.readFile ./plugin/cmp.lua}
-     ${builtins.readFile ./plugin/telescope.lua}
-     ${builtins.readFile ./plugin/treesitter.lua}
-     ${builtins.readFile ./plugin/other.lua}
-     
-     '';
+    # ${builtins.readFile ./plugin/lsp.lua}
+    # ${builtins.readFile ./plugin/cmp.lua}
+    # ${builtins.readFile ./plugin/telescope.lua}
+    # ${builtins.readFile ./plugin/treesitter.lua}
+
+    extraLuaConfig = ''
+      ${builtins.readFile ./options.lua}
+      ${builtins.readFile ./plugin/other.lua}
+    '';
   };
 }

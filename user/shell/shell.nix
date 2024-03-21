@@ -200,6 +200,7 @@ in {
     bc
     direnv
     nix-direnv
+    helix
   ];
 
   programs.direnv.enable = true;

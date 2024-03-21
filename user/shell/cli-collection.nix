@@ -47,6 +47,10 @@
     # '')
     vim
     # neovim
+
+    nil
+    nixd
+    nixpkgs-fmt
   ];
 
   # imports = [

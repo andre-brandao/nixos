@@ -90,6 +90,10 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    helix
+  ];
+
   # xdg.portal = {
   #   enable = true;
   #   extraPortals = [
