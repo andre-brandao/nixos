@@ -19,11 +19,6 @@
     };
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   # Security
   # security = {
   #   pam.services.swaylock = {
@@ -51,6 +46,9 @@
     systemPackages = with pkgs; [
       # wireplumber
       # waybar
+      # (waybar.overrideAttrs (oldAttrs: {
+      #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      # }))
       swww
       dunst
       libnotify
@@ -68,7 +66,8 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      extraPortals =
+        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
     };
   };
 

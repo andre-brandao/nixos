@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 {
   programs.waybar = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.waybar-hyprland;
     systemd.enable = true;
     style = ''
       ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
