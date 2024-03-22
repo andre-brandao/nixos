@@ -15,9 +15,9 @@
         variant = "";
       };
       # Enable the GNOME Display Manager.
-      services.xserver.displayManager.gdm.enable = true;
+      displayManager.gdm.enable = true;
       # Enable the GNOME Desktop Environment.
-      services.xserver.desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;
       # Enable automatic login for the user.
       # displayManager.auegin.user = "andre";
     };
