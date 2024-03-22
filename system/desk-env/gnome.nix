@@ -10,10 +10,6 @@
     layout = "us";
     variant = "";
   };
-  # services.xserver = {
-  #   layout = "us";
-  #   xkbVariant = "";
-  # };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;

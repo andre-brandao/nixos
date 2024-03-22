@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # HyperLand
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
@@ -62,14 +62,14 @@
         theme =
           "horizon-dark"; # selcted theme from my themes directory (./themes/)
         wm =
-          "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
+          "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         # window manager type (hyprland or x11) translator
         wmType = if (wm == "hyprland") then "wayland" else "x11";
         browser =
           "brave"; # Default browser; must select one from ./user/app/browser/
         defaultRoamDir =
           "Personal.p"; # Default org roam directory relative to ~/Org
-        term = "alacritty"; # Default terminal command;
+        term = "kitty"; # Default terminal command;
         font = "Intel One Mono"; # Selected font
         fontPkg = pkgs.intel-one-mono; # Font package
         editor = "code"; # Default editor;

@@ -9,7 +9,7 @@
         "ignored": ["unused_binding", "unused_with"]
       },
       "formatting": {
-        "command": ["nix fmt"]
+        "command": ["nixpkgs-fmt"],
       }
     }
   }
