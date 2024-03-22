@@ -1,5 +1,8 @@
 { config, pkgs, userSettings, ... }: {
-  home.packages = [ pkgs.git ];
+  home.packages = [
+    pkgs.git
+    pkgs.lazygit
+  ];
   programs.git = {
     enable = true;
     userName = "andre-brandao";
