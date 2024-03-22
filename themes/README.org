@@ -11,3 +11,6 @@ Each theme directory stores a few relevant files:
 - =${theme-name}.png= - A screenshot of the theme for previewing purposes
 
 Look at any of the directories here for more info!
+
+
+Thankss [librephoenix's nixos-config](https://github.com/librephoenix/nixos-config).

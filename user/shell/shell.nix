@@ -6,16 +6,23 @@ let
   # toAbbrs = kv: concatLines (mapAttrsToList (k: v: "abbr ${toShellVar k v}") kv);
 
   aliases = {
+    # -- REBUILD SYSTEM
+    sys-update =
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system";
+    # -- REBUILD USER
+    user-update =
+      "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user";
+
+
+
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
     htop = "btm";
     fd = "fd -Lu";
     cd = "z";
-    # ll = "ls -l";
-    update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system";
-    home-update =
-      "home-manager switch /home/${userSettings.username}/dotfiles/nixos#user";
+
+
+
 
     a = "git add --patch";
     b = "git switch --create";
@@ -23,17 +30,16 @@ let
     ca = "git commit --amend";
     cm = "git commit --message";
     d = "git diff ':!*.lock'";
-    dl = "http --download get";
     ds = "git diff --staged ':!*.lock'";
     dsw = "git diff --staged --ignore-all-space ':!*.lock'";
     dw = "git diff --ignore-all-space ':!*.lock'";
-    quit = "exit";
 
-    # ll = "eza -la";
-    # pyclean = "find . | grep -E '(__pycache__|\.pyc|\.pyo$)' | xargs rm -rf";
-    # pc = "pycharm-community . > /dev/null 2>&1 &";
+    dl = "http --download get";
+
+    quit = "exit";
   };
-in {
+in
+{
   programs = {
     bash = {
       enable = true;
@@ -66,7 +72,7 @@ in {
 
 
 
-        # start index at 1
+        # start tab index at 1
         set -g base-index 1
         set -g pane-base-index 1
         set-window-option -g pane-base-index 1
@@ -104,6 +110,7 @@ in {
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
+
     zoxide = {
       enable = true;
       # enableShellIntegration = true;
@@ -142,17 +149,17 @@ in {
       shellAliases = aliases;
 
       plugins = [
-        {
-          # https://github.com/softmoth/zsh-vim-mode
-          name = "zsh-vim-mode";
-          file = "zsh-vim-mode.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "softmoth";
-            repo = "zsh-vim-mode";
-            rev = "abef0c0c03506009b56bb94260f846163c4f287a";
-            sha256 = "0cnjazclz1kyi13m078ca2v6l8pg4y8jjrry6mkvszd383dx1wib";
-          };
-        }
+        # {
+        #   # https://github.com/softmoth/zsh-vim-mode
+        #   name = "zsh-vim-mode";
+        #   file = "zsh-vim-mode.plugin.zsh";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "softmoth";
+        #     repo = "zsh-vim-mode";
+        #     rev = "abef0c0c03506009b56bb94260f846163c4f287a";
+        #     sha256 = "0cnjazclz1kyi13m078ca2v6l8pg4y8jjrry6mkvszd383dx1wib";
+        #   };
+        # }
         {
           # https://github.com/hlissner/zsh-autopair
           name = "zsh-autopair";

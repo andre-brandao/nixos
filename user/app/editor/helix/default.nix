@@ -1,5 +1,10 @@
 { config, pkgs, inputs, ... }: {
   home.packages = with pkgs; [
+
+
+    helix
+
+    # Language servers
     typescript
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
@@ -7,12 +12,13 @@
     nodePackages.vls
     nodePackages."@astrojs/language-server" # Astro
     nodePackages.svelte-language-server
+
     nodePackages.bash-language-server # Bash
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.pyright # Python
     nodePackages.stylelint
 
-    lldb
+    lldb # debugger
 
     elixir_ls # Elixir
     marksman # Markdown
@@ -58,6 +64,7 @@
           ];
           center = [
             "version-control"
+            "spacer"
             "separator"
             "file-name"
             "read-only-indicator"
