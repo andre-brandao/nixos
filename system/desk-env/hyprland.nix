@@ -19,6 +19,11 @@
     };
   };
 
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
   # Security
   # security = {
   #   pam.services.swaylock = {
@@ -44,10 +49,11 @@
 
   environment = {
     systemPackages = with pkgs; [
-      waybar
+      # wireplumber
+      # waybar
+      swww
       dunst
       libnotify
-
       rofi-wayland
       # hyperland default
       kitty
@@ -68,7 +74,8 @@
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-public-keys =
+      [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   hardware.opengl.enable = true;
@@ -78,7 +85,5 @@
     packages = [ pkgs.dconf ];
   };
 
-  programs.dconf = {
-    enable = true;
-  };
+  programs.dconf = { enable = true; };
 }

@@ -348,6 +348,22 @@
         "type": "github"
       }
     },
+    "hyprland-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711047490,
+        "narHash": "sha256-uyUenHmRzOdXajeYWA70C2+uzDeiqkiMcaBr3uKs28s=",
+        "owner": "hyprwm",
+        "repo": "hyprland-plugins",
+        "rev": "adec334acfb453014cdff1e5f070bb7c1c4e4a9b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprland-plugins",
+        "type": "github"
+      }
+    },
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
@@ -474,6 +490,7 @@
         "alejandra": "alejandra",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprland-plugins": "hyprland-plugins",
         "nixpkgs": "nixpkgs_2",
         "stylix": "stylix"
       }

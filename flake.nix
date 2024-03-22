@@ -16,10 +16,10 @@
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
 
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   flake = false;
-    # };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      flake = false;
+    };
 
     # Stylix
 

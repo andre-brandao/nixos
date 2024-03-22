@@ -13,9 +13,9 @@ let
     cd = "z";
     # ll = "ls -l";
     update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/minimal#system";
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system";
     home-update =
-      "${pkgs.home-manager}/bin/home-manager switch /home/${userSettings.username}/dotfiles/minimal#user";
+      "home-manager switch /home/${userSettings.username}/dotfiles/nixos#user";
 
     a = "git add --patch";
     b = "git switch --create";
