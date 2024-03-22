@@ -44,11 +44,15 @@
 
   environment = {
     systemPackages = with pkgs; [
-      # wireplumber
-      # waybar
+      wireplumber
+
       # (waybar.overrideAttrs (oldAttrs: {
       #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      # }))
+      # })
+      # )
+
+      hyprpaper
+
       swww
       dunst
       libnotify
@@ -66,8 +70,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals =
-        [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
   };
 

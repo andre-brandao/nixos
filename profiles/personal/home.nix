@@ -11,7 +11,9 @@
     # ../../user/style/stylix.nix # Styling and themes for my apps
 
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
-    ./waybar.nix
+    # ./waybar.nix
+    ./hypr.nix
+
     ../../user/app/gaming/gaming.nix
 
     ../../user/app/git/git.nix # My git config
@@ -61,6 +63,8 @@
     # qutebrowser
     dmenu
     rofi
+
+
     git
     # syncthing
 

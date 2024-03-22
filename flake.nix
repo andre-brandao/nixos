@@ -5,7 +5,6 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Home manager
@@ -15,29 +14,15 @@
     };
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      flake = false;
-    };
-
     # Stylix
-
     stylix.url = "github:danth/stylix";
-
-    # NIX formater
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
-
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
 
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -63,12 +48,8 @@
           "horizon-dark"; # selcted theme from my themes directory (./themes/)
         wm =
           "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
-        # window manager type (hyprland or x11) translator
-        wmType = if (wm == "hyprland") then "wayland" else "x11";
         browser =
           "brave"; # Default browser; must select one from ./user/app/browser/
-        defaultRoamDir =
-          "Personal.p"; # Default org roam directory relative to ~/Org
         term = "kitty"; # Default terminal command;
         font = "Intel One Mono"; # Selected font
         fontPkg = pkgs.intel-one-mono; # Font package
@@ -85,7 +66,11 @@
         # overlays = [ rust-overlay.overlays.default ];
       };
 
-    in {
+      inherit (nixpkgs) lib;
+
+
+    in
+    {
       formatter.${systemSettings.system} =
         nixpkgs.legacyPackages.${systemSettings.system}.nixfmt;
 
@@ -102,7 +87,6 @@
           specialArgs = {
             inherit inputs outputs;
             inherit (inputs) stylix;
-            inherit (inputs) hyprland-plugins;
             inherit systemSettings;
             inherit userSettings;
           };
