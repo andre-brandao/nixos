@@ -1,0 +1,16 @@
+{
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  // "nix.serverPath": "nixd"
+  "nix.serverSettings": {
+    // settings for 'nil' LSP
+    "nil": {
+      "diagnostics": {
+        "ignored": ["unused_binding", "unused_with"]
+      },
+      "formatting": {
+        "command": ["nix fmt"]
+      }
+    }
+  }
+}
