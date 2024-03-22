@@ -36,6 +36,8 @@
 
         line-number = "relative";
         auto-format = true;
+        auto-completion = true;
+        idle-timeout = 200;
 
         lsp = {
           display-messages = true;
@@ -52,13 +54,15 @@
           left = [
             "mode"
             "spinner"
+
+          ];
+          center = [
             "version-control"
-            # "separator"
+            "separator"
             "file-name"
             "read-only-indicator"
             "file-modification-indicator"
           ];
-          center = [ ];
           right = [
             "diagnostics"
             # "file-encoding"
@@ -71,7 +75,7 @@
             "position"
           ];
           mode = {
-            normal = "N     ";
+            normal = "NOR   ";
             insert = "   INS";
             select = "SELECT";
           };
