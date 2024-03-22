@@ -12,7 +12,7 @@
 
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
     # ./waybar.nix
-    ./hypr.nix
+    # ./hypr.nix
 
     ../../user/app/gaming/gaming.nix
 
@@ -63,7 +63,6 @@
     # qutebrowser
     dmenu
     rofi
-
 
     git
     # syncthing

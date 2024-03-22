@@ -3,20 +3,27 @@
     # Include the results of the hardware scan.
     ./extras/fonts.nix
   ];
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+
+  services = {
+
+
+    xserver = {
+      enable = true;
+      # Configure keymap in X11
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+      # Enable the GNOME Display Manager.
+      services.xserver.displayManager.gdm.enable = true;
+      # Enable the GNOME Desktop Environment.
+      services.xserver.desktopManager.gnome.enable = true;
+      # Enable automatic login for the user.
+      # displayManager.auegin.user = "andre";
+    };
+
   };
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  # Enable automatic login for the user.
-  # services.xserver.displayManager.auegin.user = "andre";
-
+  # Enable the X11 windowing system.
   # # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."getty@tty1".enable = false;
   # systemd.services."autovt@tty1".enable = false;

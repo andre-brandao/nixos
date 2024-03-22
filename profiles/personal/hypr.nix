@@ -10,9 +10,8 @@ let
 
     ${pkgs.swww}/bin/swww init &
   
-    ${pkgs.dunst}/bin/dunst &
+    ${pkgs.dunst}/bin/dunst 
 
-    # ${pkgs.swww}/bin/swww img ${./wallpaper.png} &
       
   '';
 in
