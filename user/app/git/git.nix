@@ -1,10 +1,5 @@
-{
-  config,
-  pkgs,
-  userSettings,
-  ...
-}: {
-  home.packages = [pkgs.git];
+{ config, pkgs, userSettings, ... }: {
+  home.packages = [ pkgs.git ];
   programs.git = {
     enable = true;
     userName = "andre-brandao";
@@ -18,8 +13,8 @@
 
     extraConfig = {
       credential.helper = "${
-        pkgs.git.override {withLibsecret = true;}
-      }/bin/git-credential-libsecret";
+          pkgs.git.override { withLibsecret = true; }
+        }/bin/git-credential-libsecret";
     };
   };
 }

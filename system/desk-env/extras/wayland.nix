@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ config, pkgs, ... }: {
   imports = [
     # ./pipewire.nix
     ./dbus.nix

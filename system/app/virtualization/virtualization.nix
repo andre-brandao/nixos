@@ -1,10 +1,4 @@
-{
-  pkgs,
-  dconf,
-  config,
-  userSettings,
-  ...
-}: {
+{ pkgs, dconf, config, userSettings, ... }: {
   ## DOCKER
   virtualisation.docker = {
     enable = true;
@@ -14,7 +8,7 @@
       setSocketVariable = true;
     };
   };
-  users.users.${userSettings.username}.extraGroups = ["docker" "libvirtd"];
+  users.users.${userSettings.username}.extraGroups = [ "docker" "libvirtd" ];
   # users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
   environment.systemPackages = with pkgs; [
     lazydocker
@@ -23,7 +17,7 @@
     distrobox
   ];
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [virtualbox];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 
   ## QEMU + VirtManager
   virtualisation.libvirtd.enable = true;

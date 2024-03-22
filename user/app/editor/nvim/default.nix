@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{ config, pkgs, inputs, ... }: {
   # nixpkgs = {
   #   overlays = [
   #     (final: prev: {
@@ -18,8 +13,16 @@
   # };
 
   programs.neovim = let
-    toLua = str: "lua << EOF\n${str}\nEOF\n";
-    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+    toLua = str: ''
+      lua << EOF
+      ${str}
+      EOF
+    '';
+    toLuaFile = file: ''
+      lua << EOF
+      ${builtins.readFile file}
+      EOF
+    '';
   in {
     enable = true;
 
@@ -75,7 +78,7 @@
 
       {
         plugin = comment-nvim;
-        config = toLua "require(\"Comment\").setup()";
+        config = toLua ''require("Comment").setup()'';
       }
 
       {

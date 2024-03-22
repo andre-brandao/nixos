@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Import wayland config
   imports = [
     ./extras/wayland.nix
@@ -22,9 +22,7 @@
   programs = {
     hyprland = {
       enable = true;
-      xwayland = {
-        enable = true;
-      };
+      xwayland = { enable = true; };
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
   };

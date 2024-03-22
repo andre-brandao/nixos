@@ -1,12 +1,4 @@
-{
-  config,
-  pkgs,
-  # nix-doom-emacs,
-  dconf,
-  stylix,
-  userSettings,
-  ...
-}: {
+{ config, pkgs, dconf, stylix, userSettings, ... }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = userSettings.username;
@@ -30,8 +22,8 @@
     ../../user/lang/js.nix # My node.js config
 
     # EDITORS
-    ../../user/app/editor/nvim/default.nix # My nvim config
-    ../../user/app/editor/helix/default.nix # My emacs config
+    ../../user/app/editor/nvim # My nvim config
+    ../../user/app/editor/helix # My emacs config
   ];
 
   home.stateVersion = "22.11"; # Please read the comment before changing.
@@ -175,13 +167,13 @@
   # virt-manager + qemu config (virtual machines)
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
   home.sessionVariables = {
     EDITOR = userSettings.editor;
-    SPAWNEDITOR = userSettings.spawnEditor;
+    # SPAWNEDITOR = userSettings.spawnEditor;
     TERM = userSettings.term;
     BROWSER = userSettings.browser;
   };

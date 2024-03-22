@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./extras/fonts.nix

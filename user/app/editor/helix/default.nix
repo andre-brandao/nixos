@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{ config, pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     typescript
     nodePackages.typescript-language-server
@@ -23,7 +18,7 @@
     marksman # Markdown
     (python3.withPackages (ps:
       with ps;
-        [python-lsp-server] ++ python-lsp-server.optional-dependencies.all))
+      [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all))
   ];
   programs.helix = {
     enable = true;
@@ -31,7 +26,7 @@
       transparentize = {
         # THEME TO BE USED WITHOU BG
         "inherits" = "adwaita-dark"; # jellybeans tokyonight
-        "ui.background" = {};
+        "ui.background" = { };
       };
     };
     settings = {
@@ -63,7 +58,7 @@
             "read-only-indicator"
             "file-modification-indicator"
           ];
-          center = [];
+          center = [ ];
           right = [
             "diagnostics"
             # "file-encoding"
@@ -101,14 +96,15 @@
         space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
-        esc = ["collapse_selection" "keep_primary_selection"];
+        esc = [ "collapse_selection" "keep_primary_selection" ];
       };
     };
     languages = {
       language-server = {
         astro-ls = {
-          command = "${pkgs.nodePackages."@astrojs/language-server"}/bin/astro-ls";
-          args = ["--stdio"];
+          command =
+            "${pkgs.nodePackages."@astrojs/language-server"}/bin/astro-ls";
+          args = [ "--stdio" ];
         };
       };
       language = [
@@ -148,27 +144,27 @@
         {
           name = "astro";
           auto-format = true;
-          language-servers = ["astro-ls"];
+          language-servers = [ "astro-ls" ];
         }
         {
           name = "svelte";
           auto-format = true;
-          language-servers = ["svelteserver"];
+          language-servers = [ "svelteserver" ];
         }
         {
           name = "elixir";
           auto-format = true;
-          language-servers = ["elixir-ls"];
+          language-servers = [ "elixir-ls" ];
         }
         {
           name = "markdown";
           auto-format = true;
-          language-servers = ["marksman"];
+          language-servers = [ "marksman" ];
         }
         {
           name = "go";
           auto-format = true;
-          formatter = {command = "goimports";};
+          formatter = { command = "goimports"; };
         }
       ];
     };

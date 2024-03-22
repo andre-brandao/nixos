@@ -1,8 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   myCbxScript = ''
     #!/bin/sh
 
@@ -19,7 +16,7 @@
     fi
   '';
 in {
-  imports = [../../pkgs/ranger.nix];
+  imports = [ ../../pkgs/ranger.nix ];
 
   home.packages = with pkgs; [
     ranger
@@ -27,9 +24,7 @@ in {
     highlight
     (pkgs.writeScriptBin "cbx" myCbxScript)
   ];
-  xdg.mimeApps.associations.added = {
-    "inode/directory" = "ranger.desktop";
-  };
+  xdg.mimeApps.associations.added = { "inode/directory" = "ranger.desktop"; };
   home.file.".config/ranger/rc.conf".source = ./rc.conf;
   home.file.".config/ranger/rifle.conf".source = ./rifle.conf;
   home.file.".config/ranger/scope.sh" = {
