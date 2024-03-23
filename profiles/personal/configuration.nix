@@ -3,16 +3,9 @@
 { inputs, lib, config, pkgs, userSettings, systemSettings, ... }: {
   # You can import other NixOS modules here
   imports = [
-    # If you want to use modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
     # Import your generated (nixos-generate-config) hardware configuration
+    ../../system/config
     ../../system/hardware-configuration.nix
-    ../../system/config/default.nix
 
     ../../system/app/virtualization/virtualization.nix
 
@@ -68,7 +61,6 @@
   programs.zsh.enable = true;
 
   fonts.fontDir.enable = true;
-
   # USERS
   users.users.${userSettings.username} = {
     isNormalUser = true;
