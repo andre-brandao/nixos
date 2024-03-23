@@ -1,7 +1,6 @@
 { config, pkgs, inputs, ... }: {
   home.packages = with pkgs; [
 
-
     helix
 
     # Language servers
@@ -60,31 +59,27 @@
           left = [
             "mode"
             "spinner"
-
-          ];
-          center = [
-            "version-control"
-            "spacer"
-            "separator"
-            "file-name"
-            "read-only-indicator"
-            "file-modification-indicator"
-          ];
-          right = [
             "diagnostics"
+
+            "file-modification-indicator"
+            "read-only-indicator"
+          ];
+          center = [ "version-control" "spacer" "separator" "file-name" ];
+          right = [
             # "file-encoding"
             # "file-line-ending"
             "selections"
-            "register"
+            # "register"
             "file-type"
             # "separator"
             "position-percentage"
             "position"
           ];
           mode = {
-            normal = "NOR   ";
-            insert = "   INS";
-            select = "SELECT";
+            # 󱄅 
+            normal = " NOR   ";
+            insert = "    INS";
+            select = "󰈈 SELECT";
           };
         };
 

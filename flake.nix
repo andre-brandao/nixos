@@ -12,11 +12,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
+
     # Stylix
     stylix.url = "github:danth/stylix";
-
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -50,7 +51,7 @@
           "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         browser =
           "brave"; # Default browser; must select one from ./user/app/browser/
-        term = "kitty"; # Default terminal command;
+        term = "alacritty"; # Default terminal command;
         font = "Intel One Mono"; # Selected font
         fontPkg = pkgs.intel-one-mono; # Font package
         editor = "code"; # Default editor;
@@ -65,9 +66,6 @@
         };
         # overlays = [ rust-overlay.overlays.default ];
       };
-
-      inherit (nixpkgs) lib;
-
 
     in
     {

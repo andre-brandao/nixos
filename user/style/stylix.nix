@@ -1,4 +1,4 @@
-{ config, lib, pkgs, userSettings, stylix, ... }:
+{ config, lib, pkgs, userSettings, ... }:
 let
   themePath = "../../../themes"
     + ("/" + userSettings.theme + "/" + userSettings.theme) + ".yaml";
@@ -8,8 +8,9 @@ let
     + ("/" + userSettings.theme) + "/backgroundurl.txt");
   backgroundSha256 = builtins.readFile (./. + "../../../themes/"
     + ("/" + userSettings.theme) + "/backgroundsha256.txt");
-in {
-  imports = [ stylix.nixosModules.stylix ];
+in
+{
+  # imports = [ stylix.nixosModules.stylix ];
   home.file.".currenttheme".text = userSettings.theme;
   stylix.autoEnable = false;
   stylix.polarity = themePolarity;
@@ -73,25 +74,24 @@ in {
     };
     font.size = config.stylix.fonts.sizes.terminal;
   };
-  stylix.targets.kitty.enable = true;
-  stylix.targets.gtk.enable = true;
-  # stylix.targets.rofi.enable =
-  #   if (userSettings.wmType == "x11") then true else false;
-  # stylix.targets.feh.enable =
-  #   if (userSettings.wmType == "x11") then true else false;
-  stylix.targets.xyz.enable = false;
+  # stylix.targets.kitty.enable = true;
+  # stylix.targets.gtk.enable = true;
+  # stylix.targets.rofi.enable = true;
+  # # stylix.targets.feh.enable =
+  # #   if (userSettings.wmType == "x11") then true else false;
+  # stylix.targets.xyz.enable = false;
 
   home.file.".fehbg-stylix".text = ''
     #!/bin/sh
     feh --no-fehbg --bg-fill '' + config.stylix.image + ''
-      ;
-    '';
+    ;
+  '';
   home.file.".fehbg-stylix".executable = true;
   home.file.".swaybg-stylix".text = ''
     #!/bin/sh
     swaybg -m fill -i '' + config.stylix.image + ''
-      ;
-    '';
+    ;
+  '';
 
   home.file.".swaybg-stylix".executable = true;
   home.file.".swayidle-stylix".text = ''
@@ -120,14 +120,6 @@ in {
     ".config/qt5ct/qt5ct.conf".text =
       pkgs.lib.mkBefore (builtins.readFile ./qt5ct.conf);
   };
-  home.file.".config/hypr/hyprpaper.conf".text = "preload = "
-    + config.stylix.image + ''
-
-      wallpaper = eDP-1,'' + config.stylix.image + ''
-
-        wallpaper = HDMI-A-1,'' + config.stylix.image + ''
-
-          wallpaper = DP-1,'' + config.stylix.image + "";
   home.packages = with pkgs; [ qt5ct pkgs.libsForQt5.breeze-qt5 ];
   home.sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
   programs.zsh.sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
