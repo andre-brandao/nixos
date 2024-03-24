@@ -1,4 +1,4 @@
-{ inputs,config, pkgs, dconf, userSettings, ... }: {
+{ inputs, config, pkgs, dconf, userSettings, ... }: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = userSettings.username;
@@ -10,7 +10,9 @@
     inputs.stylix.homeManagerModules.stylix
     ../../user/style/stylix.nix # Styling and themes for my apps
 
-    (./. + "../../../user/desk-env" + ("/" + userSettings.wm + "/" + userSettings.wm) + ".nix") # My window manager selected from flake
+    (./. + "../../../user/desk-env"
+      + ("/" + userSettings.wm + "/" + userSettings.wm)
+      + ".nix") # My window manager selected from flake
 
     ../../user/app/gaming/gaming.nix
 
@@ -30,7 +32,7 @@
 
   home.packages = with pkgs; [
     spotify
-
+    netflix
     # BROSWERS
     brave
     firefox

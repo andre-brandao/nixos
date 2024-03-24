@@ -13,16 +13,11 @@ let
     user-update =
       "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user";
 
-
-
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
     htop = "btm";
     fd = "fd -Lu";
     cd = "z";
-
-
-
 
     a = "git add --patch";
     b = "git switch --create";
@@ -38,8 +33,7 @@ let
 
     quit = "exit";
   };
-in
-{
+in {
   programs = {
     bash = {
       enable = true;
@@ -104,7 +98,7 @@ in
 
         # STATUS BAR
         set -g status-right ' #[fg=black,bg=color15] cpu: #{cpu_percentage} #[fg=color15,bg=color16] %H:%M | %d-%m-%Y '
-        set-option -g status-position top
+        # set-option -g status-position top
 
 
         run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
