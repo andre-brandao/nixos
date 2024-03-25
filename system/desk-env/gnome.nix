@@ -38,5 +38,7 @@
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.tray-icons-reloaded
     gnomeExtensions.toggle-alacritty
+    gnomeExtensions.just-perfection
+    gnomeExtensions.rounded-window-corners
   ];
 }

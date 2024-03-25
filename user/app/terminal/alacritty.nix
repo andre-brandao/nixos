@@ -4,7 +4,13 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window = { opacity = lib.mkForce 0.75; };
+      window = {
+        opacity = lib.mkForce 0.75;
+        dimensions = {
+          lines = 3;
+          columns = 200;
+        };
+      };
       colors = {
         # TODO revisit these color mappings
         # these are just the default provided from stylix
