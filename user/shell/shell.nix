@@ -12,6 +12,8 @@ let
     # -- REBUILD USER
     user-update =
       "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user";
+      # -- REBUILD BOTH
+    update = "sys-update && user-update";
 
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
