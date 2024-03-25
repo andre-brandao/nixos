@@ -7,5 +7,7 @@
     ./sound.nix
     ./printer.nix
     ./gc.nix
+
+    ./fingerprint-scanner.nix
   ];
 }
