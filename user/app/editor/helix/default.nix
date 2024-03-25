@@ -35,7 +35,7 @@
       };
     };
     settings = {
-      theme = "transparentize";
+      # theme = "transparentize";
       editor = {
         scrolloff = 8;
 

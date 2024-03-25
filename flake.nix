@@ -52,8 +52,8 @@
         browser =
           "brave"; # Default browser; must select one from ./user/app/browser/
         term = "alacritty"; # Default terminal command;
-        font = "Intel One Mono"; # Selected font
-        fontPkg = pkgs.intel-one-mono; # Font package
+        font = "Jetbrains Mono"; # Selected font
+        fontPkg = pkgs.jetbrains-mono; # Font package
         editor = "code"; # Default editor;
       };
 
@@ -102,7 +102,6 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
-            inherit (inputs) stylix;
             inherit systemSettings;
             inherit userSettings;
           };

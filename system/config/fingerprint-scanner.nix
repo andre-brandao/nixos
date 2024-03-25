@@ -2,6 +2,7 @@
   # Enable fingerprint scanner
   services.fprintd = {
     enable = true;
-    tod.enable = true;
   };
+  security.pam.services.login.fprintAuth = true;
+  security.pam.services.xscreensaver.fprintAuth = true;
 }

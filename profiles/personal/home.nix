@@ -7,7 +7,7 @@
   programs.home-manager.enable = true;
 
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    # inputs.stylix.homeManagerModules.stylix
     ../../user/style/stylix.nix # Styling and themes for my apps
 
     # (./. + "../../../user/desk-env"
