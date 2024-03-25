@@ -13,7 +13,7 @@
       + ".nix") # My window manager
 
     # styles
-    # ../../system/style/stylix.nix
+    ../../system/style/stylix.nix
   ];
 
   nixpkgs = {

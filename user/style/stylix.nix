@@ -49,6 +49,7 @@ in
       rofi.enable = true;
       vscode.enable = true;
       kitty.enable = true;
+      tmux.enable = true;
     };
     fonts.sizes = {
       terminal = 18;

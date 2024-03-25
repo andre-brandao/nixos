@@ -8,12 +8,15 @@ let
   aliases = {
     # -- REBUILD SYSTEM
     sys-update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system |& nom";
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system --log-format internal-json -v |& nom";
     # -- REBUILD USER
     user-update =
       "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";
-      # -- REBUILD BOTH
+    # -- REBUILD BOTH
     update = "sys-update && user-update";
+
+    # https://github.com/maralorn/nix-output-monitor
+
 
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
@@ -35,7 +38,8 @@ let
 
     quit = "exit";
   };
-in {
+in
+{
   programs = {
     bash = {
       enable = true;
@@ -51,7 +55,7 @@ in {
 
       plugins = with pkgs; [
         tmuxPlugins.better-mouse-mode
-        tmuxPlugins.catppuccin
+        # tmuxPlugins.catppuccin
         tmuxPlugins.resurrect
       ];
 
@@ -59,9 +63,9 @@ in {
 
         # keyMode = "vi";
 
-        set -g @catppuccin_flavour 'frappe'
-        set -g @catppuccin_window_tabs_enabled on
-        set -g @catppuccin_date_time "%H:%M"
+        # set -g @catppuccin_flavour 'frappe'
+        # set -g @catppuccin_window_tabs_enabled on
+        # set -g @catppuccin_date_time "%H:%M"
 
         # Mouse works as expected
         set -g mouse on

@@ -26,6 +26,7 @@
     # EDITORS
     ../../user/app/editor/nvim # My nvim config
     ../../user/app/editor/helix # My emacs config
+    ../../user/app/editor/vscode # My vscode config
   ];
 
   home.stateVersion = "22.11"; # Please read the comment before changing.
@@ -38,7 +39,7 @@
     firefox
 
     # CODE
-    vscode
+    # vscode
 
     # MESSAGING
     thunderbird
@@ -116,7 +117,7 @@
     zlib
     # nodePackages.ungit
   ];
-  
+
   # virt-manager + qemu config (virtual machines)
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {

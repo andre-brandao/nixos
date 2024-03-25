@@ -45,14 +45,13 @@
         email =
           "brandaoandre@gmail.com"; # email (used for certain configurations)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme =
-          "horizon-dark"; # selcted theme from my themes directory (./themes/)
+        theme = "catppuccin-mocha"; # selcted theme from my themes directory (./themes/)
         wm =
           "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         browser =
           "brave"; # Default browser; must select one from ./user/app/browser/
         term = "alacritty"; # Default terminal command;
-        font = "Jetbrains Mono"; # Selected font
+        font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
         editor = "code"; # Default editor;
       };
