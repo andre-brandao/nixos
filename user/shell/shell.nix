@@ -8,10 +8,10 @@ let
   aliases = {
     # -- REBUILD SYSTEM
     sys-update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system";
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system |& nom";
     # -- REBUILD USER
     user-update =
-      "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user";
+      "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";
       # -- REBUILD BOTH
     update = "sys-update && user-update";
 
@@ -199,6 +199,8 @@ in {
     direnv
     nix-direnv
     helix
+
+    nix-output-monitor
   ];
 
   programs.direnv.enable = true;
