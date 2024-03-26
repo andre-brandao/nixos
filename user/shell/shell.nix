@@ -5,7 +5,7 @@ let
   aliases = {
     # -- REBUILD SYSTEM
     sys-update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system --log-format internal-json -v |& nom --json";
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system";
     # -- REBUILD USER
     user-update =
       "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";

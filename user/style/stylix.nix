@@ -46,6 +46,7 @@ in
     targets = {
       # lightdm.enable = true;
       gtk.enable = true;
+      hyprland.enable = false;
       rofi.enable = true;
       vscode.enable = true;
       kitty.enable = true;

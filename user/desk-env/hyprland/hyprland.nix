@@ -5,11 +5,11 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
 
-    ${(pkgs.waybar.override { wireplumberSupport = false; })}/bin/waybar &
-     ${pkgs.swww}/bin/swww init &
+    ${(pkgs.waybar)}/bin/waybar &
+    ${pkgs.swww}/bin/swww init &
 
-     ${pkgs.dunst}/bin/dunst 
-       
+    ${pkgs.dunst}/bin/dunst 
+      
   '';
 in
 {
@@ -18,7 +18,9 @@ in
 
     settings = {
       ## See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = "DP-1, 1920x1200, 0x0, 1";
+      monitor = "DP-1, 1920x1200, auto, 1";
+
+      xwayland = { force_zero_scaling = true; };
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {
@@ -57,7 +59,7 @@ in
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-        rounding = 10;
+        rounding = 6;
 
         blur = {
           enabled = true;
@@ -68,7 +70,7 @@ in
         drop_shadow = "yes";
         shadow_range = 4;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        # "col.shadow" = "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -158,7 +160,21 @@ in
         "$mainMod, mouse_up, workspace, e-1"
 
         "ALT,TAB,cyclenext"
+
+        #  bind=SUPER,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop
+        #  bind=SUPER,F,exec,pypr toggle ranger && hyprctl dispatch bringactivetotop
+        #  bind=SUPER,N,exec,pypr toggle musikcube && hyprctl dispatch bringactivetotop
+        #  bind=SUPER,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop
+        #  bind=SUPER,E,exec,pypr toggle geary && hyprctl dispatch bringactivetotop
+        #  bind=SUPER,code:172,exec,pypr toggle pavucontrol && hyprctl dispatch bringactivetotop
+        #  $scratchpadsize = size 80% 85%
       ];
+
+      #  $scratchpad = class:^(scratchpad)$
+      #  windowrulev2 = float,$scratchpad
+      #  windowrulev2 = $scratchpadsize,$scratchpad
+      #  windowrulev2 = workspace special silent,$scratchpad
+      #  windowrulev2 = center,$scratchpad
 
       bindm = [
 
@@ -167,15 +183,22 @@ in
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      exec-once =
-        [ "pypr" "${startupScript}/bin/start" "nm-applet" "blueman-applet" ];
+      exec-once = [
+        "pypr"
+        "${startupScript}/bin/start"
+        "nm-applet"
+        "blueman-applet"
+        "waybar"
+      ];
     };
   };
 
   home.packages = with pkgs; [
     alacritty
+    waybar
     kitty
     feh
+    rofi
     killall
     polkit_gnome
     libva-utils
@@ -321,7 +344,7 @@ in
   #     })
   programs.waybar = {
     enable = true;
-    package = (pkgs.waybar.override { wireplumberSupport = false; });
+    # package = (pkgs.waybar.override { wireplumberSupport = false; });
     settings = {
       mainBar = {
         layer = "top";
@@ -332,26 +355,25 @@ in
 
         modules-left = [
           "custom/os"
-          "battery"
           "backlight"
           "keyboard-state"
           "pulseaudio"
+          
           "cpu"
           "memory"
         ];
         modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "idle_inhibitor" "tray" "clock" ];
+        modules-right = [
+          "idle_inhibitor"
+          "tray"
+          "clock"
+          "battery"
+        ];
 
         "custom/os" = {
           "format" = " {} ";
           "exec" = ''echo "" '';
           "interval" = "once";
-        };
-        "custom/hyprprofile" = {
-          "format" = "   {}";
-          "exec" = "cat ~/.hyprprofile";
-          "interval" = 3;
-          "on-click" = "hyprprofile-dmenu";
         };
         "keyboard-state" = {
           "numlock" = true;
@@ -464,222 +486,222 @@ in
         };
       };
     };
-    style = ''
-      * {
-          /* `otf-font-awesome` is required to be installed for icons */
-          font-family: FontAwesome, '' + userSettings.font + ''
-      ;
+    # style = ''
+    #   * {
+    #       /* `otf-font-awesome` is required to be installed for icons */
+    #       font-family: FontAwesome, '' + userSettings.font + ''
+    #   ;
 
-                font-size: 13px;
-            }
+    #             font-size: 13px;
+    #         }
 
-            window#waybar {
-                background-color: #'' + config.lib.stylix.colors.base00 + ''
-      ;
-                opacity: 0.75;
-                border-radius: 8px;
-                color: #'' + config.lib.stylix.colors.base07 + ''
-      ;
-                transition-property: background-color;
-                transition-duration: .2s;
-            }
+    #         window#waybar {
+    #             background-color: #'' + config.lib.stylix.colors.base00 + ''
+    #   ;
+    #             opacity: 0.75;
+    #             border-radius: 8px;
+    #             color: #'' + config.lib.stylix.colors.base07 + ''
+    #   ;
+    #             transition-property: background-color;
+    #             transition-duration: .2s;
+    #         }
 
-            window > box {
-                border-radius: 8px;
-                opacity: 0.94;
-            }
+    #         window > box {
+    #             border-radius: 8px;
+    #             opacity: 0.94;
+    #         }
 
-            window#waybar.hidden {
-                opacity: 0.2;
-            }
+    #         window#waybar.hidden {
+    #             opacity: 0.2;
+    #         }
 
-            button {
-                border: none;
-            }
+    #         button {
+    #             border: none;
+    #         }
 
-            #custom-hyprprofile {
-                color: #'' + config.lib.stylix.colors.base0D + ''
-      ;
-            }
+    #         #custom-hyprprofile {
+    #             color: #'' + config.lib.stylix.colors.base0D + ''
+    #   ;
+    #         }
 
-            /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-            button:hover {
-                background: inherit;
-            }
+    #         /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+    #         button:hover {
+    #             background: inherit;
+    #         }
 
-            #workspaces button {
-                padding: 0 7px;
-                background-color: transparent;
-                color: #'' + config.lib.stylix.colors.base04 + ''
-      ;
-            }
+    #         #workspaces button {
+    #             padding: 0 7px;
+    #             background-color: transparent;
+    #             color: #'' + config.lib.stylix.colors.base04 + ''
+    #   ;
+    #         }
 
-            #workspaces button:hover {
-                color: #'' + config.lib.stylix.colors.base07 + ''
-      ;
-            }
+    #         #workspaces button:hover {
+    #             color: #'' + config.lib.stylix.colors.base07 + ''
+    #   ;
+    #         }
 
-            #workspaces button.active {
-                color: #'' + config.lib.stylix.colors.base08 + ''
-      ;
-            }
+    #         #workspaces button.active {
+    #             color: #'' + config.lib.stylix.colors.base08 + ''
+    #   ;
+    #         }
 
-            #workspaces button.focused {
-                color: #'' + config.lib.stylix.colors.base0A + ''
-      ;
-            }
+    #         #workspaces button.focused {
+    #             color: #'' + config.lib.stylix.colors.base0A + ''
+    #   ;
+    #         }
 
-            #workspaces button.visible {
-                color: #'' + config.lib.stylix.colors.base05
-    + ''
-      ;
-            }
+    #         #workspaces button.visible {
+    #             color: #'' + config.lib.stylix.colors.base05
+    # + ''
+    #   ;
+    #         }
 
-            #workspaces button.urgent {
-                color: #'' + config.lib.stylix.colors.base09 + ''
-      ;
-            }
+    #         #workspaces button.urgent {
+    #             color: #'' + config.lib.stylix.colors.base09 + ''
+    #   ;
+    #         }
 
-            #clock,
-            #battery,
-            #cpu,
-            #memory,
-            #disk,
-            #temperature,
-            #backlight,
-            #network,
-            #pulseaudio,
-            #wireplumber,
-            #custom-media,
-            #tray,
-            #mode,
-            #idle_inhibitor,
-            #scratchpad,
-            #mpd {
-                padding: 0 10px;
-                color: #'' + config.lib.stylix.colors.base07 + ''
-      ;
-                border: none;
-                border-radius: 8px;
-            }
+    #         #clock,
+    #         #battery,
+    #         #cpu,
+    #         #memory,
+    #         #disk,
+    #         #temperature,
+    #         #backlight,
+    #         #network,
+    #         #pulseaudio,
+    #         #wireplumber,
+    #         #custom-media,
+    #         #tray,
+    #         #mode,
+    #         #idle_inhibitor,
+    #         #scratchpad,
+    #         #mpd {
+    #             padding: 0 10px;
+    #             color: #'' + config.lib.stylix.colors.base07 + ''
+    #   ;
+    #             border: none;
+    #             border-radius: 8px;
+    #         }
 
-            #window,
-            #workspaces {
-                margin: 0 4px;
-            }
+    #         #window,
+    #         #workspaces {
+    #             margin: 0 4px;
+    #         }
 
-            /* If workspaces is the leftmost module, omit left margin */
-            .modules-left > widget:first-child > #workspaces {
-                margin-left: 0;
-            }
+    #         /* If workspaces is the leftmost module, omit left margin */
+    #         .modules-left > widget:first-child > #workspaces {
+    #             margin-left: 0;
+    #         }
 
-            /* If workspaces is the rightmost module, omit right margin */
-            .modules-right > widget:last-child > #workspaces {
-                margin-right: 0;
-            }
+    #         /* If workspaces is the rightmost module, omit right margin */
+    #         .modules-right > widget:last-child > #workspaces {
+    #             margin-right: 0;
+    #         }
 
-            #clock {
-                color: #'' + config.lib.stylix.colors.base0D + ''
-      ;
-            }
+    #         #clock {
+    #             color: #'' + config.lib.stylix.colors.base0D + ''
+    #   ;
+    #         }
 
-            #battery {
-                color: #'' + config.lib.stylix.colors.base0B + ''
-      ;
-            }
+    #         #battery {
+    #             color: #'' + config.lib.stylix.colors.base0B + ''
+    #   ;
+    #         }
 
-            #battery.charging, #battery.plugged {
-                color: #'' + config.lib.stylix.colors.base0C + ''
-      ;
-            }
+    #         #battery.charging, #battery.plugged {
+    #             color: #'' + config.lib.stylix.colors.base0C + ''
+    #   ;
+    #         }
 
-            @keyframes blink {
-                to {
-                    background-color: #''
-    + config.lib.stylix.colors.base07 + ''
-      ;
-                    color: #'' + config.lib.stylix.colors.base00 + ''
-      ;
-                }
-            }
+    #         @keyframes blink {
+    #             to {
+    #                 background-color: #''
+    # + config.lib.stylix.colors.base07 + ''
+    #   ;
+    #                 color: #'' + config.lib.stylix.colors.base00 + ''
+    #   ;
+    #             }
+    #         }
 
-            #battery.critical:not(.charging) {
-                background-color: #'' + config.lib.stylix.colors.base08 + ''
-      ;
-                color: #'' + config.lib.stylix.colors.base07 + ''
-      ;
-                animation-name: blink;
-                animation-duration: 0.5s;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-                animation-direction: alternate;
-            }
+    #         #battery.critical:not(.charging) {
+    #             background-color: #'' + config.lib.stylix.colors.base08 + ''
+    #   ;
+    #             color: #'' + config.lib.stylix.colors.base07 + ''
+    #   ;
+    #             animation-name: blink;
+    #             animation-duration: 0.5s;
+    #             animation-timing-function: linear;
+    #             animation-iteration-count: infinite;
+    #             animation-direction: alternate;
+    #         }
 
-            label:focus {
-                background-color: #'' + config.lib.stylix.colors.base00
-    + ''
-      ;
-            }
+    #         label:focus {
+    #             background-color: #'' + config.lib.stylix.colors.base00
+    # + ''
+    #   ;
+    #         }
 
-            #cpu {
-                color: #'' + config.lib.stylix.colors.base0D + ''
-      ;
-            }
+    #         #cpu {
+    #             color: #'' + config.lib.stylix.colors.base0D + ''
+    #   ;
+    #         }
 
-            #memory {
-                color: #'' + config.lib.stylix.colors.base0E + ''
-      ;
-            }
+    #         #memory {
+    #             color: #'' + config.lib.stylix.colors.base0E + ''
+    #   ;
+    #         }
 
-            #disk {
-                color: #'' + config.lib.stylix.colors.base0F + ''
-      ;
-            }
+    #         #disk {
+    #             color: #'' + config.lib.stylix.colors.base0F + ''
+    #   ;
+    #         }
 
-            #backlight {
-                color: #'' + config.lib.stylix.colors.base0A + ''
-      ;
-            }
+    #         #backlight {
+    #             color: #'' + config.lib.stylix.colors.base0A + ''
+    #   ;
+    #         }
 
-            label.numlock {
-                color: #'' + config.lib.stylix.colors.base04 + ''
-      ;
-            }
+    #         label.numlock {
+    #             color: #'' + config.lib.stylix.colors.base04 + ''
+    #   ;
+    #         }
 
-            label.numlock.locked {
-                color: #'' + config.lib.stylix.colors.base0F + ''
-      ;
-            }
+    #         label.numlock.locked {
+    #             color: #'' + config.lib.stylix.colors.base0F + ''
+    #   ;
+    #         }
 
-            #pulseaudio {
-                color: #'' + config.lib.stylix.colors.base0C + ''
-      ;
-            }
+    #         #pulseaudio {
+    #             color: #'' + config.lib.stylix.colors.base0C + ''
+    #   ;
+    #         }
 
-            #pulseaudio.muted {
-                color: #'' + config.lib.stylix.colors.base04
-    + ''
-      ;
-            }
+    #         #pulseaudio.muted {
+    #             color: #'' + config.lib.stylix.colors.base04
+    # + ''
+    #   ;
+    #         }
 
-            #tray > .passive {
-                -gtk-icon-effect: dim;
-            }
+    #         #tray > .passive {
+    #             -gtk-icon-effect: dim;
+    #         }
 
-            #tray > .needs-attention {
-                -gtk-icon-effect: highlight;
-            }
+    #         #tray > .needs-attention {
+    #             -gtk-icon-effect: highlight;
+    #         }
 
-            #idle_inhibitor {
-                color: #'' + config.lib.stylix.colors.base04 + ''
-      ;
-            }
+    #         #idle_inhibitor {
+    #             color: #'' + config.lib.stylix.colors.base04 + ''
+    #   ;
+    #         }
 
-            #idle_inhibitor.activated {
-                color: #'' + config.lib.stylix.colors.base0F + ''
-      ;
-            }
-    '';
+    #         #idle_inhibitor.activated {
+    #             color: #'' + config.lib.stylix.colors.base0F + ''
+    #   ;
+    #         }
+    # '';
   };
 
 }

@@ -42,7 +42,8 @@
         email =
           "brandaoandre@gmail.com"; # email (used for certain configurations)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme = "horizon-dark"; # selcted theme from my themes directory (./themes/)
+        theme =
+          "horizon-dark"; # selcted theme from my themes directory (./themes/)
         wm =
           "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         browser =
