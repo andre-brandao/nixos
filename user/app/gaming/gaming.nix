@@ -1,18 +1,16 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     lutris
-    steam
-    steam-run
-    protonup-ng
-    gamemode
-    dxvk
-    # parsec-bin
+    # protonup-ng
+    # gamemode
+    # dxvk
+    # # parsec-bin
 
-    gamescope
+    # gamescope
 
-    # heroic
-    mangohud
+    # # heroic
+    # mangohud
 
-    steamPackages.steam-runtime
+    # steamPackages.steam-runtime
   ];
 }

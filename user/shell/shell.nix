@@ -2,9 +2,6 @@
 let
   inherit (builtins) readFile replaceStrings;
   inherit (lib) concatLines concatStringsSep genAttrs mapAttrsToList toShellVar;
-  # palette = import ../resources/palette.nix { inherit lib; };
-  # toAbbrs = kv: concatLines (mapAttrsToList (k: v: "abbr ${toShellVar k v}") kv);
-
   aliases = {
     # -- REBUILD SYSTEM
     sys-update =

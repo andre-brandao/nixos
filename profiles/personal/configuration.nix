@@ -36,10 +36,12 @@
   # This will additionally add your inputs to the system's legacy channels
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = [ "/etc/nix/path" ];
-  environment.etc = lib.mapAttrs' (name: value: {
-    name = "nix/path/${name}";
-    value.source = value.flake;
-  }) config.nix.registry;
+  environment.etc = lib.mapAttrs'
+    (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    })
+    config.nix.registry;
 
   nix.settings = {
     # Enable flakes and new 'nix' command
@@ -63,15 +65,21 @@
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  environment.systemPackages = with pkgs; [ helix ];
+  environment.systemPackages = with pkgs; [
+    helix
+    vim
+    wget
+    zsh
+    git
+  ];
 
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [
-  #     pkgs.xdg-desktop-portal
-  #     pkgs.xdg-desktop-portal-gtk
-  #   ];
-  # };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal
+      # pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.

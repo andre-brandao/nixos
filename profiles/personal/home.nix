@@ -7,20 +7,26 @@
   programs.home-manager.enable = true;
 
   imports = [
-    # inputs.stylix.homeManagerModules.stylix
+    # STYLES
     ../../user/style/stylix.nix # Styling and themes for my apps
 
-    # (./. + "../../../user/desk-env"
-    #   + ("/" + userSettings.wm + "/" + userSettings.wm)
-    #   + ".nix") # My window manager selected from flake
+    (./. + "../../../user/desk-env"
+      + ("/" + userSettings.wm + "/" + userSettings.wm)
+      + ".nix") # My window manager selected from flake
 
+
+    # GAMES
     ../../user/app/gaming/gaming.nix
 
-    ../../user/app/git/git.nix # My git config
 
+
+    ../../user/app/virtualization/virtualization.nix # My qemu + virt manager
+    ../../user/app/git/git.nix # My git config
+    # SHELL 
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
 
+    # PROGRAMMING LANGUAGES
     ../../user/lang/js.nix # My node.js config
 
     # EDITORS
@@ -53,9 +59,6 @@
     vlc
     obs-studio
 
-    # GAMES
-    minecraft
-
     # Core
     zsh
     alacritty
@@ -77,9 +80,6 @@
     gnome.nautilus
     gnome.gnome-calendar
     gnome.seahorse
-    # gnome.gnome-maps
-    # openvpn
-    # protonmail-bridge
     texliveSmall
 
     wine
@@ -92,18 +92,11 @@
     # musikcube
     vlc
     mpv
-    yt-dlp
-    #freetube
+
     blender
-    #blockbench-electron
-    # cura
     obs-studio
     # kdenlive
     ffmpeg
-    # (pkgs.writeScriptBin "kdenlive-accel" ''
-    #   #!/bin/sh
-    #   DRI_PRIME=0 kdenlive "$1"
-    # '')
     movit
     mediainfo
     libmediainfo
@@ -118,13 +111,7 @@
     # nodePackages.ungit
   ];
 
-  # virt-manager + qemu config (virtual machines)
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = [ "qemu:///system" ];
-      uris = [ "qemu:///system" ];
-    };
-  };
+
   home.sessionVariables = {
     EDITOR = userSettings.editor;
     # SPAWNEDITOR = userSettings.spawnEditor;
