@@ -48,6 +48,7 @@ in
       lightdm.enable = true;
       console.enable = true;
       gtk.enable = true;
+      gnome.enable = true;
       plymouth.enable = true;
     };
   };

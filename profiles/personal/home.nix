@@ -44,6 +44,8 @@
     brave
     firefox
 
+    minecraft
+
     # CODE
     # vscode
 
