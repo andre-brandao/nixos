@@ -7,7 +7,9 @@
     ../../system/config
     ../../system/hardware-configuration.nix
 
-    ../../system/app/virtualization/virtualization.nix
+    ../../system/app/virtualization.nix
+    ../../system/app/docker.nix
+    ../../system/app/steam.nix
 
     (./. + "../../../system/desk-env" + ("/" + userSettings.wm)
       + ".nix") # My window manager

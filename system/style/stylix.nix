@@ -1,4 +1,4 @@
-{ lib, config, pkgs, stylix, userSettings, ... }:
+{ lib, config, pkgs, inputs, userSettings, ... }:
 let
   themePath = "../../../themes/" + userSettings.theme + "/" + userSettings.theme
     + ".yaml";
@@ -10,8 +10,9 @@ let
     + ("/" + userSettings.theme) + "/backgroundurl.txt");
   backgroundSha256 = builtins.readFile (./. + "../../../themes/"
     + ("/" + userSettings.theme) + "/backgroundsha256.txt");
-in {
-  imports = [ stylix.nixosModules.stylix ];
+in
+{
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
   # stylix.autoEnable = false;
 
@@ -47,14 +48,7 @@ in {
       lightdm.enable = true;
       console.enable = true;
       gtk.enable = true;
-      # kitty.enable = true;
+      plymouth.enable = true;
     };
-  };
-
-  environment.sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
-  qt = {
-    enable = true;
-    style.package = pkgs.libsForQt5.breeze-qt5;
-    style.name = "breeze-dark";
   };
 }

@@ -1,8 +1,8 @@
 { pkgs, ... }:
+
 {
   home.packages = with pkgs; [
-    nodejs
-    supabase-cli
-    turso-cli
+    # Gamedev
+    godot_4
   ];
 }

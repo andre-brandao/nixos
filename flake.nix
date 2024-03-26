@@ -45,7 +45,7 @@
         email =
           "brandaoandre@gmail.com"; # email (used for certain configurations)
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme = "catppuccin-mocha"; # selcted theme from my themes directory (./themes/)
+        theme = "horizon-dark"; # selcted theme from my themes directory (./themes/)
         wm =
           "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         browser =
@@ -53,7 +53,7 @@
         term = "alacritty"; # Default terminal command;
         font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
-        editor = "code"; # Default editor;
+        editor = "hx"; # Default editor;
       };
 
       # configure pkgs
@@ -73,16 +73,13 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        # TODO HOSTNAME HERE
         system = nixpkgs.lib.nixosSystem {
-          # > Our main nixos configuration file <
           modules = [
             (./. + "/profiles" + ("/" + systemSettings.profile)
               + "/configuration.nix")
           ];
           specialArgs = {
             inherit inputs outputs;
-            inherit (inputs) stylix;
             inherit systemSettings;
             inherit userSettings;
           };
@@ -92,10 +89,8 @@
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
-        # TODO user@hostname
         user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs; # Home-manager requires 'pkgs' instance
-          # > Our main home-manager configuration file <
           modules = [
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
           ];

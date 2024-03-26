@@ -8,7 +8,7 @@ let
   aliases = {
     # -- REBUILD SYSTEM
     sys-update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system --log-format internal-json -v |& nom";
+      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system --log-format internal-json -v |& nom --json";
     # -- REBUILD USER
     user-update =
       "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";
@@ -29,11 +29,6 @@ let
     c = "git commit";
     ca = "git commit --amend";
     cm = "git commit --message";
-    d = "git diff ':!*.lock'";
-    ds = "git diff --staged ':!*.lock'";
-    dsw = "git diff --staged --ignore-all-space ':!*.lock'";
-    dw = "git diff --ignore-all-space ':!*.lock'";
-
     dl = "http --download get";
 
     quit = "exit";
