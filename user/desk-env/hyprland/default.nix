@@ -20,6 +20,9 @@ let
   '';
 in
 {
+  imports = [
+    ./waybar.nix
+  ];
 
   gtk.cursorTheme = {
     package = pkgs.quintom-cursor-theme;
@@ -321,145 +324,6 @@ in
     }
   '';
 
-  # pkgs.waybar.overrideAttrs (oldAttrs: {
-  #       postPatch = ''
-  #         # use hyprctl to switch workspaces
-  #         sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprworkspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-  #         sed -i 's/gIPC->getSocket1Reply("dispatch workspace " + std::to_string(id()));/const std::string command = "hyprworkspace " + std::to_string(id());\n\tsystem(command.c_str());/g' src/modules/hyprland/workspaces.cpp
-  #       '';
-  #       wireplumberSupport = false; # Disable wireplumber support
-  #     })
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar;
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 30;
-        margin = "7 7 7 7";
-        spacing = 4;
 
-        modules-left = [ "custom/os" "hyprland/workspaces" ];
-        modules-center = [ ];
-        modules-right = [
-          "idle_inhibitor"
-          "tray"
-          "clock"
-
-          "backlight"
-          "keyboard-state"
-          "pulseaudio"
-
-          "cpu"
-          "memory"
-          "battery"
-        ];
-
-        "custom/os" = {
-          "format" = " {} ";
-          "exec" = ''echo "" '';
-          "interval" = "once";
-        };
-        "keyboard-state" = {
-          "numlock" = true;
-          "format" = " {icon} ";
-          "format-icons" = {
-            "locked" = "󰎠";
-            "unlocked" = "󱧓";
-          };
-        };
-        "hyprland/workspaces" = {
-          "format" = "{icon}";
-          # "format-icons" = {
-          #   "1" = "󱚌";
-          #   "2" = "󰖟";
-          #   "3" = "";
-          #   "4" = "󰎄";
-          #   "5" = "󰋩";
-          #   "6" = "";
-          #   "7" = "󰄖";
-          #   "8" = "󰑴";
-          #   "9" = "󱎓";
-          #   "scratch_term" = "_";
-          #   "scratch_ranger" = "_󰴉";
-          #   "scratch_musikcube" = "_";
-          #   "scratch_btm" = "_";
-          #   "scratch_geary" = "_";
-          #   "scratch_pavucontrol" = "_󰍰";
-          # };
-          "on-click" = "activate";
-          "on-scroll-up" = "hyprctl dispatch workspace e+1";
-          "on-scroll-down" = "hyprctl dispatch workspace e-1";
-          #"all-outputs" = true;
-          #"active-only" = true;
-          "ignore-workspaces" = [ "scratch" "-" ];
-          #"show-special" = false;
-        };
-
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "󰅶";
-            deactivated = "󰾪";
-          };
-        };
-        tray = {
-          #"icon-size" = 21;
-          "spacing" = 10;
-        };
-        clock = {
-          "interval" = 1;
-          "format" = "{:%a %d-%m-%Y %I:%M:%S %p}";
-          "timezone" = "America/SaoPaulo";
-          "tooltip-format" = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-        };
-        cpu = { "format" = "{usage}% "; };
-        memory = { "format" = "{}% "; };
-        backlight = {
-          "format" = "{percent}% {icon}";
-          "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
-        };
-        battery = {
-          "states" = {
-            "good" = 95;
-            "warning" = 30;
-            "critical" = 15;
-          };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          #"format-good" = ""; # An empty format will hide the module
-          #"format-full" = "";
-          "format-icons" = [ "" "" "" "" "" ];
-        };
-        pulseaudio = {
-          "scroll-step" = 1;
-          "format" = "{volume}% {icon}  {format_source}";
-          "format-bluetooth" = "{volume}% {icon}  {format_source}";
-          "format-bluetooth-muted" = "󰸈 {icon}  {format_source}";
-          "format-muted" = "󰸈 {format_source}";
-          "format-source" = "{volume}% ";
-          "format-source-muted" = " ";
-          "format-icons" = {
-            "headphone" = "";
-            "hands-free" = "";
-            "headset" = "";
-            "phone" = "";
-            "portable" = "";
-            "car" = "";
-            "default" = [ "" "" "" ];
-          };
-          "on-click" =
-            "pypr toggle pavucontrol && hyprctl dispatch bringactivetotop";
-        };
-      };
-    };
-
-    style = lib.mkForce ./waybar.css;
-
-  };
 
 }
