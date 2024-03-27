@@ -8,6 +8,7 @@
     ./printer.nix
     ./gc.nix
 
+    ./bluetooth.nix
     # ./fingerprint-scanner.nix
   ];
 }

@@ -67,7 +67,6 @@
     brave
     # qutebrowser
     # dmenu
-    # rofi
 
     git
     # syncthing

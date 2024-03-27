@@ -2,26 +2,52 @@
 
 { inputs, pkgs, lib, config, userSettings, ... }:
 
-let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    echo "Starting up..."
-    dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
-    hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}
-
-
-
-    ${pkgs.swww}/bin/swww init &
-
-    ${pkgs.swww}/bin/swww ${../../../themes} &
-    ${pkgs.waybar}/bin/waybar &
-
-    ${pkgs.dunst}/bin/dunst 
-      
-  '';
-in
 {
   imports = [
     ./waybar.nix
+  ];
+
+  home.packages = with pkgs; [
+    alacritty
+    waybar
+    kitty
+    feh
+    swww
+    # rofi
+    killall
+    polkit_gnome
+    libva-utils
+    gsettings-desktop-schemas
+    gnome.zenity
+    wlr-randr
+    wtype
+    ydotool
+    wl-clipboard
+    hyprland-protocols
+    hyprpicker
+    swayidle
+    swaybg
+    fnott
+    fuzzel
+    keepmenu
+    pinentry-gnome3
+    wev
+    grim
+    slurp
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
+    xdg-utils
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    wlsunset
+    pavucontrol
+    pamixer
+    tesseract4
+
+
+    pyprland
+    networkmanagerapplet
   ];
 
   gtk.cursorTheme = {
@@ -30,10 +56,28 @@ in
     size = 36;
   };
 
+  programs.rofi = {
+    enable = true;
+  };
+
+
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
+    xwayland.enable = true;
+
 
     settings = {
+
+      exec-once = [
+        "pypr"
+        "nm-applet --indicator"
+        "blueman-applet"
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.dunst}/bin/dunst"
+        "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
+        "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
+      ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = "DP-1, 1920x1200, auto, 1";
 
@@ -136,7 +180,6 @@ in
         "$mainMod, T, togglefloating"
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo" # dwindle
-        "$mainMod, J, togglesplit" # dwindle
         "$mainMod, S, exec, rofi -show drun -show-icons"
 
         "$mainMod, C, killactive"
@@ -182,7 +225,8 @@ in
         "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
-        "$mainMod,code:172,exec,pypr toggle pavucontrol && hyprctl dispatch bringactivetotop"
+        # "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"
+        "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
       ];
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
@@ -200,92 +244,8 @@ in
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-
-      exec-once = [
-        # "${startupScript}/bin/start"
-        "pypr"
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.dunst}/bin/dunst"
-        "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
-        "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
-      ];
     };
   };
-
-  home.packages = with pkgs; [
-    alacritty
-    waybar
-    kitty
-    feh
-    swww
-    rofi
-    killall
-    polkit_gnome
-    libva-utils
-    gsettings-desktop-schemas
-    gnome.zenity
-    wlr-randr
-    wtype
-    ydotool
-    wl-clipboard
-    hyprland-protocols
-    hyprpicker
-    swayidle
-    swaybg
-    fnott
-    fuzzel
-    keepmenu
-    pinentry-gnome3
-    wev
-    grim
-    slurp
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    wlsunset
-    pavucontrol
-    pamixer
-    tesseract4
-    (pkgs.writeScriptBin "screenshot-ocr" ''
-      #!/bin/sh
-      imgname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).png"
-      txtname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S)"
-      txtfname=$txtname.txt
-      grim -g "$(slurp)" $imgname;
-      tesseract $imgname $txtname;
-      wl-copy -n < $txtfname
-    '')
-    (pkgs.writeScriptBin "sct" ''
-      #!/bin/sh
-      killall wlsunset &> /dev/null;
-      if [ $# -eq 1 ]; then
-        temphigh=$(( $1 + 1 ))
-        templow=$1
-        wlsunset -t $templow -T $temphigh &> /dev/null &
-      else
-        killall wlsunset &> /dev/null;
-      fi
-    '')
-    # (pkgs.python3Packages.buildPythonPackage rec {
-    #   pname = "pyprland";
-    #   version = "1.4.1";
-    #   src = pkgs.fetchPypi {
-    #     inherit pname version;
-    #     sha256 = "sha256-JRxUn4uibkl9tyOe68YuHuJKwtJS//Pmi16el5gL9n8=";
-    #   };
-    #   format = "pyproject";
-    #   propagatedBuildInputs = with pkgs; [
-    #     python3Packages.setuptools
-    #     python3Packages.poetry-core
-    #     poetry
-    #   ];
-    #   doCheck = false;
-    # })
-    pyprland
-  ];
 
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
@@ -295,7 +255,7 @@ in
     animation = "fromTop"
     command = "alacritty --class alacritty-dropterm"
     class = "alacritty-dropterm"
-    size = "75% 60%"
+    size = "85% 85%"
 
     [scratchpads.btm]
     animation = "fromTop"
@@ -309,38 +269,30 @@ in
     command = "pavucontrol"
     class = "pavucontrol"
     lazy = true
-    size = "40% 90%"
+    size = "50% 90%"
+    unfocus = "hide"
+
+
+    # [scratchpads.gpt]
+    # animation = "fromTop"
+    # command = "brave --app=https://chat.openai.com/"
+    # class = "gpt"
+    # size = "75% 60%"
+    # class_match = true
+
+    [scratchpads.wpp]
+    animation = "fromLeft"
+    command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
+    class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
+    size = "85% 85%"
+    process_tracking = false  
+
+    [scratchpads.bluetooth]
+    animation = "fromRight"
+    command = "blueman-applet"
+    class = "blueman-applet"
+    size = "50% 90%"
     unfocus = "hide"
   '';
-
-  # home.file.".config/hypr/pyprland.json".text = ''
-  #   {
-  #     "pyprland": {
-  #       "plugins": ["scratchpads", "magnify"]
-  #     },
-  #     "scratchpads": {
-  #       "term": {
-  #         "command": "alacritty --class scratchpad",
-  #         "margin": 50
-  #       },
-  #       "btm": {
-  #         "command": "alacritty --class scratchpad -e btm",
-  #         "margin": 50
-  #       },
-  #       "geary": {
-  #         "command": "geary",
-  #         "margin": 50
-  #       },
-  #       "pavucontrol": {
-  #         "command": "pavucontrol",
-  #         "margin": 50,
-  #         "unfocus": "hide",
-  #         "animation": "fromTop"
-  #       }
-  #     }
-  #   }
-  # '';
-
-
 
 }

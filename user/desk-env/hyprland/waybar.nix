@@ -1,82 +1,8 @@
 # home.nix
 
-{ inputs, pkgs, lib, config, userSettings, ... }:
+{ inputs, pkgs, lib, config, userSettings, systemSettings, ... }:
 
 {
-  home.packages = with pkgs; [
-    alacritty
-    waybar
-    kitty
-    feh
-    swww
-    rofi
-    killall
-    polkit_gnome
-    libva-utils
-    gsettings-desktop-schemas
-    gnome.zenity
-    wlr-randr
-    wtype
-    ydotool
-    wl-clipboard
-    hyprland-protocols
-    hyprpicker
-    swayidle
-    swaybg
-    fnott
-    fuzzel
-    keepmenu
-    pinentry-gnome3
-    wev
-    grim
-    slurp
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    wlsunset
-    pavucontrol
-    pamixer
-    tesseract4
-    (pkgs.writeScriptBin "screenshot-ocr" ''
-      #!/bin/sh
-      imgname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).png"
-      txtname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S)"
-      txtfname=$txtname.txt
-      grim -g "$(slurp)" $imgname;
-      tesseract $imgname $txtname;
-      wl-copy -n < $txtfname
-    '')
-    (pkgs.writeScriptBin "sct" ''
-      #!/bin/sh
-      killall wlsunset &> /dev/null;
-      if [ $# -eq 1 ]; then
-        temphigh=$(( $1 + 1 ))
-        templow=$1
-        wlsunset -t $templow -T $temphigh &> /dev/null &
-      else
-        killall wlsunset &> /dev/null;
-      fi
-    '')
-    (pkgs.python3Packages.buildPythonPackage rec {
-      pname = "pyprland";
-      version = "1.4.1";
-      src = pkgs.fetchPypi {
-        inherit pname version;
-        sha256 = "sha256-JRxUn4uibkl9tyOe68YuHuJKwtJS//Pmi16el5gL9n8=";
-      };
-      format = "pyproject";
-      propagatedBuildInputs = with pkgs; [
-        python3Packages.setuptools
-        python3Packages.poetry-core
-        poetry
-      ];
-      doCheck = false;
-    })
-  ];
-  
   programs.waybar = {
     enable = true;
     package = pkgs.waybar;
@@ -88,21 +14,36 @@
         margin = "7 7 7 7";
         spacing = 4;
 
-        modules-left = [ "custom/os" "hyprland/workspaces" ];
-        modules-center = [ ];
-        modules-right = [
-          "idle_inhibitor"
-          "tray"
-          "clock"
-
-          "backlight"
-          "keyboard-state"
-          "pulseaudio"
+        modules-left = [
+          "custom/os"
 
           "cpu"
           "memory"
+          "temperature"
+          "disk"
+
+          "hyprland/workspaces"
+        ];
+        modules-center = [ "clock" ];
+        modules-right = [
+          "idle_inhibitor"
+          "tray"
+          "keyboard-state"
+          "backlight"
+          "pulseaudio"
+          # "network"
           "battery"
         ];
+
+        # network = {
+        #   "format-wifi" = "{essid} ({signalStrength}%) ";
+        #   "format-ethernet" = "Connected  ";
+        #   "tooltip-format" = "{ifname} via {gwaddr} ";
+        #   "format-linked" = "{ifname} (No IP) ";
+        #   "format-disconnected" = "Disconnected ⚠";
+        #   "format-alt" = "{ifname}= {ipaddr}/{cidr}";
+        #   "on-click-right" = "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu";
+        # };
 
         "custom/os" = {
           "format" = " {} ";
@@ -158,14 +99,30 @@
         };
         clock = {
           "interval" = 1;
-          "format" = "{:%a %d-%m-%Y %I:%M:%S %p}";
-          "timezone" = "America/SaoPaulo";
+          "format" = "{:%d-%m-%Y | %I:%M:%S %p}";
+          "timezone" = systemSettings.timezone;
           "tooltip-format" = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
         };
-        cpu = { "format" = "{usage}% "; };
-        memory = { "format" = "{}% "; };
+
+        cpu = { "format" = "{usage}% "; };
+        memory = { "format" = "{}% "; };
+
+        "temperature" = {
+          # // "thermal-zone": 2,
+          "critical-threshold" = 80;
+          # // "format-critical"= "{temperatureC}°C {icon}";
+          "format" = "{temperatureC}°C {icon}";
+          "format-icons" = [ "" ];
+        };
+
+        disk = {
+          "interval" = 30;
+          "format" = "{used}  ";
+          "path" = "/";
+        };
+
         backlight = {
           "format" = "{percent}% {icon}";
           "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
@@ -201,7 +158,7 @@
             "default" = [ "" "" "" ];
           };
           "on-click" =
-            "pypr toggle pavucontrol && hyprctl dispatch bringactivetotop";
+            "pypr toggle volume && hyprctl dispatch bringactivetotop";
         };
       };
     };
