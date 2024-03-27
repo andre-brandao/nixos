@@ -180,10 +180,8 @@ in
 
         # Scratchpad
         "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-        "$mainMod,F,exec,pypr toggle ranger && hyprctl dispatch bringactivetotop"
-        "$mainMod,N,exec,pypr toggle musikcube && hyprctl dispatch bringactivetotop"
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
-        "$mainMod,E,exec,pypr toggle geary && hyprctl dispatch bringactivetotop"
+        "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
         "$mainMod,code:172,exec,pypr toggle pavucontrol && hyprctl dispatch bringactivetotop"
       ];
       "$scratchpadsize" = "size 80% 85%";
@@ -271,58 +269,77 @@ in
         killall wlsunset &> /dev/null;
       fi
     '')
-    (pkgs.python3Packages.buildPythonPackage rec {
-      pname = "pyprland";
-      version = "1.4.1";
-      src = pkgs.fetchPypi {
-        inherit pname version;
-        sha256 = "sha256-JRxUn4uibkl9tyOe68YuHuJKwtJS//Pmi16el5gL9n8=";
-      };
-      format = "pyproject";
-      propagatedBuildInputs = with pkgs; [
-        python3Packages.setuptools
-        python3Packages.poetry-core
-        poetry
-      ];
-      doCheck = false;
-    })
+    # (pkgs.python3Packages.buildPythonPackage rec {
+    #   pname = "pyprland";
+    #   version = "1.4.1";
+    #   src = pkgs.fetchPypi {
+    #     inherit pname version;
+    #     sha256 = "sha256-JRxUn4uibkl9tyOe68YuHuJKwtJS//Pmi16el5gL9n8=";
+    #   };
+    #   format = "pyproject";
+    #   propagatedBuildInputs = with pkgs; [
+    #     python3Packages.setuptools
+    #     python3Packages.poetry-core
+    #     poetry
+    #   ];
+    #   doCheck = false;
+    # })
+    pyprland
   ];
 
-  home.file.".config/hypr/pyprland.json".text = ''
-    {
-      "pyprland": {
-        "plugins": ["scratchpads", "magnify"]
-      },
-      "scratchpads": {
-        "term": {
-          "command": "alacritty --class scratchpad",
-          "margin": 50
-        },
-        "ranger": {
-          "command": "kitty --class scratchpad -e ranger",
-          "margin": 50
-        },
-        "musikcube": {
-          "command": "alacritty --class scratchpad -e musikcube",
-          "margin": 50
-        },
-        "btm": {
-          "command": "alacritty --class scratchpad -e btm",
-          "margin": 50
-        },
-        "geary": {
-          "command": "geary",
-          "margin": 50
-        },
-        "pavucontrol": {
-          "command": "pavucontrol",
-          "margin": 50,
-          "unfocus": "hide",
-          "animation": "fromTop"
-        }
-      }
-    }
+  home.file.".config/hypr/pyprland.toml".text = ''
+    [pyprland]
+    plugins = ["scratchpads", "magnify"]
+    
+    [scratchpads.term]
+    animation = "fromTop"
+    command = "alacritty --class alacritty-dropterm"
+    class = "alacritty-dropterm"
+    size = "75% 60%"
+
+    [scratchpads.btm]
+    animation = "fromTop"
+    command = "alacritty --class alacritty-btm -e btm"
+    class = "alacritty-btm"
+    size = "75% 60%"
+
+
+    [scratchpads.volume]
+    animation = "fromRight"
+    command = "pavucontrol"
+    class = "pavucontrol"
+    lazy = true
+    size = "40% 90%"
+    unfocus = "hide"
   '';
+
+  # home.file.".config/hypr/pyprland.json".text = ''
+  #   {
+  #     "pyprland": {
+  #       "plugins": ["scratchpads", "magnify"]
+  #     },
+  #     "scratchpads": {
+  #       "term": {
+  #         "command": "alacritty --class scratchpad",
+  #         "margin": 50
+  #       },
+  #       "btm": {
+  #         "command": "alacritty --class scratchpad -e btm",
+  #         "margin": 50
+  #       },
+  #       "geary": {
+  #         "command": "geary",
+  #         "margin": 50
+  #       },
+  #       "pavucontrol": {
+  #         "command": "pavucontrol",
+  #         "margin": 50,
+  #         "unfocus": "hide",
+  #         "animation": "fromTop"
+  #       }
+  #     }
+  #   }
+  # '';
 
 
 
