@@ -45,7 +45,7 @@
         theme =
           "horizon-dark"; # selcted theme from my themes directory (./themes/)
         wm =
-          "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
+          "gnome"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
         browser =
           "brave"; # Default browser; must select one from ./user/app/browser/
         term = "alacritty"; # Default terminal command;

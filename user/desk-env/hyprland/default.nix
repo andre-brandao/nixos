@@ -4,12 +4,15 @@
 
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    echo "Starting up..."
+    dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+    hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}
+
 
 
     ${pkgs.swww}/bin/swww init &
 
     ${pkgs.swww}/bin/swww ${../../../themes} &
-    1
     ${pkgs.waybar}/bin/waybar &
 
     ${pkgs.dunst}/bin/dunst 
@@ -17,6 +20,13 @@ let
   '';
 in
 {
+
+  gtk.cursorTheme = {
+    package = pkgs.quintom-cursor-theme;
+    name = if (config.stylix.polarity == "light") then "Quintom_Ink" else "Quintom_Snow";
+    size = 36;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -165,20 +175,23 @@ in
 
         "ALT,TAB,cyclenext"
 
-        #  bind=SUPER,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop
-        #  bind=SUPER,F,exec,pypr toggle ranger && hyprctl dispatch bringactivetotop
-        #  bind=SUPER,N,exec,pypr toggle musikcube && hyprctl dispatch bringactivetotop
-        #  bind=SUPER,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop
-        #  bind=SUPER,E,exec,pypr toggle geary && hyprctl dispatch bringactivetotop
-        #  bind=SUPER,code:172,exec,pypr toggle pavucontrol && hyprctl dispatch bringactivetotop
-        #  $scratchpadsize = size 80% 85%
+        # Scratchpad
+        "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
+        "$mainMod,F,exec,pypr toggle ranger && hyprctl dispatch bringactivetotop"
+        "$mainMod,N,exec,pypr toggle musikcube && hyprctl dispatch bringactivetotop"
+        "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
+        "$mainMod,E,exec,pypr toggle geary && hyprctl dispatch bringactivetotop"
+        "$mainMod,code:172,exec,pypr toggle pavucontrol && hyprctl dispatch bringactivetotop"
+      ];
+      "$scratchpadsize" = "size 80% 85%";
+      "$scratchpad" = "class:^(scratchpad)$";
+      windowrulev2 = [
+        "float,$scratchpad"
+        "$scratchpadsize,$scratchpad"
+        "workspace special silent,$scratchpad"
+        "center,$scratchpad"
       ];
 
-      #  $scratchpad = class:^(scratchpad)$
-      #  windowrulev2 = float,$scratchpad
-      #  windowrulev2 = $scratchpadsize,$scratchpad
-      #  windowrulev2 = workspace special silent,$scratchpad
-      #  windowrulev2 = center,$scratchpad
 
       bindm = [
 
@@ -188,11 +201,12 @@ in
       ];
 
       exec-once = [
+        # "${startupScript}/bin/start"
         "pypr"
-        "${startupScript}/bin/start"
-        # "nm-applet"
-        # "blueman-applet"
-        # "waybar"
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.dunst}/bin/dunst"
+        "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
+        "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
       ];
     };
   };
@@ -317,7 +331,7 @@ in
   #     })
   programs.waybar = {
     enable = true;
-    # package = (pkgs.waybar.override { wireplumberSupport = false; });
+    package = pkgs.waybar;
     settings = {
       mainBar = {
         layer = "top";
@@ -396,8 +410,8 @@ in
         };
         clock = {
           "interval" = 1;
-          "format" = "{:%a %Y-%m-%d %I:%M:%S %p}";
-          "timezone" = "America/Chicago";
+          "format" = "{:%a %d-%m-%Y %I:%M:%S %p}";
+          "timezone" = "America/SaoPaulo";
           "tooltip-format" = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
@@ -444,322 +458,7 @@ in
       };
     };
 
-    style = ./waybar.css;
-    # style = ''
-    #       * {
-    #       border: none;
-    #       border-radius: 0px;
-    #       /* `otf-font-awesome` is required to be installed for icons */
-    #       font-family: Roboto, Helvetica, Arial, sans-serif;
-    #       font-size: 13px;
-    #       min-height: 0;
-    #   }
-
-    #   window#waybar {
-    #       background-color: transparent;
-    #       color: #ffffff;
-    #       transition-property: background-color;
-    #       transition-duration: .5s;
-    #   }
-
-    #   window#waybar.hidden {
-    #       opacity: 0.2;
-    #   }
-
-
-    #   #workspaces button {
-    #       background: #1f1f1f;
-    #       color: #ffffff;
-    #       border-radius: 20px;
-
-    #   }
-
-    #   /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-    #   #workspaces button:hover {
-    #       background: lightblue;
-    #       color: black;
-    #       border-bottom: 3px solid #ffffff;
-
-    #   }
-
-    #   #workspaces button.focused {
-    #       background: #1f1f1f;
-    #   }
-
-    #   #workspaces button.focused:hover {
-    #       background: lightblue;
-    #       color: black;
-    #       border-bottom: 3px solid #ffffff;
-
-    #   }
-
-    #   #workspaces button.urgent {
-    #       background-color: #eb4d4b;
-    #   }
-
-    #   #mode {
-    #       background-color: #64727D;
-    #       border-bottom: 3px solid #ffffff;
-    #   }
-
-    #   #clock,
-    #   #battery,
-    #   #cpu,
-    #   #memory,
-    #   #disk,
-    #   #temperature,
-    #   #backlight,
-    #   #network,
-    #   #pulseaudio,
-    #   #custom-media,
-    #   #custom-launcher,
-    #   #custom-power,
-    #   #custom-layout,
-    #   #custom-updater,
-    #   #custom-snip,
-    #   #custom-wallpaper,
-    #   #tags,
-    #   #taskbar,
-    #   #tray,
-    #   #mode,
-    #   #idle_inhibitor,
-    #   #mpd {
-    #       padding: 0 10px;
-    #       color: #ffffff;
-    #   }
-
-    #   #window,
-    #   #workspaces {
-    #       margin: 0px 4px;
-    #   }
-
-    #   /* If workspaces is the leftmost module, omit left margin */
-    #   .modules-left > widget:first-child > #workspaces {
-    #       margin-left: 0px;
-    #   }
-
-    #   /* If workspaces is the rightmost module, omit right margin */
-    #   .modules-right > widget:last-child > #workspaces {
-    #       margin-right: 0px;
-    #   }
-
-    #   #clock {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #battery {
-    #       background-color: #ffffff;
-    #       color: #000000;
-    #   }
-
-    #   #battery.charging, #battery.plugged {
-    #       color: #ffffff;
-    #       background-color: #26A65B;
-    #   }
-
-    #   @keyframes blink {
-    #       to {
-    #           background-color: #ffffff;
-    #           color: #000000;
-    #       }
-    #   }
-
-    #   #battery.critical:not(.charging) {
-    #       background-color: #f53c3c;
-    #       color: #ffffff;
-    #       animation-name: blink;
-    #       animation-duration: 0.5s;
-    #       animation-timing-function: linear;
-    #       animation-iteration-count: infinite;
-    #       animation-direction: alternate;
-    #   }
-
-    #   label:focus {
-    #       background-color: #000000;
-    #   }
-
-    #   #cpu {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #memory {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #disk {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #backlight {
-    #       background-color: #90b1b1;
-    #   }
-
-    #   #network {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #network.disconnected {
-    #       background-color: #171717;
-    #       color: red;
-    #   }
-
-    #   #pulseaudio {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #pulseaudio.muted {
-    #       background-color: #171717;
-    #       color: red;
-    #   }
-
-    #   #custom-media {
-    #       background-color: #171717;
-    #       color: white;
-    #   }
-
-    #   #custom-media.custom-spotify {
-    #       background-color: #171717;
-    #       color: white;
-
-    #   }
-
-    #   #custom-media.custom-vlc {
-    #       background-color: #171717;
-    #       color: white;
-    #   }
-
-    #   #custom-power{
-    #       background-color: #171717;
-    #       font-size: 18px;
-    #       margin-right: 5px;
-
-    #   }
-
-    #   #custom-launcher{
-    #       background-color: #171717;
-    #       font-size: 20px;
-    #       margin-left: 5px;
-
-    #   }
-
-    #   #custom-layout{
-    #       background-color: #171717;
-    #       color: white;
-    #       font-size:20px;
-    #   }
-
-    #   #custom-updater {
-    #       background-color: #171717;
-    #       color: white;
-    #   }
-
-    #   #custom-snip {
-    #       background-color: #171717;
-    #       color: skyblue;
-    #       font-size: 20px;
-    #   }
-
-    #   #custom-wallpaper {
-    #       background-color: #171717;
-    #       color: pink;
-    #       font-size: 20px;
-    #   }
-
-    #   #tags{
-    #       background-color: #171717;
-    #       font-size: 20px;
-    #   }
-
-    #   #tags button.occupied {
-    #       color: skyblue;
-    #       margin: 5px;
-    #       background-color: #272727;
-    #   }
-    #   #tags button.focused {
-    #       color: black;
-    #       margin: 5px;
-    #       background-color: white;
-    #   }
-    #   #tags button.urgent{
-    #       color: red;
-    #       margin: 5px;
-    #       background-color:white;
-    #   }
-
-
-    #   #taskbar{
-    #       background-color: #171717;
-    #       border-radius: 0px 20px 20px 0px;
-    #   }
-
-    #   #temperature {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #temperature.critical {
-    #       background-color: #eb4d4b;
-    #   }
-
-    #   #tray {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #tray > .passive {
-    #       -gtk-icon-effect: dim;
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #tray > .needs-attention {
-    #       -gtk-icon-effect: highlight;
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #   }
-
-    #   #idle_inhibitor {
-    #       background-color: #171717;
-    #       border-radius: 20px 0px 0px 20px;
-
-    #   }
-
-    #   #idle_inhibitor.activated {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #       border-radius: 20px 0px 0px 20px;
-
-    #   }
-
-    #   #language {
-    #       background-color: #171717;
-    #       color: #ffffff;
-    #       min-width: 16px;
-    #   }
-
-    #   #keyboard-state {
-    #       background: #97e1ad;
-    #       color: #000000;
-    #       min-width: 16px;
-    #   }
-
-    #   #keyboard-state > label {
-    #       padding: 0px 5px;
-    #   }
-
-    #   #keyboard-state > label.locked {
-    #       background: rgba(0, 0, 0, 0.2);
-    #   }
-
-
-
-    # '';
+    style = lib.mkForce ./waybar.css;
 
   };
 

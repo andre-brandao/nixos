@@ -11,8 +11,7 @@
     ../../user/style/stylix.nix # Styling and themes for my apps
 
     (./. + "../../../user/desk-env"
-      + ("/" + userSettings.wm + "/" + userSettings.wm)
-      + ".nix") # My window manager selected from flake
+      + ("/" + userSettings.wm)) # My window manager selected from flake
 
 
     # GAMES
