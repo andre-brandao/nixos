@@ -3,7 +3,10 @@
 { inputs, pkgs, lib, config, userSettings, ... }:
 
 {
-  imports = [ ./waybar.nix ];
+  imports = [
+    ./waybar.nix
+    ./ags.nix
+  ];
 
   home.packages = with pkgs; [
     alacritty

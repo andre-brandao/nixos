@@ -16,7 +16,7 @@
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
     # astal.url = "github:Aylur/astal";
-    # ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags";
 
     # Stylix
     stylix.url = "github:danth/stylix";

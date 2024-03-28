@@ -195,7 +195,6 @@ in {
   home.packages = with pkgs; [
     disfetch
     lolcat
-    cowsay
     onefetch
     gnugrep
     gnused
