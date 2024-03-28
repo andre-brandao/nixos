@@ -186,18 +186,6 @@
 
       "$mainMod" = "SUPER";
       bind = [
-        "$mainMod, Q, exec, ${userSettings.term}"
-        "$mainMod, A, exec, ${userSettings.editor}"
-
-        "$mainMod, T, togglefloating"
-        "$mainMod, R, exec, wofi --show drun"
-        "$mainMod, P, pseudo" # dwindle
-        "$mainMod, S, exec, rofi -show drun -show-icons"
-
-        "$mainMod, C, killactive"
-
-        "$mainMod, E, exec, $fileManager"
-        "$mainMod SHIFT, Q, exit"
 
         #WORKSPACE SWITCH
         "$mainMod, 1, workspace, 1"
@@ -227,14 +215,28 @@
         # "$mainMod, S, togglespecialworkspace, magic"
         # "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
+        # ----- OTHER KEYBINDINGS --------
+
+        "$mainMod, Q, exec, ${userSettings.term}"
+
+        "$mainMod, A, exec, ${userSettings.editor}"
+
+        "$mainMod, T, togglefloating"
+
+        "$mainMod, S, exec, rofi -show drun -show-icons"
+        "$mainMod, RETURN, exec, rofi -show drun -show-icons"
+
+        "$mainMod, C, killactive"
+
+        "$mainMod, E, exec, $fileManager"
+        "$mainMod SHIFT, Q, exit"
+
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        "ALT,TAB,cyclenext"
-
-        # Scratchpad
-        "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
+        #  ---------- Scratchpad ---------
+        "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
         # "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"

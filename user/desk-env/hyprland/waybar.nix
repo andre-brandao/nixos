@@ -17,11 +17,9 @@
         modules-left = [
           "custom/os"
 
-
-
           "hyprland/workspaces"
         ];
-        modules-center = [ "clock" ];
+        modules-center = [ ];
         modules-right = [
           "idle_inhibitor"
 
@@ -35,6 +33,7 @@
           "backlight"
           "pulseaudio"
           # "network"
+          "clock"
           "battery"
         ];
 
@@ -81,7 +80,7 @@
             "scratch_pavucontrol" = "_󰍰";
 
             active = "";
-            default = "";
+            # default = "";
             urgent = "";
           };
           "on-click" = "activate";
@@ -215,10 +214,10 @@
 
       /* #workspaces button:first-child {
         border-radius: 20px 0px 0px 20px;
-      }
+      }*/
       #workspaces button:last-child {
         border-radius: 0px 20px 20px 0px;
-      } */
+      }
 
       #workspaces button:hover {
         background: @accent;
