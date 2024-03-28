@@ -14,7 +14,6 @@ let
 
     # https://github.com/maralorn/nix-output-monitor
 
-
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
     htop = "btm";
@@ -30,8 +29,7 @@ let
 
     quit = "exit";
   };
-in
-{
+in {
   programs = {
     bash = {
       enable = true;
@@ -50,8 +48,18 @@ in
         # tmuxPlugins.catppuccin
         tmuxPlugins.resurrect
       ];
+      sensibleOnTop = false;
+      disableConfirmationPrompt = true;
+      extraConfig = let
+        color1 =
+          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
 
-      extraConfig = ''
+        color2 =
+          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
+
+        color3 =
+          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+      in ''
 
         # keyMode = "vi";
 
@@ -85,7 +93,7 @@ in
 
 
         # reload tmux config with prefix + r
-        bind r source-file ~/.config/tmux/tmux.conf \; display "Reloaded! .config/tmux/tmux.conf"
+        bind r source-file ~/.config/tmux/tmux.conf # \; display "Reloaded! .config/tmux/tmux.conf"
 
 
         # set prefix to C-Space
@@ -95,11 +103,15 @@ in
 
 
         # STATUS BAR
-        set -g status-right ' #[fg=black,bg=color15] cpu: #{cpu_percentage} #[fg=color15,bg=color16] %H:%M | %d-%m-%Y '
+
+
+        set -g status-right ' #[${color1}] cpu: #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
+        set -g status-left '#[${color3}] 󱄅 '
+
         # set-option -g status-position top
 
 
-        run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+                  run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
       '';
     };
 

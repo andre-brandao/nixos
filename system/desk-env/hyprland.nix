@@ -12,12 +12,14 @@
       variant = "";
       options = "caps:escape";
     };
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      enableHidpi = true;
-      # theme = "chili";
-    };
+    displayManager.gdm.enable = true;
+    # displayManager.sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    #   enableHidpi = true;
+    #   # theme = "chili";
+    # };
+
   };
 
   security = {

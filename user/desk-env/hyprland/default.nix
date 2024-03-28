@@ -3,9 +3,7 @@
 { inputs, pkgs, lib, config, userSettings, ... }:
 
 {
-  imports = [
-    ./waybar.nix
-  ];
+  imports = [ ./waybar.nix ];
 
   home.packages = with pkgs; [
     alacritty
@@ -73,12 +71,10 @@
     };
   };
 
-
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
     xwayland.enable = true;
-
 
     settings = {
 
@@ -89,7 +85,9 @@
         "${pkgs.waybar}/bin/waybar"
         "${pkgs.dunst}/bin/dunst"
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
-        "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
+        "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
+          builtins.toString config.gtk.cursorTheme.size
+        }"
         "hyprpaper"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
@@ -101,9 +99,9 @@
       input = {
         kb_layout = "us";
         kb_variant = "";
-        #  kb_model =
-        #  kb_options =
-        #  kb_rules =
+        kb_model = "";
+        kb_options = "";
+        kb_rules = "";
 
         follow_mouse = 1;
 
@@ -226,8 +224,8 @@
         "$mainMod SHIFT, 0, movetoworkspace, 1"
 
         # Example special workspace (scratchpad)
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        # "$mainMod, S, togglespecialworkspace, magic"
+        # "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
@@ -251,7 +249,6 @@
         "center,$scratchpad"
       ];
 
-
       bindm = [
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -264,7 +261,7 @@
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
     plugins = ["scratchpads", "magnify"]
-    
+
     [scratchpads.term]
     animation = "fromTop"
     command = "alacritty --class alacritty-dropterm"
