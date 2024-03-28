@@ -61,6 +61,7 @@ in
       kitty.enable = true;
       alacritty.enable = true;
       tmux.enable = true;
+      dunst.enable = true;
     };
     fonts.sizes = {
       terminal = 18;

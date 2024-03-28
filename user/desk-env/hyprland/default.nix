@@ -68,7 +68,7 @@
         offset = "30x50";
         origin = "top-right";
         transparency = 10;
-        frame_color = "#${config.lib.stylix.colors.base08}";
+        # frame_color = "#${config.lib.stylix.colors.base08}";
       };
     };
   };

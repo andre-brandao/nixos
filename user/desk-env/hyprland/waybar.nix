@@ -17,16 +17,19 @@
         modules-left = [
           "custom/os"
 
-          "cpu"
-          "memory"
-          "temperature"
-          "disk"
+
 
           "hyprland/workspaces"
         ];
         modules-center = [ "clock" ];
         modules-right = [
           "idle_inhibitor"
+
+          "cpu"
+          "memory"
+          "temperature"
+          "disk"
+
           "tray"
           "keyboard-state"
           "backlight"
@@ -60,23 +63,27 @@
         };
         "hyprland/workspaces" = {
           "format" = "{icon}";
-          # "format-icons" = {
-          #   "1" = "󱚌";
-          #   "2" = "󰖟";
-          #   "3" = "";
-          #   "4" = "󰎄";
-          #   "5" = "󰋩";
-          #   "6" = "";
-          #   "7" = "󰄖";
-          #   "8" = "󰑴";
-          #   "9" = "󱎓";
-          #   "scratch_term" = "_";
-          #   "scratch_ranger" = "_󰴉";
-          #   "scratch_musikcube" = "_";
-          #   "scratch_btm" = "_";
-          #   "scratch_geary" = "_";
-          #   "scratch_pavucontrol" = "_󰍰";
-          # };
+          "format-icons" = {
+            # "1" = "󱚌";
+            # "2" = "󰖟";
+            # "3" = "";
+            # "4" = "󰎄";
+            # "5" = "󰋩";
+            # "6" = "";
+            # "7" = "󰄖";
+            # "8" = "󰑴";
+            # "9" = "󱎓";
+            "scratch_term" = "_";
+            # "scratch_ranger" = "_󰴉";
+            # "scratch_musikcube" = "_";
+            "scratch_btm" = "_";
+            # "scratch_geary" = "_";
+            "scratch_pavucontrol" = "_󰍰";
+
+            active = "";
+            default = "";
+            urgent = "";
+          };
           "on-click" = "activate";
           "on-scroll-up" = "hyprctl dispatch workspace e+1";
           "on-scroll-down" = "hyprctl dispatch workspace e-1";
