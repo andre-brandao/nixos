@@ -9,7 +9,9 @@
   imports = [
     # STYLES
     ../../user/style/stylix.nix # Styling and themes for my apps
+    ../../user/style/gtk.nix # My gtk config
 
+    # DESKTOP
     (./. + "../../../user/desk-env"
       + ("/" + userSettings.wm)) # My window manager selected from flake
 

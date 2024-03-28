@@ -73,14 +73,6 @@
     git
   ];
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      # pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
   # services.openssh = {
