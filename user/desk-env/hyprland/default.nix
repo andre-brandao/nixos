@@ -13,7 +13,6 @@
     kitty
     feh
     swww
-    # rofi
     killall
     polkit_gnome
     libva-utils
@@ -45,7 +44,7 @@
     pamixer
     tesseract4
 
-
+    hyprpaper
     pyprland
     networkmanagerapplet
   ];
@@ -58,6 +57,22 @@
 
   programs.rofi = {
     enable = true;
+  };
+
+  services.dunst = {
+    enable = true;
+    settings = {
+      global = {
+        width = 300;
+        height = 300;
+        offset = "30x50";
+        origin = "top-right";
+        transparency = 10;
+        # frame_color = "#eceff1";
+      };
+
+
+    };
   };
 
 
@@ -77,6 +92,7 @@
         "${pkgs.dunst}/bin/dunst"
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
+        "hyprpaper"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = "DP-1, 1920x1200, auto, 1";
@@ -276,7 +292,7 @@
     # [scratchpads.gpt]
     # animation = "fromTop"
     # command = "brave --app=https://chat.openai.com/"
-    # class = "gpt"
+    # class = "brave-chat-openai-com"
     # size = "75% 60%"
     # class_match = true
 
@@ -286,13 +302,6 @@
     class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
     size = "85% 85%"
     process_tracking = false  
-
-    [scratchpads.bluetooth]
-    animation = "fromRight"
-    command = "blueman-applet"
-    class = "blueman-applet"
-    size = "50% 90%"
-    unfocus = "hide"
   '';
 
 }

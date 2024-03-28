@@ -20,46 +20,52 @@
     };
   };
 
-  # Security
-  # security = {
-  #   pam.services.swaylock = {
-  #     text = ''
-  #       auth include login
-  #     '';
-  #   };
-  #   #    pam.services.gtklock = {};
-  #   pam.services.login.enableGnomeKeyring = true;
-  # };
+  security = {
+    polkit.enable = true;
+    # pam.services.ags = { };
+  };
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+  };
 
-  # services.gnome.gnome-keyring.enable = true;
 
   programs = {
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-
       xwayland = { enable = true; };
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      # portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      wireplumber
-
-      # (waybar.overrideAttrs (oldAttrs: {
-      #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      # })
-      # )
-
-      hyprpaper
-
+    systemPackages = with pkgs; with gnome; [
+      gnome.adwaita-icon-theme
+      loupe
+      nautilus
+      baobab
+      gnome-text-editor
+      gnome-calendar
+      gnome-boxes
+      gnome-system-monitor
+      gnome-control-center
+      gnome-weather
+      gnome-calculator
+      gnome-clocks
+      gnome-software # for flatpak
+      wl-gammactl
+      wl-clipboard
+      wayshot
+      pavucontrol
+      brightnessctl
       swww
       dunst
       libnotify
       rofi-wayland
-      # hyperland default
-      kitty
+      kitty # hyprland default terminal
     ];
 
     sessionVariables = {
@@ -68,12 +74,6 @@
     };
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
-  };
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];

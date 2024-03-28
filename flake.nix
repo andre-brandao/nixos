@@ -15,6 +15,9 @@
 
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
+    # astal.url = "github:Aylur/astal";
+    # ags.url = "github:Aylur/ags";
+
 
     # Stylix
     stylix.url = "github:danth/stylix";
@@ -64,7 +67,8 @@
         # overlays = [ rust-overlay.overlays.default ];
       };
 
-    in {
+    in
+    {
       formatter.${systemSettings.system} =
         nixpkgs.legacyPackages.${systemSettings.system}.nixfmt;
 
