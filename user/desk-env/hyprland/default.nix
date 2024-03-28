@@ -49,15 +49,15 @@
     networkmanagerapplet
   ];
 
-  gtk.cursorTheme = {
-    package = pkgs.quintom-cursor-theme;
-    name = if (config.stylix.polarity == "light") then "Quintom_Ink" else "Quintom_Snow";
-    size = 36;
-  };
+  # gtk.cursorTheme = {
+  #   package = pkgs.quintom-cursor-theme;
+  #   name = if (config.stylix.polarity == "light") then "Quintom_Ink" else "Quintom_Snow";
+  #   size = 36;
+  # };
 
-  programs.rofi = {
-    enable = true;
-  };
+  # programs.rofi = {
+  #   enable = true;
+  # };
 
   services.dunst = {
     enable = true;
@@ -68,10 +68,8 @@
         offset = "30x50";
         origin = "top-right";
         transparency = 10;
-        # frame_color = "#eceff1";
+        frame_color = "#${config.lib.stylix.colors.base08}";
       };
-
-
     };
   };
 

@@ -1,15 +1,8 @@
-{ pkgs, ... }: {
-  home.pointerCursor = {
-    gtk.enable = true;
-    # x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 16;
-  };
+{ pkgs, lib, ... }: {
 
   gtk = {
     enable = true;
-    theme = {
+    theme = lib.mkDefault {
       package = pkgs.flat-remix-gtk;
       name = "Flat-Remix-GTK-Grey-Darkest";
     };

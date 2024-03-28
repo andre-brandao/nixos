@@ -20,6 +20,7 @@
     ../../user/app/gaming/gaming.nix
 
 
+    ../../user/app/rofi
 
     ../../user/app/virtualization/virtualization.nix # My qemu + virt manager
     ../../user/app/git/git.nix # My git config

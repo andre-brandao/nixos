@@ -50,6 +50,7 @@ in
       gtk.enable = true;
       gnome.enable = true;
       plymouth.enable = true;
+      nixos-icons.enable = true;
     };
   };
 }

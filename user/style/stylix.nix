@@ -72,6 +72,11 @@ in
       popups = 0.75;
       terminal = 0.75;
     };
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 22;
+    };
   };
 
   # home.packages = with pkgs; [ qt5ct pkgs.libsForQt5.breeze-qt5 ];
