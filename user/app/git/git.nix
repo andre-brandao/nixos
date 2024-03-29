@@ -15,10 +15,11 @@
     };
 
     extraConfig = {
-      credential.helper = "${
-          pkgs.git.override { withLibsecret = true; }
-        }/bin/git-credential-libsecret";
-      safe.direectory = "/home/" + userSettings.username + "/.dotfiles";
+      # credential.helper = "${
+      #     pkgs.git.override { withLibsecret = true; }
+      #   }/bin/git-credential-libsecret";
+      credential.helper = "store";
+      # safe.directory = "/home/" + userSettings.username + "/.dotfiles";
     };
   };
 }
