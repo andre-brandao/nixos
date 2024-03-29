@@ -11,7 +11,6 @@
 
   home.packages = with pkgs; [
     alacritty
-    waybar
     kitty
     feh
     swww
@@ -59,19 +58,27 @@
   #   enable = true;
   # };
 
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        width = 300;
-        height = 300;
-        offset = "30x50";
-        origin = "top-right";
-        transparency = 10;
-        # frame_color = "#${config.lib.stylix.colors.base08}";
-      };
-    };
-  };
+  # services.dunst = {
+  #   enable = true;
+  #   settings = {
+  #     global = {
+  #       width = 400;
+  #       # height = 300;
+  #       # offset = "30x50";
+  #       transparency = 10;
+  #       origin = "top-right";
+  #       # origin = "bottom-right";
+  #       # frame_color = "#${config.lib.stylix.colors.base0A}";
+  #       frame_width = 1;
+  #       format = "<b>%s</b>\\n%b";
+  #       padding = 6;
+  #       horizontal_padding = 6;
+  #       max_icon_size = 80;
+  #       icon_position = "left";
+
+  #     };
+  #   };
+  # };
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -85,7 +92,7 @@
         "nm-applet --indicator"
         "blueman-applet"
         "${pkgs.waybar}/bin/waybar"
-        "${pkgs.dunst}/bin/dunst"
+        # "${pkgs.dunst}/bin/dunst"
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
           builtins.toString config.gtk.cursorTheme.size

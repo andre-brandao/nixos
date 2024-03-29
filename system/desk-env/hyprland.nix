@@ -64,7 +64,6 @@
       pavucontrol
       brightnessctl
       swww
-      dunst
       libnotify
       rofi-wayland
       kitty # hyprland default terminal

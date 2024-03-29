@@ -54,6 +54,7 @@
     firefox
 
     minecraft
+    
 
     # CODE
     # vscode
