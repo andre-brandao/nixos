@@ -3,6 +3,11 @@
   # add the home manager module
   imports = [ inputs.ags.homeManagerModules.default ];
 
+  home.packages = with pkgs; [
+    bun
+    sass
+  ];
+
   programs.ags = {
     enable = true;
 
