@@ -131,15 +131,15 @@ function BatteryLabel() {
   const value = battery.bind("percent").as((p) => (p > 0 ? p / 100 : 0));
   //  10 󰁺 20 󰁻 30 󰁼 40 󰁽 50 󰁾 60 󰁿 70 󰂀 80 󰂁 90 󰂂 100
   //   chargin 󰂄
-//   const icon = battery
-//     .bind("percent")
-//     .as((p) => `battery-level-${Math.floor(p / 10) * 10}-symbolic`);
+  const icon = battery
+    .bind("percent")
+    .as((p) => `battery-level-${Math.floor(p / 10) * 10}-symbolic`);
 
   return Widget.Box({
     class_name: "battery",
     visible: battery.bind("available"),
     children: [
-    //   Widget.Icon({ icon }),
+      Widget.Icon({ icon }),
       Widget.LevelBar({
         widthRequest: 140,
         vpack: "center",

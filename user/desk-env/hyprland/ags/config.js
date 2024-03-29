@@ -1,10 +1,9 @@
-import { Bar } from "./topBar.js";
+import { Bar } from "./widgets/topBar.js";
+import { NotificationPopups } from "./widgets/notificationPopup.js";
+
 App.config({
   style: "./style.css",
-  windows: [
-    Bar(),
-
-  ],
+  windows: [Bar(), NotificationPopups()],
 });
 
 export {};
