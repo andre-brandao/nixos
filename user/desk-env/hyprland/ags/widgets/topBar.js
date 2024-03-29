@@ -40,6 +40,7 @@ function ClientTitle() {
   return Widget.Label({
     class_name: "client-title",
     label: hyprland.active.client.bind("title"),
+    max_width_chars: 20,
   });
 }
 
@@ -129,8 +130,6 @@ function Volume() {
 
 function BatteryLabel() {
   const value = battery.bind("percent").as((p) => (p > 0 ? p / 100 : 0));
-  //  10 󰁺 20 󰁻 30 󰁼 40 󰁽 50 󰁾 60 󰁿 70 󰂀 80 󰂁 90 󰂂 100
-  //   chargin 󰂄
   const icon = battery
     .bind("percent")
     .as((p) => `battery-level-${Math.floor(p / 10) * 10}-symbolic`);
@@ -140,11 +139,14 @@ function BatteryLabel() {
     visible: battery.bind("available"),
     children: [
       Widget.Icon({ icon }),
-      Widget.LevelBar({
-        widthRequest: 140,
-        vpack: "center",
-        value,
+      Widget.Label({
+        label: battery.bind("percent").as((p) => `${p}%`),
       }),
+      // Widget.LevelBar({
+      //   widthRequest: 140,
+      //   vpack: "center",
+      //   value,
+      // }),
     ],
   });
 }
@@ -179,6 +181,8 @@ function Center() {
     spacing: 8,
     children: [
       Media(),
+      Clock(),
+
       // Notification()
     ],
   });
@@ -188,7 +192,7 @@ function Right() {
   return Widget.Box({
     hpack: "end",
     spacing: 8,
-    children: [Volume(), BatteryLabel(), Clock(), SysTray()],
+    children: [SysTray(), Volume(), BatteryLabel()],
   });
 }
 

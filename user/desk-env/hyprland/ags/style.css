@@ -29,6 +29,7 @@ label {
 
 .client-title {
   color: @theme_selected_bg_color;
+  
 }
 
 .notification {

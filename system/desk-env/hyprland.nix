@@ -3,6 +3,7 @@
     # Include the results of the hardware scan.
     ./extras/fonts.nix
     ./extras/others.nix
+    ./extras/ags.nix
   ];
 
   services.xserver = {
