@@ -177,7 +177,10 @@ function Left() {
 function Center() {
   return Widget.Box({
     spacing: 8,
-    children: [Media(), Notification()],
+    children: [
+      Media(),
+      // Notification()
+    ],
   });
 }
 
