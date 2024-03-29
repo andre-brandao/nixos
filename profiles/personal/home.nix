@@ -19,8 +19,9 @@
     # GAMES
     ../../user/app/gaming/gaming.nix
 
-
+    # UTILS
     ../../user/app/rofi
+    ../../user/app/lf
 
 
 
@@ -63,7 +64,7 @@
     teams-for-linux
 
     # UTILS
-    lf
+    # lf
     bitwarden
     # gimp
     inkscape
