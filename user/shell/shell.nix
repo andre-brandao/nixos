@@ -29,97 +29,15 @@ let
 
     quit = "exit";
   };
-in {
+in
+{
   programs = {
     bash = {
       enable = true;
       enableCompletion = true;
       shellAliases = aliases;
     };
-
-    tmate.enable = true;
-
-    tmux = {
-      enable = true;
-      clock24 = true;
-
-      plugins = with pkgs; [
-        tmuxPlugins.better-mouse-mode
-        # tmuxPlugins.catppuccin
-        tmuxPlugins.resurrect
-      ];
-      sensibleOnTop = false;
-      disableConfirmationPrompt = true;
-      extraConfig = let
-        color1 =
-          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
-
-        color2 =
-          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
-
-        color3 =
-          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
-      in ''
-
-        # keyMode = "vi";
-
-        # set -g @catppuccin_flavour 'frappe'
-        # set -g @catppuccin_window_tabs_enabled on
-        # set -g @catppuccin_date_time "%H:%M"
-
-        # Mouse works as expected
-        set -g mouse on
-
-
-
-        # start tab index at 1
-        set -g base-index 1
-        set -g pane-base-index 1
-        set-window-option -g pane-base-index 1
-        set-option -g renumber-windows on
-
-        # AUTOMATIC REMANE
-        setw -g automatic-rename on
-
-        # open new panes in current dir
-        bind '"' split-window -v -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
-        # new bind for horizontal split
-        bind-key "|" split-window -h -c "#{pane_current_path}"
-        bind-key "\\" split-window -fh -c "#{pane_current_path}"
-        # new bind for vertical split
-        bind-key "-" split-window -v -c "#{pane_current_path}"
-        bind-key "_" split-window -fv -c "#{pane_current_path}"
-
-
-        # reload tmux config with prefix + r
-        bind r source-file ~/.config/tmux/tmux.conf # \; display "Reloaded! .config/tmux/tmux.conf"
-
-
-        # set prefix to C-Space
-        unbind C-Space
-        set -g prefix C-Space
-        bind C-Space send-prefix
-
-
-        # STATUS BAR
-
-
-        set -g status-right ' #[${color1}] cpu: #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
-        set -g status-left '#[${color3}] 󱄅 '
-
-        # set-option -g status-position top
-
-
-                  run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
-      '';
-    };
-
-    zoxide = {
-      enable = true;
-      # enableShellIntegration = true;
-    };
-
+    # SHELL
     zsh = {
       enable = true;
       autosuggestion.enable = true;
@@ -188,6 +106,150 @@ in {
         }
       ];
     };
+    # BETTER CD
+    zoxide = {
+      enable = true;
+      # enableShellIntegration = true;
+    };
+
+    # SHELL CUSTOMIZATION
+    starship = {
+      enable = true;
+      # Configuration written to ~/.config/starship.toml
+      settings = {
+        # add_newline = false;
+
+        # character = {
+        #   success_symbol = "[➜](bold green)";
+        #   error_symbol = "[➜](bold red)";
+        # };
+
+        # package.disabled = true;
+
+
+        add_newline = false;
+        # format = "$shlvl$shell$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
+        # shlvl = {
+        #   disabled = false;
+        #   symbol = "ﰬ";
+        #   style = "bright-red bold";
+        # };
+        shell = {
+          disabled = false;
+          format = "$indicator";
+          bash_indicator = "[BASH](bright-white)";
+          zsh_indicator = "";
+        };
+        username = {
+          style_user = "bright-white bold";
+          style_root = "bright-red bold";
+        };
+        hostname = {
+          style = "bright-green bold";
+          ssh_only = true;
+        };
+        nix_shell = {
+          symbol = "";
+          format = "[$symbol$name]($style) ";
+          style = "bright-purple bold";
+        };
+        git_branch = {
+          only_attached = true;
+          symbol = " ";
+          style = "bright-yellow bold";
+        };
+        git_status = {
+          ahead = "";
+          behind = "";
+          diverged = "";
+        };
+
+        character = {
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
+      };
+    };
+
+    # MULTIPLEXER
+    tmux = {
+      enable = true;
+      clock24 = true;
+
+      plugins = with pkgs; [
+        tmuxPlugins.better-mouse-mode
+        # tmuxPlugins.catppuccin
+        tmuxPlugins.resurrect
+      ];
+      sensibleOnTop = false;
+      disableConfirmationPrompt = true;
+      extraConfig =
+        let
+          color1 =
+            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
+
+          color2 =
+            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
+
+          color3 =
+            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+        in
+        ''
+
+        # keyMode = "vi";
+
+        # set -g @catppuccin_flavour 'frappe'
+        # set -g @catppuccin_window_tabs_enabled on
+        # set -g @catppuccin_date_time "%H:%M"
+
+        # Mouse works as expected
+        set -g mouse on
+
+
+
+        # start tab index at 1
+        set -g base-index 1
+        set -g pane-base-index 1
+        set-window-option -g pane-base-index 1
+        set-option -g renumber-windows on
+
+        # AUTOMATIC REMANE
+        setw -g automatic-rename on
+
+        # open new panes in current dir
+        bind '"' split-window -v -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        # new bind for horizontal split
+        bind-key "|" split-window -h -c "#{pane_current_path}"
+        bind-key "\\" split-window -fh -c "#{pane_current_path}"
+        # new bind for vertical split
+        bind-key "-" split-window -v -c "#{pane_current_path}"
+        bind-key "_" split-window -fv -c "#{pane_current_path}"
+
+
+        # reload tmux config with prefix + r
+        bind r source-file ~/.config/tmux/tmux.conf # \; display "Reloaded! .config/tmux/tmux.conf"
+
+
+        # set prefix to C-Space
+        unbind C-Space
+        set -g prefix C-Space
+        bind C-Space send-prefix
+
+
+        # STATUS BAR
+
+
+        set -g status-right ' #[${color1}] cpu: #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
+        set -g status-left '#[${color3}] 󱄅 '
+
+        # set-option -g status-position top
+
+
+                  run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+      '';
+    };
+
   };
 
   home.file.".p10k.zsh".source = ./p10k.zsh;
