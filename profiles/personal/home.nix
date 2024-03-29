@@ -22,7 +22,14 @@
 
     ../../user/app/rofi
 
+
+
+    # VIRTUALIZATION
     ../../user/app/virtualization/virtualization.nix # My qemu + virt manager
+    ../../user/app/distrobox # My distrobox config
+
+
+
     ../../user/app/git/git.nix # My git config
     # SHELL 
     ../../user/shell/shell.nix # My shell config
@@ -37,7 +44,6 @@
     ../../user/app/editor/vscode # My vscode config
   ];
 
-  home.stateVersion = "22.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
     spotify
@@ -54,6 +60,7 @@
     # MESSAGING
     thunderbird
     discord
+    teams-for-linux
 
     # UTILS
     lf
@@ -121,4 +128,7 @@
     TERM = userSettings.term;
     BROWSER = userSettings.browser;
   };
+
+  home.stateVersion = "22.11"; # Please read the comment before changing.
+
 }
