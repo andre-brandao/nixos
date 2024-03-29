@@ -1,30 +1,4 @@
 { config, pkgs, inputs, ... }: {
-  home.packages = with pkgs; [
-
-    helix
-
-    # Language servers
-    typescript
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted
-    nodePackages.yaml-language-server # YAML / JSON
-    nodePackages.vls
-    nodePackages."@astrojs/language-server" # Astro
-    nodePackages.svelte-language-server
-
-    nodePackages.bash-language-server # Bash
-    nodePackages.dockerfile-language-server-nodejs
-    nodePackages.pyright # Python
-    nodePackages.stylelint
-
-    lldb # debugger
-
-    elixir_ls # Elixir
-    marksman # Markdown
-    (python3.withPackages (ps:
-      with ps;
-      [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all))
-  ];
   programs.helix = {
     enable = true;
     themes = {
@@ -91,6 +65,10 @@
             tab = "→";
             newline = "⤶";
           };
+        };
+        indent-guides = {
+          render = true;
+          character = "┊";
         };
         cursor-shape = {
           normal = "block";
@@ -174,5 +152,47 @@
         }
       ];
     };
+
+    extraPackages = with pkgs; with nodePackages; [
+      bash-language-server # BASH
+      lldb # debugger
+      marksman # Markdown
+
+
+      elixir_ls # Elixir
+
+      # # NIX
+      # nixpkgs-fmt
+
+      # GO
+      gopls
+      gotools
+
+
+      # C/C++
+      clang-tools
+      lua-language-server
+      # RUST
+      rust-analyzer
+
+
+      # PYTHON
+      pyright
+      (python3.withPackages (ps:
+        with ps;
+        [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all))
+
+      # JAVASCRIPT AND CIA
+      typescript
+      vscode-langservers-extracted
+      typescript-language-server
+      svelte-language-server
+      yaml-language-server
+      stylelint
+
+      nodePackages."@astrojs/language-server"
+
+      dockerfile-language-server-nodejs
+    ];
   };
 }
