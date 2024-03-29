@@ -18,6 +18,7 @@
           "custom/os"
 
           "hyprland/workspaces"
+          "hyprland/window"
         ];
         modules-center = [ ];
         modules-right = [

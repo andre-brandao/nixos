@@ -205,8 +205,6 @@ in {
     bc
     direnv
     nix-direnv
-    helix
-
     nix-output-monitor
   ];
 

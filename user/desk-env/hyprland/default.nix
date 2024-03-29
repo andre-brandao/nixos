@@ -6,6 +6,7 @@
   imports = [
     ./waybar.nix
     ./ags.nix
+    ./hypridle.nix
   ];
 
   home.packages = with pkgs; [
@@ -25,8 +26,6 @@
     wl-clipboard
     hyprland-protocols
     hyprpicker
-    swayidle
-    swaybg
     fnott
     fuzzel
     keepmenu
@@ -92,6 +91,7 @@
           builtins.toString config.gtk.cursorTheme.size
         }"
         "hyprpaper"
+        "hypridle"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = "DP-1, 1920x1200, auto, 1";
