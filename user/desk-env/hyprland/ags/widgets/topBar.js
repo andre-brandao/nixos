@@ -39,8 +39,12 @@ function Workspaces() {
 function ClientTitle() {
   return Widget.Label({
     class_name: "client-title",
-    label: hyprland.active.client.bind("title"),
-    max_width_chars: 20,
+    label: hyprland.active.client.bind("title").transform((title) => {
+      if (title.length > 22) {
+        return title.slice(0, 22) + "...";
+      }
+      return title;
+    }),
   });
 }
 
@@ -140,7 +144,7 @@ function BatteryLabel() {
     children: [
       Widget.Icon({ icon }),
       Widget.Label({
-        label: battery.bind("percent").as((p) => `${p}%`),
+        label: battery.bind("percent").as((p) => `${p}% `),
       }),
       // Widget.LevelBar({
       //   widthRequest: 140,

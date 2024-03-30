@@ -1,53 +1,24 @@
 # home.nix
 
 { inputs, pkgs, lib, config, userSettings, ... }:
+let
+  hyprConfig = {
+    # CONFIG 1
+    waybar = false;
+    dunst = false;
 
+    # CONFIG 2
+    ags = true;
+  };
+in
 {
   imports = [
-    # ./waybar.nix
-    # ./dunst.nix
-    ./ags.nix
+    (if hyprConfig.waybar then ./waybar.nix else builtins.null)
+    (if hyprConfig.dunst then ./dunst.nix else builtins.null)
+    (if hyprConfig.ags then ./ags.nix else builtins.null)
     ./hypridle.nix
   ];
 
-  home.packages = with pkgs; [
-    alacritty
-    kitty
-    feh
-    swww
-    killall
-    polkit_gnome
-    libva-utils
-    gsettings-desktop-schemas
-    gnome.zenity
-    wlr-randr
-    wtype
-    ydotool
-    wl-clipboard
-    hyprland-protocols
-    hyprpicker
-    fnott
-    fuzzel
-    keepmenu
-    pinentry-gnome3
-    wev
-    grim
-    slurp
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    wlsunset
-    pavucontrol
-    pamixer
-    tesseract4
-
-    hyprpaper
-    pyprland
-    networkmanagerapplet
-  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -56,9 +27,10 @@
 
     settings = {
 
-      exec-once = [
-        # "${pkgs.waybar}/bin/waybar"
-        # "${pkgs.dunst}/bin/dunst"
+      #  lib.filter is a helper function that filters out null values
+      exec-once = lib.filter (x: x != null) [
+        (if hyprConfig.waybar then "${pkgs.waybar}/bin/waybar" else null)
+        (if hyprConfig.dunst then "${pkgs.dunst}/bin/dunst" else null) # assuming this should be dunst, not waybar again
 
         "pypr"
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
@@ -67,6 +39,7 @@
         }"
         "hyprpaper"
         "hypridle"
+        
         "nm-applet --indicator"
         "blueman-applet"
       ];
