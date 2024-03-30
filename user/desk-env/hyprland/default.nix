@@ -3,22 +3,34 @@
 { inputs, pkgs, lib, config, userSettings, ... }:
 let
   hyprConfig = {
+
+    bar = "waybar"; # waybar | ags
+    notifications = "dunst"; # dunst | ags
     # CONFIG 1
-    waybar = false;
-    dunst = false;
+    waybar = true;
+    dunst = true;
 
     # CONFIG 2
-    ags = true;
+    ags = false;
   };
 in
 {
-  imports = [
+  imports = lib.filter (x: x != null) [
     (if hyprConfig.waybar then ./waybar.nix else builtins.null)
     (if hyprConfig.dunst then ./dunst.nix else builtins.null)
     (if hyprConfig.ags then ./ags.nix else builtins.null)
     ./hypridle.nix
   ];
 
+  home.packages = with pkgs; [
+    hyprland-protocols
+    pyprland
+    networkmanagerapplet
+    hyprpaper
+    pavucontrol
+    pamixer
+    hypridle
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -31,17 +43,21 @@ in
       exec-once = lib.filter (x: x != null) [
         (if hyprConfig.waybar then "${pkgs.waybar}/bin/waybar" else null)
         (if hyprConfig.dunst then "${pkgs.dunst}/bin/dunst" else null) # assuming this should be dunst, not waybar again
+        (if hyprConfig.ags then "ags" else null)
 
         "pypr"
+        "hyprpaper"
+        "hypridle"
+
+        # tray icons
+        "nm-applet --indicator"
+        "blueman-applet"
+
+
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
           builtins.toString config.gtk.cursorTheme.size
         }"
-        "hyprpaper"
-        "hypridle"
-        
-        "nm-applet --indicator"
-        "blueman-applet"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
@@ -229,7 +245,7 @@ in
     animation = "fromTop"
     command = "alacritty --class alacritty-btm -e btm"
     class = "alacritty-btm"
-    size = "75% 60%"
+    size = "80% 80%"
 
 
     [scratchpads.volume]
