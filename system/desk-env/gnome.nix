@@ -53,7 +53,7 @@
   # Enable the X11 windowing system.
   # # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   # systemd.services."getty@tty1".enable = false;
-  # systemd.services."autovt@tty1".enable = false;
+  # systemd.services."autovt@tty1".edddnable = false;
 
   environment.systemPackages = with pkgs; [
     gnome-extension-manager
@@ -68,9 +68,6 @@
     gnomeExtensions.tray-icons-reloaded
     gnomeExtensions.toggle-alacritty
     gnomeExtensions.just-perfection
-    gnomeExtensions.rounded-window-corners
+    gnomeExtensions.window-gestures
   ];
-
-
-
 }

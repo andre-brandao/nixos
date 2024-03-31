@@ -1,24 +1,16 @@
 # home.nix
 
-{ inputs, pkgs, lib, config, userSettings, ... }:
+{ inputs, pkgs, config, userSettings, ... }:
 let
-  hyprConfig = {
 
-    bar = "waybar"; # waybar | ags
-    notifications = "dunst"; # dunst | ags
-    # CONFIG 1
-    waybar = true;
-    dunst = true;
-
-    # CONFIG 2
-    ags = false;
-  };
-in
-{
-  imports = lib.filter (x: x != null) [
-    (if hyprConfig.waybar then ./waybar.nix else builtins.null)
-    (if hyprConfig.dunst then ./dunst.nix else builtins.null)
-    (if hyprConfig.ags then ./ags.nix else builtins.null)
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+in {
+  imports = [
+    ./waybar.nix
+    ./dunst.nix
+    # ./ags.nix
     ./hypridle.nix
   ];
 
@@ -31,41 +23,43 @@ in
     pamixer
     hypridle
     hyprlock
+    grim
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
+
     systemd.enable = true;
     xwayland.enable = true;
 
     settings = {
 
       #  lib.filter is a helper function that filters out null values
-      exec-once = lib.filter (x: x != null) [
-        (if hyprConfig.waybar then "${pkgs.waybar}/bin/waybar" else null)
-        (if hyprConfig.dunst then "${pkgs.dunst}/bin/dunst" else null) # assuming this should be dunst, not waybar again
-        (if hyprConfig.ags then "ags" else null)
+      exec-once = [
+        "${pkgs.waybar}/bin/waybar"
+        "${pkgs.dunst}/bin/dunst" # assuming this should be dunst, not waybar again
+        #  "ags"
 
         "pypr"
         "hyprpaper"
         "hypridle"
-        "hyprlock"
-
+        # "hyprlock"
+        "alacritty"
         # tray icons
         "nm-applet --indicator"
         "blueman-applet"
 
-
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
-        "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
-          builtins.toString config.gtk.cursorTheme.size
-        }"
+        # "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
+        #   builtins.toString config.gtk.cursorTheme.size
+        # }"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
       monitor = "DP-1,highres,auto,1";
 
       xwayland = { force_zero_scaling = true; };
+      env = "GDK_SCALE,1";
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {
@@ -201,7 +195,9 @@ in
         "$mainMod, C, killactive"
 
         "$mainMod, E, exec, $fileManager"
+
         "$mainMod SHIFT, Q, exit"
+        "CTRL ALT, Delete, exit"
 
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
@@ -209,10 +205,12 @@ in
 
         #  ---------- Scratchpad ---------
         "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
+        "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
         # "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"
         "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
+        ",Print,exec,grim"
       ];
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
@@ -228,6 +226,27 @@ in
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+
+      binds = { allow_workspace_cycles = true; };
+
+      bindle = [
+
+        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
+        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
+        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+      ];
+
+      bindl = [
+        ",XF86AudioPlay,    exec, ${playerctl} play-pause"
+        ",XF86AudioStop,    exec, ${playerctl} pause"
+        ",XF86AudioPause,   exec, ${playerctl} pause"
+        ",XF86AudioPrev,    exec, ${playerctl} previous"
+        ",XF86AudioNext,    exec, ${playerctl} next"
+        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
       ];
     };
   };
