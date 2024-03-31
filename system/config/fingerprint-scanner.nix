@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   # Enable fingerprint scanner
+  # use fprint-enroll <username> to register a fingerprint
   services.fprintd = {
     enable = true;
     tod = {
