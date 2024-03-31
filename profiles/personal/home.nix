@@ -52,8 +52,6 @@
     # BROSWERS
     brave
     firefox
-
-    minecraft
     
 
     # CODE

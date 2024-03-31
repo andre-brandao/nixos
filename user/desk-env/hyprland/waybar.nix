@@ -16,6 +16,7 @@
 
         modules-left = [
           "custom/os"
+          "clock"
 
           "hyprland/workspaces"
           "hyprland/window"
@@ -34,7 +35,6 @@
           "backlight"
           "pulseaudio"
           # "network"
-          "clock"
           "battery"
         ];
 
@@ -149,7 +149,7 @@
         };
         pulseaudio = {
           "scroll-step" = 1;
-          "format" = "{volume}% {icon}  {format_source}";
+          "format" = "{volume}% {icon}";
           "format-bluetooth" = "{volume}% {icon}  {format_source}";
           "format-bluetooth-muted" = "󰸈 {icon}  {format_source}";
           "format-muted" = "󰸈 {format_source}";
@@ -164,6 +164,7 @@
             "car" = "";
             "default" = [ "" "" "" ];
           };
+          "tooltip-format" = "{volume}% {icon}  {format_source}";
           "on-click" =
             "pypr toggle volume && hyprctl dispatch bringactivetotop";
         };
@@ -213,9 +214,9 @@
         margin-left: 1px;
       }
 
-      /* #workspaces button:first-child {
-        border-radius: 20px 0px 0px 20px;
-      }*/
+      #workspaces button:first-child {
+        border-radius: 5px 0px 0px 5px;
+      }
       #workspaces button:last-child {
         border-radius: 0px 20px 20px 0px;
       }
@@ -269,6 +270,7 @@
         padding: 0 10px;
         color: @fgDefault;
         background-color: @bgDefault;
+        border-radius: 5px;
       }
       /* If workspaces is the leftmost module, omit left margin */
       .modules-left > widget:first-child > #workspaces {
@@ -286,6 +288,7 @@
         color: @fgBlack; */
         color: @fgDefault;
         background-color: @bgDefault;
+        border-radius: 5px;
       }
 
       #battery.charging,
@@ -321,7 +324,7 @@
       } */
 
       #idle_inhibitor {
-        border-radius: 20px 0px 0px 20px;
+        border-radius: 20px 5px 5px 20px;
       }
       #idle_inhibitor.activated {
         background: @accent;

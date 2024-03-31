@@ -6,10 +6,6 @@
     settings = {
       window = {
         opacity = lib.mkForce 0.75;
-        dimensions = {
-          lines = 3;
-          columns = 200;
-        };
       };
       # colors = {
       #   # TODO revisit these color mappings
