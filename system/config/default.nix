@@ -5,10 +5,10 @@
     ./networking.nix
     ./language.nix
     ./sound.nix
-    ./printer.nix
+    # ./printer.nix
     ./gc.nix
 
     ./bluetooth.nix
-    # ./fingerprint-scanner.nix
+    ./fingerprint-scanner.nix
   ];
 }
