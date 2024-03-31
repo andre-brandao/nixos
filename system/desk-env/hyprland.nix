@@ -11,7 +11,7 @@
     xkb = {
       layout = "us";
       variant = "";
-      options = "caps:escape";
+      options = "grp:win_space_toggle";
     };
     displayManager.gdm.enable = true;
     # displayManager.sddm = {

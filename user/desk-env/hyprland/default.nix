@@ -25,8 +25,13 @@ in
     hypridle
     hyprlock
     grim
+    wl-clipboard
 
     xfce.thunar # file manager
+
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
+    xdg-utils
   ];
 
   wayland.windowManager.hyprland = {
@@ -47,29 +52,28 @@ in
         "hyprpaper"
         "hypridle"
         # "hyprlock"
-        "alacritty"
         # tray icons
         "nm-applet --indicator"
         "blueman-applet"
 
-        "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
+        # "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         # "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
         #   builtins.toString config.gtk.cursorTheme.size
         # }"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
-      monitor = "DP-1,highres,auto,1";
+      monitor = "DP-1,highres,0x0,1";
 
       xwayland = { force_zero_scaling = true; };
       env = "GDK_SCALE,2";
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {
-        kb_layout = "us";
+        kb_layout = "us,br";
         kb_variant = "";
         kb_model = "";
-        kb_options = "";
+        kb_options = "grp:win_space_toggle";
         kb_rules = "";
 
         follow_mouse = 1;
@@ -104,12 +108,14 @@ in
 
         rounding = 6;
 
-        blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
-        };
-        drop_shadow = "yes";
+        # blur = {
+        #   enabled = true;
+        #   size = 3;
+        #   passes = 1;
+        # };
+        blur.enabled = false;
+        # drop_shadow = "yes";
+        drop_shadow = false;
         shadow_range = 4;
         shadow_render_power = 3;
         # "col.shadow" = "rgba(1a1a1aee)";
