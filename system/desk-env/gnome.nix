@@ -17,7 +17,35 @@
       # Enable the GNOME Display Manager.
       displayManager.gdm.enable = true;
       # Enable the GNOME Desktop Environment.
-      desktopManager.gnome.enable = true;
+      desktopManager.gnome = {
+        enable = true;
+        # excludePackages = with pkgs; [
+        #   # gnome-text-editor
+        #   gnome-console
+        #   gnome-photos
+        #   gnome-tour
+        #   gnome-connections
+        #   snapshot
+        #   gedit
+        #   gnome.cheese # webcam tool
+        #   gnome.gnome-music
+        #   gnome.epiphany # web browser
+        #   gnome.geary # email reader
+        #   gnome.evince # document viewer
+        #   gnome.gnome-characters
+        #   gnome.totem # video player
+        #   gnome.tali # poker game
+        #   gnome.iagno # go game
+        #   gnome.hitori # sudoku game
+        #   gnome.atomix # puzzle game
+        #   gnome.yelp # Help view
+        #   gnome.gnome-contacts
+        #   gnome.gnome-initial-setup
+        #   gnome.gnome-shell-extensions
+        #   gnome.gnome-maps
+        #   gnome.gnome-font-viewer
+        # ];
+      };
       # Enable automatic login for the user.
       # displayManager.auegin.user = "andre";
     };
@@ -42,34 +70,6 @@
     gnomeExtensions.just-perfection
     gnomeExtensions.rounded-window-corners
   ];
-
-  gnome.excludePackages = (with pkgs; [
-    # gnome-text-editor
-    gnome-console
-    gnome-photos
-    gnome-tour
-    gnome-connections
-    snapshot
-    gedit
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
-    gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    atomix # puzzle game
-    yelp # Help view
-    gnome-contacts
-    gnome-initial-setup
-    gnome-shell-extensions
-    gnome-maps
-    gnome-font-viewer
-  ]);
 
 
 

@@ -30,6 +30,7 @@ in
     pavucontrol
     pamixer
     hypridle
+    hyprlock
   ];
 
   wayland.windowManager.hyprland = {
@@ -48,6 +49,7 @@ in
         "pypr"
         "hyprpaper"
         "hypridle"
+        "hyprlock"
 
         # tray icons
         "nm-applet --indicator"
