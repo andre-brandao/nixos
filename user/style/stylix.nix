@@ -13,16 +13,6 @@ in
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   home.file.".currenttheme".text = userSettings.theme;
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = '' + config.stylix.image + ''
-
-    wallpaper = eDP-1,'' + config.stylix.image + ''
-
-    wallpaper = HDMI-A-1,'' + config.stylix.image + ''
-
-    wallpaper = DP-1,'' + config.stylix.image + ''
-  '';
-
   # stylix.autoEnable = false;
   stylix = {
     polarity = themePolarity;

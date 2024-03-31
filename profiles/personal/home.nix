@@ -59,7 +59,8 @@
 
     # MESSAGING
     thunderbird
-    discord
+    # discord
+    discord-screenaudio
     teams-for-linux
 
     # UTILS

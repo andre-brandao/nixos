@@ -16,22 +16,30 @@ in
   ];
 
   home.packages = with pkgs; [
+    # hyprland packages
     hyprland-protocols
     pyprland
-    networkmanagerapplet
-    hyprpaper
-    pavucontrol
-    pamixer
     hypridle
     hyprlock
-    grim
-    wl-clipboard
+    hyprpicker
+    hyprpaper
+
+
+
+    networkmanagerapplet # network manager
+    pavucontrol # volume control
+    pamixer # volume control
+    grim # screenshot
+    wl-clipboard # clipboard manager
 
     xfce.thunar # file manager
 
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
-    xdg-utils
+    xdg-utils # for opening files with default applications
+
+
+    # xwaylandvideobridge # screen sharing
   ];
 
   wayland.windowManager.hyprland = {
@@ -45,21 +53,18 @@ in
       #  lib.filter is a helper function that filters out null values
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
-        "${pkgs.dunst}/bin/dunst" # assuming this should be dunst, not waybar again
+        "${pkgs.dunst}/bin/dunst" 
         #  "ags"
 
         "pypr"
         "hyprpaper"
         "hypridle"
-        # "hyprlock"
+
         # tray icons
         "nm-applet --indicator"
         "blueman-applet"
 
-        # "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
-        # "hyprctl setcursor  ${config.gtk.cursorTheme.name} ${
-        #   builtins.toString config.gtk.cursorTheme.size
-        # }"
+        # "xwaylandvideobridge"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
@@ -198,9 +203,15 @@ in
 
         "$mainMod, T, togglefloating"
 
+
+        # "$mainMod, W, exec, ${userSettings.browser}"
+        # ROFI
         "$mainMod, S, exec, rofi -show drun -show-icons"
         "$mainMod, RETURN, exec, rofi -show drun -show-icons"
 
+        "$mainMod, W, exec, rofi -show window -show-icons"
+
+        # kill window
         "$mainMod, C, killactive"
 
         # "$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
@@ -209,6 +220,12 @@ in
         "$mainMod SHIFT, Q, exit"
         "CTRL ALT, Delete, exit"
 
+
+        # print screen
+        ",Print,exec,grim"
+        # color picker
+        "$mainMod, Print, exec, hyprpicker -a -f hex"
+
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
@@ -216,11 +233,13 @@ in
         #  ---------- Scratchpad ---------
         "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
         "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-        "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
+
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
+
+        "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
+
         "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"
-        "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
-        ",Print,exec,grim"
+        "$mainMod,M,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
       ];
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
@@ -307,6 +326,18 @@ in
     class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
     size = "85% 85%"
     process_tracking = false  
+  '';
+
+
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = '' + config.stylix.image + ''
+
+    wallpaper = eDP-1,'' + config.stylix.image + ''
+
+    wallpaper = HDMI-A-1,'' + config.stylix.image + ''
+
+    wallpaper = DP-1,'' + config.stylix.image + ''
+    ipc = off 
   '';
 
 }
