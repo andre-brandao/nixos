@@ -6,7 +6,8 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
-in {
+in
+{
   imports = [
     ./waybar.nix
     ./dunst.nix
@@ -24,6 +25,8 @@ in {
     hypridle
     hyprlock
     grim
+
+    xfce.thunar # file manager
   ];
 
   wayland.windowManager.hyprland = {
@@ -59,7 +62,7 @@ in {
       monitor = "DP-1,highres,auto,1";
 
       xwayland = { force_zero_scaling = true; };
-      env = "GDK_SCALE,1";
+      env = "GDK_SCALE,2";
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {
@@ -194,7 +197,8 @@ in {
 
         "$mainMod, C, killactive"
 
-        "$mainMod, E, exec, $fileManager"
+        # "$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
+        "$mainMod, E, exec, pypr toggle filemanager && hyprctl dispatch bringactivetotop"
 
         "$mainMod SHIFT, Q, exit"
         "CTRL ALT, Delete, exit"
@@ -208,7 +212,7 @@ in {
         "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
-        # "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"
+        "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"
         "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
         ",Print,exec,grim"
       ];
@@ -277,13 +281,19 @@ in {
     size = "50% 90%"
     unfocus = "hide"
 
+    [scratchpads.filemanager]
+    animation = "fromRight"
+    command = "thunar"
+    class = "thunar"
+    size = "85% 85%"
 
-    # [scratchpads.gpt]
-    # animation = "fromTop"
-    # command = "brave --app=https://chat.openai.com/"
-    # class = "brave-chat-openai-com"
-    # size = "75% 60%"
-    # class_match = true
+
+    [scratchpads.gpt]
+    animation = "fromTop"
+    command = "brave --app=https://chat.openai.com/"
+    class = "brave-https://chat.openai.com-Default"
+    size = "75% 60%"
+    process_tracking = false 
 
     [scratchpads.wpp]
     animation = "fromLeft"
