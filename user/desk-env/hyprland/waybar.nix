@@ -189,7 +189,7 @@
         border: none;
         border-radius: 0px;
         font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-size: 10px;
+        font-size: 14px;
         min-height: 0;
       }
 

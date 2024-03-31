@@ -63,7 +63,7 @@ in
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
-      monitor = "DP-1,highres,0x0,1";
+      monitor = "eDP-1,highres,0x0,1";
 
       xwayland = { force_zero_scaling = true; };
       env = "GDK_SCALE,2";
