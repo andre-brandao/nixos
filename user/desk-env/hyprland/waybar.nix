@@ -16,22 +16,22 @@
 
         modules-left = [
           "custom/os"
-          "clock"
-
           "hyprland/workspaces"
           "hyprland/window"
         ];
-        modules-center = [ ];
+        modules-center = [
+          "clock"
+        ];
         modules-right = [
           "idle_inhibitor"
 
+          "hyprland/language"
           "cpu"
           "memory"
           "temperature"
           "disk"
 
           "tray"
-          "keyboard-state"
           "backlight"
           "pulseaudio"
           # "network"
@@ -50,20 +50,19 @@
 
         "custom/os" = {
           "format" = " {} ";
-          "exec" = ''echo "" '';
+          "exec" = ''echo " " '';
           "interval" = "once";
-        };
-        "keyboard-state" = {
-          "numlock" = true;
-          "format" = " {icon} ";
-          "format-icons" = {
-            "locked" = "󰎠";
-            "unlocked" = "󱧓";
-          };
         };
         "hyprland/workspaces" = {
           "format" = "{icon}";
           "format-icons" = {
+            # "1": "",
+            # "2": "",
+            # "3": "",
+            # "4": "",
+            # "5": "",
+            # "active": "",
+            # "default": ""
             # "1" = "󱚌";
             # "2" = "󰖟";
             # "3" = "";
@@ -84,6 +83,13 @@
             # default = "";
             urgent = "";
           };
+
+          "hyprland/language" = {
+            "format" = "{} 󰌌 ";
+
+            "format-en" = "us";
+            "format-br" = "br";
+          };
           "on-click" = "activate";
           "on-scroll-up" = "hyprctl dispatch workspace e+1";
           "on-scroll-down" = "hyprctl dispatch workspace e-1";
@@ -100,20 +106,43 @@
             deactivated = "󰾪";
           };
         };
+
         tray = {
           #"icon-size" = 21;
           "spacing" = 10;
         };
         clock = {
           "interval" = 1;
-          "format" = "{:%d-%m-%Y | %I:%M:%S %p}";
+          "format" = "{:%d/%m | %I:%M:%S %p}";
           "timezone" = systemSettings.timezone;
           "tooltip-format" = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
+          "calendar" = {
+            "mode" = "year";
+            "mode-mon-col" = 3;
+            "weeks-pos" = "right";
+            "on-scroll" = 1;
+            "on-click-right" = "mode";
+            "format" = {
+              "months" = "<span color='#ffead3'><b>{}</b></span>";
+              "days" = "<span color='#ecc6d9'><b>{}</b></span>";
+              "weeks" = "<span color='#99ffdd'><b>W{}</b></span>";
+              "weekdays" = "<span color='#ffcc66'><b>{}</b></span>";
+              "today" = "<span color='#ff6699'><b><u>{}</u></b></span>";
+            };
+          };
+          "actions" = {
+            "on-click-right" = "mode";
+            "on-click-forward" = "tz_up";
+            "on-click-backward" = "tz_down";
+            "on-scroll-up" = "shift_up";
+            "on-scroll-down" = "shift_down";
+          };
+
         };
 
-        cpu = { "format" = "{usage}% "; };
+        cpu = { "format" = "{usage}%  "; };
         memory = { "format" = "{}% "; };
 
         "temperature" = {
@@ -146,10 +175,11 @@
           #"format-good" = ""; # An empty format will hide the module
           #"format-full" = "";
           "format-icons" = [ "" "" "" "" "" ];
+
         };
         pulseaudio = {
           "scroll-step" = 1;
-          "format" = "{volume}% {icon}";
+          "format" = "{volume}% {icon} ";
           "format-bluetooth" = "{volume}% {icon}  {format_source}";
           "format-bluetooth-muted" = "󰸈 {icon}  {format_source}";
           "format-muted" = "󰸈 {format_source}";
