@@ -40,6 +40,7 @@ in
 
 
     # xwaylandvideobridge # screen sharing
+    vesktop
   ];
 
   wayland.windowManager.hyprland = {
@@ -53,7 +54,7 @@ in
       #  lib.filter is a helper function that filters out null values
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
-        "${pkgs.dunst}/bin/dunst" 
+        "${pkgs.dunst}/bin/dunst"
         #  "ags"
 
         "pypr"
@@ -197,9 +198,9 @@ in
 
         # ----- OTHER KEYBINDINGS --------
 
-        "$mainMod, Q, exec, ${userSettings.term}"
+        # "$mainMod, Q, exec, ${userSettings.term}"
 
-        "$mainMod, A, exec, ${userSettings.editor}"
+        "$mainMod, A, exec, ${userSettings.term}"
 
         "$mainMod, T, togglefloating"
 
@@ -209,7 +210,7 @@ in
         "$mainMod, S, exec, rofi -show drun -show-icons"
         "$mainMod, RETURN, exec, rofi -show drun -show-icons"
 
-        "$mainMod, W, exec, rofi -show window -show-icons"
+        "$mainMod, J, exec, rofi -show window -show-icons"
 
         # kill window
         "$mainMod, C, killactive"
@@ -238,8 +239,13 @@ in
 
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
 
-        "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop"
-        "$mainMod,M,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
+        "$mainMod, W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
+
+        "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
+        "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop" #chat gpt
+        # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
+
+
       ];
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
@@ -248,6 +254,14 @@ in
         "$scratchpadsize,$scratchpad"
         "workspace special silent,$scratchpad"
         "center,$scratchpad"
+
+
+        # SCREEN SHARING
+        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
+        "noanim,class:^(xwaylandvideobridge)$"
+        "noinitialfocus,class:^(xwaylandvideobridge)$"
+        "maxsize 1 1,class:^(xwaylandvideobridge)$"
+        "noblur,class:^(xwaylandvideobridge)$"
       ];
 
       bindm = [
@@ -315,13 +329,13 @@ in
 
     [scratchpads.gpt]
     animation = "fromTop"
-    command = "brave --app=https://chat.openai.com/"
-    class = "brave-https://chat.openai.com-Default"
+    command = "brave --profile-directory=Default --app=https://chat.openai.com"
+    class = "brave-chat.openai.com__-Default"
     size = "75% 60%"
     process_tracking = false 
 
     [scratchpads.wpp]
-    animation = "fromLeft"
+    animation = "fromTop"
     command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
     class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
     size = "85% 85%"

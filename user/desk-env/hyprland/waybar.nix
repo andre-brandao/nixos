@@ -28,8 +28,8 @@
           "hyprland/language"
           "cpu"
           "memory"
-          "temperature"
           "disk"
+          # "temperature"
 
           "tray"
           "backlight"
