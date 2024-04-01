@@ -15,6 +15,11 @@
 
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     # astal.url = "github:Aylur/astal";
     ags.url = "github:Aylur/ags";
 
@@ -22,7 +27,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, hyprland, hycov, ... }@inputs:
     let
       inherit (self) outputs;
 
