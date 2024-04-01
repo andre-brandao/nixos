@@ -15,10 +15,6 @@
 
     # HyperLand
     hyprland.url = "github:hyprwm/Hyprland";
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     # astal.url = "github:Aylur/astal";
     ags.url = "github:Aylur/ags";

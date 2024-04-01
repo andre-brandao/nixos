@@ -54,25 +54,6 @@ in
     systemd.enable = true;
     xwayland.enable = true;
 
-
-    plugins = [
-      inputs.hycov.packages.${pkgs.system}.hycov
-    ];
-    extraConfig = ''
-      bind = ALT,tab,hycov:toggleoverview
-      bind=ALT,left,hycov:movefocus,l
-      bind=ALT,right,hycov:movefocus,r
-      bind=ALT,up,hycov:movefocus,u
-      bind=ALT,down,hycov:movefocus,d
-      plugin {
-              hycov {
-                overview_gappo = 60 #gaps width from screen
-                overview_gappi = 24 #gaps width from clients
-          	    hotarea_size = 10 #hotarea size in bottom left,10x10
-          	    enable_hotarea = 1 # enable mouse cursor hotarea
-              }
-          }
-    '';
     settings = {
 
       #  lib.filter is a helper function that filters out null values

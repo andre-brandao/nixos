@@ -13,7 +13,11 @@
       variant = "";
       options = "grp:win_space_toggle";
     };
-    displayManager.gdm.enable = true;
+    displayManager.gdm= {
+      enable = true;
+      wayland.enable = true;
+      # theme = "chili";
+    };
     # displayManager.sddm = {
     #   enable = true;
     #   wayland.enable = true;
