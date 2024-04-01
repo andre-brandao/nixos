@@ -71,6 +71,8 @@ in
         "blueman-applet"
 
         # "xwaylandvideobridge"
+
+        "${userSettings.browser}"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
@@ -323,34 +325,37 @@ in
 
     [scratchpads.filemanager]
     animation = "fromRight"
-    command = "thunar"
-    class = "thunar"
+    command = "nautilus"
+    class = "nautilus"
     size = "85% 85%"
 
 
+    [scratchpads.wpp]
+    animation = "fromLeft"
+    command = "brave --profile-directory=Default --app=https://web.whatsapp.com"
+    class = "brave-web.whatsapp.com__-Default"
+    size = "75% 60%"
+    class_match = true
+    process_tracking = false 
+
+
+    
     [scratchpads.gpt]
     animation = "fromTop"
     command = "brave --profile-directory=Default --app=https://chat.openai.com"
     class = "brave-chat.openai.com__-Default"
     size = "75% 60%"
     process_tracking = false 
-
-    [scratchpads.wpp]
-    animation = "fromTop"
-    command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
-    class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
-    size = "85% 85%"
-    process_tracking = false  
   '';
 
-  home.file.".config/hypr/hyprpaper.conf".text = "preload = "
-    + config.stylix.image + ''
+  home.file.".config/hypr/hyprpaper.conf".text = "
+    preload = " + config.stylix.image + ''
 
-      wallpaper = eDP-1,'' + config.stylix.image + ''
+    wallpaper = eDP-1,'' + config.stylix.image + ''
 
-        wallpaper = HDMI-A-1,'' + config.stylix.image + ''
+    wallpaper = HDMI-A-1,'' + config.stylix.image + ''
 
-          wallpaper = DP-1,'' + config.stylix.image + ''
+    wallpaper = DP-1,'' + config.stylix.image + ''
     ipc = off 
   '';
 

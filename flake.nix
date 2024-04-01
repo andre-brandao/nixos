@@ -44,7 +44,7 @@
         email = "brandaoandre@gmail.com";
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
         # selcted theme from my themes directory (./themes/)
-        theme = "uwunicorn";
+        theme = "ashes";
         # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
         wm = "hyprland";
         browser = "brave";
