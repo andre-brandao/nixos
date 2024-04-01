@@ -18,6 +18,8 @@
         max_icon_size = 80;
         icon_position = "left";
 
+        progress_bar = true;
+
       };
     };
   };

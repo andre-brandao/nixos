@@ -12,7 +12,7 @@ in
     ./waybar.nix
     ./dunst.nix
     # ./ags.nix
-    ./hypridle.nix
+    ./lockscreen.nix
   ];
 
   home.packages = with pkgs; [
