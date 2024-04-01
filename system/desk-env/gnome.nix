@@ -5,7 +5,6 @@
     ./extras/others.nix
   ];
 
-
   services = {
     xserver = {
       enable = true;

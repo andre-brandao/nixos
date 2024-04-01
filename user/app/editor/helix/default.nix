@@ -152,47 +152,45 @@
         }
       ];
     };
+    # ***** LSP packages *****
+    extraPackages = with pkgs;
+      with nodePackages; [
+        bash-language-server # BASH
+        lldb # debugger
+        marksman # Markdown
 
-    extraPackages = with pkgs; with nodePackages; [
-      bash-language-server # BASH
-      lldb # debugger
-      marksman # Markdown
+        elixir_ls # Elixir
 
+        # # NIX
+        # nixpkgs-fmt
 
-      elixir_ls # Elixir
+        # GO
+        gopls
+        gotools
 
-      # # NIX
-      # nixpkgs-fmt
+        # C/C++
+        clang-tools
+        lua-language-server
+        # RUST
+        rust-analyzer
 
-      # GO
-      gopls
-      gotools
+        # PYTHON
+        pyright
+        (python3.withPackages (ps:
+          with ps;
+          [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all))
 
+        # JAVASCRIPT AND CIA
+        typescript
+        vscode-langservers-extracted
+        typescript-language-server
+        svelte-language-server
+        yaml-language-server
+        stylelint
 
-      # C/C++
-      clang-tools
-      lua-language-server
-      # RUST
-      rust-analyzer
+        nodePackages."@astrojs/language-server"
 
-
-      # PYTHON
-      pyright
-      (python3.withPackages (ps:
-        with ps;
-        [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all))
-
-      # JAVASCRIPT AND CIA
-      typescript
-      vscode-langservers-extracted
-      typescript-language-server
-      svelte-language-server
-      yaml-language-server
-      stylelint
-
-      nodePackages."@astrojs/language-server"
-
-      dockerfile-language-server-nodejs
-    ];
+        dockerfile-language-server-nodejs
+      ];
   };
 }

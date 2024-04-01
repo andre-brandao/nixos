@@ -18,19 +18,22 @@ in
   home.packages = with pkgs; [
     # hyprland packages
     hyprland-protocols
-    pyprland
     hypridle
     hyprlock
     hyprpicker
     hyprpaper
 
-
+    pyprland
 
     networkmanagerapplet # network manager
     pavucontrol # volume control
     pamixer # volume control
-    grim # screenshot
+
     wl-clipboard # clipboard manager
+
+    grim # screenshot
+    swappy
+    slurp
 
     xfce.thunar # file manager
 
@@ -38,9 +41,11 @@ in
     qt6.qtwayland
     xdg-utils # for opening files with default applications
 
-
     # xwaylandvideobridge # screen sharing
-    vesktop
+    vesktop # discord client
+
+    waybar
+    dunst
   ];
 
   wayland.windowManager.hyprland = {
@@ -53,8 +58,8 @@ in
 
       #  lib.filter is a helper function that filters out null values
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.dunst}/bin/dunst"
+        "waybar"
+        "dunst"
         #  "ags"
 
         "pypr"
@@ -204,7 +209,6 @@ in
 
         "$mainMod, T, togglefloating"
 
-
         # "$mainMod, W, exec, ${userSettings.browser}"
         # ROFI
         "$mainMod, S, exec, rofi -show drun -show-icons"
@@ -221,9 +225,8 @@ in
         "$mainMod SHIFT, Q, exit"
         "CTRL ALT, Delete, exit"
 
-
         # print screen
-        ",Print,exec,grim"
+        '',Print,exec,grim -g "$(slurp)" - | swappy -f -''
         # color picker
         "$mainMod, Print, exec, hyprpicker -a -f hex"
 
@@ -242,9 +245,8 @@ in
         "$mainMod, W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
 
         "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
-        "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop" #chat gpt
+        "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop" # chat gpt
         # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
-
 
       ];
       "$scratchpadsize" = "size 80% 85%";
@@ -255,13 +257,12 @@ in
         "workspace special silent,$scratchpad"
         "center,$scratchpad"
 
-
-        # SCREEN SHARING
-        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
-        "maxsize 1 1,class:^(xwaylandvideobridge)$"
-        "noblur,class:^(xwaylandvideobridge)$"
+        # # SCREEN SHARING
+        # "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
+        # "noanim,class:^(xwaylandvideobridge)$"
+        # "noinitialfocus,class:^(xwaylandvideobridge)$"
+        # "maxsize 1 1,class:^(xwaylandvideobridge)$"
+        # "noblur,class:^(xwaylandvideobridge)$"
       ];
 
       bindm = [
@@ -342,15 +343,14 @@ in
     process_tracking = false  
   '';
 
+  home.file.".config/hypr/hyprpaper.conf".text = "preload = "
+    + config.stylix.image + ''
 
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = '' + config.stylix.image + ''
+      wallpaper = eDP-1,'' + config.stylix.image + ''
 
-    wallpaper = eDP-1,'' + config.stylix.image + ''
+        wallpaper = HDMI-A-1,'' + config.stylix.image + ''
 
-    wallpaper = HDMI-A-1,'' + config.stylix.image + ''
-
-    wallpaper = DP-1,'' + config.stylix.image + ''
+          wallpaper = DP-1,'' + config.stylix.image + ''
     ipc = off 
   '';
 

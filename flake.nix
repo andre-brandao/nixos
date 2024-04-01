@@ -41,15 +41,13 @@
       userSettings = {
         username = "andre"; # username
         name = "Andre Brandao"; # name/identifier
-        email =
-          "brandaoandre@gmail.com"; # email (used for certain configurations)
+        email = "brandaoandre@gmail.com";
         dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        theme =
-          "uwunicorn"; # selcted theme from my themes directory (./themes/)
-        wm =
-          "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/wm/ and ./system/wm/
-        browser =
-          "brave"; # Default browser; must select one from ./user/app/browser/
+        # selcted theme from my themes directory (./themes/)
+        theme = "uwunicorn";
+        # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
+        wm = "hyprland";
+        browser = "brave";
         term = "alacritty"; # Default terminal command;
         font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
@@ -66,7 +64,8 @@
         # overlays = [ rust-overlay.overlays.default ];
       };
 
-    in {
+    in
+    {
       formatter.${systemSettings.system} =
         nixpkgs.legacyPackages.${systemSettings.system}.nixfmt;
 

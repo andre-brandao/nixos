@@ -29,8 +29,7 @@ let
 
     quit = "exit";
   };
-in
-{
+in {
   programs = {
     bash = {
       enable = true;
@@ -126,7 +125,6 @@ in
 
         # package.disabled = true;
 
-
         add_newline = false;
         # format = "$shlvl$shell$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
         # shlvl = {
@@ -183,18 +181,16 @@ in
       ];
       sensibleOnTop = false;
       disableConfirmationPrompt = true;
-      extraConfig =
-        let
-          color1 =
-            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
+      extraConfig = let
+        color1 =
+          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
 
-          color2 =
-            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
+        color2 =
+          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
 
-          color3 =
-            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
-        in
-        ''
+        color3 =
+          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+      in ''
 
         # keyMode = "vi";
 

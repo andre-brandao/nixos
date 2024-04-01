@@ -34,7 +34,6 @@
     };
   };
 
-
   programs = {
     hyprland = {
       enable = true;
@@ -45,28 +44,28 @@
   };
 
   environment = {
-    systemPackages = with pkgs; with gnome; [
-      gnome.adwaita-icon-theme
-      loupe
-      nautilus
-      gnome-software # for flatpak
-      wl-gammactl
-      wl-clipboard
-      # wayshot
-      pavucontrol
-      brightnessctl
-      # swww
-      libnotify
-      rofi-wayland
-      kitty # hyprland default terminal
-    ];
+    systemPackages = with pkgs;
+      with gnome; [
+        gnome.adwaita-icon-theme
+        loupe
+        nautilus
+        gnome-software # for flatpak
+        wl-gammactl
+        wl-clipboard
+        # wayshot
+        pavucontrol
+        brightnessctl
+        # swww
+        libnotify
+        rofi-wayland
+        kitty # hyprland default terminal
+      ];
 
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
     };
   };
-
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];

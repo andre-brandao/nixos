@@ -1,42 +1,74 @@
-{ ... }: {
+{ config, ... }: {
   home.file.".config/hypr/hypridle.conf".text = ''
-general {
-    lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
-    before_sleep_cmd = loginctl lock-session    # lock before suspend.
-    after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
-}
+    general {
+        lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+        before_sleep_cmd = loginctl lock-session    # lock before suspend.
+        after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+    }
 
-listener {
-    timeout = 150                                # 2.5min.
-    on-timeout = brightnessctl -s set 15         # set monitor backlight to minimum, avoid 0 on OLED monitor.
-    on-resume = brightnessctl -r                 # monitor backlight restor.
-}
+    listener {
+        timeout = 150                                # 2.5min.
+        on-timeout = brightnessctl -s set 15         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+        on-resume = brightnessctl -r                 # monitor backlight restor.
+    }
 
-# turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
-listener { 
-    timeout = 150                                          # 2.5min.
-    on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
-    on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
-}
+    # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
+    listener { 
+        timeout = 150                                          # 2.5min.
+        on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
+        on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
+    }
 
-listener {
-    timeout = 400                                 # 
-    on-timeout = loginctl lock-session            # lock screen when timeout has passed
-}
+    listener {
+        timeout = 400                                 # 
+        on-timeout = loginctl lock-session            # lock screen when timeout has passed
+    }
 
-listener {
-    timeout = 450                                 # 
-    on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
-    on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
-}
+    listener {
+        timeout = 450                                 # 
+        on-timeout = hyprctl dispatch dpms off        # screen off when timeout has passed
+        on-resume = hyprctl dispatch dpms on          # screen on when activity is detected after timeout has fired.
+    }
 
-listener {
-    timeout = 1800                                # 30min
-    on-timeout = systemctl suspend                # suspend pc
-}
+    listener {
+        timeout = 1800                                # 30min
+        on-timeout = systemctl suspend                # suspend pc
+    }
   '';
 
   home.file.".config/hypr/hyprlock.conf".text = ''
+    background {
+        monitor =
+        path = ${config.stylix.image}   # only png supported for now
+    }
+
+    label {
+    monitor =
+    text = cmd[update:1000] echo "$TIME"
+    color = rgba(200, 200, 200, 1.0)
+    font_size = 55
+    font_family = Fira Semibold
+    position = -100, -200
+    halign = right
+    valign = bottom
+    shadow_passes = 5
+    shadow_size = 10
+    }
+
+    label {
+        monitor =
+        text = $USER
+        color = rgba(200, 200, 200, 1.0)
+        font_size = 20
+        font_family = Fira Semibold
+        position = -100, 160
+        halign = right
+        valign = bottom
+        shadow_passes = 5
+        shadow_size = 10
+    }
+
+
     input-field {
         monitor =
         size = 200, 50
@@ -67,5 +99,18 @@ listener {
         halign = center
         valign = center
     }
+  '';
+
+  home.file.".config/swappy/config".text = ''
+    [Default]
+    save_dir=$HOME/Pictures/Screenshots
+    save_filename_format=swappy-%Y%m%d-%H%M%S.png
+    show_panel=false
+    line_size=5
+    text_size=20
+    text_font=sans-serif
+    paint_mode=brush
+    early_exit=false
+    fill_shape=false
   '';
 }

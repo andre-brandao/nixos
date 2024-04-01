@@ -15,7 +15,6 @@
     (./. + "../../../user/desk-env"
       + ("/" + userSettings.wm)) # My window manager selected from flake
 
-
     # GAMES
     ../../user/app/gaming/gaming.nix
 
@@ -23,13 +22,9 @@
     ../../user/app/rofi
     ../../user/app/lf
 
-
-
     # VIRTUALIZATION
     ../../user/app/virtualization/virtualization.nix # My qemu + virt manager
     ../../user/app/distrobox # My distrobox config
-
-
 
     ../../user/app/git/git.nix # My git config
     # SHELL 
@@ -45,14 +40,12 @@
     ../../user/app/editor/vscode # My vscode config
   ];
 
-
   home.packages = with pkgs; [
     spotify
     netflix
     # BROSWERS
     brave
     firefox
-    
 
     # CODE
     # vscode
@@ -121,7 +114,6 @@
     zlib
     # nodePackages.ungit
   ];
-
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;

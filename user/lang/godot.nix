@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    # Gamedev
-    godot_4
-  ];
+  home.packages = with pkgs;
+    [
+      # Gamedev
+      godot_4
+    ];
 }

@@ -1,12 +1,8 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   # add the home manager module
   imports = [ inputs.ags.homeManagerModules.default ];
 
-  home.packages = with pkgs; [
-    bun
-    sass
-  ];
+  home.packages = with pkgs; [ bun sass ];
 
   programs.ags = {
     enable = true;
@@ -15,10 +11,6 @@
     configDir = ./ags;
 
     # additional packages to add to gjs's runtime
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
+    extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
   };
 }

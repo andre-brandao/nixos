@@ -10,7 +10,5 @@
   };
   users.users.${userSettings.username}.extraGroups = [ "docker" ];
   # users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
-  environment.systemPackages = with pkgs; [
-    lazydocker
-  ];
+  environment.systemPackages = with pkgs; [ lazydocker ];
 }

@@ -14,14 +14,8 @@
         margin = "7 7 7 7";
         spacing = 4;
 
-        modules-left = [
-          "custom/os"
-          "hyprland/workspaces"
-          "hyprland/window"
-        ];
-        modules-center = [
-          "clock"
-        ];
+        modules-left = [ "custom/os" "hyprland/workspaces" "hyprland/window" ];
+        modules-center = [ "clock" ];
         modules-right = [
           "idle_inhibitor"
 

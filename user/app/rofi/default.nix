@@ -1,11 +1,8 @@
-{ pkgs
-, config
-, ...
-}:
+{ pkgs, config, ... }:
 let
 
   temas = {
-    vimjoyer = with config.lib.stylix.colors;''
+    vimjoyer = with config.lib.stylix.colors; ''
         /*****----- Configuration -----*****/
       configuration {
           show-icons:                 true;
@@ -484,8 +481,7 @@ let
     '';
   };
 
-in
-{
+in {
   # xdg.configFile."rofi/config.rasi".source = ./config.rasi;
 
   xdg.configFile."rofi/config.rasi".text = temas.vimjoyer;

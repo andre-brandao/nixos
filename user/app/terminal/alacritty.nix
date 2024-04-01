@@ -4,9 +4,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window = {
-        opacity = lib.mkForce 0.75;
-      };
+      window = { opacity = lib.mkForce 0.75; };
       # colors = {
       #   # TODO revisit these color mappings
       #   # these are just the default provided from stylix
@@ -33,7 +31,7 @@
       #   bright.white = "#" + config.lib.stylix.colors.base07;
       # };
       colors = {
-            primary.background = "0x" + config.lib.stylix.colors.base00;
+        primary.background = "0x" + config.lib.stylix.colors.base00;
         primary.foreground = "0x" + config.lib.stylix.colors.base07;
         cursor.text = "0x" + config.lib.stylix.colors.base00;
         cursor.cursor = "0x" + config.lib.stylix.colors.base07;
