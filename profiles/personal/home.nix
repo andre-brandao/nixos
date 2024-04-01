@@ -39,7 +39,7 @@
     ../../user/app/editor/helix # My emacs config
     ../../user/app/editor/vscode # My vscode config
   ];
-
+  programs.chromium.enable = true;
   home.packages = with pkgs; [
     spotify
     netflix

@@ -10,7 +10,8 @@ let
     + ("/" + userSettings.theme) + "/backgroundurl.txt");
   backgroundSha256 = builtins.readFile (./. + "../../../themes/"
     + ("/" + userSettings.theme) + "/backgroundsha256.txt");
-in {
+in
+{
   imports = [ inputs.stylix.nixosModules.stylix ];
 
   # stylix.autoEnable = false;
@@ -50,6 +51,8 @@ in {
       gnome.enable = true;
       plymouth.enable = true;
       nixos-icons.enable = true;
+      chromium.enable = true;
+
     };
   };
 }

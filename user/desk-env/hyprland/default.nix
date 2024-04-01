@@ -241,8 +241,10 @@ in
         "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
 
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
+        "$mainMod,M,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
+        "$mainMod,B,exec,pypr toggle bitwarden && hyprctl dispatch bringactivetotop"
 
-        "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
+        # "$mainMod,T,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
         "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
         "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop" # chat gpt
         # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
@@ -295,6 +297,7 @@ in
   };
 
   # SCRATCHPADS
+  # https://github.com/hyprland-community/pyprland
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
     plugins = ["scratchpads", "magnify"]
@@ -311,6 +314,12 @@ in
     class = "alacritty-btm"
     size = "80% 80%"
 
+    [scratchpads.bitwarden]
+    animation = "fromTop"
+    command = "bitwarden"
+    class = "bitwarden"
+    size = "45% 70%"
+    unfocus = "hide"
 
     [scratchpads.volume]
     animation = "fromRight"
@@ -319,6 +328,12 @@ in
     lazy = true
     size = "50% 90%"
     unfocus = "hide"
+
+    [scratchpads.music]
+    animation = "fromRight"
+    command = "spotify"
+    class = "spotify"
+    size = "65% 85%"
 
     [scratchpads.filemanager]
     animation = "fromRight"
@@ -335,8 +350,6 @@ in
     class_match = true
     process_tracking = false 
 
-
-    
     [scratchpads.openai]
     animation = "fromTop"
     command = "brave --profile-directory=Default --app=https://chat.openai.com"

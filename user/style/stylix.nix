@@ -51,7 +51,6 @@ in
       kitty.enable = true;
       alacritty.enable = true;
       tmux.enable = true;
-      chromium.enable = true;
       # dunst.enable = true;
     };
     fonts.sizes = {
