@@ -8,7 +8,8 @@ let
     + ("/" + userSettings.theme) + "/backgroundurl.txt");
   backgroundSha256 = builtins.readFile (./. + "../../../themes/"
     + ("/" + userSettings.theme) + "/backgroundsha256.txt");
-in {
+in
+{
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   home.file.".currenttheme".text = userSettings.theme;
@@ -50,6 +51,7 @@ in {
       kitty.enable = true;
       alacritty.enable = true;
       tmux.enable = true;
+      chromium.enable = true;
       # dunst.enable = true;
     };
     fonts.sizes = {

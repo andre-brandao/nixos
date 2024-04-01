@@ -58,21 +58,21 @@ in
 
       #  lib.filter is a helper function that filters out null values
       exec-once = [
-        "waybar"
         "dunst"
         #  "ags"
 
         "pypr"
-        "hyprpaper"
-        "hypridle"
 
-        # tray icons
-        "nm-applet --indicator"
-        "blueman-applet"
 
         # "xwaylandvideobridge"
 
+        "waybar"
+        # tray icons
+        "nm-applet --indicator"
+        "blueman-applet"
         "${userSettings.browser}"
+        "hyprpaper"
+        "hypridle"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
@@ -243,11 +243,8 @@ in
         "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
 
         "$mainMod,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
-
-        "$mainMod, W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
-
-        "$mainMod,W,exec,pypr toggle wpp && hyprctl dispatch bringactivetotop"
-        "$mainMod,G,exec,pypr toggle gpt && hyprctl dispatch bringactivetotop" # chat gpt
+        "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
+        "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop" # chat gpt
         # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
 
       ];
@@ -330,17 +327,17 @@ in
     size = "85% 85%"
 
 
-    [scratchpads.wpp]
+    [scratchpads.whatsapp]
     animation = "fromLeft"
-    command = "brave --profile-directory=Default --app=https://web.whatsapp.com"
-    class = "brave-web.whatsapp.com__-Default"
+    command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
+    class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
     size = "75% 60%"
     class_match = true
     process_tracking = false 
 
 
     
-    [scratchpads.gpt]
+    [scratchpads.openai]
     animation = "fromTop"
     command = "brave --profile-directory=Default --app=https://chat.openai.com"
     class = "brave-chat.openai.com__-Default"
