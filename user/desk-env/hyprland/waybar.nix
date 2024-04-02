@@ -14,33 +14,89 @@
         margin = "7 7 7 7";
         spacing = 4;
 
-        modules-left = [ "custom/os" "hyprland/workspaces" "hyprland/window" ];
+        modules-left = [
+          "custom/os"
+          "cpu"
+          "memory"
+          "disk"
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
         modules-center = [ "clock" ];
         modules-right = [
           "idle_inhibitor"
 
           "hyprland/language"
-          "cpu"
-          "memory"
-          "disk"
+
           # "temperature"
 
           "tray"
           "backlight"
           "pulseaudio"
           # "network"
-          "battery"
+          "group/power"
+
         ];
 
-        # network = {
-        #   "format-wifi" = "{essid} ({signalStrength}%) ";
-        #   "format-ethernet" = "Connected  ";
-        #   "tooltip-format" = "{ifname} via {gwaddr} ";
-        #   "format-linked" = "{ifname} (No IP) ";
-        #   "format-disconnected" = "Disconnected ⚠";
-        #   "format-alt" = "{ifname}= {ipaddr}/{cidr}";
-        #   "on-click-right" = "bash ~/.config/rofi/wifi_menu/rofi_wifi_menu";
-        # };
+        "group/power" = {
+          orientation = "horizontal";
+          "drawer" = {
+            "transition-duration" = 250;
+            "children-class" = "drawer";
+            "transition-left-to-right" = false;
+          };
+          modules = [
+            "battery"
+            "power-profiles-daemon"
+            "custom/quit"
+            "custom/lock"
+            "custom/reboot"
+            "custom/power" #// First element is the "group leader" and won't ever be hidden
+          ];
+
+        };
+        "power-profiles-daemon" = {
+          "format" = "{icon}";
+          "tooltip-format" = "Power profile= {profile}\nDriver= {driver}";
+          "tooltip" = true;
+          "format-icons" = {
+            "default" = "";
+            "performance" = "";
+            "balanced" = "";
+            "power-saver" = "";
+          };
+        };
+
+        "custom/quit" = {
+          "format" = "󰗼";
+          "tooltip" = false;
+          "on-click" = "hyprctl dispatch exit";
+        };
+        "custom/lock" = {
+          "format" = "󰍁";
+          "tooltip" = false;
+          "on-click" = "hyprlock";
+        };
+        "custom/reboot" = {
+          "format" = "󰜉";
+          "tooltip" = false;
+          "on-click" = "reboot";
+        };
+        "custom/power" = {
+          "format" = "";
+          "tooltip" = false;
+          "on-click" = "shutdown now";
+        };
+
+        network = {
+          "format-wifi" = "{essid} ({signalStrength}%) ";
+          "format-ethernet" = "Connected  ";
+          "tooltip-format" = "{ifname} via {gwaddr} ";
+          "format-linked" = "{ifname} (No IP) ";
+          "format-disconnected" = "Disconnected ⚠";
+          "format-alt" = "{ifname}= {ipaddr}/{cidr}";
+          "on-click-right" = "nm-applet";
+        };
 
         "custom/os" = {
           "format" = " {} ";
@@ -93,6 +149,8 @@
           #"show-special" = false;
         };
 
+
+
         "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {
@@ -111,6 +169,7 @@
           "timezone" = systemSettings.timezone;
           "tooltip-format" = ''
             <big>{:%Y %B}</big>
+
             <tt><small>{calendar}</small></tt>'';
           "calendar" = {
             "mode" = "year";
@@ -197,196 +256,223 @@
 
     # style = lib.mkForce ./waybar.css;
     style = ''
-      @define-color bgDefault #${config.lib.stylix.colors.base00};
+       @define-color bgDefault #${config.lib.stylix.colors.base00};
 
-      @define-color fgDefault #${config.lib.stylix.colors.base05};
+       @define-color fgDefault #${config.lib.stylix.colors.base05};
 
-      @define-color fgBlack #${config.lib.stylix.colors.base01};
+       @define-color fgBlack #${config.lib.stylix.colors.base01};
 
-      @define-color accent #${config.lib.stylix.colors.base08};
+       @define-color accent #${config.lib.stylix.colors.base08};
 
-      @define-color warning #eb4d4b;
-      @define-color bgBatteryCharging #00FA9A;
-      @define-color bgBateryCritical #f53c3c;
+       @define-color warning #eb4d4b;
+       @define-color bgBatteryCharging #00FA9A;
+       @define-color bgBateryCritical #f53c3c;
 
-      * {
-        border: none;
-        border-radius: 0px;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        min-height: 0;
-      }
+       * {
+         border: none;
+         border-radius: 0px;
+         font-family: Roboto, Helvetica, Arial, sans-serif;
+         font-size: 14px;
+         min-height: 0;
+       }
 
-      window#waybar {
-        background-color: transparent;
-        color: @fgDefault;
-        transition-property: background-color;
-        transition-duration: 0.5s;
-      }
+       window#waybar {
+         background-color: transparent;
+         color: @fgDefault;
+         transition-property: background-color;
+         transition-duration: 0.5s;
+       }
 
-      window#waybar.hidden {
-        opacity: 0.2;
-      }
+       window#waybar.hidden {
+         opacity: 0.2;
+       }
 
-      #workspaces button {
-        background: @bgDefault;
-        color: @fgDefault;
-        /* border-radius: 20px; */
-      }
+       #workspaces button {
+         background: @bgDefault;
+         color: @fgDefault;
+         /* border-radius: 20px; */
+       }
 
-      #workspaces button:not(:first-child) {
-        margin-left: 1px;
-      }
+       #workspaces button:not(:first-child) {
+         margin-left: 1px;
+       }
 
-      #workspaces button:first-child {
-        border-radius: 5px 0px 0px 5px;
-      }
-      #workspaces button:last-child {
-        border-radius: 0px 20px 20px 0px;
-      }
+       #workspaces button:first-child {
+         border-radius: 5px 0px 0px 5px;
+       }
+       #workspaces button:last-child {
+         border-radius: 0px 20px 20px 0px;
+       }
 
-      #workspaces button:hover {
-        background: @accent;
-        color: @fgBlack;
-        border-bottom: 3px solid @fgDefault;
-      }
+       #workspaces button:hover {
+         background: @accent;
+         color: @fgBlack;
+         border-bottom: 3px solid @fgDefault;
+       }
 
-      #workspaces button.active {
-        background: @accent;
-        border-bottom: 3px solid @fgDefault;
-      }
+       #workspaces button.active {
+         background: @accent;
+         border-bottom: 3px solid @fgDefault;
+       }
 
-      /* #workspaces button.focused:hover {
-        background: @accent;
-        color: @fgBlack;
-        border-bottom: 3px solid @fgDefault;
-      } */
+       /* #workspaces button.focused:hover {
+         background: @accent;
+         color: @fgBlack;
+         border-bottom: 3px solid @fgDefault;
+       } */
 
-      #workspaces button.urgent {
-        background-color: @warning;
-      }
+       #workspaces button.urgent {
+         background-color: @warning;
+       }
 
-      #mode {
-        background-color: @bgDefault;
-        border-bottom: 3px solid @fgDefault;
-      }
-
-      #clock,
-      #cpu,
-      #memory,
-      #disk,
-      #temperature,
-      #backlight,
-      #network,
-      #pulseaudio,
-      #custom-media,
-      #custom-launcher,
+       #mode {
+         background-color: @bgDefault;
+         border-bottom: 3px solid @fgDefault;
+       }
+             
+      #power-profiles-daemon,
       #custom-power,
-      #custom-layout,
-      #custom-updater,
-      #custom-snip,
-      #tags,
-      #taskbar,
-      #tray,
-      #idle_inhibitor,
-      #mpd,
-      #language {
+      #custom-quit,
+      #custom-lock,
+      #custom-reboot
+      {
         padding: 0 10px;
-        color: @fgDefault;
-        background-color: @bgDefault;
         border-radius: 5px;
       }
-      /* If workspaces is the leftmost module, omit left margin */
-      .modules-left > widget:first-child > #workspaces {
-        margin-left: 0px;
+      #power-profiles-daemon.performance {
+         background-color: #e79675;
+         color: @fgBlack;
+       }
+      #power-profiles-daemon.balanced {
+         background-color: lightblue;
+         color: @fgBlack;
       }
-
-      /* If workspaces is the rightmost module, omit right margin */
-      .modules-right > widget:last-child > #workspaces {
-        margin-right: 0px;
+      #power-profiles-daemon.power-saver {
+        background-color: #b4f4a1;
+        color: @fgBlack;
       }
-
-      #battery {
-        padding: 0 10px;
-        /* background-color: @fgDefault;
-        color: @fgBlack; */
+      #custom-power {
         color: @fgDefault;
-        background-color: @bgDefault;
-        border-radius: 5px;
+        background-color: red;
       }
-
-      #battery.charging,
-      #battery.plugged {
+      #custom-quit {
         color: @fgBlack;
-        background-color: @bgBatteryCharging;
+        background-color: #dccb7a;
       }
-
-      #battery.critical:not(.charging) {
-        background-color: @bgBateryCritical;
+      #custom-lock {
         color: @fgDefault;
-        animation-name: blink;
-        animation-duration: 0.8s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
+        background-color: @fgBlack;
       }
-
-      #network.disconnected,
-      #pulseaudio.muted {
-        color: @warning;
-      }
-
-      /* #custom-snip {
-        color: @colorSkyBlue;
-      }
-
-
-
-      #tags button.occupied {
-        background-color: @bgDefault;
-        color: @colorSkyBlue;
-      } */
-
-      #idle_inhibitor {
-        border-radius: 20px 5px 5px 20px;
-      }
-      #idle_inhibitor.activated {
-        background: @accent;
-      }
-
-      #keyboard-state {
-        background: #97e1ad;
+      #custom-reboot {
         color: @fgBlack;
+        background-color: #e37a80;
       }
 
-      #tags button.focused {
-        background-color: @fgDefault;
-        color: @fgBlack;
-      }
 
-      #tags button.urgent {
-        background-color: @fgDefault;
-        color: @warning;
-      }
 
-      #temperature.critical {
-        background-color: @warning;
-      }
 
-      #tray > .passive {
-        -gtk-icon-effect: dim;
-      }
+       #clock,
+       #cpu,
+       #memory,
+       #disk,
+       #temperature,
+       #backlight,
+       #network,
+       #pulseaudio,
+       #tags,
+       #taskbar,
+       #tray,
+       #idle_inhibitor,
+       #mpd,
+       #language {
+         padding: 0 10px;
+         color: @fgDefault;
+         background-color: @bgDefault;
+         border-radius: 5px;
+       }
+       /* If workspaces is the leftmost module, omit left margin */
+       .modules-left > widget:first-child > #workspaces {
+         margin-left: 0px;
+       }
 
-      #tray > .needs-attention {
-        -gtk-icon-effect: highlight;
-      }
+       /* If workspaces is the rightmost module, omit right margin */
+       .modules-right > widget:last-child > #workspaces {
+         margin-right: 0px;
+       }
 
-      @keyframes blink {
-        to {
-          background-color: @fgDefault;
-          color: @fgBlack;
-        }
-      }
+       #battery {
+         padding: 0 10px;
+         /* background-color: @fgDefault;
+         color: @fgBlack; */
+         color: @fgDefault;
+         background-color: @bgDefault;
+         border-radius: 5px;
+       }
+
+       #battery.charging,
+       #battery.plugged {
+         color: @fgBlack;
+         background-color: @bgBatteryCharging;
+       }
+
+       #battery.critical:not(.charging) {
+         background-color: @bgBateryCritical;
+         color: @fgDefault;
+         animation-name: blink;
+         animation-duration: 0.8s;
+         animation-timing-function: linear;
+         animation-iteration-count: infinite;
+         animation-direction: alternate;
+       }
+
+       #network.disconnected,
+       #pulseaudio.muted {
+         color: @warning;
+       }
+
+
+       #idle_inhibitor {
+         border-radius: 20px 5px 5px 20px;
+       }
+
+       #idle_inhibitor.activated {
+         background: @accent;
+         color: @fgBlack;
+       }
+
+       #keyboard-state {
+         background: #97e1ad;
+         color: @fgBlack;
+       }
+
+       #tags button.focused {
+         background-color: @fgDefault;
+         color: @fgBlack;
+       }
+
+       #tags button.urgent {
+         background-color: @fgDefault;
+         color: @warning;
+       }
+
+       #temperature.critical {
+         background-color: @warning;
+       }
+
+       #tray > .passive {
+         -gtk-icon-effect: dim;
+       }
+
+       #tray > .needs-attention {
+         -gtk-icon-effect: highlight;
+       }
+
+       @keyframes blink {
+         to {
+           background-color: @fgDefault;
+           color: @fgBlack;
+         }
+       }
 
     '';
   };

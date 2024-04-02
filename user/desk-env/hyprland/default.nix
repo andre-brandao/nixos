@@ -6,7 +6,8 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
-in {
+in
+{
   imports = [
     ./waybar.nix
     ./dunst.nix
@@ -244,6 +245,8 @@ in {
         # "$mainMod,T,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
         "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
         "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop" # chat gpt
+        "$mainMod,N,exec,pypr toggle notion && hyprctl dispatch bringactivetotop" # chat gpt
+
         # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
 
       ];
@@ -323,14 +326,14 @@ in {
     command = "pavucontrol"
     class = "pavucontrol"
     lazy = true
-    size = "50% 90%"
+    size = "40% 70%"
     unfocus = "hide"
 
     [scratchpads.music]
     animation = "fromRight"
     command = "spotify"
     class = "spotify"
-    size = "65% 85%"
+    size = "45% 85%"
     unfocus = "hide"
 
     [scratchpads.filemanager]
@@ -349,10 +352,17 @@ in {
     process_tracking = false 
 
     [scratchpads.openai]
-    animation = "fromTop"
+    animation = "fromLeft"
     command = "brave --profile-directory=Default --app=https://chat.openai.com"
     class = "brave-chat.openai.com__-Default"
     size = "75% 60%"
+    process_tracking = false 
+
+    [scratchpads.notion]
+    animation = "fromLeft"
+    command = "brave --profile-directory=Default --app=https://notion.so"
+    class = "brave-notion.so__-Default"
+    size = "95% 85%"
     process_tracking = false 
   '';
 
@@ -364,7 +374,7 @@ in {
         wallpaper = HDMI-A-1,'' + config.stylix.image + ''
 
           wallpaper = DP-1,'' + config.stylix.image + ''
-            ipc = off 
-          '';
+    ipc = off 
+  '';
 
 }
