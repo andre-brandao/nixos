@@ -6,8 +6,7 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
-in
-{
+in {
   imports = [
     ./waybar.nix
     ./dunst.nix
@@ -62,7 +61,6 @@ in
         #  "ags"
 
         "pypr"
-
 
         # "xwaylandvideobridge"
 
@@ -333,6 +331,7 @@ in
     command = "spotify"
     class = "spotify"
     size = "65% 85%"
+    unfocus = "hide"
 
     [scratchpads.filemanager]
     animation = "fromRight"
@@ -357,15 +356,15 @@ in
     process_tracking = false 
   '';
 
-  home.file.".config/hypr/hyprpaper.conf".text = "
-    preload = " + config.stylix.image + ''
+  home.file.".config/hypr/hyprpaper.conf".text = "\n    preload = "
+    + config.stylix.image + ''
 
-    wallpaper = eDP-1,'' + config.stylix.image + ''
+      wallpaper = eDP-1,'' + config.stylix.image + ''
 
-    wallpaper = HDMI-A-1,'' + config.stylix.image + ''
+        wallpaper = HDMI-A-1,'' + config.stylix.image + ''
 
-    wallpaper = DP-1,'' + config.stylix.image + ''
-    ipc = off 
-  '';
+          wallpaper = DP-1,'' + config.stylix.image + ''
+            ipc = off 
+          '';
 
 }

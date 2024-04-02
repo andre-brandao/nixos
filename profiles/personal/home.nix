@@ -53,6 +53,7 @@
     # MESSAGING
     thunderbird
     discord
+    betterdiscordctl
     # discord-screenaudio
     teams-for-linux
 
@@ -116,10 +117,14 @@
   ];
 
   home.sessionVariables = {
-    EDITOR = userSettings.editor;
-    # SPAWNEDITOR = userSettings.spawnEditor;
-    TERM = userSettings.term;
     BROWSER = userSettings.browser;
+    TERM = userSettings.term;
+    EDITOR = userSettings.editor;
+    SPAWNEDITOR =
+      (if (userSettings.editor == "hx" || userSettings.editor == "nvim") then
+        "exec ${userSettings.term} -e ${userSettings.editor}"
+      else
+        userSettings.editor);
   };
 
   home.stateVersion = "22.11"; # Please read the comment before changing.
