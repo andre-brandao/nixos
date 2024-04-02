@@ -23,7 +23,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, hyprland, hycov, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
 

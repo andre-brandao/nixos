@@ -13,9 +13,9 @@
       variant = "";
       options = "grp:win_space_toggle";
     };
-    displayManager.gdm= {
+    displayManager.gdm = {
       enable = true;
-      wayland.enable = true;
+      wayland = true;
       # theme = "chili";
     };
     # displayManager.sddm = {
