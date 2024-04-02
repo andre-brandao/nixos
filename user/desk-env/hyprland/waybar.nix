@@ -55,6 +55,21 @@
           ];
 
         };
+
+        battery = {
+          "states" = {
+            "good" = 95;
+            "warning" = 30;
+            "critical" = 15;
+          };
+          "format" = "{capacity}% {icon}";
+          "format-charging" = "{capacity}% ";
+          "format-plugged" = "{capacity}% ";
+          #"format-good" = ""; # An empty format will hide the module
+          #"format-full" = "";
+          "format-icons" = [ "" "" "" "" "" ];
+
+        };
         "power-profiles-daemon" = {
           "format" = "{icon}";
           "tooltip-format" = "Power profile= {profile}\nDriver= {driver}";
@@ -216,20 +231,7 @@
           "format" = "{percent}% {icon}";
           "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
         };
-        battery = {
-          "states" = {
-            "good" = 95;
-            "warning" = 30;
-            "critical" = 15;
-          };
-          "format" = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
-          "format-plugged" = "{capacity}% ";
-          #"format-good" = ""; # An empty format will hide the module
-          #"format-full" = "";
-          "format-icons" = [ "" "" "" "" "" ];
 
-        };
         pulseaudio = {
           "scroll-step" = 1;
           "format" = "{volume}% {icon} ";
@@ -338,6 +340,7 @@
       {
         padding: 0 10px;
         border-radius: 5px;
+        margin: 0 2px;
       }
       #power-profiles-daemon.performance {
          background-color: #e79675;
