@@ -13,6 +13,7 @@ in
     ./dunst.nix
     # ./ags.nix
     ./lockscreen.nix
+    ./xremap.nix
   ];
 
   home.packages = with pkgs; [

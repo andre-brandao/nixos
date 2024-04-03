@@ -177,6 +177,7 @@
         tray = {
           #"icon-size" = 21;
           "spacing" = 10;
+          show-passive-items = true;
         };
         clock = {
           "interval" = 1;
@@ -210,8 +211,11 @@
 
         };
 
-        cpu = { "format" = "{usage}%  "; };
-        memory = { "format" = "{}% "; };
+        cpu = {
+          "format" = "{usage}%  ";
+          "interval" = 2;
+        };
+        memory = { "format" = "{}% "; "interval" = 2; };
 
         "temperature" = {
           # // "thermal-zone": 2,

@@ -4,6 +4,7 @@
     ./extras/fonts.nix
     ./extras/others.nix
     ./extras/ags.nix
+    ../app/xremap.nix
   ];
 
   services.xserver = {

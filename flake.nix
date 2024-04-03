@@ -19,6 +19,8 @@
     # astal.url = "github:Aylur/astal";
     ags.url = "github:Aylur/ags";
 
+    xremap-flake.url = "github:xremap/nix-flake";
+
     # Stylix
     stylix.url = "github:danth/stylix";
   };
