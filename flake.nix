@@ -77,7 +77,7 @@
       nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
           modules = [
-            (./. + "/profiles" + ("/" + systemSettings.profile)
+            (./. + "/hosts" + ("/" + systemSettings.profile)
               + "/configuration.nix")
           ];
           specialArgs = {
@@ -94,7 +94,7 @@
         user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs; # Home-manager requires 'pkgs' instance
           modules = [
-            (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+            (./. + "/hosts" + ("/" + systemSettings.profile) + "/home.nix")
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
