@@ -33,6 +33,8 @@
 
     # PROGRAMMING LANGUAGES
     ../../user/lang/js.nix # My node.js config
+    ../../user/lang/go.nix # My go config
+    ../../user/lang/godot.nix 
 
     # EDITORS
     ../../user/app/editor/nvim # My nvim config
@@ -43,6 +45,7 @@
   home.packages = with pkgs; [
     spotify
     netflix
+    filezilla
     # BROSWERS
     brave
     firefox

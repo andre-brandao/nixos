@@ -10,7 +10,7 @@
   services.xremap = {
     withHypr = true;
     /* NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap */
-    serviceMode = "user";
+    # serviceMode = "user";
 
     config = {
       # Modmap for single key rebinds

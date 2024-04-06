@@ -70,7 +70,7 @@ in
         # tray icons
         "nm-applet --indicator"
         "blueman-applet"
-        "${userSettings.browser}"
+        # "${userSettings.browser}"
         "hyprpaper"
         "hypridle"
       ];
