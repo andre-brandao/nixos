@@ -10,6 +10,7 @@
     ../../system/app/virtualization.nix
     ../../system/app/docker.nix
     ../../system/app/steam.nix
+     ../../system/app/minecraft.nix
 
     (./. + "../../../system/desk-env" + ("/" + userSettings.wm)
       + ".nix") # My window manager
