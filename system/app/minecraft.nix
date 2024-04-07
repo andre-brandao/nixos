@@ -2,5 +2,5 @@
 
 {
   # OpenGL
-  environment.systemPackages = with pkgs; [ minecraft jdk ];
+  environment.systemPackages = with pkgs; [ jdk prismlauncher ];
 }
