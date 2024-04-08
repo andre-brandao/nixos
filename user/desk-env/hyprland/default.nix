@@ -55,6 +55,26 @@ in
     systemd.enable = true;
     xwayland.enable = true;
 
+    # plugins = [
+    #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    # ];
+    # extraConfig = ''  
+    #   bind = SUPER, grave, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
+
+    #   plugin {
+    #       hyprexpo {
+    #           columns = 3
+    #           gap_size = 5
+    #           bg_col = rgb(111111)
+    #           workspace_method = center current # [center/first] [workspace] e.g. first 1 or center m+1
+
+    #           enable_gesture = true # laptop touchpad, 4 fingers
+    #           gesture_distance = 300 # how far is the "max"
+    #           gesture_positive = true # positive = swipe down. Negative = swipe up.
+    #       }
+    #   }
+    # '';
+
     settings = {
 
       #  lib.filter is a helper function that filters out null values
@@ -91,7 +111,10 @@ in
 
         follow_mouse = 1;
 
-        touchpad = { natural_scroll = "yes"; };
+        touchpad = {
+          natural_scroll = "yes";
+          # clickfinger_behavior = true;
+        };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -170,6 +193,7 @@ in
       misc = {
         #  # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = -1;
+        focus_on_activate = true;
       };
 
       "$mainMod" = "SUPER";
@@ -260,11 +284,11 @@ in
         "center,$scratchpad"
 
         # # SCREEN SHARING
-        # "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-        # "noanim,class:^(xwaylandvideobridge)$"
-        # "noinitialfocus,class:^(xwaylandvideobridge)$"
-        # "maxsize 1 1,class:^(xwaylandvideobridge)$"
-        # "noblur,class:^(xwaylandvideobridge)$"
+        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
+        "noanim,class:^(xwaylandvideobridge)$"
+        "noinitialfocus,class:^(xwaylandvideobridge)$"
+        "maxsize 1 1,class:^(xwaylandvideobridge)$"
+        "noblur,class:^(xwaylandvideobridge)$"
       ];
 
       bindm = [
