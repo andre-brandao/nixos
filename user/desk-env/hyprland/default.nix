@@ -59,7 +59,7 @@ in
     #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     # ];
     # extraConfig = ''  
-    #   bind = SUPER, grave, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
+    #   bind = SUPER, ALT, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
 
     #   plugin {
     #       hyprexpo {
