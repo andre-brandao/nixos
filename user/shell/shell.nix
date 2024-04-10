@@ -29,7 +29,8 @@ let
 
     quit = "exit";
   };
-in {
+in
+{
   programs = {
     bash = {
       enable = true;
@@ -55,7 +56,15 @@ in {
         share = true;
       };
 
+
+
       initExtra = ''
+        # Keybindings
+        bindkey '^H' backward-kill-word # Ctrl+Backspace
+        bindkey '\e[1;5D' backward-word # Ctrl+Left
+        bindkey '\e[1;5C' forward-word # Ctrl+Right
+        bindkey '^Z' undo # Ctrl+Z
+
         # make nix-shell use zsh
         ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
 
@@ -181,16 +190,18 @@ in {
       ];
       sensibleOnTop = false;
       disableConfirmationPrompt = true;
-      extraConfig = let
-        color1 =
-          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
+      extraConfig =
+        let
+          color1 =
+            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
 
-        color2 =
-          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
+          color2 =
+            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
 
-        color3 =
-          "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
-      in ''
+          color3 =
+            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+        in
+        ''
 
         # keyMode = "vi";
 
