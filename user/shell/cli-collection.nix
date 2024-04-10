@@ -39,6 +39,7 @@
     rsync
     # tmux
     htop
+    btop
     hwinfo
     unzip
     brightnessctl # control laptop screen
@@ -46,5 +47,9 @@
     fzf
     pandoc
     pciutils
+    ncdu
+    expect
+
+    # ntfy
   ];
 }

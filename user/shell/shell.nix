@@ -5,10 +5,10 @@ let
   aliases = {
     # -- REBUILD SYSTEM
     sys-update =
-      "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system";
+      "sudo unbuffer nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system -v |& nom";
     # -- REBUILD USER
     user-update =
-      "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";
+      "unbuffer home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user -v |& nom";
     # -- REBUILD BOTH
     update = "sys-update && user-update";
 
@@ -16,7 +16,7 @@ let
 
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
-    htop = "btm";
+    htop = "btop";
     fd = "fd -Lu";
     cd = "z";
 
