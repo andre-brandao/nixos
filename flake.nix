@@ -6,6 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
 
     # Home manager
     home-manager = {
@@ -29,7 +31,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -83,6 +85,7 @@
           modules = [
             (./. + "/hosts" + ("/" + systemSettings.profile)
               + "/configuration.nix")
+            nixos-hardware.nixosModules.dell-xps-13-9300
           ];
           specialArgs = {
             inherit inputs outputs;
