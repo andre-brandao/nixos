@@ -125,10 +125,13 @@ in
       ];
     };
     # BETTER CD
-    zoxide = {
+    zoxide.enable = true;
+    cava.enable = true;
+    thefuck={
       enable = true;
-      # enableShellIntegration = true;
+      enableZshIntegration = true;
     };
+
 
     # SHELL CUSTOMIZATION
     starship = {

@@ -133,12 +133,12 @@ in
 
         gaps_in = 5;
         gaps_out = 5;
-        border_size = 1;
+        border_size = 2;
 
         # "col.inactive_border" = "rgba(595959aa)";
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "0x33" + config.lib.stylix.colors.base00;
-        "col.active_border" = "0xff" + config.lib.stylix.colors.base08;
+        "col.active_border" = ''0xff${config.lib.stylix.colors.base08} 0xff${config.lib.stylix.colors.base0A} 45deg'';
 
         # layout = "dwindle";
         layout = "master";

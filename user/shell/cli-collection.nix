@@ -5,7 +5,6 @@
     # ---- NIX UTILS ---- #
     nil
     nixd
-    nixpkgs-fmt
     nix-tree
     nix-init
     statix
@@ -44,7 +43,11 @@
     pandoc
     pciutils
     ncdu
+    tldr
+
     expect
+
+    dig
 
     # ntfy
   ];
