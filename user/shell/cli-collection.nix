@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Collection of useful CLI apps
   home.packages = with pkgs; [
     # ---- NIX UTILS ---- #
@@ -9,16 +10,11 @@
     nix-init
     statix
 
-
-
     # ---- SERVICES ---- #
     supabase-cli
     turso-cli
     stripe-cli
     graphite-cli
-
-
-
 
     # ---- OTHER CLI ---- #
     disfetch

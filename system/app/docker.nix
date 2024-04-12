@@ -1,4 +1,11 @@
-{ pkgs, dconf, config, userSettings, ... }: {
+{
+  pkgs,
+  dconf,
+  config,
+  userSettings,
+  ...
+}:
+{
   ## DOCKER
   virtualisation.docker = {
     enable = true;

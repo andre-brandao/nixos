@@ -2,5 +2,8 @@
 
 {
   # OpenGL
-  environment.systemPackages = with pkgs; [ jdk prismlauncher ];
+  environment.systemPackages = with pkgs; [
+    jdk
+    prismlauncher
+  ];
 }

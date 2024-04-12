@@ -1,14 +1,26 @@
-{ inputs, lib, config, pkgs, nixvim, userSettings, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  nixvim,
+  userSettings,
+  ...
+}:
 let
   inherit (builtins) readFile replaceStrings;
-  inherit (lib) concatLines concatStringsSep genAttrs mapAttrsToList toShellVar;
+  inherit (lib)
+    concatLines
+    concatStringsSep
+    genAttrs
+    mapAttrsToList
+    toShellVar
+    ;
   aliases = {
     # -- REBUILD SYSTEM
-    sys-update =
-      "sudo unbuffer nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system -v |& nom";
+    sys-update = "sudo unbuffer nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system  |& nom";
     # -- REBUILD USER
-    user-update =
-      "unbuffer home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user -v |& nom";
+    user-update = "unbuffer home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";
     # -- REBUILD BOTH
     update = "sys-update && user-update";
 
@@ -55,8 +67,6 @@ in
         save = 10000;
         share = true;
       };
-
-
 
       initExtra = ''
         # Keybindings
@@ -192,71 +202,67 @@ in
       disableConfirmationPrompt = true;
       extraConfig =
         let
-          color1 =
-            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
+          color1 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
 
-          color2 =
-            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
+          color2 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
 
-          color3 =
-            "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+          color3 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
         in
         ''
 
-        # keyMode = "vi";
+          # keyMode = "vi";
 
-        # set -g @catppuccin_flavour 'frappe'
-        # set -g @catppuccin_window_tabs_enabled on
-        # set -g @catppuccin_date_time "%H:%M"
+          # set -g @catppuccin_flavour 'frappe'
+          # set -g @catppuccin_window_tabs_enabled on
+          # set -g @catppuccin_date_time "%H:%M"
 
-        # Mouse works as expected
-        set -g mouse on
-
-
-
-        # start tab index at 1
-        set -g base-index 1
-        set -g pane-base-index 1
-        set-window-option -g pane-base-index 1
-        set-option -g renumber-windows on
-
-        # AUTOMATIC REMANE
-        setw -g automatic-rename on
-
-        # open new panes in current dir
-        bind '"' split-window -v -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
-        # new bind for horizontal split
-        bind-key "|" split-window -h -c "#{pane_current_path}"
-        bind-key "\\" split-window -fh -c "#{pane_current_path}"
-        # new bind for vertical split
-        bind-key "-" split-window -v -c "#{pane_current_path}"
-        bind-key "_" split-window -fv -c "#{pane_current_path}"
+          # Mouse works as expected
+          set -g mouse on
 
 
-        # reload tmux config with prefix + r
-        bind r source-file ~/.config/tmux/tmux.conf # \; display "Reloaded! .config/tmux/tmux.conf"
+
+          # start tab index at 1
+          set -g base-index 1
+          set -g pane-base-index 1
+          set-window-option -g pane-base-index 1
+          set-option -g renumber-windows on
+
+          # AUTOMATIC REMANE
+          setw -g automatic-rename on
+
+          # open new panes in current dir
+          bind '"' split-window -v -c "#{pane_current_path}"
+          bind % split-window -h -c "#{pane_current_path}"
+          # new bind for horizontal split
+          bind-key "|" split-window -h -c "#{pane_current_path}"
+          bind-key "\\" split-window -fh -c "#{pane_current_path}"
+          # new bind for vertical split
+          bind-key "-" split-window -v -c "#{pane_current_path}"
+          bind-key "_" split-window -fv -c "#{pane_current_path}"
 
 
-        # set prefix to C-Space
-        unbind C-Space
-        set -g prefix C-Space
-        bind C-Space send-prefix
+          # reload tmux config with prefix + r
+          bind r source-file ~/.config/tmux/tmux.conf # \; display "Reloaded! .config/tmux/tmux.conf"
 
 
-        # STATUS BAR
+          # set prefix to C-Space
+          unbind C-Space
+          set -g prefix C-Space
+          bind C-Space send-prefix
 
 
-        set -g status-right ' #[${color1}] cpu: #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
-        set -g status-left '#[${color3}] 󱄅 '
-
-        # set-option -g status-position top
+          # STATUS BAR
 
 
-                  run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
-      '';
+          set -g status-right ' #[${color1}] cpu: #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
+          set -g status-left '#[${color3}] 󱄅 '
+
+          # set-option -g status-position top
+
+
+                    run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+        '';
     };
-
   };
 
   home.packages = with pkgs; [

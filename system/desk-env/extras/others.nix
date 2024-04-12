@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
 
   services.gnome.gnome-keyring.enable = true;
 
@@ -9,5 +10,7 @@
     packages = [ pkgs.dconf ];
   };
 
-  programs.dconf = { enable = true; };
+  programs.dconf = {
+    enable = true;
+  };
 }

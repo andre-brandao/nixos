@@ -1,6 +1,14 @@
 # home.nix
 
-{ inputs, pkgs, lib, config, userSettings, systemSettings, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  userSettings,
+  systemSettings,
+  ...
+}:
 
 {
   programs.waybar = {
@@ -35,7 +43,6 @@
           "pulseaudio"
           # "network"
           "group/power"
-
         ];
 
         "group/power" = {
@@ -51,9 +58,8 @@
             "custom/quit"
             "custom/lock"
             "custom/reboot"
-            "custom/power" #// First element is the "group leader" and won't ever be hidden
+            "custom/power" # // First element is the "group leader" and won't ever be hidden
           ];
-
         };
 
         battery = {
@@ -67,8 +73,13 @@
           "format-plugged" = "{capacity}% ";
           #"format-good" = ""; # An empty format will hide the module
           #"format-full" = "";
-          "format-icons" = [ "" "" "" "" "" ];
-
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
         "power-profiles-daemon" = {
           "format" = "{icon}";
@@ -160,11 +171,12 @@
           "on-scroll-down" = "hyprctl dispatch workspace e-1";
           #"all-outputs" = true;
           #"active-only" = true;
-          "ignore-workspaces" = [ "scratch" "-" ];
+          "ignore-workspaces" = [
+            "scratch"
+            "-"
+          ];
           #"show-special" = false;
         };
-
-
 
         "idle_inhibitor" = {
           format = "{icon}";
@@ -208,14 +220,16 @@
             "on-scroll-up" = "shift_up";
             "on-scroll-down" = "shift_down";
           };
-
         };
 
         cpu = {
           "format" = "{usage}%  ";
           "interval" = 2;
         };
-        memory = { "format" = "{}% "; "interval" = 2; };
+        memory = {
+          "format" = "{}% ";
+          "interval" = 2;
+        };
 
         "temperature" = {
           # // "thermal-zone": 2,
@@ -233,7 +247,17 @@
 
         backlight = {
           "format" = "{percent}% {icon}";
-          "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
+          "format-icons" = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         pulseaudio = {
@@ -251,11 +275,14 @@
             "phone" = "";
             "portable" = "";
             "car" = "";
-            "default" = [ "" "" "" ];
+            "default" = [
+              ""
+              ""
+              ""
+            ];
           };
           "tooltip-format" = "{volume}% {icon}  {format_source}";
-          "on-click" =
-            "pypr toggle volume && hyprctl dispatch bringactivetotop";
+          "on-click" = "pypr toggle volume && hyprctl dispatch bringactivetotop";
         };
       };
     };
@@ -483,5 +510,4 @@
 
     '';
   };
-
 }

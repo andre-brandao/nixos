@@ -1,4 +1,12 @@
-{ inputs, config, pkgs, dconf, userSettings, ... }: {
+{
+  inputs,
+  config,
+  pkgs,
+  dconf,
+  userSettings,
+  ...
+}:
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = userSettings.username;
@@ -12,8 +20,7 @@
     ../../user/style/gtk.nix # My gtk config
 
     # DESKTOP
-    (./. + "../../../user/desk-env"
-      + ("/" + userSettings.wm)) # My window manager selected from flake
+    (./. + "../../../user/desk-env" + ("/" + userSettings.wm)) # My window manager selected from flake
 
     # GAMES
     ../../user/app/gaming/gaming.nix
@@ -58,11 +65,10 @@
     discord
     betterdiscordctl
     # discord-screenaudio
-    teams-for-linux
+    # teams-for-linux
 
     # UTILS
-    # lf
-    bitwarden
+    # bitwarden
     # gimp
     inkscape
     vlc
@@ -118,20 +124,19 @@
     zlib
     # nodePackages.ungit
     tailscale # VPN
-
   ];
 
   home.sessionVariables = {
     BROWSER = userSettings.browser;
     TERM = userSettings.term;
     EDITOR = userSettings.editor;
-    SPAWNEDITOR =
-      (if (userSettings.editor == "hx" || userSettings.editor == "nvim") then
+    SPAWNEDITOR = (
+      if (userSettings.editor == "hx" || userSettings.editor == "nvim") then
         "exec ${userSettings.term} -e ${userSettings.editor}"
       else
-        userSettings.editor);
+        userSettings.editor
+    );
   };
 
   home.stateVersion = "22.11"; # Please read the comment before changing.
-
 }

@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./extras/fonts.nix
@@ -25,7 +26,6 @@
     #   enableHidpi = true;
     #   # theme = "chili";
     # };
-
   };
 
   security = {
@@ -43,14 +43,18 @@
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      xwayland = { enable = true; };
+      xwayland = {
+        enable = true;
+      };
       # portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
   };
 
   environment = {
-    systemPackages = with pkgs;
-      with gnome; [
+    systemPackages =
+      with pkgs;
+      with gnome;
+      [
         gnome.adwaita-icon-theme
         loupe
         nautilus
@@ -74,8 +78,7 @@
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys =
-      [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   # hardware.opengl.enable = true;

@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   home.file.".config/hypr/hypridle.conf".text = ''
     general {
         lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.

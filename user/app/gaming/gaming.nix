@@ -1,17 +1,17 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      lutris
-      # protonup-ng
-      # gamemode
-      # dxvk
-      # # parsec-bin
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    lutris
+    # protonup-ng
+    # gamemode
+    # dxvk
+    # # parsec-bin
 
-      # gamescope
+    # gamescope
 
-      # # heroic
-      # mangohud
+    # # heroic
+    # mangohud
 
-      # steamPackages.steam-runtime
-    ];
+    # steamPackages.steam-runtime
+  ];
 }

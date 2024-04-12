@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   # nixpkgs = {
   #   overlays = [
   #     (final: prev: {
@@ -12,146 +18,148 @@
   #   ];
   # };
 
-  programs.neovim = let
-    toLua = str: ''
-      lua << EOF
-      ${str}
-      EOF
-    '';
-    toLuaFile = file: ''
-      lua << EOF
-      ${builtins.readFile file}
-      EOF
-    '';
-  in {
-    enable = true;
+  programs.neovim =
+    let
+      toLua = str: ''
+        lua << EOF
+        ${str}
+        EOF
+      '';
+      toLuaFile = file: ''
+        lua << EOF
+        ${builtins.readFile file}
+        EOF
+      '';
+    in
+    {
+      enable = true;
 
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    extraConfig = ''
-      set number relativenumber
-      set shiftwidth=2
-      set tabstop=2
-      set expandtab
-      set autoindent
-      set smartindent
-      set smarttab
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+      extraConfig = ''
+        set number relativenumber
+        set shiftwidth=2
+        set tabstop=2
+        set expandtab
+        set autoindent
+        set smartindent
+        set smarttab
 
-      set scrolloff=8
+        set scrolloff=8
 
 
-    '';
+      '';
 
-    extraPackages = with pkgs; [
-      lua-language-server
-      # rnix-lsp
-      nil
-      nixd
+      extraPackages = with pkgs; [
+        lua-language-server
+        # rnix-lsp
+        nil
+        nixd
 
-      typescript
-      nodePackages.typescript-language-server
-      # nodePackages.\@astrojs/language-server
+        typescript
+        nodePackages.typescript-language-server
+        # nodePackages.\@astrojs/language-server
 
-      marksman
-      rust-analyzer
-      yaml-language-server
+        marksman
+        rust-analyzer
+        yaml-language-server
 
-      xclip
-      wl-clipboard
-    ];
+        xclip
+        wl-clipboard
+      ];
 
-    plugins = with pkgs.vimPlugins; [
-      undotree
-      vimfiler-vim
+      plugins = with pkgs.vimPlugins; [
+        undotree
+        vimfiler-vim
 
-      {
-        plugin = lsp-zero-nvim;
-        config = toLuaFile ./plugin/zero-lsp.lua;
-      }
-      coc-eslint
-      coc-tsserver
-      # {
-      #   plugin = nvim-lspconfig;
-      #   config = toLuaFile ./plugin/lsp.lua;
-      # }
+        {
+          plugin = lsp-zero-nvim;
+          config = toLuaFile ./plugin/zero-lsp.lua;
+        }
+        coc-eslint
+        coc-tsserver
+        # {
+        #   plugin = nvim-lspconfig;
+        #   config = toLuaFile ./plugin/lsp.lua;
+        # }
 
-      {
-        plugin = comment-nvim;
-        config = toLua ''require("Comment").setup()'';
-      }
+        {
+          plugin = comment-nvim;
+          config = toLua ''require("Comment").setup()'';
+        }
 
-      {
-        plugin = gruvbox-nvim;
-        config = "colorscheme gruvbox";
-      }
+        {
+          plugin = gruvbox-nvim;
+          config = "colorscheme gruvbox";
+        }
 
-      neodev-nvim
+        neodev-nvim
 
-      nvim-cmp
-      {
-        plugin = nvim-cmp;
-        config = toLuaFile ./plugin/cmp.lua;
-      }
+        nvim-cmp
+        {
+          plugin = nvim-cmp;
+          config = toLuaFile ./plugin/cmp.lua;
+        }
 
-      {
-        plugin = telescope-nvim;
-        config = toLuaFile ./plugin/telescope.lua;
-      }
+        {
+          plugin = telescope-nvim;
+          config = toLuaFile ./plugin/telescope.lua;
+        }
 
-      telescope-fzf-native-nvim
+        telescope-fzf-native-nvim
 
-      cmp_luasnip
-      cmp-nvim-lsp
-      cmp-path
-      cmp-cmdline
+        cmp_luasnip
+        cmp-nvim-lsp
+        cmp-path
+        cmp-cmdline
 
-      # mason
-      # mason-lspconfig
+        # mason
+        # mason-lspconfig
 
-      # fidget
+        # fidget
 
-      luasnip
-      friendly-snippets
+        luasnip
+        friendly-snippets
 
-      lualine-nvim
-      nvim-web-devicons
+        lualine-nvim
+        nvim-web-devicons
 
-      {
-        plugin = nvim-treesitter.withPlugins (p: [
-          p.tree-sitter-nix
-          p.tree-sitter-vim
-          p.tree-sitter-bash
-          p.tree-sitter-lua
-          p.tree-sitter-python
-          p.tree-sitter-json
-          p.tree-sitter-javascript
-          p.tree-sitter-typescript
-          p.tree-sitter-yaml
-          p.tree-sitter-markdown
-          p.tree-sitter-toml
-          p.tree-sitter-go
-          p.tree-sitter-rust
-        ]);
-        config = toLuaFile ./plugin/treesitter.lua;
-      }
+        {
+          plugin = nvim-treesitter.withPlugins (p: [
+            p.tree-sitter-nix
+            p.tree-sitter-vim
+            p.tree-sitter-bash
+            p.tree-sitter-lua
+            p.tree-sitter-python
+            p.tree-sitter-json
+            p.tree-sitter-javascript
+            p.tree-sitter-typescript
+            p.tree-sitter-yaml
+            p.tree-sitter-markdown
+            p.tree-sitter-toml
+            p.tree-sitter-go
+            p.tree-sitter-rust
+          ]);
+          config = toLuaFile ./plugin/treesitter.lua;
+        }
 
-      vim-nix
+        vim-nix
 
-      # {
-      #   plugin = vimPlugins.own-onedark-nvim;
-      #   config = "colorscheme onedark";
-      # }
-    ];
+        # {
+        #   plugin = vimPlugins.own-onedark-nvim;
+        #   config = "colorscheme onedark";
+        # }
+      ];
 
-    # ${builtins.readFile ./plugin/lsp.lua}
-    # ${builtins.readFile ./plugin/cmp.lua}
-    # ${builtins.readFile ./plugin/telescope.lua}
-    # ${builtins.readFile ./plugin/treesitter.lua}
+      # ${builtins.readFile ./plugin/lsp.lua}
+      # ${builtins.readFile ./plugin/cmp.lua}
+      # ${builtins.readFile ./plugin/telescope.lua}
+      # ${builtins.readFile ./plugin/treesitter.lua}
 
-    extraLuaConfig = ''
-      ${builtins.readFile ./options.lua}
-      ${builtins.readFile ./plugin/other.lua}
-    '';
-  };
+      extraLuaConfig = ''
+        ${builtins.readFile ./options.lua}
+        ${builtins.readFile ./plugin/other.lua}
+      '';
+    };
 }

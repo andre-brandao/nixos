@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   programs.helix = {
     enable = true;
     themes = {
@@ -38,7 +44,12 @@
             "file-modification-indicator"
             "read-only-indicator"
           ];
-          center = [ "version-control" "spacer" "separator" "file-name" ];
+          center = [
+            "version-control"
+            "spacer"
+            "separator"
+            "file-name"
+          ];
           right = [
             # "file-encoding"
             # "file-line-ending"
@@ -80,14 +91,16 @@
         space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
-        esc = [ "collapse_selection" "keep_primary_selection" ];
+        esc = [
+          "collapse_selection"
+          "keep_primary_selection"
+        ];
       };
     };
     languages = {
       language-server = {
         astro-ls = {
-          command =
-            "${pkgs.nodePackages."@astrojs/language-server"}/bin/astro-ls";
+          command = "${pkgs.nodePackages."@astrojs/language-server"}/bin/astro-ls";
           args = [ "--stdio" ];
         };
       };
@@ -148,13 +161,17 @@
         {
           name = "go";
           auto-format = true;
-          formatter = { command = "goimports"; };
+          formatter = {
+            command = "goimports";
+          };
         }
       ];
     };
     # ***** LSP packages *****
-    extraPackages = with pkgs;
-      with nodePackages; [
+    extraPackages =
+      with pkgs;
+      with nodePackages;
+      [
         bash-language-server # BASH
         lldb # debugger
         marksman # Markdown
@@ -176,9 +193,9 @@
 
         # PYTHON
         pyright
-        (python3.withPackages (ps:
-          with ps;
-          [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all))
+        (python3.withPackages (
+          ps: with ps; [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all
+        ))
 
         # JAVASCRIPT AND CIA
         typescript

@@ -8,7 +8,6 @@
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -31,7 +30,16 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, hyprland, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-hardware,
+      home-manager,
+      stylix,
+      hyprland,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
 
@@ -39,8 +47,7 @@
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "nixos"; # hostname
-        profile =
-          "personal"; # select a profile defined from my profiles directory
+        profile = "personal"; # select a profile defined from my profiles directory
         timezone = "America/Sao_Paulo"; # select timezone
         language = "en_US.UTF-8"; # select language
         locale = "pt_BR.UTF-8"; # select locale
@@ -72,19 +79,16 @@
         };
         # overlays = [ rust-overlay.overlays.default ];
       };
-
     in
     {
-      formatter.${systemSettings.system} =
-        nixpkgs.legacyPackages.${systemSettings.system}.nixfmt;
+      formatter.${systemSettings.system} = pkgs.nixfmt-rfc-style;
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
           modules = [
-            (./. + "/hosts" + ("/" + systemSettings.profile)
-              + "/configuration.nix")
+            (./. + "/hosts" + ("/" + systemSettings.profile) + "/configuration.nix")
             nixos-hardware.nixosModules.dell-xps-13-9300
           ];
           specialArgs = {
@@ -100,9 +104,7 @@
       homeConfigurations = {
         user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs; # Home-manager requires 'pkgs' instance
-          modules = [
-            (./. + "/hosts" + ("/" + systemSettings.profile) + "/home.nix")
-          ];
+          modules = [ (./. + "/hosts" + ("/" + systemSettings.profile) + "/home.nix") ];
           extraSpecialArgs = {
             inherit inputs outputs;
             inherit systemSettings;

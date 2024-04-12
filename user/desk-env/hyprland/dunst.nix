@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   services.dunst = {
     enable = true;
@@ -26,7 +27,6 @@
         # separator_height = 5;
 
         gap_size = 5;
-
       };
     };
   };

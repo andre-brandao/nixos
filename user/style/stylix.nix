@@ -1,14 +1,24 @@
-{ inputs, config, lib, pkgs, userSettings, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  userSettings,
+  ...
+}:
 let
-  themePath = "../../../themes"
-    + ("/" + userSettings.theme + "/" + userSettings.theme) + ".yaml";
-  themePolarity = lib.removeSuffix "\n" (builtins.readFile
-    (./. + "../../../themes" + ("/" + userSettings.theme) + "/polarity.txt"));
-  backgroundUrl = builtins.readFile (./. + "../../../themes"
-    + ("/" + userSettings.theme) + "/backgroundurl.txt");
-  backgroundSha256 = builtins.readFile (./. + "../../../themes/"
-    + ("/" + userSettings.theme) + "/backgroundsha256.txt");
-in {
+  themePath = "../../../themes" + ("/" + userSettings.theme + "/" + userSettings.theme) + ".yaml";
+  themePolarity = lib.removeSuffix "\n" (
+    builtins.readFile (./. + "../../../themes" + ("/" + userSettings.theme) + "/polarity.txt")
+  );
+  backgroundUrl = builtins.readFile (
+    ./. + "../../../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt"
+  );
+  backgroundSha256 = builtins.readFile (
+    ./. + "../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt"
+  );
+in
+{
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   home.file.".currenttheme".text = userSettings.theme;

@@ -1,6 +1,12 @@
 # home.nix
 
-{ inputs, pkgs, config, userSettings, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  userSettings,
+  ...
+}:
 let
 
   playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -98,7 +104,9 @@ in
       # monitor = "DP-1, 1920x1200, auto, 1";
       monitor = "eDP-1,highres,0x0,1";
 
-      xwayland = { force_zero_scaling = true; };
+      xwayland = {
+        force_zero_scaling = true;
+      };
       env = "GDK_SCALE,2";
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -273,7 +281,6 @@ in
         "$mainMod,N,exec,pypr toggle notion && hyprctl dispatch bringactivetotop" # chat gpt
 
         # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
-
       ];
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
@@ -298,7 +305,9 @@ in
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      binds = { allow_workspace_cycles = true; };
+      binds = {
+        allow_workspace_cycles = true;
+      };
 
       bindle = [
 
@@ -391,15 +400,22 @@ in
     process_tracking = false 
   '';
 
-  home.file.".config/hypr/hyprpaper.conf".text = "\n    preload = "
-    + config.stylix.image + ''
+  home.file.".config/hypr/hyprpaper.conf".text =
+    "\n    preload = "
+    + config.stylix.image
+    + ''
 
-      wallpaper = eDP-1,'' + config.stylix.image + ''
+      wallpaper = eDP-1,''
+    + config.stylix.image
+    + ''
 
-        wallpaper = HDMI-A-1,'' + config.stylix.image + ''
+      wallpaper = HDMI-A-1,''
+    + config.stylix.image
+    + ''
 
-          wallpaper = DP-1,'' + config.stylix.image + ''
-    ipc = off 
-  '';
-
+      wallpaper = DP-1,''
+    + config.stylix.image
+    + ''
+      ipc = off 
+    '';
 }

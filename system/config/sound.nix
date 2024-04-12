@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -30,5 +31,8 @@
     #media-session.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ pamixer pavucontrol ];
+  environment.systemPackages = with pkgs; [
+    pamixer
+    pavucontrol
+  ];
 }
