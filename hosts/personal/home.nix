@@ -65,10 +65,10 @@
     discord
     betterdiscordctl
     # discord-screenaudio
-    # teams-for-linux
+    teams-for-linux
 
     # UTILS
-    # bitwarden
+    bitwarden
     # gimp
     inkscape
     vlc
@@ -123,7 +123,6 @@
     libffi
     zlib
     # nodePackages.ungit
-    tailscale # VPN
   ];
 
   home.sessionVariables = {

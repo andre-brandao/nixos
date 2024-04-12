@@ -18,12 +18,12 @@ let
     ;
   aliases = {
     # -- REBUILD SYSTEM
-    sys-update = "sudo unbuffer nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system  |& nom";
+    sys-update = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system ";
     # -- REBUILD USER
-    user-update = "unbuffer home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user |& nom";
+    user-update = "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user";
     # -- REBUILD BOTH
     update = "sys-update && user-update";
-
+    # TODO
     # https://github.com/maralorn/nix-output-monitor
 
     ls = "eza --icons -l -T -L=1";

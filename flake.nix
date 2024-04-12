@@ -38,6 +38,7 @@
       home-manager,
       stylix,
       hyprland,
+      hyprland-plugins,
       ...
     }@inputs:
     let
