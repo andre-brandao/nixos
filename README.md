@@ -2,9 +2,6 @@
 
 ### My nixos journey
 
-I installed NixOS on my laptop because I was intrigued by its concept and wanted to give it a try. I initially started with a minimal starter configuration from [Misterio77's nix-starter-configs](https://github.com/Misterio77/nix-starter-configs). However, I later transitioned to a structure based on [librephoenix's nixos-config](https://github.com/librephoenix/nixos-config).
-
-
 ## Basic Flake Comands
 
 ### To rebuild home-manager, use the following command in the config directory:
@@ -48,3 +45,8 @@ user
 themes # Base16 colors
 flake.nix
 ```
+
+### dotfiles that helped
+
+[Misterio77's nix-starter-configs](https://github.com/Misterio77/nix-starter-configs)
+[librephoenix's nixos-config](https://github.com/librephoenix/nixos-config)

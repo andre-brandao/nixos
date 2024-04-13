@@ -22,9 +22,9 @@
     };
 
     # astal.url = "github:Aylur/astal";
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags"; # TODO:  (my config still in progress)
 
-    xremap-flake.url = "github:xremap/nix-flake";
+    xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
 
     # Stylix
     stylix.url = "github:danth/stylix";
@@ -59,16 +59,14 @@
         username = "andre"; # username
         name = "Andre Brandao"; # name/identifier
         email = "brandaoandre@gmail.com";
-        dotfilesDir = "~/.dotfiles"; # absolute path of the local repo
-        # selcted theme from my themes directory (./themes/)
-        theme = "ashes";
-        # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
-        wm = "hyprland";
+        configDir = "/home/${userSettings.username}/dotfiles"; # absolute path of the local repo
+        theme = "ashes"; # selcted theme from my themes directory (./themes/)
+        wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
         browser = "brave";
         term = "alacritty"; # Default terminal command;
         font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
-        editor = "hx"; # Default editor;
+        editor = "codium"; # Default editor;
       };
 
       # configure pkgs

@@ -18,9 +18,9 @@ let
     ;
   aliases = {
     # -- REBUILD SYSTEM
-    sys-update = "sudo nixos-rebuild switch --flake /home/${userSettings.username}/dotfiles/nixos#system ";
+    sys-update = "sudo nixos-rebuild switch --flake ${userSettings.configDir}/nixos#system ";
     # -- REBUILD USER
-    user-update = "home-manager switch --flake /home/${userSettings.username}/dotfiles/nixos#user";
+    user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
     # -- REBUILD BOTH
     update = "sys-update && user-update";
     # TODO

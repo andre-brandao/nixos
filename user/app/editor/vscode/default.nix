@@ -133,7 +133,7 @@ in
         github.copilot
       ];
   };
-  # home.packages = [
-  #   pkgs.vscode # microsoft vscode
-  # ];
+  home.packages = [
+    pkgs.vscode # microsoft vscode
+  ];
 }
