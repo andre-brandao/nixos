@@ -4,14 +4,130 @@
   inputs,
   pkgs,
   config,
+  lib,
   userSettings,
   ...
 }:
 let
 
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
+  mainMod = "SUPER";
+  keybindings = [
+    "$mainMod, A, exec, ${userSettings.term}"
+
+    "$mainMod, T, togglefloating"
+
+    # "$mainMod, W, exec, ${userSettings.browser}"
+    # ROFI
+    "$mainMod, R, exec, rofi -show drun -show-icons"
+    "$mainMod, RETURN, exec, rofi -show drun -show-icons"
+    "$mainMod, J, exec, rofi -show window -show-icons"
+
+    "$mainMod, C, killactive"
+    "$mainMod SHIFT, Q, exit"
+    "CTRL ALT, Delete, exit"
+
+    # layout 
+    "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
+    "$mainMod, M, exec, hyprctl keyword general:layout master"
+
+    '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
+    "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
+  ];
+  workspaceSettings = [
+    #these apps will open on the specified workspace when you firt open them
+    "8, on-created-empty:vesktop"
+    "9, on-created-empty:thunderbird"
+  ];
+  scratchpads = [
+    {
+      bind = "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.term]
+        animation = "fromTop"
+        command = "alacritty --class alacritty-dropterm"
+        class = "alacritty-dropterm"
+        size = "85% 85%"
+      '';
+    }
+    {
+      bind = "$mainMod, F,exec,pypr toggle filemanager && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.filemanager]
+        animation = "fromRight"
+        command = "nautilus"
+        class = "nautilus"
+        size = "85% 85%"
+      '';
+    }
+    {
+      bind = "$mainMod,Z,exec,pypr toggle volume && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.volume]
+        animation = "fromRight"
+        command = "pavucontrol"
+        class = "pavucontrol"
+        lazy = true
+        size = "40% 70%"
+        unfocus = "hide"
+      '';
+    }
+    {
+      bind = "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.music]
+        animation = "fromRight"
+        command = "spotify"
+        class = "spotify"
+        size = "45% 85%"
+        unfocus = "hide"
+      '';
+    }
+    {
+      bind = "$mainMod,B,exec,pypr toggle bitwarden && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.bitwarden]
+        animation = "fromTop"
+        command = "bitwarden"
+        class = "bitwarden"
+        size = "45% 70%"
+        unfocus = "hide"
+      '';
+    }
+    {
+      bind = "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.whatsapp]
+        animation = "fromLeft"
+        command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
+        class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
+        size = "75% 60%"
+        class_match = true
+        process_tracking = false 
+      '';
+    }
+    {
+      bind = "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.openai]
+        animation = "fromLeft"
+        command = "brave --profile-directory=Default --app=https://chat.openai.com"
+        class = "brave-chat.openai.com__-Default"
+        size = "75% 60%"
+        process_tracking = false 
+      '';
+    }
+    {
+      bind = "$mainMod,N,exec,pypr toggle notion && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.notion]
+        animation = "fromLeft"
+        command = "brave --profile-directory=Default --app=https://notion.so"
+        class = "brave-notion.so__-Default"
+        size = "95% 85%"
+        process_tracking = false 
+      '';
+    }
+  ];
 in
 {
   imports = [
@@ -41,8 +157,6 @@ in
     grim # screenshot
     swappy
     slurp
-
-    xfce.thunar # file manager
 
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
@@ -173,7 +287,6 @@ in
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
         animation = [
-
           "windows, 1, 7, myBezier"
           "windowsOut, 1, 7, default, popin 80%"
           "border, 1, 10, default"
@@ -196,6 +309,8 @@ in
       gestures = {
         # # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = true;
+        workspace_swipe_forever = true;
+        # workspace_swipe_numbered = true;
       };
 
       misc = {
@@ -204,9 +319,10 @@ in
         focus_on_activate = true;
       };
 
-      "$mainMod" = "SUPER";
-      bind = [
+      workspace = workspaceSettings;
 
+      "$mainMod" = mainMod;
+      bind = [
         #WORKSPACE SWITCH
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -229,59 +345,14 @@ in
         "$mainMod SHIFT, 7, movetoworkspace, 7"
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 1"
-
-        # Example special workspace (scratchpad)
-        # "$mainMod, S, togglespecialworkspace, magic"
-        # "$mainMod SHIFT, S, movetoworkspace, special:magic"
-
-        # ----- OTHER KEYBINDINGS --------
-
-        # "$mainMod, Q, exec, ${userSettings.term}"
-        "$mainMod, A, exec, ${userSettings.term}"
-
-        "$mainMod, T, togglefloating"
-
-        # "$mainMod, W, exec, ${userSettings.browser}"
-        # ROFI
-        "$mainMod, S, exec, rofi -show drun -show-icons"
-        "$mainMod, RETURN, exec, rofi -show drun -show-icons"
-
-        "$mainMod, J, exec, rofi -show window -show-icons"
-
-        # kill window
-        "$mainMod, C, killactive"
-
-        # "$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
-        "$mainMod, E, exec, pypr toggle filemanager && hyprctl dispatch bringactivetotop"
-
-        "$mainMod SHIFT, Q, exit"
-        "CTRL ALT, Delete, exit"
-
-        # print screen
-        '',Print,exec,grim -g "$(slurp)" - | swappy -f -''
-        # color picker
-        "$mainMod, Print, exec, hyprpicker -a -f hex"
+        "$mainMod SHIFT, 0, movetoworkspace, 10"
 
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+        # map scratchpad bindings as an array
+      ] ++ keybindings ++ map (s: s.bind) scratchpads;
 
-        #  ---------- Scratchpad ---------
-        "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-        "$mainMod,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-
-        "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop"
-        "$mainMod,M,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
-        "$mainMod,B,exec,pypr toggle bitwarden && hyprctl dispatch bringactivetotop"
-
-        # "$mainMod,T,exec,pypr toggle btm && hyprctl dispatch bringactivetotop"
-        "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
-        "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop" # chat gpt
-        "$mainMod,N,exec,pypr toggle notion && hyprctl dispatch bringactivetotop" # chat gpt
-
-        # "$mainMod,G,exec,brave --profile-directory=Default --app=https://chat.openai.com" #chat gpt
-      ];
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
       windowrulev2 = [
@@ -296,10 +367,30 @@ in
         "noinitialfocus,class:^(xwaylandvideobridge)$"
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
+
+        # FLOATING WINDOWS
+        "float,class:(Bitwarden)"
+        "float,class:^(Spotify)$"
       ];
 
-      bindm = [
+      windowrule =
+        let
+          f = regex: "float, ^(${regex})$";
+        in
+        [
+          (f "org.gnome.Calculator")
+          (f "org.gnome.Nautilus")
+          (f "pavucontrol")
+          (f "nm-connection-editor")
+          (f "blueberry.py")
+          (f "org.gnome.Settings")
+          (f "org.gnome.design.Palette")
+          (f "xdg-desktop-portal")
+          (f "xdg-desktop-portal-gnome")
+          (f "transmission-gtk")
+        ];
 
+      bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
@@ -309,24 +400,37 @@ in
         allow_workspace_cycles = true;
       };
 
-      bindle = [
+      bindle =
+        let
+          playerctl = "${pkgs.playerctl}/bin/playerctl";
+          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+          pactl = "${pkgs.pulseaudio}/bin/pactl";
+        in
+        [
 
-        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
-        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
-        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
-        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
-        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-      ];
+          ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+          ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+          ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
+          ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
+          ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+          ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+        ];
 
-      bindl = [
-        ",XF86AudioPlay,    exec, ${playerctl} play-pause"
-        ",XF86AudioStop,    exec, ${playerctl} pause"
-        ",XF86AudioPause,   exec, ${playerctl} pause"
-        ",XF86AudioPrev,    exec, ${playerctl} previous"
-        ",XF86AudioNext,    exec, ${playerctl} next"
-        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-      ];
+      bindl =
+        let
+          playerctl = "${pkgs.playerctl}/bin/playerctl";
+          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+          pactl = "${pkgs.pulseaudio}/bin/pactl";
+        in
+        [
+          ",XF86AudioPlay,    exec, ${playerctl} play-pause"
+          ",XF86AudioStop,    exec, ${playerctl} pause"
+          ",XF86AudioPause,   exec, ${playerctl} pause"
+          ",XF86AudioPrev,    exec, ${playerctl} previous"
+          ",XF86AudioNext,    exec, ${playerctl} next"
+          ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          ",XF86AudioMute,    exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+        ];
     };
   };
 
@@ -336,68 +440,7 @@ in
     [pyprland]
     plugins = ["scratchpads", "magnify"]
 
-    [scratchpads.term]
-    animation = "fromTop"
-    command = "alacritty --class alacritty-dropterm"
-    class = "alacritty-dropterm"
-    size = "85% 85%"
-
-    [scratchpads.btm]
-    animation = "fromTop"
-    command = "alacritty --class alacritty-btm -e btm"
-    class = "alacritty-btm"
-    size = "80% 80%"
-
-    [scratchpads.bitwarden]
-    animation = "fromTop"
-    command = "bitwarden"
-    class = "bitwarden"
-    size = "45% 70%"
-    unfocus = "hide"
-
-    [scratchpads.volume]
-    animation = "fromRight"
-    command = "pavucontrol"
-    class = "pavucontrol"
-    lazy = true
-    size = "40% 70%"
-    unfocus = "hide"
-
-    [scratchpads.music]
-    animation = "fromRight"
-    command = "spotify"
-    class = "spotify"
-    size = "45% 85%"
-    unfocus = "hide"
-
-    [scratchpads.filemanager]
-    animation = "fromRight"
-    command = "nautilus"
-    class = "nautilus"
-    size = "85% 85%"
-
-
-    [scratchpads.whatsapp]
-    animation = "fromLeft"
-    command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
-    class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
-    size = "75% 60%"
-    class_match = true
-    process_tracking = false 
-
-    [scratchpads.openai]
-    animation = "fromLeft"
-    command = "brave --profile-directory=Default --app=https://chat.openai.com"
-    class = "brave-chat.openai.com__-Default"
-    size = "75% 60%"
-    process_tracking = false 
-
-    [scratchpads.notion]
-    animation = "fromLeft"
-    command = "brave --profile-directory=Default --app=https://notion.so"
-    class = "brave-notion.so__-Default"
-    size = "95% 85%"
-    process_tracking = false 
+    ${builtins.concatStringsSep "\n" (map (s: s.scratchpad) scratchpads)}
   '';
 
   home.file.".config/hypr/hyprpaper.conf".text =
