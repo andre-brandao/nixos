@@ -1,4 +1,4 @@
-{ config, lib, ...}:
+{ config, lib, ... }:
 {
   # This happens to fix a problem with the systemd service that is created as a
   # result of enabling networkd. It's not clear why it happens, but I should

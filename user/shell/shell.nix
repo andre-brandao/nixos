@@ -127,11 +127,10 @@ in
     # BETTER CD
     zoxide.enable = true;
     cava.enable = true;
-    thefuck={
+    thefuck = {
       enable = true;
       enableZshIntegration = true;
     };
-
 
     # SHELL CUSTOMIZATION
     starship = {
