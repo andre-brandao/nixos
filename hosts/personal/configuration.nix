@@ -13,8 +13,8 @@
   # You can import other NixOS modules here
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
+    ./hardware-configuration.nix
     ../../system/config
-    ../../system/hardware-configuration.nix
 
     ../../system/app/virtualization.nix
     ../../system/app/docker.nix
