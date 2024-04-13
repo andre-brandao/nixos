@@ -118,7 +118,7 @@
     # audio-recorder
 
     # Various dev packages
-    # postman
+    postman
     texinfo
     libffi
     zlib

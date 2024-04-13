@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     # Include the results of the hardware scan.
     ./extras/fonts.nix
@@ -20,6 +21,5 @@
       windowManager.qtile.enable = true;
       # xserver.libinput.naturalScrolling = true;
     };
-
   };
 }
