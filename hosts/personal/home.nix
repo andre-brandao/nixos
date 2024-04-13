@@ -25,6 +25,9 @@
     # GAMES
     ../../user/app/gaming/gaming.nix
 
+    # BROWSER
+    ../../user/app/chromium.nix # My chromium config
+
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
@@ -48,7 +51,7 @@
     ../../user/app/editor/helix # My emacs config
     ../../user/app/editor/vscode # My vscode config
   ];
-  programs.chromium.enable = true;
+  
   home.packages = with pkgs; [
     spotify
     netflix

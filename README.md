@@ -25,12 +25,12 @@ user-update
 ```bash
 profiles
 |  personal
+|  |  hardware-configurantion.nix # CHANGE THIS!!
 system
 |  app # System aplications
 |  config # Common system configs 
 |  style # Stylix settings
 |  desk-env # GNOME and hyprland
-|  hardware-configurantion.nix # CHANGE THIS!!
 user
 |  app  # User aplications
 |  |  editor # nvim and helix

@@ -388,6 +388,7 @@ in
           (f "xdg-desktop-portal")
           (f "xdg-desktop-portal-gnome")
           (f "transmission-gtk")
+          (f "Bitwarden")
         ];
 
       bindm = [

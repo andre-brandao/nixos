@@ -7,9 +7,10 @@
 {
   imports = [ inputs.xremap-flake.homeManagerModules.default ];
 
-  home.packages = with pkgs; [ inputs.xremap-flake.packages.${system}.default ];
+  # home.packages = with pkgs; [ inputs.xremap-flake.packages.${system}.default ];
 
   services.xremap = {
+    enable = true;
     withHypr = true;
     # NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap
     # serviceMode = "user";
