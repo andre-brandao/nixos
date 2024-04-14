@@ -44,16 +44,16 @@
     }
 
     label {
-    monitor =
-    text = cmd[update:1000] echo "$TIME"
-    color = rgba(200, 200, 200, 1.0)
-    font_size = 55
-    font_family = Fira Semibold
-    position = -100, -200
-    halign = right
-    valign = bottom
-    shadow_passes = 5
-    shadow_size = 10
+        monitor =
+        text = cmd[update:1000] echo "$TIME"
+        color = rgba(200, 200, 200, 1.0)
+        font_size = 55
+        font_family = Fira Semibold
+        position = -100, -200
+        halign = right
+        valign = bottom
+        shadow_passes = 5
+        shadow_size = 10
     }
 
     label {
@@ -68,6 +68,34 @@
         shadow_passes = 5
         shadow_size = 10
     }
+
+    label {
+        monitor =
+        text = #DESC  #$PROMPT 
+        text_align = center # center/right or any value for default left. multi-line text alignment inside label container
+        color = rgba(200, 200, 200, 1.0)
+        font_size = 20
+        font_family = Noto Sans
+        rotate = 0 # degrees, counter-clockwise
+
+        position = 0, 80
+        halign = center
+        valign = center
+    }
+
+    # label {
+    #     monitor =
+    #     text = $FAIL
+    #     text_align = center # center/right or any value for default left. multi-line text alignment inside label container
+    #     color = rgba(200, 200, 200, 1.0)
+    #     font_size = 25
+    #     font_family = Noto Sans
+    #     rotate = 0 # degrees, counter-clockwise
+
+    #     position = 0, -80
+    #     halign = center
+    #     valign = center
+    # }
 
 
     input-field {
