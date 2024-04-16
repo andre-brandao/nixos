@@ -1,6 +1,6 @@
 # My NixOS
 
-### My nixos journey
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/image.png?raw=true)
 
 ## Basic Flake Comands
 
@@ -20,9 +20,6 @@ or the alias from anywhere:
 ```bash
 user-update
 ```
-
-
-
 
 ## File Strucure
 ```bash
