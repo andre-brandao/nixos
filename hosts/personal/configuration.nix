@@ -22,21 +22,12 @@
     ../../system/app/minecraft.nix
     ../../system/app/tailscale.nix
 
-    (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
+    # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
+    ../../system/desk-env/${userSettings.wm}.nix
 
     # styles
     ../../system/style/stylix.nix
   ];
-
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [ ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
-  };
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake

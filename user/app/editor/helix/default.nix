@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 {
   programs.helix = {
     enable = true;
@@ -71,7 +66,7 @@
         whitespace = {
           render = "all";
           characters = {
-            space = "·";
+            # space = "·";
             nbsp = "⍽";
             tab = "→";
             newline = "⤶";

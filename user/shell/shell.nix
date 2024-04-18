@@ -18,13 +18,11 @@ let
     ;
   aliases = {
     # -- REBUILD SYSTEM
-    sys-update = "sudo nixos-rebuild switch --flake ${userSettings.configDir}/nixos#system ";
+    # sys-update = "sudo nixos-rebuild switch --flake ${userSettings.configDir}/nixos#system ";
+    sys-update = "nh os switch ${userSettings.configDir}  -H system";
     # -- REBUILD USER
-    user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
-    # -- REBUILD BOTH
-    update = "sys-update && user-update";
-    # TODO
-    # https://github.com/maralorn/nix-output-monitor
+    # user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
+    user-update = "nh home switch ${userSettings.configDir} -c user";
 
     ls = "eza --icons -l -T -L=1";
     cat = "bat";
@@ -269,7 +267,6 @@ in
 
   home.packages = with pkgs; [
     disfetch
-    lolcat
     onefetch
     gnugrep
     gnused
@@ -281,6 +278,7 @@ in
     direnv
     nix-direnv
     nix-output-monitor
+    nh
   ];
 
   programs.direnv.enable = true;

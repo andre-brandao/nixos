@@ -38,7 +38,6 @@
       home-manager,
       stylix,
       hyprland,
-      hyprland-plugins,
       ...
     }@inputs:
     let
@@ -59,7 +58,7 @@
         username = "andre"; # username
         name = "Andre Brandao"; # name/identifier
         email = "brandaoandre@gmail.com";
-        configDir = "/home/${userSettings.username}/dotfiles"; # absolute path of the local repo
+        configDir = "/home/${userSettings.username}/dotfiles/nixos"; # absolute path of the local repo
         theme = "ashes"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
         browser = "brave";

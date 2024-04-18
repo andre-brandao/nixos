@@ -60,7 +60,7 @@ let
       '';
     }
     {
-      bind = "$mainMod,Z,exec,pypr toggle volume && hyprctl dispatch bringactivetotop";
+      bind = "$mainMod,V,exec,pypr toggle volume && hyprctl dispatch bringactivetotop";
       scratchpad = ''
         [scratchpads.volume]
         animation = "fromRight"
@@ -208,7 +208,8 @@ in
 
         "waybar"
         # tray icons
-        "nm-applet --indicator"
+        #"nm-applet --indicator"
+        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         "blueman-applet"
         # "${userSettings.browser}"
         "hyprpaper"
