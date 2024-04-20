@@ -50,6 +50,9 @@
     auto-optimise-store = true;
   };
 
+  # allow unfre pkgs
+  nixpkgs.config.allowUnfree = true;
+
   fonts.fontDir.enable = true;
   # USERS
   users.users.${userSettings.username} = {

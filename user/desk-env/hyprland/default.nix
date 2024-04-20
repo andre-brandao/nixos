@@ -33,7 +33,6 @@ let
     '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
     "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
 
-
     "ALT, Tab, cyclenext,"
     "ALT, Tab, bringactivetotop,"
     # "ALT SHIFT, Tab, cycleprev,"
@@ -44,6 +43,7 @@ let
     "8, on-created-empty:vesktop"
     "9, on-created-empty:thunderbird"
   ];
+  # https://github.com/hyprland-community/pyprland
   scratchpads = [
     {
       bind = "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop";
@@ -99,6 +99,9 @@ let
         unfocus = "hide"
       '';
     }
+    # -----------------------------
+    # *Tip use SUPER + J to get the name of the class
+    # -----------------------------
     {
       bind = "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop";
       scratchpad = ''
@@ -181,10 +184,8 @@ in
     systemd.enable = true;
     xwayland.enable = true;
 
-    # plugins = [
-    #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-    # ];
-    # extraConfig = ''  
+    # plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo ];
+    # extraConfig = ''
     #   bind = SUPER, ALT, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
 
     #   plugin {
@@ -290,7 +291,7 @@ in
         shadow_render_power = 3;
         # "col.shadow" = "rgba(1a1a1aee)";
 
-        inactive_opacity = 0.90;
+        inactive_opacity = 0.9;
       };
 
       animations = {
