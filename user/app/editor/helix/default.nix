@@ -19,6 +19,10 @@
         auto-completion = true;
         idle-timeout = 200;
 
+        bufferline = "multiple";
+
+        color-modes = true;
+
         lsp = {
           display-messages = true;
           display-inlay-hints = true;
@@ -67,6 +71,7 @@
           render = "all";
           characters = {
             # space = "·";
+            space = " ";
             nbsp = "⍽";
             tab = "→";
             newline = "⤶";
@@ -103,7 +108,7 @@
         {
           name = "nix";
           auto-format = true;
-          # formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+          formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
         }
         {
           name = "python";

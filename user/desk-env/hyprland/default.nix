@@ -32,6 +32,12 @@ let
 
     '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
     "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
+
+
+    "ALT, Tab, cyclenext,"
+    "ALT, Tab, bringactivetotop,"
+    # "ALT SHIFT, Tab, cycleprev,"
+    # "ALT SHIFT, Tab, bringactivetotop,"
   ];
   workspaceSettings = [
     #these apps will open on the specified workspace when you firt open them
@@ -217,7 +223,11 @@ in
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
-      monitor = "eDP-1,highres,0x0,1";
+      monitor = [
+        "eDP-1,highres,0x0,1"
+        "DP-1,2560x1440,auto,1" # 2560x1440
+        # DP-3,1920x1080@60,0x0,1,mirror,DP-2 #exemple of mirror
+      ];
 
       xwayland = {
         force_zero_scaling = true;
@@ -247,12 +257,12 @@ in
         resize_on_border = true;
 
         gaps_in = 5;
-        gaps_out = 5;
+        gaps_out = 15;
         border_size = 2;
 
         # "col.inactive_border" = "rgba(595959aa)";
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "0x33" + config.lib.stylix.colors.base00;
+        "col.inactive_border" = "0x33 ${config.lib.stylix.colors.base00}";
         "col.active_border" = ''0xff${config.lib.stylix.colors.base08} 0xff${config.lib.stylix.colors.base0A} 45deg'';
 
         # layout = "dwindle";
@@ -272,12 +282,15 @@ in
         #   size = 3;
         #   passes = 1;
         # };
-        blur.enabled = false;
+        blur.enabled = false; # disabled for battery life
+
         # drop_shadow = "yes";
         drop_shadow = false;
         shadow_range = 4;
         shadow_render_power = 3;
         # "col.shadow" = "rgba(1a1a1aee)";
+
+        inactive_opacity = 0.90;
       };
 
       animations = {
@@ -316,7 +329,7 @@ in
 
       misc = {
         #  # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        force_default_wallpaper = -1;
+        force_default_wallpaper = 0;
         focus_on_activate = true;
       };
 
@@ -445,22 +458,32 @@ in
     ${builtins.concatStringsSep "\n" (map (s: s.scratchpad) scratchpads)}
   '';
 
-  home.file.".config/hypr/hyprpaper.conf".text =
-    "\n    preload = "
-    + config.stylix.image
-    + ''
+  home.file.".config/hypr/hyprpaper.conf".text = ''
+    preload = ${config.stylix.image}
 
-      wallpaper = eDP-1,''
-    + config.stylix.image
-    + ''
+    wallpaper = eDP-1,${config.stylix.image}
 
-      wallpaper = HDMI-A-1,''
-    + config.stylix.image
-    + ''
+    wallpaper = HDMI-A-1,${config.stylix.image}
 
-      wallpaper = DP-1,''
-    + config.stylix.image
-    + ''
-      ipc = off 
-    '';
+    wallpaper = DP-1,${config.stylix.image}
+  '';
+
+  # home.file.".config/hypr/hyprpaper.conf".text =
+  #   "\n    preload = "
+  #   + config.stylix.image
+  #   + ''
+
+  #     wallpaper = eDP-1,''
+  #   + config.stylix.image
+  #   + ''
+
+  #     wallpaper = HDMI-A-1,''
+  #   + config.stylix.image
+  #   + ''
+
+  #     wallpaper = DP-1,''
+  #   + config.stylix.image
+  #   + ''
+  #     ipc = off 
+  #   '';
 }
