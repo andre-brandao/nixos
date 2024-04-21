@@ -47,7 +47,7 @@
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "nixos"; # hostname
-        profile = "personal"; # select a profile defined from my profiles directory
+        profile = "xps"; # select a host defined from hosts directory
         timezone = "America/Sao_Paulo"; # select timezone
         language = "en_US.UTF-8"; # select language
         locale = "pt_BR.UTF-8"; # select locale
