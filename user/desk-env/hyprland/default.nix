@@ -37,11 +37,13 @@ let
     "ALT, Tab, bringactivetotop,"
     # "ALT SHIFT, Tab, cycleprev,"
     # "ALT SHIFT, Tab, bringactivetotop,"
+    "$mainMod, E, exec, pypr expose"
   ];
   workspaceSettings = [
     #these apps will open on the specified workspace when you firt open them
     "8, on-created-empty:vesktop"
     "9, on-created-empty:thunderbird"
+    "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
   ];
   # https://github.com/hyprland-community/pyprland
   scratchpads = [
@@ -49,7 +51,7 @@ let
       bind = "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop";
       scratchpad = ''
         [scratchpads.term]
-        animation = "fromTop"
+        animation = "fromBottom"
         command = "alacritty --class alacritty-dropterm"
         class = "alacritty-dropterm"
         size = "85% 85%"
@@ -74,6 +76,7 @@ let
         class = "pavucontrol"
         lazy = true
         size = "40% 70%"
+        position = "40% 0%"
         unfocus = "hide"
       '';
     }
@@ -110,7 +113,6 @@ let
         command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
         class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
         size = "75% 60%"
-        class_match = true
         process_tracking = false 
       '';
     }
@@ -454,7 +456,7 @@ in
   # https://github.com/hyprland-community/pyprland
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
-    plugins = ["scratchpads", "magnify"]
+    plugins = ["scratchpads", "magnify", "expose"]
 
     ${builtins.concatStringsSep "\n" (map (s: s.scratchpad) scratchpads)}
   '';
