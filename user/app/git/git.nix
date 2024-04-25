@@ -5,9 +5,11 @@
   ...
 }:
 {
-  home.packages = [
-    pkgs.git
-    pkgs.lazygit
+  home.packages = with pkgs; [
+    git
+    gh
+    lazygit
+    github-desktop
   ];
   programs = {
     git = {
@@ -20,6 +22,10 @@
         co = "checkout";
         s = "status";
       };
+      # extraConfig = {
+      #   credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+      #   # push = { autoSetupRemote = true; };
+      # };
     };
 
     git-credential-oauth = {
