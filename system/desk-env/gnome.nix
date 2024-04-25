@@ -50,10 +50,6 @@
       # displayManager.auegin.user = "andre";
     };
   };
-  # Enable the X11 windowing system.
-  # # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  # systemd.services."getty@tty1".enable = false;
-  # systemd.services."autovt@tty1".edddnable = false;
 
   environment.systemPackages = with pkgs; [
     gnome-extension-manager
@@ -69,5 +65,12 @@
     gnomeExtensions.toggle-alacritty
     gnomeExtensions.just-perfection
     gnomeExtensions.window-gestures
+    gnomeExtensions.fly-pie
+    gnomeExtensions.forge
+    gnomeExtensions.advanced-alttab-window-switcher
+    gnomeExtensions.search-light
+    gnomeExtensions.tailscale-qs
+    gnomeExtensions.quick-settings-tweaker
+    gnomeExtensions.coverflow-alt-tab
   ];
 }
