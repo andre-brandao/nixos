@@ -50,7 +50,6 @@
     auto-optimise-store = true;
   };
 
- 
   nixpkgs = {
     # You can add overlays here
     overlays = [

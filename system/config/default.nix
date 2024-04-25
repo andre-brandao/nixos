@@ -10,6 +10,6 @@
     ./gc.nix
 
     ./bluetooth.nix
-    ./fingerprint-scanner.nix
+    # ./fingerprint-scanner.nix
   ];
 }
