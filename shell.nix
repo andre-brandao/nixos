@@ -1,5 +1,5 @@
 {
-  pkgs ? (import ./nixpkgs.nix) { },
+  pkgs ? (import ./nixpkgs.nix) { }
 }:
 {
   default = pkgs.mkShell {

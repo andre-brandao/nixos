@@ -1,6 +1,6 @@
 # My NixOS
 
-![Desktop](https://github.com/andre-brandao/nixos/blob/main/image.png?raw=true)
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/ashes.png?raw=true)
 
 ## Basic Flake Comands
 
