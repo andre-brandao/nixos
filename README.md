@@ -2,6 +2,12 @@
 
 ![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/ashes.png?raw=true)
 
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/stella.png?raw=true)
+
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/emil.png?raw=true)
+
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/fairy-floss.png?raw=true)
+
 ## Basic Flake Comands
 
 ### To rebuild home-manager, use the following command in the config directory:
