@@ -36,8 +36,6 @@
       nixpkgs,
       # nixos-hardware,
       home-manager,
-      stylix,
-      hyprland,
       ...
     }@inputs:
     let
@@ -59,7 +57,7 @@
         name = "Andre Brandao"; # name/identifier
         email = "brandaoandre@gmail.com";
         configDir = "/home/${userSettings.username}/dotfiles/nixos"; # absolute path of the local repo
-        theme = "ashes"; # selcted theme from my themes directory (./themes/)
+        theme = "gigavolt"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
         browser = "brave";
         term = "alacritty"; # Default terminal command;
