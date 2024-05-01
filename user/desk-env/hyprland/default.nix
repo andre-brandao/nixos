@@ -37,13 +37,13 @@ let
     "ALT, Tab, bringactivetotop,"
     # "ALT SHIFT, Tab, cycleprev,"
     # "ALT SHIFT, Tab, bringactivetotop,"
-    "$mainMod, E, exec, pypr expose"
+    # "$mainMod, E, hyprexpo:expo, toggle"
   ];
   workspaceSettings = [
     #these apps will open on the specified workspace when you firt open them
     "8, on-created-empty:vesktop"
     "9, on-created-empty:thunderbird"
-    "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
+    # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
   ];
   # https://github.com/hyprland-community/pyprland
   scratchpads = [
@@ -76,7 +76,7 @@ let
         class = "pavucontrol"
         lazy = true
         size = "40% 70%"
-        position = "40% 0%"
+        position = "0% 0%"
         unfocus = "hide"
       '';
     }
@@ -187,22 +187,18 @@ in
     xwayland.enable = true;
 
     # plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo ];
-    # extraConfig = ''
-    #   bind = SUPER, ALT, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
+    # settings.plugin = {
+    #   hyprexpo = {
+    #     columns = 3;
+    #     gap_size = 5;
+    #     bg_col = "0x33 ${config.lib.stylix.colors.base00}";
 
-    #   plugin {
-    #       hyprexpo {
-    #           columns = 3
-    #           gap_size = 5
-    #           bg_col = rgb(111111)
-    #           workspace_method = center current # [center/first] [workspace] e.g. first 1 or center m+1
-
-    #           enable_gesture = true # laptop touchpad, 4 fingers
-    #           gesture_distance = 300 # how far is the "max"
-    #           gesture_positive = true # positive = swipe down. Negative = swipe up.
-    #       }
-    #   }
-    # '';
+    #     workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+    #     enable_gesture = true; # laptop touchpad, 4 fingers
+    #     gesture_distance = 300; # how far is the "max"
+    #     gesture_positive = true; # positive = swipe down. Negative = swipe up.
+    #   };
+    # };
 
     settings = {
 
@@ -456,7 +452,7 @@ in
   # https://github.com/hyprland-community/pyprland
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]
-    plugins = ["scratchpads", "magnify", "expose"]
+    plugins = ["scratchpads", "magnify"]
 
     ${builtins.concatStringsSep "\n" (map (s: s.scratchpad) scratchpads)}
   '';

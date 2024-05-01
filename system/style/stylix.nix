@@ -11,7 +11,6 @@ let
   themePolarity = lib.removeSuffix "\n" (
     builtins.readFile (./. + "../../../themes" + ("/" + userSettings.theme) + "/polarity.txt")
   );
-  myLightDMTheme = if themePolarity == "light" then "Adwaita" else "Adwaita-dark";
   backgroundUrl = builtins.readFile (
     ./. + "../../../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt"
   );

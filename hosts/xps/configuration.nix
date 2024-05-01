@@ -18,8 +18,7 @@
 
     ../../system/app/virtualization.nix
     ../../system/app/docker.nix
-    ../../system/app/steam.nix
-    ../../system/app/minecraft.nix
+    ../../system/app/gaming.nix
     ../../system/app/tailscale.nix
 
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
@@ -81,7 +80,7 @@
     ];
     shell = pkgs.zsh;
 
-    packages = with pkgs; [ inputs.home-manager.packages.${pkgs.system}.default ];
+    packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
   };
 
   environment.shells = with pkgs; [ zsh ];

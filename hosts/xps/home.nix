@@ -51,14 +51,14 @@
   ];
   programs.chromium = {
     enable = true;
-    package = pkgs.brave;
+    # package = pkgs.brave;
   };
   home.packages = with pkgs; [
     spotify
     netflix
     filezilla
     # BROSWERS
-    # brave
+    brave
     firefox
 
     # CODE
@@ -127,6 +127,7 @@
     libffi
     zlib
     # nodePackages.ungit
+    rars
   ];
 
   home.sessionVariables = {
