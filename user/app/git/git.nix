@@ -14,8 +14,9 @@
   programs = {
     git = {
       enable = true;
-      userName = "andre-brandao";
-      userEmail = "brandaoandre00@gmail.com";
+      lfs.enable = true;
+      userName = userSettings.git-user;
+      userEmail = userSettings.email;
 
       aliases = {
         ci = "commit";

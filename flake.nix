@@ -54,6 +54,7 @@
       # ----- USER SETTINGS ----- #
       userSettings = {
         username = "andre"; # username
+        git-user = "andre-brandao";
         name = "Andre Brandao"; # name/identifier
         email = "brandaoandre@gmail.com";
         configDir = "/home/${userSettings.username}/dotfiles/nixos"; # absolute path of the local repo
