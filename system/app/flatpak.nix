@@ -1,4 +1,4 @@
-{pkgs, userSettings ... }:
+{pkgs, userSettings, ... }:
 
 {
   # Need some flatpaks
