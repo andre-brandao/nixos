@@ -21,6 +21,8 @@
     ../../system/app/gaming.nix
     ../../system/app/tailscale.nix
 
+    ../../system/app/xremap.nix
+
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     ../../system/desk-env/${userSettings.wm}.nix
 

@@ -13,30 +13,53 @@
 ## Basic Flake Comands
 
 ### To rebuild home-manager, use the following command in the config directory:
+
 ```bash
-home-manager swith --flake .#user
+home-manager switch --flake .#user
 ```
+
 or the alias from anywhere:
+
 ```bash
 sys-update
 ```
+
 ### To rebuild the system, use the following command in the config directory:
+
 ```bash
 sudo nixos-rebuild switch --flake .#system
 ```
+
 or the alias from anywhere:
+
 ```bash
 user-update
 ```
 
+### Available Desktop Enviroments
+
+- Hyprland (current)
+- GNOME
+- QTile (just a simple config, no stylix)
+
+### Stylix
+
+A nix flake that aplies a BASE16 colorscheme across multiple apps and desktop enviroments
+
+
+Check my stylix config at /user/style and /system/style or https://danth.github.io/stylix/index.html for all options
+
+Check out the themes directory!!
+
 ## File Strucure
+
 ```bash
 profiles
 |  personal
 |  |  hardware-configurantion.nix # CHANGE THIS!!
 system
 |  app # System aplications
-|  config # Common system configs 
+|  config # Common system configs
 |  style # Stylix settings
 |  desk-env # GNOME and hyprland
 user

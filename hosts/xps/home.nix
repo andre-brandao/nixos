@@ -23,9 +23,6 @@
     # (./. + "../../../user/desk-env" + ("/" + userSettings.wm)) 
     ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
 
-    # GAMES
-    ../../user/app/gaming/gaming.nix
-
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
