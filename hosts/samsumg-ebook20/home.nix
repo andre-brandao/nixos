@@ -30,7 +30,7 @@
 
     # EDITORS
     #../../user/app/editor/helix # My emacs config
-    ../../user/app/editor/vscode # My vscode config
+    #../../user/app/editor/vscode # My vscode config
   ];
   home.packages = with pkgs; [
     spotify
