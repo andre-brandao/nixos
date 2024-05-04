@@ -19,14 +19,10 @@
     ../../user/style/stylix.nix # Styling and themes for my apps
     ../../user/style/gtk.nix # My gtk config
 
-    # DESKTOP
-    # (./. + "../../../user/desk-env" + ("/" + userSettings.wm)) 
-    ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
-
-    ../../user/app/git/git.nix # My git config
+       ../../user/app/git/git.nix # My git config
     # SHELL 
     ../../user/shell/shell.nix # My shell config
-    ../../user/shell/cli-collection.nix # Useful CLI apps
+    # ../../user/shell/cli-collection.nix # Useful CLI apps
 
     # EDITORS
     #../../user/app/editor/helix # My emacs config

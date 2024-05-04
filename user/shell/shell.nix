@@ -3,19 +3,10 @@
   lib,
   config,
   pkgs,
-  nixvim,
   userSettings,
   ...
 }:
 let
-  inherit (builtins) readFile replaceStrings;
-  inherit (lib)
-    concatLines
-    concatStringsSep
-    genAttrs
-    mapAttrsToList
-    toShellVar
-    ;
   aliases = {
     # -- REBUILD SYSTEM
     # sys-update = "sudo nixos-rebuild switch --flake ${userSettings.configDir}/nixos#system ";

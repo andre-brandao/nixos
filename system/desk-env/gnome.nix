@@ -67,7 +67,6 @@
     gnomeExtensions.window-gestures
     gnomeExtensions.fly-pie
     gnomeExtensions.forge
-    gnomeExtensions.advanced-alttab-window-switcher
     gnomeExtensions.search-light
     gnomeExtensions.tailscale-qs
     gnomeExtensions.quick-settings-tweaker

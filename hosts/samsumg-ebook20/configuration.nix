@@ -16,7 +16,7 @@
     ./hardware-configuration.nix
     ../../system/config
 
-    ../../system/app/tailscale.nix
+    #../../system/app/tailscale.nix
     ../../system/app/flatpak.nix
 
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
