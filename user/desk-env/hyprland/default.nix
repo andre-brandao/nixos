@@ -421,7 +421,7 @@ in
           (f "transmission-gtk")
           (f "Bitwarden")
           (f "Spotify")
-          (f "blueman-manager")
+          (f ".blueman-manager-wrapped")
         ];
 
       bindm = [
