@@ -51,77 +51,69 @@
     # package = pkgs.brave;
   };
   home.packages = with pkgs; [
+    # ---- APPS ---- #
     spotify
     netflix
     filezilla
-    # BROSWERS
-    brave
-    firefox
-
-    # CODE
-    # vscode
-
-    # MESSAGING
-    thunderbird
+    thunderbird # email client
     discord
     betterdiscordctl
     # discord-screenaudio
     teams-for-linux
 
-    # UTILS
-    bitwarden
-    # gimp
-    inkscape
-    vlc
-    obs-studio
-
-    # Core
-    zsh
-    alacritty
-    # librewolf
+    # ---- BROWSERS ---- #
     brave
-    # qutebrowser
-    # dmenu
+    firefox
 
-    git
-    # syncthing
 
-    # Office
+    # ---- OFFICE ---- #
     libreoffice-fresh
-    # mate.atril
-    # xournalpp
-    glib
-    # newsflash
-    gnome.nautilus
-    gnome.gnome-calendar
-    gnome.seahorse
+    # ---- UTILS ---- #
+    bitwarden # Password manager
+    # syncthing
+    gnome.nautilus # File manager
 
+    # ---- WINDOWS ---- #
     wine
     bottles
-    # Media
-    # gimp-with-plugins
-    vlc
-    mpv
 
+    # ---- 3D Modeling ---- #
     blender
-    obs-studio
-    # kdenlive
+
+    # ---- MEDIA ---- #
     ffmpeg
     movit
     mediainfo
     libmediainfo
     mediainfo-gui
-    # audio-recorder
+    mpv
+    obs-studio
+    vlc
+    # kdenlive
+    gimp
+    inkscape
 
-    # Various dev packages
+    
+
+    # ---- DEV UTILS ---- #
     postman
-    texinfo
     libffi
     zlib
-    # nodePackages.ungit
-    rars
+    glib
 
+    git
+
+    zsh
+    alacritty
+
+    rars
     zed-editor
+
+    # ---- SERVICES ---- #
+    supabase-cli
+    turso-cli
+    stripe-cli
+    graphite-cli
   ];
 
   home.sessionVariables = {
