@@ -20,6 +20,7 @@
     ../../system/app/docker.nix
     ../../system/app/gaming.nix
     ../../system/app/tailscale.nix
+    ../../system/app/wireshark.nix
 
     ../../system/app/xremap.nix
 
@@ -89,11 +90,9 @@
   users.defaultUserShell = pkgs.zsh;
   programs = {
     zsh.enable = true;
-    wireshark.enable = true;
   };
   environment.systemPackages = with pkgs; [
     # helix
-    wireshark
     vim
     wget
     zsh
