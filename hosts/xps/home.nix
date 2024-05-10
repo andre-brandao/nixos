@@ -95,16 +95,11 @@
     gnome.nautilus
     gnome.gnome-calendar
     gnome.seahorse
-    texliveSmall
 
     wine
     bottles
     # Media
     # gimp-with-plugins
-    pinta
-    # krita
-    inkscape
-    # musikcube
     vlc
     mpv
 
@@ -125,6 +120,8 @@
     zlib
     # nodePackages.ungit
     rars
+
+    zed-editor
   ];
 
   home.sessionVariables = {

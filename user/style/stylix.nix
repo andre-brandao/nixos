@@ -52,7 +52,6 @@ in
     };
 
     targets = {
-      # lightdm.enable = true;
       gtk.enable = true;
       hyprland.enable = false;
       rofi.enable = true;
@@ -60,7 +59,14 @@ in
       kitty.enable = true;
       alacritty.enable = true;
       tmux.enable = true;
-      # dunst.enable = true;
+      dunst.enable = true;
+      bat.enable = true;
+      btop.enable = true;
+      fzf.enable = true;
+      gnome.enable = true;
+      lazygit.enable = true;
+      mangohud.enable = true;
+      
     };
     fonts.sizes = {
       terminal = 18;

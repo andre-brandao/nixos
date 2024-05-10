@@ -7,11 +7,16 @@
 }:
 {
 
+  # --------
+  # if you get an error about the user not being able to access the default libvirt network, run the following command:
+  # sudo virsh net-start default
+  # ---------
+
   users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
   environment.systemPackages = with pkgs; [
-    virt-manager
     virtualbox
     distrobox
+    libvirt-glib
   ];
 
   boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];

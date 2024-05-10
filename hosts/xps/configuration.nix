@@ -87,9 +87,13 @@
 
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
+  programs={
+    zsh.enable = true;
+    wireshark.enable = true;
+  };
   environment.systemPackages = with pkgs; [
     # helix
+    wireshark
     vim
     wget
     zsh

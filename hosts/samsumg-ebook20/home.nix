@@ -19,7 +19,7 @@
     ../../user/style/stylix.nix # Styling and themes for my apps
     ../../user/style/gtk.nix # My gtk config
 
-       ../../user/app/git/git.nix # My git config
+    ../../user/app/git/git.nix # My git config
     # SHELL 
     ../../user/shell/shell.nix # My shell config
     # ../../user/shell/cli-collection.nix # Useful CLI apps
@@ -67,7 +67,6 @@
     inkscape
     # musikcube
     vlc
-    mpv
     obs-studio
   ];
 
