@@ -3,7 +3,7 @@
   networking.hostName = systemSettings.hostname;
   # Enable networking
   networking.networkmanager.enable = true;
-
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPortRanges = [
     # KDE Connect
     {

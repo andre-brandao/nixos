@@ -1,4 +1,4 @@
-{ pkgs, userSettings }:
+{ pkgs, userSettings, ... }:
 {
   programs = {
     wireshark.enable = true;

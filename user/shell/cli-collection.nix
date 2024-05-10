@@ -8,22 +8,11 @@
     nix-tree
     nix-init
     statix
+    nixfmt-rfc-style
 
     nix-prefetch-git
     nix-prefetch-github
-
-    # ---- SERVICES ---- #
-    supabase-cli
-    turso-cli
-    stripe-cli
-    graphite-cli
-
     # ---- OTHER CLI ---- #
-    disfetch
-    neofetch
-    onefetch
-    starfetch
-    cava
     gnugrep
     gnused
     killall
@@ -40,18 +29,20 @@
     btop
     hwinfo
     unzip
-    brightnessctl # control laptop screen
     w3m
     fzf
     pandoc
     pciutils
     ncdu
     tldr
-
     expect
-
     dig
 
-    # ntfy
+    # ---- FETCHERS ---- #
+    disfetch
+    neofetch
+    onefetch
+    starfetch
+    cava
   ];
 }

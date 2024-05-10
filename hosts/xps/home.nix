@@ -20,7 +20,6 @@
     ../../user/style/gtk.nix # My gtk config
 
     # DESKTOP
-    # (./. + "../../../user/desk-env" + ("/" + userSettings.wm)) 
     ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
 
     # UTILS
@@ -65,7 +64,6 @@
     brave
     firefox
 
-
     # ---- OFFICE ---- #
     libreoffice-fresh
     # ---- UTILS ---- #
@@ -93,14 +91,18 @@
     gimp
     inkscape
 
-    
-
     # ---- DEV UTILS ---- #
     postman
     libffi
     zlib
     glib
 
+    aircrack-ng
+    netcat
+    metasploit
+    burpsuite
+
+    
     git
 
     zsh
