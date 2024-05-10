@@ -39,28 +39,12 @@
           # "temperature"
 
           "tray"
-          "backlight"
-          "pulseaudio"
-          # "network"
+          "group/backlight"
+          "group/pulseaudio"
+          "bluetooth"
+          "network"
           "group/power"
         ];
-
-        "group/power" = {
-          orientation = "horizontal";
-          "drawer" = {
-            "transition-duration" = 250;
-            "children-class" = "drawer";
-            "transition-left-to-right" = false;
-          };
-          modules = [
-            "battery"
-            "power-profiles-daemon"
-            "custom/quit"
-            "custom/lock"
-            "custom/reboot"
-            "custom/power" # // First element is the "group leader" and won't ever be hidden
-          ];
-        };
 
         battery = {
           "states" = {
@@ -93,35 +77,42 @@
           };
         };
 
+        "group/power" = {
+          orientation = "horizontal";
+          "drawer" = {
+            "transition-duration" = 250;
+            "children-class" = "drawer";
+            "transition-left-to-right" = false;
+          };
+          modules = [
+            "battery"
+            "power-profiles-daemon"
+            "custom/quit"
+            "custom/lock"
+            "custom/reboot"
+            "custom/power" # // First element is the "group leader" and won't ever be hidden
+          ];
+        };
+
         "custom/quit" = {
           "format" = "󰗼";
-          "tooltip" = false;
+          "tooltip" = "Quit";
           "on-click" = "hyprctl dispatch exit";
         };
         "custom/lock" = {
           "format" = "󰍁";
-          "tooltip" = false;
+          "tooltip" = "Lock";
           "on-click" = "hyprlock";
         };
         "custom/reboot" = {
           "format" = "󰜉";
-          "tooltip" = false;
+          "tooltip" = "Reboot";
           "on-click" = "reboot";
         };
         "custom/power" = {
-          "format" = "";
-          "tooltip" = false;
+          "format" = " ";
+          "tooltip" = "Power off";
           "on-click" = "shutdown now";
-        };
-
-        network = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
-          "format-ethernet" = "Connected  ";
-          "tooltip-format" = "{ifname} via {gwaddr} ";
-          "format-linked" = "{ifname} (No IP) ";
-          "format-disconnected" = "Disconnected ⚠";
-          "format-alt" = "{ifname}= {ipaddr}/{cidr}";
-          "on-click-right" = "nm-applet";
         };
 
         "custom/os" = {
@@ -245,6 +236,19 @@
           "path" = "/";
         };
 
+        "group/backlight" = {
+          orientation = "horizontal";
+          "drawer" = {
+            "transition-duration" = 250;
+            "children-class" = "drawer";
+            "transition-left-to-right" = false;
+          };
+          modules = [
+            "backlight"
+            "backlight/slider"
+          ];
+        };
+
         backlight = {
           "format" = "{percent}% {icon}";
           "format-icons" = [
@@ -260,9 +264,29 @@
           ];
         };
 
+        "backlight/slider" = {
+          "min" = 0;
+          "max" = 100;
+          "orientation" = "horizontal";
+          "device" = "intel_backlight";
+        };
+
+        "group/pulseaudio" = {
+          orientation = "horizontal";
+          "drawer" = {
+            "transition-duration" = 250;
+            "children-class" = "drawer";
+            "transition-left-to-right" = false;
+          };
+          modules = [
+            "pulseaudio"
+            "pulseaudio/slider"
+          ];
+        };
+
         pulseaudio = {
           "scroll-step" = 1;
-          "format" = "{volume}% {icon} ";
+          "format" = "{volume}% {icon}  {format_source}";
           "format-bluetooth" = "{volume}% {icon}  {format_source}";
           "format-bluetooth-muted" = "󰸈 {icon}  {format_source}";
           "format-muted" = "󰸈 {format_source}";
@@ -284,6 +308,33 @@
           "tooltip-format" = "{volume}% {icon}  {format_source}";
           "on-click" = "pypr toggle volume && hyprctl dispatch bringactivetotop";
         };
+        "pulseaudio/slider" = {
+          "min" = 0;
+          "max" = 100;
+          "orientation" = "horizontal";
+        };
+
+        "bluetooth" = {
+          "format" = " {status}";
+          "format-disabled" = "";
+          # "format-connected" = " {num_connections} connected";
+          "format-connected" = " {device_alias}";
+          "format-connected-battery" = " {device_alias} {device_battery_percentage}%";
+          "tooltip-format" = "{controller_alias}\t{controller_address}";
+          "tooltip-format-connected" = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          "tooltip-format-enumerate-connected" = "{device_alias}\t{device_address}";
+          on-click = "pypr toggle bluetooth && hyprctl dispatch bringactivetotop";
+        };
+
+        network = {
+          "format-wifi" = "{essid} ({signalStrength}%) ";
+          "format-ethernet" = "Connected  ";
+          "tooltip-format" = "{ifname} via {gwaddr} ";
+          "format-linked" = "{ifname} (No IP) ";
+          "format-disconnected" = "Disconnected ⚠";
+          "format-alt" = "{ifname}= {ipaddr}/{cidr}";
+          "on-click" = "pypr toggle network && hyprctl dispatch bringactivetotop";
+        };
       };
     };
 
@@ -296,6 +347,8 @@
        @define-color fgBlack #${config.lib.stylix.colors.base01};
 
        @define-color accent #${config.lib.stylix.colors.base08};
+
+       @define-color accent2 #${config.lib.stylix.colors.base09};
 
        @define-color warning #eb4d4b;
        @define-color bgBatteryCharging #00FA9A;
@@ -404,8 +457,41 @@
 
 
 
+      #backlight-slider slider {
+        background-color: @accent2;
+        border-radius: 5px;
+      }
+      #backlight-slider trough {
+        min-width: 80px;
+        border-radius: 5px;
+        background-color: @accent2;
+      }
+      #backlight-slider highlight {
+        min-width: 10px;
+        border-radius: 5px;
+        background-color: @accent;
+      }
+
+      #pulseaudio-slider slider {
+        background-color: @accent2;
+        border-radius: 5px;
+
+      }
+      #pulseaudio-slider trough {
+        min-width: 80px;
+        border-radius: 5px;
+        background-color: @accent2;
+      }
+      #pulseaudio-slider highlight {
+        min-width: 10px;
+        border-radius: 5px;
+        background-color: @accent;
+      }
+
+
 
        #clock,
+       #bluetooth,
        #cpu,
        #memory,
        #disk,

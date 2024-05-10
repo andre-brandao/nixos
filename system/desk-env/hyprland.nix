@@ -15,17 +15,18 @@
       variant = "";
       options = "grp:win_space_toggle";
     };
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-      # theme = "chili";
-    };
-    # displayManager.sddm = {
+    # displayManager.gdm = {
     #   enable = true;
-    #   wayland.enable = true;
-    #   enableHidpi = true;
+    #   wayland = true;
     #   # theme = "chili";
     # };
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      enableHidpi = true;
+      theme = "chili";
+      package = pkgs.sddm;
+    };
   };
 
   security = {

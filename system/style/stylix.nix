@@ -70,4 +70,9 @@ in
       grub.enable = true;
     };
   };
+
+  services.xserver.displayManager.lightdm = {
+    greeters.slick.enable = true;
+    greeters.slick.theme.name = "Adwaita-dark";
+  };
 }

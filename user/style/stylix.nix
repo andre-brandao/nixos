@@ -19,7 +19,11 @@ let
   );
 in
 {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [
+    inputs.stylix.homeManagerModules.stylix
+    ./gtk.nix
+    ./qt.nix
+  ];
 
   home.file.".currenttheme".text = userSettings.theme;
   # stylix.autoEnable = false;
@@ -66,7 +70,6 @@ in
       gnome.enable = true;
       lazygit.enable = true;
       mangohud.enable = true;
-      
     };
     fonts.sizes = {
       terminal = 18;

@@ -75,8 +75,35 @@ let
         command = "pavucontrol"
         class = "pavucontrol"
         lazy = true
-        size = "40% 70%"
-        position = "0% 0%"
+        size = "25% 60%"
+        position = "70% 5%"
+        unfocus = "hide"
+      '';
+    }
+    {
+      bind = "$mainMod, P,exec,pypr toggle network && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.network]
+        animation = "fromRight"
+        command = "nm-connection-editor"
+        class = "nm-connection-editor"
+        lazy = true
+        size = "25% 60%"
+        position = "70% 5%"
+        unfocus = "hide"
+      '';
+    }
+    {
+      # bluetooth
+      bind = "$mainMod, B,exec,pypr toggle bluetooth && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.bluetooth]
+        animation = "fromRight"
+        command = "blueman-manager"
+        class = "blueman-manager"
+        lazy = true
+        size = "25% 60%"
+        position = "70% 5%"
         unfocus = "hide"
       '';
     }
@@ -206,17 +233,9 @@ in
       exec-once = [
         "dunst"
         #  "ags"
-
         "pypr"
-
         # "xwaylandvideobridge"
-
         "waybar"
-        # tray icons
-        #"nm-applet --indicator"
-        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-        "blueman-applet"
-        # "${userSettings.browser}"
         "hyprpaper"
         "hypridle"
       ];
@@ -318,6 +337,7 @@ in
         #   # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = "yes";
         preserve_split = "yes";
+        no_gaps_when_only = 2;
       };
       gestures = {
         # # See https://wiki.hyprland.org/Configuring/Variables/ for more
