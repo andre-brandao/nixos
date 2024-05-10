@@ -402,8 +402,6 @@ in
         "noblur,class:^(xwaylandvideobridge)$"
 
         # FLOATING WINDOWS
-        "float,class:(Bitwarden)"
-        "float,class:^(Spotify)$"
       ];
 
       windowrule =
@@ -422,6 +420,8 @@ in
           (f "xdg-desktop-portal-gnome")
           (f "transmission-gtk")
           (f "Bitwarden")
+          (f "Spotify")
+          (f "blueman-manager")
         ];
 
       bindm = [

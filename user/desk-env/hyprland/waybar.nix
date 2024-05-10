@@ -458,8 +458,8 @@
 
 
       #backlight-slider slider {
-        background-color: @accent2;
-        border-radius: 5px;
+        background-color: @accent;
+        border-radius: 15px;
       }
       #backlight-slider trough {
         min-width: 80px;
@@ -473,8 +473,8 @@
       }
 
       #pulseaudio-slider slider {
-        background-color: @accent2;
-        border-radius: 5px;
+        background-color: @accent;
+        border-radius: 15px;
 
       }
       #pulseaudio-slider trough {

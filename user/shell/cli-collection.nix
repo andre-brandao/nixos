@@ -9,6 +9,9 @@
     nix-init
     statix
 
+    nix-prefetch-git
+    nix-prefetch-github
+
     # ---- SERVICES ---- #
     supabase-cli
     turso-cli

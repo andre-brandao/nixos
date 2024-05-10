@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  userSettings,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -24,8 +29,10 @@
       enable = true;
       wayland.enable = true;
       enableHidpi = true;
-      theme = "chili";
-      package = pkgs.sddm;
+      theme = "${import ./extras/sddm-theme.nix {
+        inherit pkgs;
+        inherit userSettings;
+      }}";
     };
   };
 
@@ -56,6 +63,11 @@
       with pkgs;
       with gnome;
       [
+
+        libsForQt5.qt5.qtquickcontrols2
+        libsForQt5.qt5.qtgraphicaleffects
+
+
         gnome.adwaita-icon-theme
         loupe
         nautilus
