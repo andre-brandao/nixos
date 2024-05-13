@@ -30,7 +30,10 @@
           "hyprland/workspaces"
           "hyprland/window"
         ];
-        modules-center = [ "clock" ];
+        modules-center = [
+          "clock"
+          "privacy"
+        ];
         modules-right = [
           "idle_inhibitor"
 
@@ -314,12 +317,12 @@
           "orientation" = "horizontal";
         };
 
-        "bluetooth" = {
+        bluetooth = {
           "format" = " {status}";
           "format-disabled" = "";
-          # "format-connected" = " {num_connections} connected";
-          "format-connected" = " {device_alias}";
-          "format-connected-battery" = " {device_alias} {device_battery_percentage}%";
+          "format-connected" = " {num_connections} ";
+          # "format-connected" = " {device_alias}";
+          # "format-connected-battery" = " {device_alias} {device_battery_percentage}%";
           "tooltip-format" = "{controller_alias}\t{controller_address}";
           "tooltip-format-connected" = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
           "tooltip-format-enumerate-connected" = "{device_alias}\t{device_address}";
@@ -327,13 +330,36 @@
         };
 
         network = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
+          "format-wifi" = "({signalStrength}%)  ";
           "format-ethernet" = "Connected  ";
           "tooltip-format" = "{ifname} via {gwaddr} ";
           "format-linked" = "{ifname} (No IP) ";
           "format-disconnected" = "Disconnected ⚠";
-          "format-alt" = "{ifname}= {ipaddr}/{cidr}";
+          # "format-alt" = "{ifname}= {ipaddr}/{cidr}";
           "on-click" = "pypr toggle network && hyprctl dispatch bringactivetotop";
+        };
+
+        privacy = {
+          "icon-spacing" = 4;
+          "icon-size" = 18;
+          "transition-duration" = 250;
+          "modules" = [
+            {
+              "type" = "screenshare";
+              "tooltip" = true;
+              "tooltip-icon-size" = 24;
+            }
+            {
+              "type" = "audio-out";
+              "tooltip" = true;
+              "tooltip-icon-size" = 24;
+            }
+            {
+              "type" = "audio-in";
+              "tooltip" = true;
+              "tooltip-icon-size" = 24;
+            }
+          ];
         };
       };
     };
@@ -413,6 +439,7 @@
 
        #mode {
          background-color: @bgDefault;
+         border-top: 3px solid @fgDefault;
          border-bottom: 3px solid @fgDefault;
        }
              
@@ -457,32 +484,17 @@
 
 
 
-      #backlight-slider slider {
+      slider {
         background-color: @accent;
         border-radius: 15px;
       }
-      #backlight-slider trough {
+      trough {
         min-width: 80px;
+        min-height: 5px;
         border-radius: 5px;
         background-color: @accent2;
       }
-      #backlight-slider highlight {
-        min-width: 10px;
-        border-radius: 5px;
-        background-color: @accent;
-      }
-
-      #pulseaudio-slider slider {
-        background-color: @accent;
-        border-radius: 15px;
-
-      }
-      #pulseaudio-slider trough {
-        min-width: 80px;
-        border-radius: 5px;
-        background-color: @accent2;
-      }
-      #pulseaudio-slider highlight {
+      highlight {
         min-width: 10px;
         border-radius: 5px;
         background-color: @accent;
@@ -490,6 +502,7 @@
 
 
 
+       #privacy,
        #clock,
        #bluetooth,
        #cpu,
@@ -539,7 +552,7 @@
          background-color: @bgBateryCritical;
          color: @fgDefault;
          animation-name: blink;
-         animation-duration: 0.8s;
+         animation-duration: 0.4s;
          animation-timing-function: linear;
          animation-iteration-count: infinite;
          animation-direction: alternate;
