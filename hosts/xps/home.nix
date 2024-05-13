@@ -102,7 +102,6 @@
     metasploit
     burpsuite
 
-    
     git
 
     zsh
