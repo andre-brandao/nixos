@@ -37,6 +37,7 @@
     tldr
     expect
     dig
+    jq
 
     # ---- FETCHERS ---- #
     disfetch

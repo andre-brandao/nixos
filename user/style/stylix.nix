@@ -89,26 +89,19 @@ in
   };
 
   programs = {
-        cava = {
+    cava = {
       enable = true;
       settings = {
         color =
-          let
-            baseA = "'#${config.lib.stylix.colors.base0A}'";
-            baseB = "'#${config.lib.stylix.colors.base0B}'";
-            baseC = "'#${config.lib.stylix.colors.base0C}'";
-            baseD = "'#${config.lib.stylix.colors.base0D}'";
-            baseE = "'#${config.lib.stylix.colors.base0E}'";
-          in
           {
-            foreground = baseA;
+            foreground = "'#${config.lib.stylix.colors.base0A}'";
             #background = base3;
             gradient = 1;
-            gradient_color_1 = baseA;
-            gradient_color_2 = baseB;
-            gradient_color_3 = baseC;
-            gradient_color_4 = baseD;
-            gradient_color_5 = baseE;
+            gradient_color_1 = "'#${config.lib.stylix.colors.base0A}'";
+            gradient_color_2 = "'#${config.lib.stylix.colors.base0B}'";
+            gradient_color_3 = "'#${config.lib.stylix.colors.base0C}'";
+            gradient_color_4 = "'#${config.lib.stylix.colors.base0D}'";
+            gradient_color_5 = "'#${config.lib.stylix.colors.base0E}'";
           };
       };
     };

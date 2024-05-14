@@ -20,6 +20,11 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+      inputs.hyprland.follows = "hyprland";
+    };
 
     # astal.url = "github:Aylur/astal";
     ags.url = "github:Aylur/ags"; # TODO:  (my config still in progress)
