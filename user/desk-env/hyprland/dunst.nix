@@ -7,9 +7,9 @@
       global = {
         width = 400;
         # height = 300;
-        # offset = "30x50";
+        offset = "30x50";
         transparency = 10;
-        origin = "top-center";
+        origin = "top-right";
         # origin = "bottom-right";
         # frame_color = "#${config.lib.stylix.colors.base0A}";
         frame_width = 1;

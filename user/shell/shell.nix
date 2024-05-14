@@ -115,7 +115,8 @@ in
     };
     # BETTER CD
     zoxide.enable = true;
-    cava.enable = true;
+
+
     thefuck = {
       enable = true;
       enableZshIntegration = true;
@@ -245,7 +246,7 @@ in
           # STATUS BAR
 
 
-          set -g status-right ' #[${color1}] cpu: #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
+          set -g status-right ' #[${color1}]  : #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
           set -g status-left '#[${color3}] 󱄅 '
 
           # set-option -g status-position top

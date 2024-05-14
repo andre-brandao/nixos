@@ -88,6 +88,31 @@ in
     };
   };
 
+  programs = {
+        cava = {
+      enable = true;
+      settings = {
+        color =
+          let
+            baseA = "'#${config.lib.stylix.colors.base0A}'";
+            baseB = "'#${config.lib.stylix.colors.base0B}'";
+            baseC = "'#${config.lib.stylix.colors.base0C}'";
+            baseD = "'#${config.lib.stylix.colors.base0D}'";
+            baseE = "'#${config.lib.stylix.colors.base0E}'";
+          in
+          {
+            foreground = baseA;
+            #background = base3;
+            gradient = 1;
+            gradient_color_1 = baseA;
+            gradient_color_2 = baseB;
+            gradient_color_3 = baseC;
+            gradient_color_4 = baseD;
+            gradient_color_5 = baseE;
+          };
+      };
+    };
+  };
   # home.packages = with pkgs; [ qt5ct pkgs.libsForQt5.breeze-qt5 ];
   # home.sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
   # programs.zsh.sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };

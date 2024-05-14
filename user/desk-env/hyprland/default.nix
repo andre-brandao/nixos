@@ -137,8 +137,8 @@ let
       scratchpad = ''
         [scratchpads.whatsapp]
         animation = "fromLeft"
-        command = "brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm"
-        class = "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default"
+        command = "brave --profile-directory=Default --app=https://web.whatsapp.com/"
+        class = "brave-web.whatsapp.com__-Default"
         size = "75% 60%"
         process_tracking = false 
       '';
