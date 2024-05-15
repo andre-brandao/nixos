@@ -92,17 +92,16 @@ in
     cava = {
       enable = true;
       settings = {
-        color =
-          {
-            foreground = "'#${config.lib.stylix.colors.base0A}'";
-            #background = base3;
-            gradient = 1;
-            gradient_color_1 = "'#${config.lib.stylix.colors.base0A}'";
-            gradient_color_2 = "'#${config.lib.stylix.colors.base0B}'";
-            gradient_color_3 = "'#${config.lib.stylix.colors.base0C}'";
-            gradient_color_4 = "'#${config.lib.stylix.colors.base0D}'";
-            gradient_color_5 = "'#${config.lib.stylix.colors.base0E}'";
-          };
+        color = {
+          foreground = "'#${config.lib.stylix.colors.base0A}'";
+          #background = base3;
+          gradient = 1;
+          gradient_color_1 = "'#${config.lib.stylix.colors.base0A}'";
+          gradient_color_2 = "'#${config.lib.stylix.colors.base0B}'";
+          gradient_color_3 = "'#${config.lib.stylix.colors.base0C}'";
+          gradient_color_4 = "'#${config.lib.stylix.colors.base0D}'";
+          gradient_color_5 = "'#${config.lib.stylix.colors.base0E}'";
+        };
       };
     };
   };

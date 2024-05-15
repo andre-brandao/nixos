@@ -54,6 +54,7 @@
         timezone = "America/Sao_Paulo"; # select timezone
         language = "en_US.UTF-8"; # select language
         locale = "pt_BR.UTF-8"; # select locale
+        plymouthTheme = "lone"; #Check all themes on: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/data/themes/adi1090x-plymouth-themes/shas.nix
       };
 
       # ----- USER SETTINGS ----- #

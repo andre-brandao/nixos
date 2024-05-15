@@ -56,15 +56,7 @@ in
       console.enable = true;
       gtk.enable = true;
       gnome.enable = true;
-      plymouth = {
-
-        enable = true;
-        logo = pkgs.fetchurl {
-          url = "https://nixos.org/logo/nixos-logo-only-hires.png";
-          sha256 = "0j3bsx52lgacgbaslry2v3mqmv0v75cn11akdfjplr09pbl8av8s";
-        };
-        logoAnimated = true;
-      };
+      plymouth.enable = false;
       nixos-icons.enable = true;
       chromium.enable = true;
       grub.enable = true;
