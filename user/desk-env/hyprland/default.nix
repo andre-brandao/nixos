@@ -217,7 +217,7 @@ in
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
-     settings.plugin = {
+    settings.plugin = {
       #  hyprexpo = {
       #    columns = 3;
       #    gap_size = 5;
@@ -228,7 +228,7 @@ in
       #    gesture_distance = 300; # how far is the "max"
       #    gesture_positive = true; # positive = swipe down. Negative = swipe up.
       #  };
-     };
+    };
 
     settings = {
 

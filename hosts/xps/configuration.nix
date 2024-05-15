@@ -98,6 +98,7 @@
     zsh
     git
   ];
+  security.polkit.enable = true;
 
   # firmware updater
   services.fwupd.enable = true;
