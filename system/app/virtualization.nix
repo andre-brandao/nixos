@@ -15,6 +15,7 @@
   users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
   environment.systemPackages = with pkgs; [
     virtualbox
+    virt-manager
     distrobox
     libvirt-glib
   ];
@@ -22,7 +23,13 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 
   ## QEMU + VirtManager
-  virtualisation.libvirtd.enable = true;
-  # sudo virsh net-start default (RUN THIS IF NETWORK IS NOT STARTED)
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.runAsRoot = false;
+    allowedBridges = [
+      "nm-bridge"
+      "virbr0"
+    ];
+  };
   programs.virt-manager.enable = true;
 }
