@@ -54,7 +54,7 @@
         timezone = "America/Sao_Paulo"; # select timezone
         language = "en_US.UTF-8"; # select language
         locale = "pt_BR.UTF-8"; # select locale
-        plymouthTheme = "lone"; #Check all themes on: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/data/themes/adi1090x-plymouth-themes/shas.nix
+        plymouthTheme = "lone"; # Check all themes on: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/data/themes/adi1090x-plymouth-themes/shas.nix
       };
 
       # ----- USER SETTINGS ----- #
@@ -62,7 +62,7 @@
         username = "andre"; # username
         git-user = "andre-brandao";
         name = "Andre Brandao"; # name/identifier
-        email = "brandaoandre@gmail.com";
+        email = "82166576+andre-brandao@users.noreply.github.com";
         configDir = "/home/${userSettings.username}/dotfiles/nixos"; # absolute path of the local repo
         theme = "gigavolt"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
