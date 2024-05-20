@@ -24,6 +24,7 @@
   environment.systemPackages = with pkgs; [
     prismlauncher
     # steam
+    gamemode
     mangohud
     lutris
   ];
