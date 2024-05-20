@@ -4,6 +4,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
+
+  programs.kdeconnect.enable = true;
   networking.firewall.allowedTCPPortRanges = [
     # KDE Connect
     {

@@ -70,6 +70,7 @@ in
       gnome.enable = true;
       lazygit.enable = true;
       mangohud.enable = true;
+      vesktop.enable = true;
     };
     fonts.sizes = {
       terminal = 18;
