@@ -90,7 +90,6 @@ let
         lazy = true
         size = "25% 60%"
         position = "70% 5%"
-        unfocus = "hide"
       '';
     }
     {
@@ -147,10 +146,10 @@ let
       bind = "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop";
       scratchpad = ''
         [scratchpads.openai]
-        animation = "fromLeft"
+        animation = "fromRight"
         command = "brave --profile-directory=Default --app=https://chat.openai.com"
         class = "brave-chat.openai.com__-Default"
-        size = "75% 60%"
+        size = "45% 85%"
         process_tracking = false 
       '';
     }
@@ -223,7 +222,7 @@ in
       #    gap_size = 5;
       #    bg_col = "0x33 ${config.lib.stylix.colors.base00}";
 
-      #    workspace_method = "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+      #    workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
       #    enable_gesture = true; # laptop touchpad, 4 fingers
       #    gesture_distance = 300; # how far is the "max"
       #    gesture_positive = true; # positive = swipe down. Negative = swipe up.

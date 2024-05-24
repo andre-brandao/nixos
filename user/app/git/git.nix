@@ -14,7 +14,7 @@
   programs = {
     git = {
       enable = true;
-      lfs.enable = true;
+      lfs.enable = true; # git config http.postBuffer 524288000
       userName = userSettings.git-user;
       userEmail = userSettings.email;
 
