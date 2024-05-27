@@ -37,6 +37,9 @@ let
     "ALT, Tab, bringactivetotop,"
     # "ALT SHIFT, Tab, cycleprev,"
     # "ALT SHIFT, Tab, bringactivetotop,"
+
+   #  "mainMod, E,hycov:toggleoverview"
+
     # "$mainMod, E, hyprexpo:expo, toggle"
   ];
   workspaceSettings = [
@@ -164,6 +167,17 @@ let
         process_tracking = false 
       '';
     }
+    {
+      bind = "$mainMod,P,exec,pypr toggle proton && hyprctl dispatch bringactivetotop";
+      scratchpad = ''
+        [scratchpads.proton]
+        animation = "fromLeft"
+        command = "brave --profile-directory=Default --app=https://mail.proton.me/u/2/inbox"
+        class = "brave-mail.prton.me__-Default"
+        size = "95% 85%"
+        process_tracking = false 
+      '';
+    }
   ];
 in
 {
@@ -208,6 +222,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
     systemd.enable = true;
     xwayland.enable = true;
@@ -215,18 +230,25 @@ in
     plugins = [
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      # inputs.hycov.packages.${pkgs.system}.hycov
     ];
     settings.plugin = {
-      #  hyprexpo = {
-      #    columns = 3;
-      #    gap_size = 5;
-      #    bg_col = "0x33 ${config.lib.stylix.colors.base00}";
+      # hyprexpo = {
+      #   columns = 3;
+      #   gap_size = 5;
+      #   bg_col = "0x33 ${config.lib.stylix.colors.base00}";
 
-      #    workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
-      #    enable_gesture = true; # laptop touchpad, 4 fingers
-      #    gesture_distance = 300; # how far is the "max"
-      #    gesture_positive = true; # positive = swipe down. Negative = swipe up.
-      #  };
+      #   workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
+      #   enable_gesture = true; # laptop touchpad, 4 fingers
+      #   gesture_distance = 300; # how far is the "max"
+      #   gesture_positive = true; # positive = swipe down. Negative = swipe up.
+      # };
+      # hycov = {
+      #   overview_gappo = 60; # gaps width from screen
+      #   overview_gappi = 24; # gaps width from clients
+      #   hotarea_size = 10; # hotarea size in bottom left,10x10
+      #   enable_hotarea = 1; # enable mouse cursor hotarea
+      # };
     };
 
     settings = {
@@ -440,7 +462,6 @@ in
 
       bindle =
         let
-          playerctl = "${pkgs.playerctl}/bin/playerctl";
           brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
           pactl = "${pkgs.pulseaudio}/bin/pactl";
         in
@@ -457,7 +478,6 @@ in
       bindl =
         let
           playerctl = "${pkgs.playerctl}/bin/playerctl";
-          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
           pactl = "${pkgs.pulseaudio}/bin/pactl";
         in
         [

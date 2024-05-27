@@ -15,7 +15,12 @@
     };
 
     # HyperLand
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # url = "github:hyprwm/Hyprland/v0.39.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -25,9 +30,10 @@
       # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
       inputs.hyprland.follows = "hyprland";
     };
-
-    # astal.url = "github:Aylur/astal";
-    ags.url = "github:Aylur/ags"; # TODO:  (my config still in progress)
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
 
@@ -92,7 +98,6 @@
         system = nixpkgs.lib.nixosSystem {
           modules = [
             (./. + "/hosts" + ("/" + systemSettings.profile) + "/configuration.nix")
-            # nixos-hardware.nixosModules.dell-xps-13-9300
           ];
           specialArgs = {
             inherit inputs outputs;

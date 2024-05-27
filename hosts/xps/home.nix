@@ -109,6 +109,7 @@
 
     rars
     zed-editor
+    # jetbrains.pycharm-professional
 
     # ---- SERVICES ---- #
     supabase-cli
