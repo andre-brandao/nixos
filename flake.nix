@@ -7,7 +7,6 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,7 +19,6 @@
       # url = "github:hyprwm/Hyprland/v0.39.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -73,7 +71,8 @@
         theme = "gigavolt"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
         browser = "brave";
-        term = "alacritty"; # Default terminal command;
+        term = "kitty"; # Default terminal command;
+        shell = "zsh"; # Default shell;
         font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
         editor = "codium"; # Default editor;

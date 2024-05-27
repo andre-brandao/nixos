@@ -45,9 +45,18 @@
     ../../user/app/editor/helix # My emacs config
     ../../user/app/editor/vscode # My vscode config
   ];
-  programs.chromium = {
+
+  services = {
+    blueman-applet.enable = true;
+  };
+
+  programs = {
+
+  chromium = {
     enable = true;
     # package = pkgs.brave;
+  };
+
   };
   home.packages = with pkgs; [
     # ---- APPS ---- #
@@ -55,6 +64,7 @@
     netflix
     filezilla
     thunderbird # email client
+    protonmail-bridge
     discord
     betterdiscordctl
     # discord-screenaudio
@@ -90,6 +100,7 @@
     # kdenlive
     gimp
     inkscape
+    blueman
 
     # ---- DEV UTILS ---- #
     postman

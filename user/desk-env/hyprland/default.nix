@@ -55,8 +55,8 @@ let
       scratchpad = ''
         [scratchpads.term]
         animation = "fromBottom"
-        command = "alacritty --class alacritty-dropterm"
-        class = "alacritty-dropterm"
+        command = "${userSettings.term} --class dropterm"
+        class = "dropterm"
         size = "85% 85%"
       '';
     }
@@ -81,6 +81,7 @@ let
         size = "25% 60%"
         position = "70% 5%"
         unfocus = "hide"
+        hysteresis=2
       '';
     }
     {
@@ -107,6 +108,8 @@ let
         size = "25% 60%"
         position = "70% 5%"
         unfocus = "hide"
+        hysteresis=2
+
       '';
     }
     {
@@ -118,6 +121,7 @@ let
         class = "spotify"
         size = "45% 85%"
         unfocus = "hide"
+        hysteresis=2
       '';
     }
     {
@@ -129,6 +133,7 @@ let
         class = "bitwarden"
         size = "45% 70%"
         unfocus = "hide"
+        hysteresis=2
       '';
     }
     # -----------------------------
@@ -173,7 +178,7 @@ let
         [scratchpads.proton]
         animation = "fromLeft"
         command = "brave --profile-directory=Default --app=https://mail.proton.me/u/2/inbox"
-        class = "brave-mail.prton.me__-Default"
+        class = "brave-mail.prton.me__u_2_inbox-Default"
         size = "95% 85%"
         process_tracking = false 
       '';
@@ -182,8 +187,9 @@ let
 in
 {
   imports = [
-    ./waybar.nix
-    ./dunst.nix
+    ../extras/bar/waybar.nix
+    ../extras/bar/nwg-dock.nix
+    ../extras/notification/dunst.nix
     # ./ags.nix
     ./lockscreen.nix
     ./xremap.nix
@@ -218,6 +224,9 @@ in
 
     waybar
     dunst
+    nwg-dock-hyprland
+    nwg-drawer
+    nwg-launchers
   ];
 
   wayland.windowManager.hyprland = {
@@ -255,13 +264,16 @@ in
 
       #  lib.filter is a helper function that filters out null values
       exec-once = [
+        "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         "dunst"
         #  "ags"
-        "pypr"
         # "xwaylandvideobridge"
-        "waybar"
         "hyprpaper"
         "hypridle"
+        "waybar"
+        "pypr"
+        "protonmail-bridge --noninteractive"
+        ""
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
@@ -511,22 +523,17 @@ in
     wallpaper = DP-1,${config.stylix.image}
   '';
 
-  # home.file.".config/hypr/hyprpaper.conf".text =
-  #   "\n    preload = "
-  #   + config.stylix.image
-  #   + ''
 
-  #     wallpaper = eDP-1,''
-  #   + config.stylix.image
-  #   + ''
-
-  #     wallpaper = HDMI-A-1,''
-  #   + config.stylix.image
-  #   + ''
-
-  #     wallpaper = DP-1,''
-  #   + config.stylix.image
-  #   + ''
-  #     ipc = off 
-  #   '';
+  home.file.".config/swappy/config".text = ''
+    [Default]
+    save_dir=$HOME/Pictures/Screenshots
+    save_filename_format=swappy-%Y%m%d-%H%M%S.png
+    show_panel=false
+    line_size=5
+    text_size=20
+    text_font=sans-serif
+    paint_mode=brush
+    early_exit=false
+    fill_shape=false
+  '';
 }
