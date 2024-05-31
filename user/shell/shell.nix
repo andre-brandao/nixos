@@ -29,6 +29,8 @@ let
     dl = "http --download get";
 
     quit = "exit";
+
+    neofetch = "fastfetch";
   };
 in
 {
@@ -109,6 +111,14 @@ in
             repo = "zsh-history-substring-search";
             rev = "0f80b8eb3368b46e5e573c1d91ae69eb095db3fb";
             sha256 = "0y8va5kc2ram38hbk2cibkk64ffrabfv1sh4xm7pjspsba9n5p1y";
+          };
+        }
+        {
+          name = "zsh-autosuggestions";
+          file = "zsh-autosuggestions.plugin.zsh";
+          src = builtins.fetchGit {
+            url = "https://github.com/zsh-users/zsh-autosuggestions";
+            rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
           };
         }
       ];
@@ -251,12 +261,13 @@ in
           # set-option -g status-position top
 
 
-                    run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+          run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
         '';
     };
   };
 
   home.packages = with pkgs; [
+    fastfetch
     disfetch
     onefetch
     gnugrep
@@ -264,11 +275,8 @@ in
     bat
     eza
     bottom
-    fd
-    bc
     direnv
     nix-direnv
-    nix-output-monitor
     nh
   ];
 

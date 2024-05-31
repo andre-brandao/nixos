@@ -38,7 +38,7 @@ let
     # "ALT SHIFT, Tab, cycleprev,"
     # "ALT SHIFT, Tab, bringactivetotop,"
 
-   #  "mainMod, E,hycov:toggleoverview"
+    #  "mainMod, E,hycov:toggleoverview"
 
     # "$mainMod, E, hyprexpo:expo, toggle"
   ];
@@ -273,7 +273,8 @@ in
         "waybar"
         "pypr"
         "protonmail-bridge --noninteractive"
-        ""
+        "systemctl --user import-environment PATH"
+        "systemctl --user restart xdg-desktop-portal.service"
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
@@ -295,7 +296,7 @@ in
         kb_layout = "us,br";
         kb_variant = "";
         kb_model = "";
-        kb_options = "grp:win_space_toggle";
+        kb_options = "grp:win_space_toggle,caps:escape";
         kb_rules = "";
 
         follow_mouse = 1;
@@ -522,7 +523,6 @@ in
 
     wallpaper = DP-1,${config.stylix.image}
   '';
-
 
   home.file.".config/swappy/config".text = ''
     [Default]

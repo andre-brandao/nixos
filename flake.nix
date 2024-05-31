@@ -95,9 +95,7 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
-          modules = [
-            (./. + "/hosts" + ("/" + systemSettings.profile) + "/configuration.nix")
-          ];
+          modules = [ (./. + "/hosts" + ("/" + systemSettings.profile) + "/configuration.nix") ];
           specialArgs = {
             inherit inputs outputs;
             inherit systemSettings;
