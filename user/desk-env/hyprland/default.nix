@@ -67,7 +67,7 @@ let
         animation = "fromRight"
         command = "nautilus"
         class = "nautilus"
-        size = "85% 85%"
+        size = "35% 75%"
       '';
     }
     {
