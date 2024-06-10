@@ -85,17 +85,6 @@ in
       shellAliases = aliases;
 
       plugins = [
-        # {
-        #   # https://github.com/softmoth/zsh-vim-mode
-        #   name = "zsh-vim-mode";
-        #   file = "zsh-vim-mode.plugin.zsh";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "softmoth";
-        #     repo = "zsh-vim-mode";
-        #     rev = "abef0c0c03506009b56bb94260f846163c4f287a";
-        #     sha256 = "0cnjazclz1kyi13m078ca2v6l8pg4y8jjrry6mkvszd383dx1wib";
-        #   };
-        # }
         {
           # https://github.com/hlissner/zsh-autopair
           name = "zsh-autopair";

@@ -21,6 +21,9 @@
           color2 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
 
           color3 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+
+          background = "${config.lib.stylix.colors.base00}";
+          foreground = "${config.lib.stylix.colors.base0D}";
         in
         ''
 
@@ -70,8 +73,11 @@
 
           set -g status-right ' #[${color1}]  : #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
           set -g status-left '#[${color3}] 󱄅 '
-
+          set -g status-bg '#${background}'
+          set -g status-fg '#${foreground}'
+          
           # set-option -g status-position top
+
 
 
           run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
