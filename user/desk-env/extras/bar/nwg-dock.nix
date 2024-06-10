@@ -67,20 +67,4 @@
           }
 
     '';
-  home.file.".config/nwg-dock-pinned".text = ''
-    Alacritty
-    brave-browser
-    librewolf
-    writer
-    impress
-    calc
-    draw
-    xournalpp
-    obs
-    kdenlive
-    blender
-    openscad
-    Cura
-    virt-manager
-  '';
 }

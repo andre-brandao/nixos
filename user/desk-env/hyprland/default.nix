@@ -251,7 +251,7 @@ in
         gesture_fingers = 3;  # 3 or 4
 
         gesture_distance = 300; # how far is the "max"
-        gesture_positive = true; # positive = swipe down. Negative = swipe up.
+        gesture_positive = false; # positive = swipe down. Negative = swipe up.
       };
       # hycov = {
       #   overview_gappo = 60; # gaps width from screen
@@ -262,8 +262,6 @@ in
     };
 
     settings = {
-
-      #  lib.filter is a helper function that filters out null values
       exec-once = [
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         "dunst"
@@ -272,6 +270,7 @@ in
         "hyprpaper"
         "hypridle"
         "waybar"
+        "nwg-dock-hyprland -d"
         "pypr"
         "protonmail-bridge --noninteractive"
         "systemctl --user import-environment PATH"
@@ -282,8 +281,6 @@ in
       monitor = [
         "eDP-1,highres,0x0,1"
         "DP-1,2560x1440,auto,1" # 2560x1440
-        # "DP-1,highres,auto,1" # 2560x1440
-
         # DP-3,1920x1080@60,0x0,1,mirror,DP-2 #exemple of mirror
       ];
 

@@ -110,7 +110,6 @@
     aircrack-ng
     netcat
     metasploit
-    burpsuite
 
     git
 
