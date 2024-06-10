@@ -28,7 +28,7 @@
 
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
-    # ../../user/app/virtualization/distrobox.nix # My distrobox config
+    ../../user/app/virtualization/distrobox.nix # My distrobox config
 
     ../../user/app/git/git.nix # My git config
     # SHELL 

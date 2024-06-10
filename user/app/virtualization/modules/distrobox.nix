@@ -25,7 +25,7 @@ in {
       mkBox = name: {
         img,
         home ? ".local/share/distrobox/${name}",
-        packages ? "git neovim",
+        packages ? "git",
         init ? "true",
         flags ? "",
         path ? [],

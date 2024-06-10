@@ -14,13 +14,11 @@
         ".bashrc"
         ".zshrc"
         ".config/nushell"
-        ".config/nvim"
         ".config/nix"
         ".config/starship.toml"
       ];
       packages =
-        config.packages.cli
-        ++ [
+        [
           pkgs.nix
           pkgs.git
         ];
