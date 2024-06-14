@@ -1,51 +1,45 @@
+{ pkgs, config, ... }:
 {
-  pkgs,
-  config,
-  ...
-}: {
-  imports = [./modules/distrobox.nix];
+  imports = [ ./modules/distrobox.nix ];
 
   programs.distrobox = {
     enable = true;
 
-    boxes = let
-      exec = "${pkgs.nushell}/bin/nu";
-      symlinks = [
-        ".bashrc"
-        ".zshrc"
-        ".config/nushell"
-        ".config/nix"
-        ".config/starship.toml"
-      ];
-      packages =
-        [
+    boxes =
+      let
+        exec = "${pkgs.nushell}/bin/nu";
+        symlinks = [
+          ".bashrc"
+          ".zshrc"
+          ".config/nushell"
+          ".config/nix"
+          ".config/starship.toml"
+        ];
+        packages = [
           pkgs.nix
           pkgs.git
         ];
-    in {
-      # Alpine = {
-      #   inherit exec symlinks;
-      #   img = "docker.io/library/alpine:latest";
-      #   packages = "git neovim";
-      # };
-      Fedora = {
-        inherit exec symlinks;
-        packages = "nodejs npm poetry gcc mysql-devel python3-devel wl-clipboard";
-        img = "registry.fedoraproject.org/fedora-toolbox:rawhide";
-        nixPackages =
-          packages
-          ++ [
+      in
+      {
+        # Alpine = {
+        #   inherit exec symlinks;
+        #   img = "docker.io/library/alpine:latest";
+        #   packages = "git neovim";
+        # };
+        Fedora = {
+          inherit exec symlinks;
+          packages = "nodejs npm poetry gcc mysql-devel python3-devel wl-clipboard";
+          img = "registry.fedoraproject.org/fedora-toolbox:rawhide";
+          nixPackages = packages ++ [
             (pkgs.writeShellScriptBin "pr" "poetry run $@")
             (pkgs.writeShellScriptBin "prpm" "poetry run python manage.py $@")
           ];
-      };
-      Arch = {
-        inherit exec symlinks;
-        img = "docker.io/library/archlinux:latest";
-        packages = "base-devel wl-clipboard";
-        nixPackages =
-          packages
-          ++ [
+        };
+        Arch = {
+          inherit exec symlinks;
+          img = "docker.io/library/archlinux:latest";
+          packages = "base-devel wl-clipboard";
+          nixPackages = packages ++ [
             (pkgs.writeShellScriptBin "yay" ''
               if [[ ! -f /bin/yay ]]; then
                 tmpdir="$HOME/.yay-bin"
@@ -58,7 +52,7 @@
               /bin/yay $@
             '')
           ];
+        };
       };
-    };
   };
 }

@@ -75,7 +75,7 @@
           set -g status-left '#[${color3}] 󱄅 '
           set -g status-bg '#${background}'
           set -g status-fg '#${foreground}'
-          
+
           # set-option -g status-position top
 
 

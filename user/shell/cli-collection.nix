@@ -55,6 +55,5 @@
       enable = true;
       enableZshIntegration = true;
     };
-
   };
 }

@@ -37,7 +37,8 @@ in
 
   imports = [
     ./tmux.nix
-    ./starship.nix
+    # ./starship.nix
+    ./oh-my-posh.nix
   ];
   programs = {
     bash = {
@@ -84,40 +85,18 @@ in
 
       shellAliases = aliases;
 
-      plugins = [
-        {
-          # https://github.com/hlissner/zsh-autopair
-          name = "zsh-autopair";
-          file = "zsh-autopair.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "hlissner";
-            repo = "zsh-autopair";
-            rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
-            sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
-          };
-        }
-        {
-          # https://github.com/zsh-users/zsh-history-substring-search
-          name = "zsh-history-substring-search";
-          file = "zsh-history-substring-search.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-history-substring-search";
-            rev = "0f80b8eb3368b46e5e573c1d91ae69eb095db3fb";
-            sha256 = "0y8va5kc2ram38hbk2cibkk64ffrabfv1sh4xm7pjspsba9n5p1y";
-          };
-        }
-        {
-          name = "zsh-autosuggestions";
-          file = "zsh-autosuggestions.plugin.zsh";
-          src = builtins.fetchGit {
-            url = "https://github.com/zsh-users/zsh-autosuggestions";
-            rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
-          };
-        }
-      ];
-    };
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "zsh-users/zsh-autosuggestions"; }
+          { name = "zsh-users/zsh-syntax-highlighting"; }
+          { name = "zsh-users/zsh-history-substring-search"; }
 
+          { name = "chisui/zsh-nix-shell"; }
+          { name = "ptavares/zsh-direnv"; }
+        ];
+      };
+    };
   };
 
   home.packages = with pkgs; [

@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  pkgs-unstable,
   dconf,
   userSettings,
   ...
@@ -57,75 +58,76 @@
       # package = pkgs.brave;
     };
   };
-  home.packages = with pkgs; [
-    # ---- APPS ---- #
-    spotify
-    netflix
-    filezilla
-    thunderbird # email client
-    protonmail-bridge
-    discord
-    betterdiscordctl
-    # discord-screenaudio
-    teams-for-linux
+  home.packages =
+    (with pkgs; [
+      # ---- APPS ---- #
+      spotify
+      netflix
+      filezilla
+      thunderbird # email client
+      protonmail-bridge
+      discord
+      betterdiscordctl
+      # discord-screenaudio
+      teams-for-linux
 
-    # ---- BROWSERS ---- #
-    brave
-    firefox
+      # ---- BROWSERS ---- #
+      brave
+      firefox
 
-    # ---- OFFICE ---- #
-    libreoffice-fresh
-    # ---- UTILS ---- #
-    bitwarden # Password manager
-    # syncthing
-    gnome.nautilus # File manager
+      # ---- OFFICE ---- #
+      libreoffice-fresh
+      # ---- UTILS ---- #
+      bitwarden # Password manager
+      # syncthing
+      gnome.nautilus # File manager
 
-    # ---- WINDOWS ---- #
-    wine
-    bottles
+      # ---- WINDOWS ---- #
+      wine
+      bottles
 
-    # ---- 3D Modeling ---- #
-    blender
+      # ---- 3D Modeling ---- #
+      blender
 
-    # ---- MEDIA ---- #
-    ffmpeg
-    movit
-    mediainfo
-    libmediainfo
-    mediainfo-gui
-    mpv
-    obs-studio
-    vlc
-    # kdenlive
-    gimp
-    inkscape
-    blueman
+      # ---- MEDIA ---- #
+      ffmpeg
+      movit
+      mediainfo
+      libmediainfo
+      mediainfo-gui
+      mpv
+      obs-studio
+      vlc
+      # kdenlive
+      gimp
+      inkscape
+      blueman
 
-    # ---- DEV UTILS ---- #
-    postman
-    libffi
-    zlib
-    glib
+      # ---- DEV UTILS ---- #
+      postman
+      libffi
+      zlib
+      glib
 
-    aircrack-ng
-    netcat
-    metasploit
+      aircrack-ng
+      netcat
+      metasploit
 
-    git
+      git
 
-    zsh
-    alacritty
+      zsh
 
-    rars
-    zed-editor
-    # jetbrains.pycharm-professional
+      rars
+      # jetbrains.pycharm-professional
 
-    # ---- SERVICES ---- #
-    supabase-cli
-    turso-cli
-    stripe-cli
-    graphite-cli
-  ];
+    ])
+    ++ (with pkgs-unstable; [
+      zed-editor
+      supabase-cli
+      turso-cli
+      stripe-cli
+      graphite-cli
+    ]);
 
   home.sessionVariables = {
     BROWSER = userSettings.browser;

@@ -248,7 +248,7 @@ in
         workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
 
         enable_gesture = true; # laptop touchpad, 4 fingers
-        gesture_fingers = 3;  # 3 or 4
+        gesture_fingers = 3; # 3 or 4
 
         gesture_distance = 300; # how far is the "max"
         gesture_positive = false; # positive = swipe down. Negative = swipe up.

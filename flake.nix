@@ -1,48 +1,11 @@
 {
-  description = "andre@nixos XPS-13 config";
-
-  inputs = {
-    # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # HyperLand
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      # url = "github:hyprwm/Hyprland/v0.40.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
-      inputs.hyprland.follows = "hyprland";
-    };
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
-
-    # Stylix
-    stylix.url = "github:danth/stylix";
-  };
+  description = "andre-brandao NixOS configuration";
 
   outputs =
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       # nixos-hardware,
       home-manager,
       ...
@@ -87,6 +50,14 @@
         };
         # overlays = [ rust-overlay.overlays.default ];
       };
+
+      pkgs-unstable = import nixpkgs-unstable {
+        system = systemSettings.system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
     in
     {
       formatter.${systemSettings.system} = pkgs.nixfmt-rfc-style;
@@ -100,6 +71,7 @@
             inherit inputs outputs;
             inherit systemSettings;
             inherit userSettings;
+            inherit pkgs-unstable;
           };
         };
       };
@@ -114,8 +86,49 @@
             inherit inputs outputs;
             inherit systemSettings;
             inherit userSettings;
+            inherit pkgs-unstable;
           };
         };
       };
     };
+
+  inputs = {
+    # Nixpkgs
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # HyperLand
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # url = "github:hyprwm/Hyprland/v0.41.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
+      inputs.hyprland.follows = "hyprland";
+    };
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
+
+    # Stylix
+    stylix.url = "github:danth/stylix";
+  };
 }
