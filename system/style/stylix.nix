@@ -24,6 +24,7 @@ in
   # stylix.autoEnable = false;
 
   stylix = {
+    enable = true;
     polarity = themePolarity;
     image = pkgs.fetchurl {
       url = backgroundUrl;

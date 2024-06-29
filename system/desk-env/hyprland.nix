@@ -28,7 +28,7 @@
       enable = true;
       wayland.enable = true;
       enableHidpi = true;
-      theme = "${import ./extras/sddm-theme.nix {
+      theme = "${import ../../packages/sddm-theme.nix {
         inherit pkgs;
         inherit userSettings;
       }}";

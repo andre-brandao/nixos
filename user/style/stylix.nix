@@ -28,6 +28,7 @@ in
   home.file.".currenttheme".text = userSettings.theme;
   # stylix.autoEnable = false;
   stylix = {
+    enable = true;
     polarity = themePolarity;
     image = pkgs.fetchurl {
       url = backgroundUrl;
@@ -85,7 +86,7 @@ in
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Classic";
-      # size = 22;
+      size = 22;
     };
   };
 

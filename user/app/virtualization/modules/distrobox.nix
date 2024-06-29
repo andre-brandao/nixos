@@ -31,7 +31,7 @@ in
             {
               img,
               home ? ".local/share/distrobox/${name}",
-              packages ? "git",
+              packages ? "git neovim",
               init ? "true",
               flags ? "",
               path ? [ ],

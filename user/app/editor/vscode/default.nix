@@ -1,11 +1,11 @@
 {
   config,
-  pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }:
 let
-
+  pkgs = pkgs-unstable;
   prettier = {
     "editor.defaultFormatter" = "esbenp.prettier-vscode";
   };

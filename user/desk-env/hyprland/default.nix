@@ -40,7 +40,7 @@ let
 
     #  "mainMod, E,hycov:toggleoverview"
 
-    "$mainMod, E, hyprexpo:expo, toggle"
+    # "$mainMod, E, hyprexpo:expo, toggle"
   ];
   workspaceSettings = [
     #these apps will open on the specified workspace when you firt open them
@@ -236,23 +236,23 @@ in
     xwayland.enable = true;
 
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
       # inputs.hycov.packages.${pkgs.system}.hycov
     ];
     settings.plugin = {
-      hyprexpo = {
-        columns = 3;
-        gap_size = 5;
-        bg_col = "0x33 ${config.lib.stylix.colors.base00}";
-        workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
+      # hyprexpo = {
+      #   columns = 3;
+      #   gap_size = 5;
+      #   bg_col = "0x33 ${config.lib.stylix.colors.base00}";
+      #   workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
 
-        enable_gesture = true; # laptop touchpad, 4 fingers
-        gesture_fingers = 3; # 3 or 4
+      #   enable_gesture = true; # laptop touchpad, 4 fingers
+      #   gesture_fingers = 3; # 3 or 4
 
-        gesture_distance = 300; # how far is the "max"
-        gesture_positive = false; # positive = swipe down. Negative = swipe up.
-      };
+      #   gesture_distance = 300; # how far is the "max"
+      #   gesture_positive = false; # positive = swipe down. Negative = swipe up.
+      # };
       # hycov = {
       #   overview_gappo = 60; # gaps width from screen
       #   overview_gappi = 24; # gaps width from clients
@@ -368,7 +368,8 @@ in
 
       master = {
         #  # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true;
+        # new_is_master = true;
+        no_gaps_when_only = 1;
       };
       dwindle = {
         #   # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
@@ -459,6 +460,10 @@ in
           (f "Bitwarden")
           (f "Spotify")
           (f ".blueman-manager-wrapped")
+          (f "brave-web.whatsapp.com__-Default")
+          (f "brave-chat.openai.com__-Default")
+          (f "brave-notion.so__-Default")
+          (f "brave-nngceckbapebfimnlniiiahkandclblb-Default") # Bitwarden
         ];
 
       bindm = [

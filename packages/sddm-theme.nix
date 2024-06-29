@@ -2,10 +2,10 @@
 let
 
   backgroundUrl = builtins.readFile (
-    ./. + "../../../../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt"
+    ./. + "../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt"
   );
   backgroundSha256 = builtins.readFile (
-    ./. + "../../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt"
+    ./. + "../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt"
   );
 
   image = pkgs.fetchurl {

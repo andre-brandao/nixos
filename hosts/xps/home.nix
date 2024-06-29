@@ -118,8 +118,8 @@
       zsh
 
       rars
+      # ciscoPacketTracer8
       # jetbrains.pycharm-professional
-
     ])
     ++ (with pkgs-unstable; [
       zed-editor
