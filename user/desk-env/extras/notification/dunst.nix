@@ -1,9 +1,9 @@
-{pkgs, ... }:
+{ pkgs, ... }:
 let
-inherit (pkgs) libnotify papirus-icon-theme;
+  inherit (pkgs) libnotify papirus-icon-theme;
 in
 {
-home.packages = [ libnotify ];
+  home.packages = [ libnotify ];
 
   services.dunst = {
     enable = true;
@@ -39,10 +39,9 @@ home.packages = [ libnotify ];
         gap_size = 5;
 
         idle_threshold = 120;
-                markup = "full";
+        markup = "full";
         min_icon_size = 32;
         max_icon_size = 128;
-
       };
     };
   };
