@@ -65,9 +65,13 @@
       netflix
       filezilla
       thunderbird # email client
-      protonmail-bridge
+
       discord
       betterdiscordctl
+
+      protonmail-bridge-gui
+      # protonmail-desktop
+      protonmail-bridge
       # discord-screenaudio
       teams-for-linux
 
@@ -127,6 +131,7 @@
       turso-cli
       stripe-cli
       graphite-cli
+      nodePackages_latest.vercel
     ]);
 
   home.sessionVariables = {

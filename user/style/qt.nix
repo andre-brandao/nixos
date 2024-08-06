@@ -1,10 +1,10 @@
 { pkgs, lib, ... }:
 {
-
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style.name = "adwaita-dark";
-    style.package = pkgs.adwaita-qt;
-  };
+# TODO fix kde overrides
+  # qt = {
+  #   enable = true;
+  #   platformTheme = lib.mkForce "gnome";
+  #   style.name = lib.mkForce "adwaita-dark";
+  #   style.package = lib.mkForce pkgs.adwaita-qt;
+  # };
 }

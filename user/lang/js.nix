@@ -5,5 +5,8 @@
     nodePackages.pnpm
     nodePackages.ts-node
     typescript
+    bun
+    typescript
+    nodePackages.typescript-language-server
   ];
 }

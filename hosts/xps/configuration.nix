@@ -19,7 +19,7 @@
     ../../system/app/virtualization.nix
     ../../system/app/docker.nix
     ../../system/app/gaming.nix
-    ../../system/app/tailscale.nix
+    # ../../system/app/tailscale.nix
     ../../system/app/wireshark.nix
 
     ../../system/app/xremap.nix

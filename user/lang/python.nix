@@ -55,8 +55,8 @@
       platformdirs
       ply
       prettytable
-      proton-client
-      protonvpn-nm-lib
+      # proton-client
+      # protonvpn-nm-lib
       psutil
       pulsectl
       pycparser

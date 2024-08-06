@@ -37,8 +37,8 @@ in
 
   imports = [
     ./tmux.nix
-    # ./starship.nix
-    ./oh-my-posh.nix
+    ./starship.nix
+    # ./oh-my-posh.nix
   ];
   programs = {
     bash = {
