@@ -58,18 +58,22 @@ in
 
     targets = {
       gtk.enable = true;
+      gnome.enable = true;
       hyprland.enable = false;
       rofi.enable = true;
-      vscode.enable = true;
+      dunst.enable = true;
+
+
       kitty.enable = true;
       alacritty.enable = true;
       tmux.enable = true;
-      dunst.enable = true;
       bat.enable = true;
       btop.enable = true;
       fzf.enable = true;
-      gnome.enable = true;
       lazygit.enable = true;
+
+
+      vscode.enable = true;
       mangohud.enable = true;
       vesktop.enable = true;
     };

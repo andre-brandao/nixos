@@ -26,7 +26,6 @@
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
-    ../../user/app/vesktop.nix
 
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
@@ -68,6 +67,7 @@
       thunderbird # email client
 
       discord
+      vesktop
       betterdiscordctl
 
       protonmail-bridge-gui
