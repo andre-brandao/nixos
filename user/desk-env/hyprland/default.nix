@@ -219,7 +219,7 @@ in
     xdg-utils # for opening files with default applications
 
     # xwaylandvideobridge # screen sharing
-    vesktop # discord client
+    # vesktop # discord client
 
     waybar
     dunst
