@@ -272,6 +272,7 @@ in
         "waybar"
         "nwg-dock-hyprland -d"
         "pypr"
+        "nm-applet --indicator"
         "protonmail-bridge --noninteractive"
         "systemctl --user import-environment PATH"
         "systemctl --user restart xdg-desktop-portal.service"
