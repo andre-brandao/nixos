@@ -14,7 +14,7 @@
           ".config/nushell"
           ".config/nvim"
           ".config/nix"
-          ".config/starship.toml"
+          # ".config/starship.toml"
         ];
         packages = [
           config.programs.neovim.finalPackage

@@ -80,6 +80,9 @@
       brave
       firefox
 
+      # playwright
+      playwright-test
+      playwright-driver.browsers
       # ---- OFFICE ---- #
       libreoffice-fresh
       # ---- UTILS ---- #
