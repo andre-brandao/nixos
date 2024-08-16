@@ -63,7 +63,6 @@ in
       rofi.enable = true;
       dunst.enable = true;
 
-
       kitty.enable = true;
       alacritty.enable = true;
       tmux.enable = true;
@@ -71,7 +70,6 @@ in
       btop.enable = true;
       fzf.enable = true;
       lazygit.enable = true;
-
 
       vscode.enable = true;
       mangohud.enable = true;
