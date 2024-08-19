@@ -78,7 +78,7 @@
         # swww
         libnotify
         rofi-wayland
-        kitty # hyprland default terminal
+        # kitty # hyprland default terminal
       ];
 
     sessionVariables = {

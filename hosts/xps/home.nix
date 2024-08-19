@@ -26,6 +26,7 @@
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
+    ../../user/app/spicetify.nix # My spicetify config
 
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
@@ -116,11 +117,14 @@
       libffi
       zlib
       glib
-
+      beekeeper-studio
+      dbeaver-bin
+      schemacrawler
       aircrack-ng
       netcat
       metasploit
 
+      jetbrains.webstorm
       git
 
       zsh
