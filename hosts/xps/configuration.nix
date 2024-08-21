@@ -6,7 +6,7 @@
   config,
   pkgs,
   userSettings,
-  systemSettings,
+
   ...
 }:
 {

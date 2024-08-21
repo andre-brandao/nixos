@@ -38,7 +38,7 @@
         shell = "zsh"; # Default shell;
         font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
-        editor = "codium"; # Default editor;
+        editor = "zed"; # Default editor;
       };
 
       # configure pkgs

@@ -1,9 +1,6 @@
 {
-  inputs,
-  config,
   pkgs,
   pkgs-unstable,
-  dconf,
   userSettings,
   ...
 }:
@@ -26,14 +23,14 @@
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
-    ../../user/app/spicetify.nix # My spicetify config
+    # ../../user/app/spicetify.nix # My spicetify config
 
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
     ../../user/app/virtualization/distrobox.nix # My distrobox config
 
     ../../user/app/git/git.nix # My git config
-    # SHELL 
+    # SHELL
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
 
