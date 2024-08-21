@@ -26,7 +26,7 @@ let
     "$mainMod SHIFT, Q, exit"
     "CTRL ALT, Delete, exit"
 
-    # layout 
+    # layout
     "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
     "$mainMod, M, exec, hyprctl keyword general:layout master"
 
@@ -41,6 +41,8 @@ let
     #  "mainMod, E,hycov:toggleoverview"
 
     # "$mainMod, E, hyprexpo:expo, toggle"
+    # "$mainMod, E, overview:toggle"
+
   ];
   workspaceSettings = [
     #these apps will open on the specified workspace when you firt open them
@@ -147,7 +149,7 @@ let
         command = "brave --profile-directory=Default --app=https://web.whatsapp.com/"
         class = "brave-web.whatsapp.com__-Default"
         size = "75% 60%"
-        process_tracking = false 
+        process_tracking = false
       '';
     }
     {
@@ -158,7 +160,7 @@ let
         command = "brave --profile-directory=Default --app=https://chat.openai.com"
         class = "brave-chat.openai.com__-Default"
         size = "45% 85%"
-        process_tracking = false 
+        process_tracking = false
       '';
     }
     {
@@ -169,7 +171,7 @@ let
         command = "brave --profile-directory=Default --app=https://notion.so"
         class = "brave-notion.so__-Default"
         size = "95% 85%"
-        process_tracking = false 
+        process_tracking = false
       '';
     }
     {
@@ -180,7 +182,7 @@ let
         command = "brave --profile-directory=Default --app=https://mail.proton.me/u/2/inbox"
         class = "brave-mail.prton.me__u_2_inbox-Default"
         size = "95% 85%"
-        process_tracking = false 
+        process_tracking = false
       '';
     }
   ];
@@ -190,6 +192,8 @@ in
     ../extras/bar/waybar.nix
     ../extras/bar/nwg-dock.nix
     ../extras/notification/dunst.nix
+    ./monitor.nix
+    ./plugins.nix
     ./lockscreen.nix
     ./xremap.nix
   ];
@@ -235,32 +239,6 @@ in
     systemd.enable = true;
     xwayland.enable = true;
 
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-      # inputs.hycov.packages.${pkgs.system}.hycov
-    ];
-    settings.plugin = {
-      hyprexpo = {
-        columns = 3;
-        gap_size = 5;
-        bg_col = "0x33 ${config.lib.stylix.colors.base00}";
-        workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
-
-        enable_gesture = true; # laptop touchpad, 4 fingers
-        gesture_fingers = 3; # 3 or 4
-
-        gesture_distance = 300; # how far is the "max"
-        gesture_positive = false; # positive = swipe down. Negative = swipe up.
-      };
-      # hycov = {
-      #   overview_gappo = 60; # gaps width from screen
-      #   overview_gappi = 24; # gaps width from clients
-      #   hotarea_size = 10; # hotarea size in bottom left,10x10
-      #   enable_hotarea = 1; # enable mouse cursor hotarea
-      # };
-    };
-
     settings = {
       exec-once = [
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
@@ -279,11 +257,11 @@ in
       ];
       ## See https://wiki.hyprland.org/Configuring/Monitors/
       # monitor = "DP-1, 1920x1200, auto, 1";
-      monitor = [
-        "eDP-1,highres,0x0,1"
-        "DP-1,2560x1440,auto,1" # 2560x1440
-        # DP-3,1920x1080@60,0x0,1,mirror,DP-2 #exemple of mirror
-      ];
+      # monitor = [
+      #   "eDP-1,highres,0x0,1"
+      #   "DP-1,2560x1440,auto,1" # 2560x1440
+      #   # DP-3,1920x1080@60,0x0,1,mirror,DP-2 #exemple of mirror
+      # ];
 
       xwayland = {
         force_zero_scaling = true;

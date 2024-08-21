@@ -3,7 +3,8 @@
   pkgs,
   config,
   ...
-}:{
+}:
+{
   imports = [ inputs.spicetify.homeManagerModules.default ];
   programs.spicetify =
     let
@@ -35,7 +36,6 @@
         player-bar-bg = "${base01}";
         accent = "${base06}";
       };
-
 
       # customColorScheme = {
       #   text = "${config.lib.stylix.colors.base05}";
