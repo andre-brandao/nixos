@@ -30,16 +30,13 @@
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
     ../../user/app/virtualization/distrobox.nix # My distrobox config
 
-
     # TERMINAL EMULATORS
     ../../user/app/terminal/kitty.nix
     ../../user/app/terminal/alacritty.nix
 
-
     # SHELL
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
-
 
     # PROGRAMMING LANGUAGES
     ../../user/lang/js.nix # My node.js config

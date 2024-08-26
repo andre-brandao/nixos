@@ -18,14 +18,17 @@ in
     package = pkgs.vscodium.fhs;
     userSettings = {
       "files.autoSave" = "afterDelay";
+
       "telemetry.telemetryLevel" = "off";
+
       "window.titleBarStyle" = "custom";
 
       "workbench.sideBar.location" = "right";
       "workbench.tree.renderIndentGuides" = "always";
       "workbench.tree.indent" = 12;
-      "workbench.iconTheme" = "catppuccin-frappe";
 
+      "workbench.iconTheme" = "material-icon-theme";
+      "workbench.editor.labelFormat" = "short";
       # Behaviour
       "editor.renderWhitespace" = "boundary";
       "editor.suggest.preview" = true;
@@ -36,6 +39,14 @@ in
       "editor.renderLineHighlight" = "all";
       "editor.tabSize" = 2;
 
+      "github.copilot.enable" = {
+        "*" = true;
+        "plaintext" = true;
+        "markdown" = true;
+        "scminput" = false;
+      };
+      "git.autofetch" = true;
+      "git.confirmSync" = false;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nixd";
       "svelte.enable-ts-plugin" = true;
