@@ -132,6 +132,7 @@
       zsh
 
       rars
+      android-studio
       # ciscoPacketTracer8
       # jetbrains.pycharm-professional
     ])

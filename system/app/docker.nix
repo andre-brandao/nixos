@@ -10,10 +10,10 @@
   virtualisation.docker = {
     enable = true;
     enableOnBoot = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
   };
   users.users.${userSettings.username}.extraGroups = [ "docker" ];
   # users.users.${userSettings.username}.extraGroups = [ "libvirtd" ];
