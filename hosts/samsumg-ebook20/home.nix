@@ -29,7 +29,7 @@
     #../../user/app/editor/vscode # My vscode config
   ];
   home.packages = with pkgs; [
-    spotify
+    # spotify
     netflix
     # BROSWERS
     brave
