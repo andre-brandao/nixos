@@ -2,6 +2,7 @@
   pkgs,
   pkgs-unstable,
   userSettings,
+  inputs,
   ...
 }:
 {
@@ -23,7 +24,7 @@
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
-    # ../../user/app/spicetify.nix # My spicetify config
+    ../../user/app/spicetify.nix # My spicetify config
     ../../user/app/git/git.nix # My git config
 
     # VIRTUALIZATION
@@ -63,7 +64,7 @@
   home.packages =
     (with pkgs; [
       # ---- APPS ---- #
-      spotify
+      # spotify
       netflix
       filezilla
       thunderbird # email client
@@ -81,6 +82,7 @@
       # ---- BROWSERS ---- #
       brave
       firefox
+      inputs.zen-browser.packages."${system}".specific
 
       # playwright
       playwright-test
