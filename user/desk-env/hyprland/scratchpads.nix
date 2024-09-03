@@ -1,14 +1,24 @@
-{ userSettings }:
+{
+  userSettings,
+  lib,
+  pkgs,
+}:
 let
-  braveLauncher = url: ''
-    brave --profile-directory=Default --app=${url}
-  '';
+  braveLauncher = url: "brave --profile-directory=Default --app=${url}";
 
-  zenLauncher = url: ''
-    zen -P Apps --new-window ${url}
-  '';
+  # zenLauncher = url: "zen -P Apps --new-window ${url}";
+  zenLauncher = url: "zen -P Apps --new-window ${url}";
+
+  # zenLauncher = title: url: pkgs.writeShellScriptBin "init-${title}" ''
+  #   if ! hyprctl -j clients | jq -e --arg title "${title}" '.[] | select(.title | test($title; "i"))'; then
+  #     zen -P Apps --new-window ${url}
+  #   fi
+  # '';
 
 in
+# zenLauncher2 =
+#   title: url:
+#   ''if ! hyprctl -j clients | jq -e '.[] | select(.title | test("${title}"; "i"))'; then zen -P Apps --new-window "${url}"; fi'';
 [
   {
     bind = "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop";
@@ -105,9 +115,8 @@ in
       [scratchpads.whatsapp]
       animation = "fromLeft"
       match_by = "title"
-      title = "WhatsApp Web — Zen Browser"
-      command = "${zenLauncher "https://web.whatsapp.com/"}"
-      class = "brave-web.whatsapp.com__-Default"
+      title = "re:.*WhatsApp — Zen Browser.*"
+      command = "${zenLauncher  "https://web.whatsapp.com/"}"
       size = "75% 60%"
       process_tracking = false
     '';
@@ -118,9 +127,8 @@ in
       [scratchpads.openai]
       animation = "fromRight"
       match_by = "title"
-      title =  "ChatGPT — Zen Browser"
+      title =  "re:.*ChatGPT — Zen Browser.*"
       command = "${zenLauncher "https://chat.openai.com/"}"
-      class = "brave-chat.openai.com__-Default"
       size = "45% 85%"
       process_tracking = false
     '';

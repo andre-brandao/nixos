@@ -51,7 +51,11 @@ let
     # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
   ];
   # https://github.com/hyprland-community/pyprland
-  scratchpads = import ./scratchpads.nix { inherit userSettings; };
+  scratchpads = import ./scratchpads.nix {
+    inherit pkgs;
+    inherit userSettings;
+    inherit lib;
+  };
 in
 {
   imports = [
