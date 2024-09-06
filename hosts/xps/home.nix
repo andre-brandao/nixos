@@ -21,6 +21,8 @@
     # DESKTOP
     ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
 
+    ../../user/app/browser/${userSettings.browser}.nix # My browser config
+
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
@@ -127,6 +129,8 @@
       aircrack-ng
       netcat
       metasploit
+
+      warp-terminal 
 
       jetbrains.webstorm
       git

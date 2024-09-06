@@ -1193,15 +1193,15 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1725096998,
-        "narHash": "sha256-ylP5YehroiFnf1AIT5yq1mcc8HUVlj9ItsWCtY6J6ck=",
-        "owner": "MarceColl",
+        "lastModified": 1725386919,
+        "narHash": "sha256-7pQyKgRMIhtQUH1NeG1J0K7q1FG594558vd4WENpdkY=",
+        "owner": "andre-brandao",
         "repo": "zen-browser-flake",
-        "rev": "cfc894abb631e3ea61ff590b7520d79d35a26366",
+        "rev": "5c4bfd08537bb67fca67038b701f23f15a2d2e43",
         "type": "github"
       },
       "original": {
-        "owner": "MarceColl",
+        "owner": "andre-brandao",
         "repo": "zen-browser-flake",
         "type": "github"
       }

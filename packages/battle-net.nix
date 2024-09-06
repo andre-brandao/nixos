@@ -1,7 +1,4 @@
-{
-  mkBottle,
-  wineWowPackages,
-}:
+{ mkBottle, wineWowPackages }:
 mkBottle {
   wine = wineWowPackages.waylandFull;
   wineArch = 64;
