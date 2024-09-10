@@ -108,7 +108,7 @@
     # HyperLand
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      # url = "github:hyprwm/Hyprland/v0.41.1";
+      # url = "github:hyprwm/Hyprland/v0.39.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
@@ -118,10 +118,6 @@
 
     Hyprspace = {
       url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
 

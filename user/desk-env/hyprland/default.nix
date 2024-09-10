@@ -41,7 +41,7 @@ let
     #  "mainMod, E,hycov:toggleoverview"
 
     # "$mainMod, E, hyprexpo:expo, toggle"
-    # "$mainMod, E, overview:toggle"
+    "$mainMod, E, overview:toggle"
 
   ];
   workspaceSettings = [

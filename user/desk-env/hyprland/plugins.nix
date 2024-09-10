@@ -9,7 +9,6 @@
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-      # inputs.hycov.packages.${pkgs.system}.hycov
     ];
     settings.plugin = {
       hyprexpo = {
@@ -24,15 +23,10 @@
         gesture_distance = 300; # how far is the "max"
         gesture_positive = false; # positive = swipe down. Negative = swipe up.
       };
-      # hycov = {
-      #   overview_gappo = 60; # gaps width from screen
-      #   overview_gappi = 24; # gaps width from clients
-      #   hotarea_size = 10; # hotarea size in bottom left,10x10
-      #   enable_hotarea = 1; # enable mouse cursor hotarea
-      # };
       # overview = {
-
+        
       # };
+     
     };
   };
 }
