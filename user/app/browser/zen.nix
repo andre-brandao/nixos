@@ -1,8 +1,8 @@
-{ pkgs,inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Module installing brave as default browser
-  home.packages =[ inputs.zen-browser.packages."${pkgs.system}".specific ];
+  home.packages = [ inputs.zen-browser.packages."${pkgs.system}".specific ];
 
   # xdg.mimeApps.defaultApplications = {
   # "text/html" = "brave-browser.desktop";

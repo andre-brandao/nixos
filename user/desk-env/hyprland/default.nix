@@ -148,8 +148,11 @@ in
 
         follow_mouse = 1;
 
+        focus_on_close = 1;
+
         touchpad = {
-          natural_scroll = "yes";
+          natural_scroll = true;
+          disable_while_typing = false;
           # clickfinger_behavior = true;
         };
 
@@ -231,6 +234,7 @@ in
         workspace_swipe = true;
         workspace_swipe_forever = true;
         # workspace_swipe_numbered = true;
+        workspace_swipe_direction_lock = false;
       };
 
       misc = {

@@ -45,6 +45,7 @@
     ../../user/lang/js.nix # My node.js config
     ../../user/lang/go.nix # My go config
     ../../user/lang/godot.nix
+    ../../user/lang/elixir.nix
 
     # EDITORS
     ../../user/app/editor/nvim # My nvim config
@@ -91,6 +92,7 @@
       playwright-driver.browsers
       # ---- OFFICE ---- #
       libreoffice-fresh
+      obsidian
       # ---- UTILS ---- #
       bitwarden # Password manager
       # syncthing
@@ -130,7 +132,7 @@
       netcat
       metasploit
 
-      warp-terminal 
+      warp-terminal
 
       jetbrains.webstorm
       git

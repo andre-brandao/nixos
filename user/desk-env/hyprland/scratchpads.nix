@@ -37,7 +37,7 @@ in
       animation = "fromRight"
       command = "nautilus"
       class = "nautilus"
-      size = "35% 75%"
+      size = "45% 75%"
     '';
   }
   {
@@ -116,7 +116,7 @@ in
       animation = "fromLeft"
       match_by = "title"
       title = "re:.*WhatsApp — Zen Browser.*"
-      command = "${zenLauncher  "https://web.whatsapp.com/"}"
+      command = "${zenLauncher "https://web.whatsapp.com/"}"
       size = "75% 60%"
       process_tracking = false
     '';
