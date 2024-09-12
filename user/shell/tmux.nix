@@ -7,10 +7,11 @@
       enable = true;
       clock24 = true;
 
-      plugins = with pkgs; [
-        tmuxPlugins.better-mouse-mode
-        # tmuxPlugins.catppuccin
-        tmuxPlugins.resurrect
+      plugins = with pkgs.tmuxPlugins; [
+        better-mouse-mode
+        # catppuccin
+        resurrect
+        yank
       ];
       sensibleOnTop = false;
       disableConfirmationPrompt = true;

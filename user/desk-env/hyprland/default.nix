@@ -59,7 +59,8 @@ let
 in
 {
   imports = [
-    ../extras/bar/waybar.nix
+    # ../extras/bar/waybar.nix
+    ../extras/bar/ags
     ../extras/bar/nwg-dock.nix
     ../extras/notification/dunst.nix
     ./monitor.nix
@@ -113,11 +114,11 @@ in
       exec-once = [
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
         "dunst"
-        #  "ags"
         # "xwaylandvideobridge"
         "hyprpaper"
         "hypridle"
-        "waybar"
+         "ags"
+        # "waybar"
         "nwg-dock-hyprland -d"
         "pypr"
         "nm-applet --indicator"
