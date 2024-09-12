@@ -97,7 +97,7 @@ in
     # vesktop # discord client
 
     waybar
-    dunst
+    # dunst
     nwg-dock-hyprland
     nwg-drawer
     nwg-launchers

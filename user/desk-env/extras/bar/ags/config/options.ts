@@ -96,7 +96,7 @@ const options = mkOptions(OPTIONS, {
             },
             label: {
                 colored: opt(false),
-                label: opt(" Applications"),
+                label: opt(" "),
             },
             action: opt(() => App.toggleWindow("launcher")),
         },
@@ -113,7 +113,7 @@ const options = mkOptions(OPTIONS, {
             low: opt(30),
         },
         workspaces: {
-            workspaces: opt(7),
+            workspaces: opt(9),
         },
         taskbar: {
             iconSize: opt(0),

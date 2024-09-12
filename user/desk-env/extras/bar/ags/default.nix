@@ -19,6 +19,7 @@
     networkmanager
     gtk3
     libdbusmenu-gtk3
+    gnome.gnome-bluetooth
   ];
 
   programs.ags = {
