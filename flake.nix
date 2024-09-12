@@ -121,6 +121,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    ags.url = "github:Aylur/ags";
+    matugen.url = "github:InioX/matugen?ref=v2.2.0";
+
     xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
 
     # Stylix

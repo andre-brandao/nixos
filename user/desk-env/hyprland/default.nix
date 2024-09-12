@@ -62,7 +62,7 @@ in
     # ../extras/bar/waybar.nix
     ../extras/bar/ags
     ../extras/bar/nwg-dock.nix
-    ../extras/notification/dunst.nix
+    # ../extras/notification/dunst.nix
     ./monitor.nix
     ./plugins.nix
     ./lockscreen.nix
@@ -113,11 +113,11 @@ in
     settings = {
       exec-once = [
         "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
-        "dunst"
+        # "dunst"
         # "xwaylandvideobridge"
         "hyprpaper"
         "hypridle"
-         "ags"
+        "ags"
         # "waybar"
         "nwg-dock-hyprland -d"
         "pypr"

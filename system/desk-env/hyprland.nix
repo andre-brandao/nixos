@@ -35,6 +35,18 @@
     };
   };
 
+  services = {
+    # AGS services
+    upower = {
+      enable = true;
+      # useDeviceKit = true;
+    };
+       gvfs.enable = true;
+    accounts-daemon.enable = true;
+    power-profiles-daemon.enable = true;
+
+  };
+
   security = {
     polkit.enable = true;
     # pam.services.ags = { };
@@ -54,7 +66,7 @@
         enable = true;
       };
       # portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
   };
 

@@ -24,9 +24,9 @@
         gesture_positive = false; # positive = swipe down. Negative = swipe up.
       };
       # overview = {
-        
+
       # };
-     
+
     };
   };
 }
