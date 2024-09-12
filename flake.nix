@@ -108,7 +108,7 @@
     # HyperLand
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      # url = "github:hyprwm/Hyprland/v0.39.1";
+      # url = "github:hyprwm/Hyprland/v0.42.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
@@ -131,7 +131,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
 
     };
-    zen-browser.url = "github:andre-brandao/zen-browser-flake";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
 
   };
 }
