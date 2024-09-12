@@ -35,6 +35,7 @@ let
     brightnessctl
     swww
     inputs.matugen.packages.${system}.default
+    inputs.matcha.packages.${system}.default
     slurp
     wf-recorder
     wl-clipboard

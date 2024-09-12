@@ -123,6 +123,7 @@
 
     ags.url = "github:Aylur/ags";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
+    matcha.url = "git+https://codeberg.org/QuincePie/matcha";
 
     xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
 
