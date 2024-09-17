@@ -1,4 +1,4 @@
-{ lib, userSettings,... }:
+{ lib, userSettings, ... }:
 let
 
   makeScratchpad =
@@ -66,8 +66,9 @@ in
 
   # toString = pads: lib.concatStringsSep "\n" (map makeScratchpad scratchpads);
 
-
-  wayland.windowManager.hyprland.extraConfig = lib.concatStringsSep "\n" (map makeScratchpad scratchpads);
+  wayland.windowManager.hyprland.extraConfig = lib.concatStringsSep "\n" (
+    map makeScratchpad scratchpads
+  );
 
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]

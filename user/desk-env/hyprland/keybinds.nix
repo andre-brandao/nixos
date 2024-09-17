@@ -1,42 +1,43 @@
-{userSettings,...}:{
+{ userSettings, ... }:
+{
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
-    bind = [  
-    # "$mainMod, A, exec, ${userSettings.term}"
+    bind = [
+      # "$mainMod, A, exec, ${userSettings.term}"
 
-    "$mainMod, T, togglefloating"
+      "$mainMod, T, togglefloating"
 
-    # "$mainMod, W, exec, ${userSettings.browser}"
-    # ROFI
-    "$mainMod, R, exec, rofi -show drun -show-icons"
-    "$mainMod, RETURN, exec, rofi -show drun -show-icons"
-    "$mainMod, J, exec, rofi -show window -show-icons"
+      # "$mainMod, W, exec, ${userSettings.browser}"
+      # ROFI
+      "$mainMod, R, exec, rofi -show drun -show-icons"
+      "$mainMod, RETURN, exec, rofi -show drun -show-icons"
+      "$mainMod, J, exec, rofi -show window -show-icons"
 
-    "$mainMod, C, killactive"
-    "$mainMod SHIFT, Q, exit"
-    "CTRL ALT, Delete, exit"
+      "$mainMod, C, killactive"
+      "$mainMod SHIFT, Q, exit"
+      "CTRL ALT, Delete, exit"
 
-    # layout
-    "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
-    "$mainMod, M, exec, hyprctl keyword general:layout master"
+      # layout
+      "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
+      "$mainMod, M, exec, hyprctl keyword general:layout master"
 
-    '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
-    "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
+      '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
+      "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
 
-    "ALT, Tab, cyclenext,"
-    "ALT, Tab, bringactivetotop,"
-    # "ALT SHIFT, Tab, cycleprev,"
-    # "ALT SHIFT, Tab, bringactivetotop,"
+      "ALT, Tab, cyclenext,"
+      "ALT, Tab, bringactivetotop,"
+      # "ALT SHIFT, Tab, cycleprev,"
+      # "ALT SHIFT, Tab, bringactivetotop,"
 
-    #  "mainMod, E,hycov:toggleoverview"
+      #  "mainMod, E,hycov:toggleoverview"
 
-    # "$mainMod, E, hyprexpo:expo, toggle"
-    # "$mainMod, E, overview:toggle"
+      # "$mainMod, E, hyprexpo:expo, toggle"
+      # "$mainMod, E, overview:toggle"
 
-
-    "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-    "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
-    "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
-    "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"];
+      "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
+      "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
+      "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
+      "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
+    ];
   };
 }

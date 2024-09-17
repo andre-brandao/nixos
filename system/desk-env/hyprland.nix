@@ -61,26 +61,24 @@
   environment = {
     systemPackages =
       with pkgs;
-      with gnome;
       [
 
         libsForQt5.qt5.qtquickcontrols2
         libsForQt5.qt5.qtgraphicaleffects
 
         morewaita-icon-theme
-        adwaita-icon-theme
+        gnome.adwaita-icon-theme
         qogir-icon-theme
 
         loupe
-        nautilus
-        gnome-software # for flatpak
+        gnome.nautilus
+        gnome.gnome-software # for flatpak
         gnome-text-editor
-        gnome-calendar
+        gnome.gnome-calendar
         gnome.gnome-boxes
-        gnome-system-monitor
+        gnome.gnome-system-monitor
         gnome.gnome-control-center
         gnome.gnome-weather
-        gnome-calculator
         gnome.gnome-clocks
 
         wl-gammactl

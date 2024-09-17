@@ -7,7 +7,8 @@
   lib,
   userSettings,
   ...
-}:{
+}:
+{
   imports = [
     ./start.nix
     ./keybinds.nix
@@ -65,9 +66,7 @@
     systemd.enable = true;
     xwayland.enable = true;
 
-
     settings = {
-
 
       xwayland = {
         force_zero_scaling = true;
@@ -193,7 +192,6 @@
         focus_on_activate = true;
       };
 
-
       # "$mainMod" = mainMod;
       bind = [
         "$mainMod, A, exec, ${userSettings.term}"
@@ -245,7 +243,6 @@
         # FLOATING WINDOWS
       ];
 
-
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
@@ -287,7 +284,6 @@
         ];
     };
   };
-
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
     preload = ${config.stylix.image}
