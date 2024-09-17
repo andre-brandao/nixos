@@ -11,6 +11,7 @@ import Workspaces from "./buttons/Workspaces"
 import ScreenRecord from "./buttons/ScreenRecord"
 import Messages from "./buttons/Messages"
 import options from "options"
+import Idle from "./buttons/Idle"
 
 const { start, center, end } = options.bar.layout
 const { transparent, position } = options.bar
@@ -20,6 +21,7 @@ export type BarWidget = keyof typeof widget
 const widget = {
     battery: BatteryBar,
     colorpicker: ColorPicker,
+    idle: Idle,
     date: Date,
     launcher: Launcher,
     media: Media,

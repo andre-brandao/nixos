@@ -73,7 +73,9 @@ const options = mkOptions(OPTIONS, {
                 "workspaces",
                 "taskbar",
                 "expander",
-                "messages",
+                // "messages",
+                "idle",
+
             ]),
             center: opt<Array<import("widget/bar/Bar").BarWidget>>([
                 "date",
@@ -236,6 +238,10 @@ const options = mkOptions(OPTIONS, {
         gaps: opt(2.4),
         inactiveBorder: opt("#282828"),
         gapsWhenOnly: opt(true),
+    },
+    system: {
+        fetchInterval: opt(1000),
+        temperature: opt("/sys/class/thermal/thermal_zone2/temp"),
     },
 })
 
