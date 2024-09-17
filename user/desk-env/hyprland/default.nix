@@ -7,66 +7,21 @@
   lib,
   userSettings,
   ...
-}:
-let
-
-  mainMod = "SUPER";
-  keybindings = [
-    "$mainMod, A, exec, ${userSettings.term}"
-
-    "$mainMod, T, togglefloating"
-
-    "$mainMod, W, exec, ${userSettings.browser}"
-    # ROFI
-    "$mainMod, R, exec, rofi -show drun -show-icons"
-    "$mainMod, RETURN, exec, rofi -show drun -show-icons"
-    "$mainMod, J, exec, rofi -show window -show-icons"
-
-    "$mainMod, C, killactive"
-    "$mainMod SHIFT, Q, exit"
-    "CTRL ALT, Delete, exit"
-
-    # layout
-    "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
-    "$mainMod, M, exec, hyprctl keyword general:layout master"
-
-    '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
-    "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
-
-    "ALT, Tab, cyclenext,"
-    "ALT, Tab, bringactivetotop,"
-    # "ALT SHIFT, Tab, cycleprev,"
-    # "ALT SHIFT, Tab, bringactivetotop,"
-
-    #  "mainMod, E,hycov:toggleoverview"
-
-    # "$mainMod, E, hyprexpo:expo, toggle"
-    # "$mainMod, E, overview:toggle"
-
-  ];
-  workspaceSettings = [
-    #these apps will open on the specified workspace when you firt open them
-    "8, on-created-empty:vesktop"
-    "9, on-created-empty:thunderbird"
-    # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
-  ];
-  # https://github.com/hyprland-community/pyprland
-  scratchpads = import ./scratchpads.nix {
-    inherit pkgs;
-    inherit userSettings;
-    inherit lib;
-  };
-in
-{
+}:{
   imports = [
+    ./start.nix
+    ./keybinds.nix
+    ./scratchpads.nix
+    ./rules.nix
+
     # ../extras/bar/waybar.nix
     ../extras/bar/ags
-    ../extras/bar/nwg-dock.nix
+    # ../extras/bar/nwg-dock.nix
     # ../extras/notification/dunst.nix
     ./monitor.nix
     ./plugins.nix
     ./lockscreen.nix
-    ./xremap.nix
+    # ./xremap.nix
   ];
 
   home.packages = with pkgs; [
@@ -96,11 +51,11 @@ in
     # xwaylandvideobridge # screen sharing
     # vesktop # discord client
 
-    waybar
+    # waybar
     # dunst
-    nwg-dock-hyprland
-    nwg-drawer
-    nwg-launchers
+    # nwg-dock-hyprland
+    # nwg-drawer
+    # nwg-launchers
   ];
 
   wayland.windowManager.hyprland = {
@@ -110,29 +65,9 @@ in
     systemd.enable = true;
     xwayland.enable = true;
 
+
     settings = {
-      exec-once = [
-        "dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY"
-        # "dunst"
-        # "xwaylandvideobridge"
-        "hyprpaper"
-        "hypridle"
-        "ags"
-        # "waybar"
-        "nwg-dock-hyprland -d"
-        "pypr"
-        "nm-applet --indicator"
-        "protonmail-bridge --noninteractive"
-        "systemctl --user import-environment PATH"
-        "systemctl --user restart xdg-desktop-portal.service"
-      ];
-      ## See https://wiki.hyprland.org/Configuring/Monitors/
-      # monitor = "DP-1, 1920x1200, auto, 1";
-      # monitor = [
-      #   "eDP-1,highres,0x0,1"
-      #   "DP-1,2560x1440,auto,1" # 2560x1440
-      #   # DP-3,1920x1080@60,0x0,1,mirror,DP-2 #exemple of mirror
-      # ];
+
 
       xwayland = {
         force_zero_scaling = true;
@@ -168,8 +103,6 @@ in
         gaps_out = 15;
         border_size = 2;
 
-        # "col.inactive_border" = "rgba(595959aa)";
-        # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "0x33 ${config.lib.stylix.colors.base00}";
         "col.active_border" = ''0xff${config.lib.stylix.colors.base08} 0xff${config.lib.stylix.colors.base0A} 45deg'';
 
@@ -206,16 +139,32 @@ in
 
         # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = [
+          "myBezier, 0.05, 0.9, 0.1, 1.05"
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.0"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
+          "linear, 0.0, 0.0, 1.0, 1.0"
+
+        ];
 
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
+          # "windows, 1, 7, myBezier"
+          # "windowsOut, 1, 7, default, popin 80%"
           "border, 1, 10, default"
 
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          # "borderangle, 1, 8, default"
+          # "fade, 1, 7, default"
+          # "workspaces, 1, 6, default"
+          "windowsIn, 1, 6, winIn, popin"
+          "windowsOut, 1, 5, winOut, popin"
+          "windowsMove, 1, 5, wind, slide"
+          "borderangle, 1, 100, linear, loop"
+          "fade, 1, 10, default"
+          "workspaces, 1, 5, wind"
+          "windows, 1, 6, wind, slide"
+          "specialWorkspace, 1, 6, default, slidefadevert -50%"
         ];
       };
 
@@ -244,10 +193,10 @@ in
         focus_on_activate = true;
       };
 
-      workspace = workspaceSettings;
 
-      "$mainMod" = mainMod;
+      # "$mainMod" = mainMod;
       bind = [
+        "$mainMod, A, exec, ${userSettings.term}"
         #WORKSPACE SWITCH
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -276,7 +225,7 @@ in
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
         # map scratchpad bindings as an array
-      ] ++ keybindings ++ map (s: s.bind) scratchpads;
+      ];
 
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
@@ -296,29 +245,6 @@ in
         # FLOATING WINDOWS
       ];
 
-      windowrule =
-        let
-          f = regex: "float, ^(${regex})$";
-        in
-        [
-          (f "org.gnome.Calculator")
-          (f "org.gnome.Nautilus")
-          (f "pavucontrol")
-          (f "nm-connection-editor")
-          (f "blueberry.py")
-          (f "org.gnome.Settings")
-          (f "org.gnome.design.Palette")
-          (f "xdg-desktop-portal")
-          (f "xdg-desktop-portal-gnome")
-          (f "transmission-gtk")
-          (f "Bitwarden")
-          (f "Spotify")
-          (f ".blueman-manager-wrapped")
-          (f "brave-web.whatsapp.com__-Default")
-          (f "brave-chat.openai.com__-Default")
-          (f "brave-notion.so__-Default")
-          (f "brave-nngceckbapebfimnlniiiahkandclblb-Default") # Bitwarden
-        ];
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -362,14 +288,6 @@ in
     };
   };
 
-  # SCRATCHPADS
-  # https://github.com/hyprland-community/pyprland
-  home.file.".config/hypr/pyprland.toml".text = ''
-    [pyprland]
-    plugins = ["scratchpads", "magnify"]
-
-    ${builtins.concatStringsSep "\n" (map (s: s.scratchpad) scratchpads)}
-  '';
 
   home.file.".config/hypr/hyprpaper.conf".text = ''
     preload = ${config.stylix.image}

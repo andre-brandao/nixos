@@ -3,7 +3,10 @@ let
   inherit (pkgs) libnotify papirus-icon-theme dunst;
 in
 {
-  home.packages = [ libnotify  dunst];
+  home.packages = [
+    libnotify
+    dunst
+  ];
 
   services.dunst = {
     enable = true;
