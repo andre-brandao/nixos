@@ -160,7 +160,7 @@ const options = mkOptions(OPTIONS, {
             favorites: opt([
                 [
                     "firefox",
-                    "wezterm",
+                    "kitty",
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "spotify",
@@ -237,7 +237,7 @@ const options = mkOptions(OPTIONS, {
     hyprland: {
         gaps: opt(2.4),
         inactiveBorder: opt("#282828"),
-        gapsWhenOnly: opt(true),
+        gapsWhenOnly: opt(false),
     },
     system: {
         fetchInterval: opt(1000),

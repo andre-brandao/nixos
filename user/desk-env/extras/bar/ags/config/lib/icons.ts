@@ -2,15 +2,29 @@ export const substitutes = {
     "transmission-gtk": "transmission",
     "blueberry.py": "blueberry",
     "Caprine": "facebook-messenger",
+
     "com.raggesilver.BlackBox-symbolic": "terminal-symbolic",
     "org.wezfurlong.wezterm-symbolic": "terminal-symbolic",
     "kitty-symbolic": "terminal-symbolic",
+    "dropterm-symbolic": "terminal-symbolic",
+
     "audio-headset-bluetooth": "audio-headphones-symbolic",
     "audio-card-analog-usb": "audio-speakers-symbolic",
     "audio-card-analog-pci": "audio-card-symbolic",
     "preferences-system": "emblem-system-symbolic",
     "com.github.Aylur.ags-symbolic": "controls-symbolic",
     "com.github.Aylur.ags": "controls-symbolic",
+
+    "brave-browser-symbolic": "web-browser-symbolic",
+    "zen-alpha-symbolic": "web-browser-symbolic",
+
+    "steam-symbolic": "bottles-steam-symbolic",
+    "thunderbird-symbolic": "mail-unread-symbolic",
+    "spotify-symbolic": "audio-x-generic-symbolic",
+
+    "codium-url-handler-symbolic": "code-symbolic",
+    "code-url-handler-symbolic": "code-symbolic",
+
 }
 
 export default {
@@ -142,5 +156,9 @@ export default {
     color: {
         dark: "dark-mode-symbolic",
         light: "light-mode-symbolic",
+    },
+    idle: {
+        active: "coffee-mug-hot-symbolic",
+        inactive: "coffee-mug-symbolic",
     },
 }

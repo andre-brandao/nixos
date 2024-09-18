@@ -121,6 +121,7 @@
       mediawriter
 
       # ---- DEV UTILS ---- #
+      icon-library
       postman
       libffi
       zlib
