@@ -10,5 +10,6 @@
     nodePackages.typescript-language-server
     tailwindcss
     tailwindcss-language-server
+    turbo
   ];
 }

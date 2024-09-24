@@ -59,38 +59,36 @@
   };
 
   environment = {
-    systemPackages =
-      with pkgs;
-      [
+    systemPackages = with pkgs; [
 
-        libsForQt5.qt5.qtquickcontrols2
-        libsForQt5.qt5.qtgraphicaleffects
+      libsForQt5.qt5.qtquickcontrols2
+      libsForQt5.qt5.qtgraphicaleffects
 
-        morewaita-icon-theme
-        gnome.adwaita-icon-theme
-        qogir-icon-theme
+      morewaita-icon-theme
+      gnome.adwaita-icon-theme
+      qogir-icon-theme
 
-        loupe
-        gnome.nautilus
-        gnome.gnome-software # for flatpak
-        gnome-text-editor
-        gnome.gnome-calendar
-        gnome.gnome-boxes
-        gnome.gnome-system-monitor
-        gnome.gnome-control-center
-        gnome.gnome-weather
-        gnome.gnome-clocks
+      loupe
+      gnome.nautilus
+      gnome.gnome-software # for flatpak
+      gnome-text-editor
+      gnome.gnome-calendar
+      gnome.gnome-boxes
+      gnome.gnome-system-monitor
+      gnome.gnome-control-center
+      gnome.gnome-weather
+      gnome.gnome-clocks
 
-        wl-gammactl
-        wl-clipboard
-        # wayshot
-        pavucontrol
-        brightnessctl
-        # swww
-        libnotify
-        rofi-wayland
-        # kitty # hyprland default terminal
-      ];
+      wl-gammactl
+      wl-clipboard
+      # wayshot
+      pavucontrol
+      brightnessctl
+      # swww
+      libnotify
+      rofi-wayland
+      # kitty # hyprland default terminal
+    ];
 
     sessionVariables = {
       NIXOS_OZONE_WL = "1";

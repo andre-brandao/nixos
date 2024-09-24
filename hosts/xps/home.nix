@@ -141,6 +141,7 @@
       zsh
 
       rars
+      jflap
       android-studio
       # ciscoPacketTracer8
       # jetbrains.pycharm-professional

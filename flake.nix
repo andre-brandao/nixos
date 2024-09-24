@@ -33,7 +33,7 @@
         configDir = "/home/${userSettings.username}/dotfiles/nixos"; # absolute path of the local repo
         theme = "miramare"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
-        browser = "brave";
+        browser = "zen";
         term = "kitty"; # Default terminal command;
         shell = "zsh"; # Default shell;
         font = "JetBrains Mono"; # Selected font

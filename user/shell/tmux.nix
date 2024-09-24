@@ -1,5 +1,8 @@
 { pkgs, config, ... }:
+
 {
+
+  home.packages = [ pkgs.tmux-mem-cpu-load ];
   programs = {
 
     # MULTIPLEXER
@@ -7,32 +10,87 @@
       enable = true;
       clock24 = true;
 
-      plugins = with pkgs.tmuxPlugins; [
-        better-mouse-mode
-        # catppuccin
-        resurrect
-        yank
-      ];
+      plugins =
+
+        with pkgs.tmuxPlugins; [
+          better-mouse-mode
+          # catppuccin
+          resurrect
+
+          # yank
+        ];
       sensibleOnTop = false;
       disableConfirmationPrompt = true;
       extraConfig =
         let
-          color1 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base08}";
+          background = "${config.lib.stylix.colors.base01}";
+          foreground = "${config.lib.stylix.colors.base04}";
 
-          color2 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0A}";
+          r_arrow = { fg, bg }: ''#[fg=#${fg},bg=#${bg}]'';
+          l_arrow = { fg, bg }: ''#[fg=#${fg},bg=#${bg}]'';
 
-          color3 = "fg=#${config.lib.stylix.colors.base00},bg=#${config.lib.stylix.colors.base0B}";
+          color_1 = {
+            fg = "${config.lib.stylix.colors.base00}";
+            bg = "${config.lib.stylix.colors.base08}";
+          };
+          color_2 = {
+            fg = "${config.lib.stylix.colors.base00}";
+            bg = "${config.lib.stylix.colors.base0A}";
+          };
+          color_3 = {
+            fg = "${config.lib.stylix.colors.base00}";
+            bg = "${config.lib.stylix.colors.base0B}";
+          };
+          toString =
+            {
+              fg,
+              bg,
+              invert ? false,
+            }:
+            if invert then ''fg=#${bg},bg=#${fg}'' else ''fg=#${fg},bg=#${bg}'';
 
-          background = "${config.lib.stylix.colors.base00}";
-          foreground = "${config.lib.stylix.colors.base0D}";
+
+          # WIDGETS
+
+
+          current_window = "${
+            l_arrow {
+              fg = color_2.bg;
+              bg = background;
+            }
+          }#[fg=#${background} bg=#${color_2.bg}] #I:#W ${
+            r_arrow {
+              fg = color_2.bg;
+              bg = background;
+            }
+          }";
+
+          icon = "#[${toString color_3}] 󱄅 ${
+            r_arrow {
+              fg = color_3.bg;
+              bg = background;
+            }
+          }";
+
+          cpu_mem_load = "${
+            l_arrow {
+              fg = color_1.bg;
+              bg = background;
+            }
+          }#[${toString color_1}]#(tmux-mem-cpu-load --averages-count 0 --vertical-graph --graph-lines 10 --interval 2)  ";
+
+
+          pane_title = "#{=25:pane_title}";
+
+          clock = "${l_arrow {
+            fg = color_2.bg;
+            bg = color_1.bg;
+          }}#[${toString color_2}] %H:%M | %d-%m-%Y ";
+
         in
         ''
 
           # keyMode = "vi";
-
-          # set -g @catppuccin_flavour 'frappe'
-          # set -g @catppuccin_window_tabs_enabled on
-          # set -g @catppuccin_date_time "%H:%M"
 
           # Mouse works as expected
           set -g mouse on
@@ -70,18 +128,31 @@
 
 
           # STATUS BAR
-
-
-          set -g status-right ' #[${color1}]  : #{cpu_percentage} #[${color2}] %H:%M | %d-%m-%Y '
-          set -g status-left '#[${color3}] 󱄅 '
           set -g status-bg '#${background}'
           set -g status-fg '#${foreground}'
 
+          set -g status-interval 2
+          
+          set -g status-right-length 200
+          set -g status-right '${pane_title} ${cpu_mem_load} ${clock}'
+          set -g status-left '${icon}'
+
+
+          set -g pane-active-border-style 'fg=#${config.lib.stylix.colors.base0D}' 
+          # windows
+          set -g window-status-style 'fg=#${color_2.bg} bg=#${background}'
+          set -g window-status-format ' #I:#W '
+          set -g window-status-current-format '${current_window}'
+
+          # set -g window-status-current-style 'underscore'
+
+
           # set-option -g status-position top
+          set -s default-terminal 'tmux-256color'
 
 
 
-          run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
+          # run-shell ${pkgs.tmuxPlugins.cpu}/share/tmux-plugins/cpu/cpu.tmux
         '';
     };
   };

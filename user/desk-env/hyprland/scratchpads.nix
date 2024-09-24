@@ -10,19 +10,18 @@ let
       windowrulev2 = size ${width} ${height},$${name}
       windowrulev2 = workspace special:${name} silent,$${name}
       windowrulev2 = center,$${name}
-      workspace = special:${name}, on-created-empty:"${command}"
-      workspace = special:${name}, persistent:false
+      workspace = special:${name}, on-created-empty:${command}
     '';
 
   scratchpads = [
-    {
-      name = "scratch_term";
-      class = "scratch_term";
-      command = "alacritty --class scratch_term";
-      key = "I";
-      width = "50%";
-      height = "50%";
-    }
+    # {
+    #   name = "scratch_term";
+    #   class = "scratch_term";
+    #   command = "alacritty --class scratch_term";
+    #   key = "I";
+    #   width = "50%";
+    #   height = "50%";
+    # }
     # {
     #   name = "spotify";
     #   class = "Spotify";

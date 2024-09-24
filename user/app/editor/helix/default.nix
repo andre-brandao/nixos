@@ -109,6 +109,7 @@
           name = "nix";
           auto-format = true;
           formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+          language-servers = [ "nil" ];
         }
         {
           name = "python";
@@ -179,8 +180,8 @@
         elixir_ls # Elixir
 
         # # NIX
-        # nixpkgs-fmt
-
+        # nixpkgs-fmt:
+        nil
         # GO
         gopls
         gotools

@@ -37,20 +37,20 @@ class Idle extends Service {
             ["matcha", "-d"],
             stdout => {
                 Utils.notify({
-                    summary: "Idle",
+                    summary: "Idle Status",
                     body: stdout,
                 })
                 this.#setIdle(stdout)
             },
             stderr => {
                 Utils.notify({
-                    summary: "Idle Error",
+                    summary: "Idle Status",
                     body: stderr,
                 })
                 this.#setIdle(stderr)
             },
         )
-        console.log(proc)
+        print(proc)
     }
 }
 

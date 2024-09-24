@@ -3,10 +3,10 @@ export const substitutes = {
     "blueberry.py": "blueberry",
     "Caprine": "facebook-messenger",
 
-    "com.raggesilver.BlackBox-symbolic": "terminal-symbolic",
-    "org.wezfurlong.wezterm-symbolic": "terminal-symbolic",
-    "kitty-symbolic": "terminal-symbolic",
-    "dropterm-symbolic": "terminal-symbolic",
+    "com.raggesilver.BlackBox-symbolic": "utilities-terminal-symbolic",
+    "org.wezfurlong.wezterm-symbolic": "utilities-terminal-symbolic",
+    "kitty-symbolic": "utilities-terminal-symbolic",
+    "dropterm-symbolic": "utilities-terminal-symbolic",
 
     "audio-headset-bluetooth": "audio-headphones-symbolic",
     "audio-card-analog-usb": "audio-speakers-symbolic",

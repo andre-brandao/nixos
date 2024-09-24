@@ -1,7 +1,7 @@
 { pkgs, systemSettings, ... }:
 {
   # Bootloader.
-  boot.loader.timeout = 2;
+  boot.loader.timeout = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.verbose = false;
 
