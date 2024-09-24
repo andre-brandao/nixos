@@ -22,7 +22,6 @@
     # ../../system/app/tailscale.nix
     ../../system/app/wireshark.nix
 
-    ../../system/app/xremap.nix
 
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     ../../system/desk-env/${userSettings.wm}.nix

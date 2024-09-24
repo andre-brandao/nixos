@@ -49,9 +49,7 @@
             }:
             if invert then ''fg=#${bg},bg=#${fg}'' else ''fg=#${fg},bg=#${bg}'';
 
-
           # WIDGETS
-
 
           current_window = "${
             l_arrow {
@@ -79,13 +77,14 @@
             }
           }#[${toString color_1}]#(tmux-mem-cpu-load --averages-count 0 --vertical-graph --graph-lines 10 --interval 2)  ";
 
-
           pane_title = "#{=25:pane_title}";
 
-          clock = "${l_arrow {
-            fg = color_2.bg;
-            bg = color_1.bg;
-          }}#[${toString color_2}] %H:%M | %d-%m-%Y ";
+          clock = "${
+            l_arrow {
+              fg = color_2.bg;
+              bg = color_1.bg;
+            }
+          }#[${toString color_2}] %H:%M | %d-%m-%Y ";
 
         in
         ''
@@ -132,7 +131,7 @@
           set -g status-fg '#${foreground}'
 
           set -g status-interval 2
-          
+
           set -g status-right-length 200
           set -g status-right '${pane_title} ${cpu_mem_load} ${clock}'
           set -g status-left '${icon}'

@@ -66,7 +66,9 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
-          modules = [ (./. + "/hosts" + ("/" + systemSettings.profile) + "/configuration.nix") ];
+          modules = [
+            ./hosts/${systemSettings.profile}/configuration.nix
+          ];
           specialArgs = {
             inherit inputs outputs;
             inherit systemSettings;
@@ -81,7 +83,10 @@
       homeConfigurations = {
         user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs; # Home-manager requires 'pkgs' instance
-          modules = [ (./. + "/hosts" + ("/" + systemSettings.profile) + "/home.nix") ];
+          modules = [
+            ./hosts/${systemSettings.profile}/home.nix
+
+          ];
           extraSpecialArgs = {
             inherit inputs outputs;
             inherit systemSettings;
@@ -125,7 +130,7 @@
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     matcha.url = "git+https://codeberg.org/QuincePie/matcha";
 
-    xremap-flake.url = "github:xremap/nix-flake"; # TODO: flake still not ready
+    # xremap-flake.url = "github:xremap/nix-flake"; # TODO:
 
     # Stylix
     stylix.url = "github:danth/stylix";
