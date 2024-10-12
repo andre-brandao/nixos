@@ -45,6 +45,8 @@
     onefetch
     starfetch
     cava
+
+    # typer
   ];
 
   programs = {

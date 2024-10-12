@@ -74,6 +74,8 @@ in
       vscode.enable = true;
       mangohud.enable = true;
       vesktop.enable = true;
+
+      # spicetify.enable = true;
     };
     fonts.sizes = {
       terminal = 18;

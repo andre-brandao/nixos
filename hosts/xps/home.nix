@@ -11,7 +11,10 @@
   home.username = userSettings.username;
   home.homeDirectory = "/home/" + userSettings.username;
 
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+    # backupFileExtension = "backup";
+  };
 
   imports = [
     # STYLES
@@ -19,6 +22,7 @@
     ../../user/style/gtk.nix # My gtk config
 
     # DESKTOP
+      # ../../overlays/hyprland-overlay.nix
     ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
 
     ../../user/app/browser/${userSettings.browser}.nix # My browser config
@@ -91,7 +95,7 @@
       playwright-test
       playwright-driver.browsers
       # ---- OFFICE ---- #
-      libreoffice-fresh
+      # libreoffice-fresh
       obsidian
       # ---- UTILS ---- #
       bitwarden # Password manager
@@ -127,21 +131,21 @@
       zlib
       glib
       beekeeper-studio
-      dbeaver-bin
-      schemacrawler
+      # dbeaver-bin
+      # schemacrawler
       aircrack-ng
       netcat
-      metasploit
+      # metasploit
 
-      warp-terminal
+      # warp-terminal
 
-      jetbrains.webstorm
+      # jetbrains.webstorm
       git
 
       zsh
 
-      rars
-      jflap
+      # rars
+      # jflap
       android-studio
       # ciscoPacketTracer8
       # jetbrains.pycharm-professional
@@ -154,6 +158,8 @@
       graphite-cli
       nodePackages_latest.vercel
     ]);
+
+  
 
   home.sessionVariables = {
     BROWSER = userSettings.browser;

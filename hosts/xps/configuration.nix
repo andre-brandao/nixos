@@ -24,10 +24,12 @@
 
 
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
+    # ../../overlays/hyprland-overlay.nix
     ../../system/desk-env/${userSettings.wm}.nix
 
     # styles
     ../../system/style/stylix.nix
+
   ];
 
   # This will add each flake input as a registry
