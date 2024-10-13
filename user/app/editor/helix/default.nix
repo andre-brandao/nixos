@@ -200,7 +200,7 @@
 
         # JAVASCRIPT AND CIA
         typescript
-        vscode-langservers-extracted
+        # vscode-langservers-extracted
         typescript-language-server
         svelte-language-server
         yaml-language-server

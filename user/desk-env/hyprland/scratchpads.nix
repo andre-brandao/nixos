@@ -1,73 +1,13 @@
 { lib, userSettings, ... }:
-let
-
-  makeScratchpad =
-    cfg: with cfg; ''
-      bind = "$mainMod,${key},togglespecialworkspace,${name}"
-
-      $${name} = class:^(${class})$
-      windowrulev2 = float,$${name}
-      windowrulev2 = size ${width} ${height},$${name}
-      windowrulev2 = workspace special:${name} silent,$${name}
-      windowrulev2 = center,$${name}
-      workspace = special:${name}, on-created-empty:${command}
-    '';
-
-  scratchpads = [
-    # {
-    #   name = "scratch_term";
-    #   class = "scratch_term";
-    #   command = "alacritty --class scratch_term";
-    #   key = "I";
-    #   width = "50%";
-    #   height = "50%";
-    # }
-    # {
-    #   name = "spotify";
-    #   class = "Spotify";
-    #   command = "spotify";
-    #   key = "S";
-    #   width = "45%";
-    #   height = "85%";
-
-    # }
-    {
-      name = "scratch_filemanager";
-      class = "scratch_filemanager";
-      command = "nautilus";
-      key = "F";
-      width = "45%";
-      height = "75%";
-    }
-    # {
-    #   name = "whatsapp";
-    #   class = "brave-web.whatsapp.com__-Default";
-    #   command = "brave --profile-directory=Default --app=https://web.whatsapp.com";
-    #   key = "W";
-    #   width = "75%";
-    #   height = "60%";
-    # }
-    # {
-    #   name = "gpt";
-    #   class = "brave-chat.openai.com__-Default";
-    #   command = "brave --profile-directory=Default --app=https://chat.openai.com";
-    #   key = "G";
-    #   width = "45%";
-    #   height = "85%";
-    # }
-
-  ];
-
-in
 {
 
-  # animation = "specialWorkspace, 1, 6, default, slidefadevert -50%";
 
-  # toString = pads: lib.concatStringsSep "\n" (map makeScratchpad scratchpads);
-
-  wayland.windowManager.hyprland.extraConfig = lib.concatStringsSep "\n" (
-    map makeScratchpad scratchpads
-  );
+  wayland.windowManager.hyprland.settings.bind = [
+      "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
+      "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
+      "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
+      "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
+  ];
 
   home.file.".config/hypr/pyprland.toml".text = ''
     [pyprland]

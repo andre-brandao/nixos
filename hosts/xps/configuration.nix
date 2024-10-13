@@ -22,7 +22,6 @@
     # ../../system/app/tailscale.nix
     ../../system/app/wireshark.nix
 
-
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     # ../../overlays/hyprland-overlay.nix
     ../../system/desk-env/${userSettings.wm}.nix

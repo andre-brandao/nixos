@@ -66,9 +66,7 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/${systemSettings.profile}/configuration.nix
-          ];
+          modules = [ ./hosts/${systemSettings.profile}/configuration.nix ];
           specialArgs = {
             inherit inputs outputs;
             inherit systemSettings;
@@ -119,6 +117,10 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+    };
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland"; # IMPORTANT
     };
 
     Hyprspace = {

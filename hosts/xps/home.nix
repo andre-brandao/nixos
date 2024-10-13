@@ -22,7 +22,7 @@
     ../../user/style/gtk.nix # My gtk config
 
     # DESKTOP
-      # ../../overlays/hyprland-overlay.nix
+    # ../../overlays/hyprland-overlay.nix
     ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
 
     ../../user/app/browser/${userSettings.browser}.nix # My browser config
@@ -158,8 +158,6 @@
       graphite-cli
       nodePackages_latest.vercel
     ]);
-
-  
 
   home.sessionVariables = {
     BROWSER = userSettings.browser;

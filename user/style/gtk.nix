@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
 
-# TODO: fix this
+  # TODO: fix this
   # gtk = {
   #   enable = true;
   #   theme = lib.mkDefault {

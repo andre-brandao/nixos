@@ -34,10 +34,7 @@
       # "$mainMod, E, hyprexpo:expo, toggle"
       # "$mainMod, E, overview:toggle"
 
-      "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-      "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
-      "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
-      "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
+    
     ];
   };
 }

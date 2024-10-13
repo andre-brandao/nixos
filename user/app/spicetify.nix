@@ -12,7 +12,7 @@
     in
     {
       enable = true;
-      theme = spicePkgs.themes.comfy;
+      theme = spicePkgs.themes.text;
       colorScheme = "custom";
 
       # customColorScheme = with config.lib.stylix.colors; {
@@ -37,23 +37,27 @@
       #   accent = "${base06}";
       # };
 
-      customColorScheme = {
-        text = "${config.lib.stylix.colors.base05}";
-        subtext = "${config.lib.stylix.colors.base05}";
-        sidebar-text = "${config.lib.stylix.colors.base07}";
-        main = "${config.lib.stylix.colors.base00}";
-        sidebar = "${config.lib.stylix.colors.base00}";
-        player = "${config.lib.stylix.colors.base0D}";
-        card = "${config.lib.stylix.colors.base02}";
-        shadow = "${config.lib.stylix.colors.base01}";
-        selected-row = "${config.lib.stylix.colors.base02}";
-        button = "${config.lib.stylix.colors.base0D}";
-        button-active = "${config.lib.stylix.colors.base0D}";
-        button-disabled = "${config.lib.stylix.colors.base02}";
-        tab-active = "${config.lib.stylix.colors.base0D}";
-        notification = "${config.lib.stylix.colors.base0B}";
-        notification-error = "${config.lib.stylix.colors.base08}";
-        misc = "${config.lib.stylix.colors.base02}";
+      customColorScheme = with config.lib.stylix.colors; {
+        text = "${base05}";
+        subtext = "${base05}";
+        sidebar-text = "${base07}";
+        main = "${base00}";
+        main-elevated = "${base02}";
+        highlight = "${base02}";
+        highlight-elevated = "${base03}";
+        sidebar = "${base01}";
+        player = "${base0A}";
+        card = "${base04}";
+        shadow = "${base00}";
+        selected-row = "${base0A}";
+        button = "${base0B}";
+        button-active = "${base05}";
+        button-disabled = "${base04}";
+        tab-active = "${base02}";
+        notification = "${base02}";
+        notification-error = "${base08}";
+        equalizer = "${base0D}";
+        misc = "${base0C}";
       };
 
       enabledCustomApps = with spicePkgs.apps; [
