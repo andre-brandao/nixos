@@ -30,7 +30,7 @@
       "<enter>" = "open";
       ee = "editor-open";
 
-      do = "dragon-out";
+      d = "dragon-out";
     };
   };
 }

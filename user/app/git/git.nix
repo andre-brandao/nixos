@@ -29,8 +29,8 @@
       # };
     };
 
-    git-credential-oauth = {
-      enable = true;
-    };
+    # git-credential-oauth = {
+    #   enable = true;
+    # };
   };
 }

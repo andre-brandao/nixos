@@ -138,8 +138,9 @@
       # metasploit
 
       # warp-terminal
+      qgis
 
-      # jetbrains.webstorm
+      jetbrains.webstorm
       git
 
       zsh

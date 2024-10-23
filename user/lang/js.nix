@@ -11,5 +11,6 @@
     tailwindcss
     tailwindcss-language-server
     turbo
+    biome
   ];
 }

@@ -51,6 +51,7 @@ in
     zsh = {
       enable = true;
       autosuggestion.enable = true;
+
       enableCompletion = true;
       syntaxHighlighting.enable = true;
       enableVteIntegration = true;
@@ -72,6 +73,8 @@ in
         bindkey '\e[1;5D' backward-word # Ctrl+Left
         bindkey '\e[1;5C' forward-word # Ctrl+Right
         bindkey '^Z' undo # Ctrl+Z
+        bindkey "''${key[Up]}" up-line-or-search
+
 
         # make nix-shell use zsh
         # ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
@@ -86,15 +89,31 @@ in
 
       shellAliases = aliases;
 
-      zplug = {
+      # zplug = {
+      #   enable = true;
+      #   plugins = [
+      #     { name = "zsh-users/zsh-autosuggestions"; }
+      #     { name = "zsh-users/zsh-syntax-highlighting"; }
+      #     { name = "zsh-users/zsh-completions";}
+
+      #     { name = "marlonrichert/zsh-autocomplete"; }
+      #     { name = "chisui/zsh-nix-shell"; }
+      #     { name = "ptavares/zsh-direnv"; }
+
+      #     # { name = "zdharma-continuum/fast-syntax-highlighting"; }
+      #     # { name = "zsh-users/zsh-history-substring-search"; }
+      #   ];
+      # };
+      antidote = {
         enable = true;
         plugins = [
-          { name = "zsh-users/zsh-autosuggestions"; }
-          { name = "zsh-users/zsh-syntax-highlighting"; }
-          # { name = "zsh-users/zsh-history-substring-search"; }
+          "zsh-users/zsh-completions"
+          "zsh-users/zsh-syntax-highlighting"
+          "zsh-users/zsh-autosuggestions"
 
-          # { name = "chisui/zsh-nix-shell"; }
-          { name = "ptavares/zsh-direnv"; }
+          "ptavares/zsh-direnv"
+          "chisui/zsh-nix-shell"
+          # "marlonrichert/zsh-autocomplete"
         ];
       };
     };
