@@ -54,7 +54,7 @@
       extraPackages = with pkgs; [
         lua-language-server
         # rnix-lsp
-        nil
+       # nil
         nixd
 
         typescript
@@ -70,19 +70,11 @@
       ];
 
       plugins = with pkgs.vimPlugins; [
-        undotree
-        vimfiler-vim
 
         {
-          plugin = lsp-zero-nvim;
-          config = toLuaFile ./plugin/zero-lsp.lua;
+          plugin = nvim-lspconfig;
+          config = toLuaFile ./plugin/lsp.lua;
         }
-        coc-eslint
-        coc-tsserver
-        # {
-        #   plugin = nvim-lspconfig;
-        #   config = toLuaFile ./plugin/lsp.lua;
-        # }
 
         {
           plugin = comment-nvim;
@@ -94,57 +86,57 @@
           config = "colorscheme gruvbox";
         }
 
-        neodev-nvim
+        # neodev-nvim
 
-        nvim-cmp
-        {
-          plugin = nvim-cmp;
-          config = toLuaFile ./plugin/cmp.lua;
-        }
+        # nvim-cmp
+        # {
+        #   plugin = nvim-cmp;
+        #   config = toLuaFile ./plugin/cmp.lua;
+        # }
 
-        {
-          plugin = telescope-nvim;
-          config = toLuaFile ./plugin/telescope.lua;
-        }
+        # {
+        #   plugin = telescope-nvim;
+        #   config = toLuaFile ./plugin/telescope.lua;
+        # }
 
-        telescope-fzf-native-nvim
+        # telescope-fzf-native-nvim
 
-        cmp_luasnip
-        cmp-nvim-lsp
-        cmp-path
-        cmp-cmdline
+        # cmp_luasnip
+        # cmp-nvim-lsp
+        # cmp-path
+        # cmp-cmdline
 
         # mason
         # mason-lspconfig
 
         # fidget
 
-        luasnip
-        friendly-snippets
+        # luasnip
+        # friendly-snippets
 
         lualine-nvim
-        nvim-web-devicons
+        # nvim-web-devicons
 
-        {
-          plugin = nvim-treesitter.withPlugins (p: [
-            p.tree-sitter-nix
-            p.tree-sitter-vim
-            p.tree-sitter-bash
-            p.tree-sitter-lua
-            p.tree-sitter-python
-            p.tree-sitter-json
-            p.tree-sitter-javascript
-            p.tree-sitter-typescript
-            p.tree-sitter-yaml
-            p.tree-sitter-markdown
-            p.tree-sitter-toml
-            p.tree-sitter-go
-            p.tree-sitter-rust
-          ]);
-          config = toLuaFile ./plugin/treesitter.lua;
-        }
+        # {
+        #   plugin = nvim-treesitter.withPlugins (p: [
+        #     p.tree-sitter-nix
+        #     p.tree-sitter-vim
+        #     p.tree-sitter-bash
+        #     p.tree-sitter-lua
+        #     p.tree-sitter-python
+        #     p.tree-sitter-json
+        #     p.tree-sitter-javascript
+        #     p.tree-sitter-typescript
+        #     p.tree-sitter-yaml
+        #     p.tree-sitter-markdown
+        #     p.tree-sitter-toml
+        #     p.tree-sitter-go
+        #     p.tree-sitter-rust
+        #   ]);
+        #   config = toLuaFile ./plugin/treesitter.lua;
+        # }
 
-        vim-nix
+        # vim-nix
 
         # {
         #   plugin = vimPlugins.own-onedark-nvim;

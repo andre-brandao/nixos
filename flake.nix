@@ -2,13 +2,12 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      # nixos-hardware,
-      home-manager,
-      ...
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , # nixos-hardware,
+      home-manager
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -104,7 +103,7 @@
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

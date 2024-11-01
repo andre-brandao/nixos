@@ -1,4 +1,4 @@
-{ ... }:
+{pkgs, ... }:
 {
   imports = [
     ./bootloader.nix
@@ -11,4 +11,6 @@
     ./bluetooth.nix
     # ./fingerprint-scanner.nix
   ];
+
+  environment.systemPackages = [ pkgs.nixd ];
 }

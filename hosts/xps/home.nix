@@ -140,7 +140,6 @@
       # warp-terminal
       qgis
 
-      jetbrains.webstorm
       git
 
       zsh
@@ -153,6 +152,8 @@
     ])
     ++ (with pkgs-unstable; [
       zed-editor
+      # jetbrains.webstorm
+      jetbrains-toolbox
       supabase-cli
       turso-cli
       stripe-cli

@@ -2,6 +2,7 @@
   config,
   pkgs-unstable,
   inputs,
+  userSettings,
   ...
 }:
 let
@@ -47,8 +48,29 @@ in
       };
       "git.autofetch" = true;
       "git.confirmSync" = false;
-      "nix.enableLanguageServer" = true;
+
+      # nix
+      "nixpkgs" = {
+        expr = [ "import <nixpkgs> { }" ];
+      };
       "nix.serverPath" = "nixd";
+      "nix.enableLanguageServer" = true;
+      "nix.serverSettings" = {
+        "nixd" = {
+          "formatting" = {
+            "command" = [ "nixfmt" ]; # // or nixfmt or nixpkgs-fmt
+          };
+          "options" = {
+            "nixos" = {
+              "expr" = ''(builtins.getFlake "${userSettings.configDir}").nixosConfigurations.system.options'';
+            };
+            "home_manager" = {
+              "expr" = ''(builtins.getFlake "${userSettings.configDir}").homeConfigurations.user.options'';
+            };
+          };
+        };
+      };
+
       "svelte.enable-ts-plugin" = true;
       # Prettier Everything
       "[html]" = prettier;
@@ -146,5 +168,7 @@ in
   };
   home.packages = [
     pkgs.vscode # microsoft vscode
+    pkgs.nixpkgs-fmt
+    # pkgs.nixfmt
   ];
 }
