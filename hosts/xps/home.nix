@@ -53,7 +53,7 @@
 
     # EDITORS
     ../../user/app/editor/nvim # My nvim config
-    ../../user/app/editor/helix # My emacs config
+    ../../user/app/editor/helix # My helix config
     ../../user/app/editor/vscode # My vscode config
   ];
 

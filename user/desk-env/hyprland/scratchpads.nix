@@ -1,12 +1,13 @@
 { lib, userSettings, ... }:
 {
 
-
   wayland.windowManager.hyprland.settings.bind = [
-      "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
-      "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
-      "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
-      "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
+    "ALT,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop"
+    "$mainMod, W,exec,pypr toggle whatsapp && hyprctl dispatch bringactivetotop"
+    "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
+    "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
+
+    "$mainMod,P,exec,pypr toggle postman && hyprctl dispatch bringactivetotop"
   ];
 
   home.file.".config/hypr/pyprland.toml".text = ''
@@ -18,6 +19,13 @@
     command = "${userSettings.term} --class dropterm"
     class = "dropterm"
     size = "85% 85%"
+
+    [scratchpads.postman]
+    animation = "fromRight"
+    command = "postman"
+    class = "Postman"
+    lazy = true
+    size = "55% 85%"
 
     [scratchpads.volume]
     animation = "fromRight"

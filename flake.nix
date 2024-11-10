@@ -2,12 +2,13 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , # nixos-hardware,
-      home-manager
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      # nixos-hardware,
+      home-manager,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
