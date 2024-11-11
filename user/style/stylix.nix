@@ -70,10 +70,9 @@ in
       btop.enable = true;
       fzf.enable = true;
       lazygit.enable = true;
-      
 
       vim.enable = true;
-      neovim.enable = true;
+      #  neovim.enable = true;
 
       vscode.enable = true;
       mangohud.enable = true;

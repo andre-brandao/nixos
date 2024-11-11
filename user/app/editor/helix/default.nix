@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
+let 
+pkgs = pkgs-unstable;
+in
 {
   programs.helix = {
     enable = true;
@@ -95,6 +98,13 @@
           "collapse_selection"
           "keep_primary_selection"
         ];
+        "C-g" = [
+          ":new"
+          ":insert-output lazygit"
+          ":buffer-close!"
+          ":redraw"
+        ];
+
       };
     };
     languages = {

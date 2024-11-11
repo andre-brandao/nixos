@@ -69,7 +69,7 @@
       qogir-icon-theme
 
       loupe
-      gnome.nautilus
+      nautilus
       gnome.gnome-software # for flatpak
       gnome-text-editor
       gnome.gnome-calendar

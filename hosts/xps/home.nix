@@ -100,14 +100,14 @@
       # ---- UTILS ---- #
       bitwarden # Password manager
       # syncthing
-      gnome.nautilus # File manager
+      nautilus # File manager
 
       # ---- WINDOWS ---- #
       wine
       bottles
 
       # ---- 3D Modeling ---- #
-      blender
+      # blender
 
       # ---- MEDIA ---- #
       ffmpeg

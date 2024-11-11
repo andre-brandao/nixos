@@ -125,9 +125,9 @@
         blur.enabled = false; # disabled for battery life
 
         # drop_shadow = "yes";
-        drop_shadow = false;
-        shadow_range = 4;
-        shadow_render_power = 3;
+        # drop_shadow = false;
+        # shadow_range = 4;
+        # shadow_render_power = 3;
         # "col.shadow" = "rgba(1a1a1aee)";
 
         inactive_opacity = 0.9;
@@ -170,13 +170,13 @@
       master = {
         #  # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         # new_is_master = true;
-        no_gaps_when_only = 1;
+        # no_gaps_when_only = 1;
       };
       dwindle = {
         #   # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
         pseudotile = "yes";
         preserve_split = "yes";
-        no_gaps_when_only = 2;
+        # no_gaps_when_only = 2;
       };
       gestures = {
         # # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -191,6 +191,10 @@
         #  # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0;
         focus_on_activate = true;
+      };
+      debug = {
+        disable_logs = false;
+
       };
 
       # "$mainMod" = mainMod;
