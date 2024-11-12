@@ -11,6 +11,9 @@
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
+    settings.bind = [
+      # "$mainMod, O, overview:toggle"
+    ];
     settings.plugin = {
       touch_gestures = {
         long_press_delay = 400;
@@ -26,7 +29,7 @@
           " , longpress:3, resizewindow"
         ];
         # hyprgrass-bind = "";
-        
+
       };
       #     hyprexpo = {
       #       columns = 3;

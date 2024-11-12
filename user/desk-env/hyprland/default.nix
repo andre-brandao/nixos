@@ -81,13 +81,13 @@
         kb_options = "grp:win_space_toggle,caps:escape";
         kb_rules = "";
 
-        follow_mouse = 1;
+        follow_mouse = 1; # Cursor movement will always change focus to the window under the cursor.
 
         focus_on_close = 1;
 
         touchpad = {
           natural_scroll = true;
-          disable_while_typing = false;
+          disable_while_typing = true;
           # clickfinger_behavior = true;
         };
 
@@ -110,24 +110,18 @@
 
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         allow_tearing = false;
+        snap = {
+          enabled = true;
+        };
       };
 
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 6;
-
-        # blur = {
-        #   enabled = true;
-        #   size = 3;
-        #   passes = 1;
-        # };
         blur.enabled = false; # disabled for battery life
+        shadow.enabled = false;
 
-        # drop_shadow = "yes";
-        # drop_shadow = false;
-        # shadow_range = 4;
-        # shadow_render_power = 3;
         # "col.shadow" = "rgba(1a1a1aee)";
 
         inactive_opacity = 0.9;
@@ -192,10 +186,10 @@
         force_default_wallpaper = 0;
         focus_on_activate = true;
       };
-      debug = {
-        disable_logs = false;
+      # debug = {
+      #   disable_logs = false;
 
-      };
+      # };
 
       # "$mainMod" = mainMod;
       bind = [

@@ -24,12 +24,22 @@
         (f "brave-notion.so__-Default")
         (f "brave-nngceckbapebfimnlniiiahkandclblb-Default") # Bitwarden
       ];
-
     workspace = [
       #these apps will open on the specified workspace when you firt open them
       "8, on-created-empty:vesktop"
       "9, on-created-empty:thunderbird"
       # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
+      # Smart gaps  
+      "w[tv1], gapsout:0, gapsin:0E"
+      "f[1], gapsout:0, gapsin:0"
+    ];
+    # Smart Gaps
+    windowrulev2 = [
+
+      "bordersize 0, floating:0, onworkspace:w[tv1]"
+      "rounding 0, floating:0, onworkspace:w[tv1]"
+      "bordersize 0, floating:0, onworkspace:f[1]"
+      "rounding 0, floating:0, onworkspace:f[1]"
     ];
 
   };

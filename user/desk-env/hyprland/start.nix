@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   wayland.windowManager.hyprland.settings.exec-once = [
     # "dunst"
@@ -13,5 +13,6 @@
     # "systemctl --user restart xdg-desktop-portal.service"
     "pypr"
     "ags"
+    # "${pkgs.hyprpanel}/bin/hyprpanel"
   ];
 }

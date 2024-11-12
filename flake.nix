@@ -48,7 +48,7 @@
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
-        # overlays = [ rust-overlay.overlays.default ];
+        overlays = [ inputs.hyprpanel.overlay ];
       };
 
       pkgs-unstable = import nixpkgs-unstable {
@@ -121,6 +121,8 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland"; # IMPORTANT
