@@ -9,7 +9,7 @@
 
   wayland.windowManager.hyprland.settings.monitor = [
     "eDP-1,highres,0x0,1" # laptop monitor
-    "DP-3,2560x1440,auto,1" # 2560x1440
+    # "DP-3,auto,auto,1" # 2560x1440
     "DP-2,2560x1440,auto,1" # 2560x1440
     "DP-1,2560x1440,auto,1" # 2560x1440
 

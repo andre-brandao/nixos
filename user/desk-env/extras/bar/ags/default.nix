@@ -26,7 +26,33 @@
 
   programs.ags = {
     enable = true;
-    configDir = ./config;
-    extraPackages = with pkgs; [ accountsservice ];
+    package = inputs.ags.packages.${pkgs.system}.agsFull;
+    # configDir = ./config;
+    extraPackages =
+      with pkgs;
+      [
+        accountsservice
+
+        libgtop
+        glib
+        fzf
+      ]
+      ++ (with inputs.ags.packages.${pkgs.system}; [
+        battery
+        gnome-bluetooth
+        hyprland
+        notifd
+        powerprofiles
+        tray
+        mpris
+        network
+        wireplumber
+        apps
+        io
+        auth
+        cava
+        greet
+
+      ]);
   };
 }
