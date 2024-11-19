@@ -20,7 +20,7 @@
     libvirt-glib
   ];
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.virtualbox ];
 
   ## QEMU + VirtManager
   virtualisation.libvirtd = {

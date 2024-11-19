@@ -24,15 +24,6 @@
       wayland = true;
       # theme = "chili";
     };
-    # displayManager.sddm = {
-    #   enable = true;
-    #   wayland.enable = true;
-    #   enableHidpi = true;
-    #   theme = "${import ../../packages/sddm-theme.nix {
-    #     inherit pkgs;
-    #     inherit userSettings;
-    #   }}";
-    # };
   };
 
   security = {
@@ -60,31 +51,26 @@
 
   environment = {
     systemPackages = with pkgs; [
-
-      libsForQt5.qt5.qtquickcontrols2
-      libsForQt5.qt5.qtgraphicaleffects
-
       morewaita-icon-theme
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
       qogir-icon-theme
-
       loupe
       nautilus
-      gnome.gnome-software # for flatpak
+      baobab
       gnome-text-editor
-      gnome.gnome-calendar
-      gnome.gnome-boxes
-      gnome.gnome-system-monitor
-      gnome.gnome-control-center
-      gnome.gnome-weather
-      gnome.gnome-clocks
-
-      wl-gammactl
+      gnome-calendar
+      gnome-boxes
+      gnome-system-monitor
+      gnome-control-center
+      gnome-weather
+      gnome-calculator
+      gnome-clocks
+      gnome-software # for flatpak
       wl-clipboard
-      # wayshot
+      wl-gammactl
+
       pavucontrol
       brightnessctl
-      # swww
       libnotify
       rofi-wayland
       # kitty # hyprland default terminal

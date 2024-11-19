@@ -40,8 +40,8 @@
   boot.kernelParams = [
     # Silences boot messages
     "quiet"
-    # Show a splash screen
-    "splash"
+    # # Show a splash screen
+    # "splash"
 
     "bgrt_disable"
     # Silences successfull systemd messages from the initrd

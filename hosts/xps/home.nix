@@ -55,6 +55,8 @@
     ../../user/app/editor/nvim # My nvim config
     ../../user/app/editor/helix # My helix config
     ../../user/app/editor/vscode # My vscode config
+
+    # ./bloat.home.nix
   ];
 
   services = {
@@ -68,98 +70,63 @@
       # package = pkgs.brave;
     };
   };
-  home.packages =
-    (with pkgs; [
-      # ---- APPS ---- #
-      # spotify
-      netflix
-      filezilla
-      thunderbird # email client
+  home.packages = with pkgs; [
+    # ---- APPS ---- #
+    # spotify
 
-      discord
-      vesktop
-      betterdiscordctl
+    thunderbird # email client
 
-      protonmail-bridge-gui
-      # protonmail-desktop
-      protonmail-bridge
-      # discord-screenaudio
-      teams-for-linux
+    discord
+    vesktop
+    betterdiscordctl
 
-      # ---- BROWSERS ---- #
-      brave
-      firefox
-      inputs.zen-browser.packages."${system}".specific
+    protonmail-bridge-gui
+    # protonmail-desktop
+    protonmail-bridge
+    # discord-screenaudio
 
-      # playwright
-      playwright-test
-      playwright-driver.browsers
-      # ---- OFFICE ---- #
-      # libreoffice-fresh
-      obsidian
-      # ---- UTILS ---- #
-      bitwarden # Password manager
-      # syncthing
-      nautilus # File manager
+    # ---- BROWSERS ---- #
+    brave
+    firefox
+    inputs.zen-browser.packages."${system}".specific
 
-      # ---- WINDOWS ---- #
-      wine
-      bottles
+    # ---- OFFICE ---- #
+    # libreoffice-fresh
+    obsidian
+    # ---- UTILS ---- #
+    bitwarden # Password manager
+    # syncthing
+    nautilus # File manager
 
-      # ---- 3D Modeling ---- #
-      # blender
+    # ---- WINDOWS ---- #
+    wine
+    bottles
 
-      # ---- MEDIA ---- #
-      ffmpeg
-      movit
-      mediainfo
-      libmediainfo
-      mediainfo-gui
-      mpv
-      obs-studio
-      vlc
-      # kdenlive
-      gimp
-      inkscape
-      blueman
-      mediawriter
+    # ---- 3D Modeling ---- #
+    # blender
 
-      # ---- DEV UTILS ---- #
-      icon-library
-      postman
-      libffi
-      zlib
-      glib
-      beekeeper-studio
-      # dbeaver-bin
-      # schemacrawler
-      aircrack-ng
-      netcat
-      # metasploit
+    # ---- MEDIA ---- #
+    ffmpeg
 
-      # warp-terminal
-      qgis
+    obs-studio
+    vlc
+    # kdenlive
 
-      git
+    blueman
+    mediawriter
 
-      zsh
+    # ---- DEV UTILS ---- #
+    icon-library
+    postman
+    libffi
+    zlib
+    glib
 
-      # rars
-      # jflap
-      android-studio
-      # ciscoPacketTracer8
-      # jetbrains.pycharm-professional
-    ])
-    ++ (with pkgs-unstable; [
-      zed-editor
-      # jetbrains.webstorm
-      jetbrains-toolbox
-      supabase-cli
-      turso-cli
-      stripe-cli
-      graphite-cli
-      nodePackages_latest.vercel
-    ]);
+    git
+
+    zsh
+
+  ];
 
   home.sessionVariables = {
     BROWSER = userSettings.browser;

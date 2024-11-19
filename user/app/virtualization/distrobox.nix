@@ -1,4 +1,8 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [ ./modules/distrobox.nix ];
 
@@ -11,36 +15,68 @@
         symlinks = [
           ".bashrc"
           ".zshrc"
+          ".git-credentials"
+          ".config/git"
           ".config/nushell"
           ".config/nvim"
           ".config/nix"
           # ".config/starship.toml"
         ];
         packages = [
+          "wl-clipboard"
+          "git"
+          "neovim"
+        ];
+        nixPackages = [
           config.programs.neovim.finalPackage
           pkgs.nix
           pkgs.git
+          pkgs.nushell
         ];
       in
       {
+        Ubuntu = {
+          inherit exec symlinks nixPackages;
+          packages = [
+            "nodejs"
+            "npm"
+            "python3-dev"
+            "pipx"
+            "git"
+            "wl-clipboard"
+          ];
+          init = ''
+            npm install -g corepack
+            corepack enable
+            pipx install poetry
+          '';
+          img = "quay.io/toolbx/ubuntu-toolbox:latest";
+          home = "dev";
+          alias = "dev";
+        };
         Alpine = {
-          inherit exec symlinks;
+          inherit
+            exec
+            symlinks
+            nixPackages
+            packages
+            ;
           img = "docker.io/library/alpine:latest";
         };
         Fedora = {
-          inherit exec symlinks;
-          packages = "nodejs npm poetry gcc mysql-devel python3-devel wl-clipboard";
+          inherit
+            exec
+            symlinks
+            nixPackages
+            packages
+            ;
           img = "registry.fedoraproject.org/fedora-toolbox:rawhide";
-          nixPackages = packages ++ [
-            (pkgs.writeShellScriptBin "pr" "poetry run $@")
-            (pkgs.writeShellScriptBin "prpm" "poetry run python manage.py $@")
-          ];
         };
         Arch = {
           inherit exec symlinks;
           img = "docker.io/library/archlinux:latest";
-          packages = "base-devel wl-clipboard";
-          nixPackages = packages ++ [
+          packages = packages ++ [ "base-devel" ];
+          nixPackages = nixPackages ++ [
             (pkgs.writeShellScriptBin "yay" ''
               if [[ ! -f /bin/yay ]]; then
                 tmpdir="$HOME/.yay-bin"

@@ -21,7 +21,7 @@
     networkmanager
     gtk3
     libdbusmenu-gtk3
-    gnome-bluetooth
+    # gnome-bluetooth
   ];
 
   programs.ags = {
@@ -29,17 +29,16 @@
     package = inputs.ags.packages.${pkgs.system}.agsFull;
     # configDir = ./config;
     extraPackages =
-      with pkgs;
-      [
+      (with pkgs; [
         accountsservice
 
         libgtop
         glib
         fzf
-      ]
+      ])
       ++ (with inputs.ags.packages.${pkgs.system}; [
         battery
-        gnome-bluetooth
+        # gnome-bluetooth
         hyprland
         notifd
         powerprofiles
@@ -50,7 +49,7 @@
         apps
         io
         auth
-        cava
+        # cava
         greet
 
       ]);

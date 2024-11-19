@@ -23,10 +23,14 @@
         co = "checkout";
         s = "status";
       };
-      # extraConfig = {
-      #   credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
-      #   # push = { autoSetupRemote = true; };
-      # };
+      extraConfig = {
+        # credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+        # push = { autoSetupRemote = true; };
+        color.ui = true;
+        credential.helper = "store";
+        github.user = userSettings.git-user;
+
+      };
     };
 
     # git-credential-oauth = {

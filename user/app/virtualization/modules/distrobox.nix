@@ -22,8 +22,6 @@ in
 
   config =
     let
-      boxes = mkBoxes cfg.boxes;
-
       mkBoxes =
         let
           mkBox =
@@ -31,7 +29,10 @@ in
             {
               img,
               home ? ".local/share/distrobox/${name}",
-              packages ? "git neovim",
+              packages ? [
+                "git"
+                "neovim"
+              ],
               init ? "true",
               flags ? "",
               path ? [ ],
@@ -45,11 +46,11 @@ in
                 home
                 img
                 flags
-                packages
                 alias
                 symlinks
                 exec
                 ;
+              packages = builtins.concatStringsSep " " packages;
               init = pkgs.writeShellScript "init" init;
               path =
                 path
@@ -117,6 +118,8 @@ in
             ${db} enter ${box.alias} -- $@
           fi
         '';
+
+      boxes = mkBoxes cfg.boxes;
     in
     mkIf cfg.enable {
       home.packages = [ pkgs.distrobox ] ++ (map mkBoxAlias boxes);

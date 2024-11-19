@@ -12,8 +12,8 @@
     in
     {
       enable = true;
-      # theme = spicePkgs.themes.text;
-      # colorScheme = "custom";
+      theme = spicePkgs.themes.text;
+      colorScheme = "custom";
 
       # customColorScheme = with config.lib.stylix.colors; {
       #   text = "${base05}";
@@ -37,28 +37,28 @@
       #   accent = "${base06}";
       # };
 
-      # customColorScheme = with config.lib.stylix.colors; {
-      #   text = "${base05}";
-      #   subtext = "${base05}";
-      #   sidebar-text = "${base07}";
-      #   main = "${base00}";
-      #   main-elevated = "${base02}";
-      #   highlight = "${base02}";
-      #   highlight-elevated = "${base03}";
-      #   sidebar = "${base01}";
-      #   player = "${base0A}";
-      #   card = "${base04}";
-      #   shadow = "${base00}";
-      #   selected-row = "${base0A}";
-      #   button = "${base0B}";
-      #   button-active = "${base05}";
-      #   button-disabled = "${base04}";
-      #   tab-active = "${base02}";
-      #   notification = "${base02}";
-      #   notification-error = "${base08}";
-      #   equalizer = "${base0D}";
-      #   misc = "${base0C}";
-      # };
+      customColorScheme = with config.lib.stylix.colors; {
+        text = "${base05}";
+        subtext = "${base05}";
+        sidebar-text = "${base07}";
+        main = "${base00}";
+        main-elevated = "${base02}";
+        highlight = "${base02}";
+        highlight-elevated = "${base03}";
+        sidebar = "${base01}";
+        player = "${base0A}";
+        card = "${base04}";
+        shadow = "${base00}";
+        selected-row = "${base0A}";
+        button = "${base0B}";
+        button-active = "${base05}";
+        button-disabled = "${base04}";
+        tab-active = "${base02}";
+        notification = "${base02}";
+        notification-error = "${base08}";
+        equalizer = "${base0D}";
+        misc = "${base0C}";
+      };
 
       enabledCustomApps = with spicePkgs.apps; [
         newReleases

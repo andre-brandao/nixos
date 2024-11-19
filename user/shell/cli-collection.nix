@@ -44,7 +44,7 @@
     neofetch
     onefetch
     starfetch
-    cava
+    # cava
 
     # typer
   ];

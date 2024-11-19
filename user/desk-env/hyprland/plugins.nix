@@ -7,7 +7,7 @@
 {
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hyprgrass.packages.${pkgs.system}.hyprgrass
+      # inputs.hyprgrass.packages.${pkgs.system}.hyprgrass
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
@@ -15,22 +15,22 @@
       # "$mainMod, O, overview:toggle"
     ];
     settings.plugin = {
-      touch_gestures = {
-        long_press_delay = 400;
+      # touch_gestures = {
+      #   long_press_delay = 400;
 
-        workspace_swipe_fingers = 3;
-        workspace_swipe_edge = "d";
+      #   workspace_swipe_fingers = 3;
+      #   workspace_swipe_edge = "d";
 
-        hyprgrass-bind = [
-          " , swipe:4:d, killactive"
-        ];
-        hyprgrass-bindm = [
-          " , longpress:2, movewindow"
-          " , longpress:3, resizewindow"
-        ];
-        # hyprgrass-bind = "";
+      #   hyprgrass-bind = [
+      #     " , swipe:4:d, killactive"
+      #   ];
+      #   hyprgrass-bindm = [
+      #     " , longpress:2, movewindow"
+      #     " , longpress:3, resizewindow"
+      #   ];
+      #   # hyprgrass-bind = "";
 
-      };
+      # };
       #     hyprexpo = {
       #       columns = 3;
       #       gap_size = 5;

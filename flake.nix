@@ -48,7 +48,9 @@
           allowUnfree = true;
           allowUnfreePredicate = _: true;
         };
-        overlays = [ inputs.hyprpanel.overlay ];
+        overlays = [
+          #  inputs.hyprpanel.overlay 
+        ];
       };
 
       pkgs-unstable = import nixpkgs-unstable {
@@ -122,10 +124,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland"; # IMPORTANT
+      inputs.hyprland.follows = "hyprland";
     };
 
     Hyprspace = {
@@ -136,8 +137,6 @@
     ags.url = "github:Aylur/ags";
     matugen.url = "github:InioX/matugen?ref=v2.2.0";
     matcha.url = "git+https://codeberg.org/QuincePie/matcha";
-
-    # xremap-flake.url = "github:xremap/nix-flake"; # TODO:
 
     # Stylix
     stylix.url = "github:danth/stylix";
