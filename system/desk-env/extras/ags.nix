@@ -14,8 +14,8 @@
       glib-networking.enable = true;
       gnome-keyring.enable = true;
       gnome-online-accounts.enable = true;
-      tracker-miners.enable = true;
-      tracker.enable = false;
+      localsearch.enable = true;
+      tinysparql.enable = false;
     };
 
   };

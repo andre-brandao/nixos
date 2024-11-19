@@ -1,0 +1,18 @@
+scheme: Colors
+author: mrmrs (http://clrs.cc)
+base00: "111111"  # #111111
+base01: "333333"  # #333333
+base02: "555555"  # #555555
+base03: "777777"  # #777777
+base04: "999999"  # #999999
+base05: "bbbbbb"  # #bbbbbb
+base06: "dddddd"  # #dddddd
+base07: "ffffff"  # #ffffff
+base08: "ff4136"  # #ff4136
+base09: "ff851b"  # #ff851b
+base0A: "ffdc00"  # #ffdc00
+base0B: "2ecc40"  # #2ecc40
+base0C: "7fdbff"  # #7fdbff
+base0D: "0074d9"  # #0074d9
+base0E: "b10dc9"  # #b10dc9
+base0F: "85144b"  # #85144b

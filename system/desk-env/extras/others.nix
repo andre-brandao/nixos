@@ -3,7 +3,7 @@
 
   services.gnome.gnome-keyring.enable = true;
 
-  hardware.opengl.enable = true;
+  # hardware.graphics.enable = true;
 
   services.dbus = {
     enable = true;

@@ -37,27 +37,50 @@
       #   accent = "${base06}";
       # };
 
+      # customColorScheme = with config.lib.stylix.colors; {
+      #   text = "${base05}";
+      #   subtext = "${base04}";
+      #   sidebar-text = "${base07}";
+      #   main = "${base00}";
+      #   main-elevated = "${base02}";
+      #   highlight = "${base02}";
+      #   highlight-elevated = "${base03}";
+      #   sidebar = "${base01}";
+      #   player = "${base0A}";
+      #   card = "${base04}";
+      #   shadow = "${base00}";
+      #   selected-row = "${base0A}";
+      #   button = "${base0B}";
+      #   button-active = "${base05}";
+      #   button-disabled = "${base04}";
+      #   tab-active = "${base02}";
+      #   notification = "${base02}";
+      #   notification-error = "${base08}";
+      #   equalizer = "${base0D}";
+      #   misc = "${base0C}";
+      # };
+
       customColorScheme = with config.lib.stylix.colors; {
-        text = "${base05}";
-        subtext = "${base05}";
-        sidebar-text = "${base07}";
-        main = "${base00}";
-        main-elevated = "${base02}";
-        highlight = "${base02}";
-        highlight-elevated = "${base03}";
-        sidebar = "${base01}";
-        player = "${base0A}";
-        card = "${base04}";
-        shadow = "${base00}";
-        selected-row = "${base0A}";
-        button = "${base0B}";
-        button-active = "${base05}";
-        button-disabled = "${base04}";
-        tab-active = "${base02}";
-        notification = "${base02}";
-        notification-error = "${base08}";
-        equalizer = "${base0D}";
-        misc = "${base0C}";
+        text = "${base07}"; # Lighter color for text
+        subtext = "${base06}"; # Slightly darker than text
+        sidebar-text = "${base07}"; # Same as text for consistency
+        main = "${base00}"; # Dark background
+        main-elevated = "${base01}"; # Slightly lighter than main
+        highlight = "${base0B}"; # Bright color for highlight
+        highlight-elevated = "${base0C}"; # Slightly different bright color
+        sidebar = "${base02}"; # Darker than main-elevated
+        player = "${base0A}"; # Bright color for player
+        card = "${base03}"; # Slightly lighter than sidebar
+        shadow = "${base00}"; # Same as main for consistency
+        selected-row = "${base0D}"; # Bright color for selected row
+        button = "${base0B}"; # Bright color for button
+        button-active = "${base0A}"; # Different bright color for active button
+        button-disabled = "${base04}"; # Muted color for disabled button
+        tab-active = "${base0C}"; # Bright color for active tab
+        notification = "${base0E}"; # Bright color for notification
+        notification-error = "${base08}"; # Red color for error notification
+        equalizer = "${base0D}"; # Bright color for equalizer
+        misc = "${base0F}"; # Different bright color for miscellaneous
       };
 
       enabledCustomApps = with spicePkgs.apps; [

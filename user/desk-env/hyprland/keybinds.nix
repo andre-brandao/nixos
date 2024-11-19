@@ -34,7 +34,6 @@
       # "$mainMod, E, hyprexpo:expo, toggle"
       # "$mainMod, E, overview:toggle"
 
-    
     ];
   };
 }

@@ -4,6 +4,7 @@
   lib,
   pkgs,
   userSettings,
+  stylixSettings,
   ...
 }:
 let
@@ -17,6 +18,7 @@ let
   backgroundSha256 = builtins.readFile (
     ./. + "../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt"
   );
+
 in
 {
   imports = [
@@ -29,32 +31,14 @@ in
   # stylix.autoEnable = false;
   stylix = {
     enable = true;
-    polarity = themePolarity;
-    image = pkgs.fetchurl {
-      url = backgroundUrl;
-      sha256 = backgroundSha256;
-    };
+    autoEnable = false;
+    polarity = stylixSettings.polarity;
+    image = stylixSettings.image;
 
-    base16Scheme = ./. + themePath;
+    # base16Scheme = ./. + themePath;
+    base16Scheme = stylixSettings.base16Scheme;
 
-    fonts = {
-      monospace = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
-      };
-      serif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
-      };
-      sansSerif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
-      };
-      emoji = {
-        name = "Noto Color Emoji";
-        package = pkgs.noto-fonts-emoji-blob-bin;
-      };
-    };
+    fonts = stylixSettings.fonts;
 
     targets = {
       gtk.enable = true;
@@ -80,12 +64,7 @@ in
 
       spicetify.enable = false;
     };
-    fonts.sizes = {
-      terminal = 18;
-      applications = 12;
-      popups = 12;
-      desktop = 12;
-    };
+
     opacity = {
       popups = 0.75;
       terminal = 0.75;

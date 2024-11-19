@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   userSettings,
+  stylixSettings,
   ...
 }:
 let
@@ -17,6 +18,7 @@ let
   backgroundSha256 = builtins.readFile (
     ./. + "../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt"
   );
+
 in
 {
   imports = [ inputs.stylix.nixosModules.stylix ];
@@ -25,32 +27,18 @@ in
 
   stylix = {
     enable = true;
-    polarity = themePolarity;
-    image = pkgs.fetchurl {
-      url = backgroundUrl;
-      sha256 = backgroundSha256;
-    };
+    autoEnable = false;
+    polarity = stylixSettings.polarity;
+    image = stylixSettings.image;
+    # pkgs.fetchurl {
+    #   url = backgroundUrl;
+    #   sha256 = backgroundSha256;
+    # };
 
-    base16Scheme = ./. + themePath;
+    # base16Scheme = ./. + themePath;
+    base16Scheme = stylixSettings.base16Scheme;
 
-    fonts = {
-      monospace = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
-      };
-      serif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
-      };
-      sansSerif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
-      };
-      emoji = {
-        name = "Noto Color Emoji";
-        package = pkgs.noto-fonts-emoji-blob-bin;
-      };
-    };
+    fonts = stylixSettings.fonts;
 
     targets = {
       lightdm.enable = true;

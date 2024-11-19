@@ -1,6 +1,6 @@
 { pkgs-unstable, ... }:
-let 
-pkgs = pkgs-unstable;
+let
+  pkgs = pkgs-unstable;
 in
 {
   programs.helix = {

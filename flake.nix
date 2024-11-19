@@ -2,16 +2,36 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      # nixos-hardware,
-      home-manager,
-      ...
+    { self
+    , nixpkgs
+    , nixpkgs-unstable
+    , # nixos-hardware,
+      home-manager
+    , ...
     }@inputs:
     let
       inherit (self) outputs;
+      # configure pkgs
+      pkgs = import nixpkgs {
+        system = systemSettings.system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+        overlays = [
+          #  inputs.hyprpanel.overlay 
+        ];
+      };
+
+      pkgs-unstable = import nixpkgs-unstable {
+        system = systemSettings.system;
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = _: true;
+        };
+      };
+
+
 
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -41,23 +61,43 @@
         editor = "zed"; # Default editor;
       };
 
-      # configure pkgs
-      pkgs = import nixpkgs {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-        overlays = [
-          #  inputs.hyprpanel.overlay 
-        ];
-      };
 
-      pkgs-unstable = import nixpkgs-unstable {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
+
+      stylixSettings = {
+        polarity = "dark";
+        image = ./.images/wallpapers/image.png;
+
+        # image = pkgs.runCommand "image.png" { } ''
+        #   COLOR=$(${pkgs.yq}/bin/yq -r .base00 ${theme})
+        #   COLOR="#"$COLOR
+        #   ${pkgs.imagemagick}/bin/magick convert -size 1920x1080 xc:$COLOR $out
+        # '';
+
+        base16Scheme = ./themes/3024.yaml;
+
+        fonts = {
+          sizes = {
+            terminal = 18;
+            applications = 12;
+            popups = 12;
+            desktop = 12;
+          };
+          monospace = {
+            name = userSettings.font;
+            package = userSettings.fontPkg;
+          };
+          serif = {
+            name = userSettings.font;
+            package = userSettings.fontPkg;
+          };
+          sansSerif = {
+            name = userSettings.font;
+            package = userSettings.fontPkg;
+          };
+          emoji = {
+            name = "Noto Color Emoji";
+            package = pkgs.noto-fonts-emoji-blob-bin;
+          };
         };
       };
     in
@@ -70,10 +110,13 @@
         system = nixpkgs.lib.nixosSystem {
           modules = [ ./hosts/${systemSettings.profile}/configuration.nix ];
           specialArgs = {
+            inherit pkgs-unstable;
+
             inherit inputs outputs;
+
             inherit systemSettings;
             inherit userSettings;
-            inherit pkgs-unstable;
+            inherit stylixSettings;
           };
         };
       };
@@ -88,10 +131,13 @@
 
           ];
           extraSpecialArgs = {
+            inherit pkgs-unstable;
+
             inherit inputs outputs;
+
             inherit systemSettings;
             inherit userSettings;
-            inherit pkgs-unstable;
+            inherit stylixSettings;
           };
         };
       };
