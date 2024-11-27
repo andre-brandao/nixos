@@ -16,7 +16,7 @@
     ./rules.nix
 
     # ../extras/bar/waybar.nix
-    ../extras/bar/ags
+    # ../extras/bar/ags
     # ../extras/bar/nwg-dock.nix
     # ../extras/notification/dunst.nix
     ./monitor.nix
@@ -102,8 +102,8 @@
         gaps_out = 15;
         border_size = 2;
 
-        "col.inactive_border" = "0x33 ${config.lib.stylix.colors.base00}";
-        "col.active_border" = ''0xff${config.lib.stylix.colors.base08} 0xff${config.lib.stylix.colors.base0A} 45deg'';
+        "col.inactive_border" = "0x33${config.lib.stylix.colors.base03}";
+        "col.active_border" = ''0xff${config.lib.stylix.colors.base0D} 0xff${config.lib.stylix.colors.base0C} 45deg'';
 
         # layout = "dwindle";
         layout = "master";

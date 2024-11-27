@@ -1,4 +1,15 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+
+let
+
+  hyprshell = "${inputs.hyprshell.packages.${pkgs.system}.default}/bin/hyprshell";
+
+in
 {
   wayland.windowManager.hyprland.settings = {
 
@@ -14,7 +25,8 @@
       "protonmail-bridge --noninteractive"
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
-      "ags run"
+      # "ags run"
+      hyprshell
     ];
 
     exec = [

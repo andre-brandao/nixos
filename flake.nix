@@ -22,6 +22,7 @@
         overlays = [
           #  inputs.hyprpanel.overlay 
           inputs.hyprland.overlays.default
+          # inputs.hyprshell.overlays.default
         ];
       };
 
@@ -157,6 +158,10 @@
       # url = "github:hyprwm/Hyprland/v0.42.0";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    hyprshell = {
+      url = "github:andre-brandao/hyprshell";
+      inputs.hyprland.follows = "nixpkgs";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
@@ -172,9 +177,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    ags.url = "github:Aylur/ags";
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
-    matcha.url = "git+https://codeberg.org/QuincePie/matcha";
+    # ags.url = "github:Aylur/ags";
+    # matugen.url = "github:InioX/matugen?ref=v2.2.0";
+    # matcha.url = "git+https://codeberg.org/QuincePie/matcha";
 
     # Stylix
     stylix.url = "github:danth/stylix";

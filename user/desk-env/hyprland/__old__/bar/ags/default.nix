@@ -22,6 +22,7 @@
     gtk3
     libdbusmenu-gtk3
     # gnome-bluetooth
+    # pkgs.myShell
   ];
 
   programs.ags = {
