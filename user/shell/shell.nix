@@ -76,15 +76,14 @@ in
         bindkey "''${key[Up]}" up-line-or-search
 
 
-        # make nix-shell use zsh
-        # ${pkgs.any-nix-shell}/bin/any-nix-shell zsh | source /dev/stdin
-
-
         # # check if already inside a tmux session
         # if [ -z "$TMUX" ]; then
         # # atach to tmux session if exists, else create a new one
         # ${pkgs.tmux}/bin/tmux attach -t default || ${pkgs.tmux}/bin/tmux new -s default
         # fi
+
+        # make nix-shell use zsh
+        ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
       '';
 
       shellAliases = aliases;
