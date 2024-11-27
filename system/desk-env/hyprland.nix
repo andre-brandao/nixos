@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  userSettings,
-  ...
+{ pkgs
+, inputs
+, userSettings
+, ...
 }:
 {
   imports = [
@@ -12,18 +11,40 @@
     # ../app/xremap.nix
   ];
 
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
-      options = "grp:win_space_toggle";
-    };
-    displayManager.gdm = {
+  services = {
+    xserver = {
       enable = true;
-      wayland = true;
-      # theme = "chili";
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "grp:win_space_toggle";
+      };
+      # displayManager.gdm = {
+      #   enable = true;
+      #   wayland = true;
+      #   # theme = "chili";
+      # };
+
     };
+    greetd =
+      let
+        tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+        session = "Hyprland";
+      in
+
+      {
+        enable = true;
+        settings = {
+          initial_session = {
+            command = "${session}";
+            user = userSettings.username;
+          };
+          default_session = {
+            command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time -cmd ${session}";
+            user = "greeter";
+          };
+        };
+      };
   };
 
   security = {

@@ -2,12 +2,13 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    { self
-    , nixpkgs
-    , nixpkgs-unstable
-    , # nixos-hardware,
-      home-manager
-    , ...
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      # nixos-hardware,
+      home-manager,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -20,6 +21,7 @@
         };
         overlays = [
           #  inputs.hyprpanel.overlay 
+          inputs.hyprland.overlays.default
         ];
       };
 
@@ -30,8 +32,6 @@
           allowUnfreePredicate = _: true;
         };
       };
-
-
 
       # ---- SYSTEM SETTINGS ---- #
       systemSettings = {
@@ -61,19 +61,11 @@
         editor = "zed"; # Default editor;
       };
 
-
-
       stylixSettings = {
         polarity = "dark";
-        image = ./.images/wallpapers/image.png;
+        image = ./.images/wallpapers/golden-ratio.png;
 
-        # image = pkgs.runCommand "image.png" { } ''
-        #   COLOR=$(${pkgs.yq}/bin/yq -r .base00 ${theme})
-        #   COLOR="#"$COLOR
-        #   ${pkgs.imagemagick}/bin/magick convert -size 1920x1080 xc:$COLOR $out
-        # '';
-
-        base16Scheme = ./themes/3024.yaml;
+        base16Scheme = ./themes/irblack.yaml;
 
         fonts = {
           sizes = {
@@ -163,7 +155,7 @@
       # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.42.0?submodules=1";
 
       # url = "github:hyprwm/Hyprland/v0.42.0";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
