@@ -64,9 +64,11 @@
 
       stylixSettings = {
         polarity = "dark";
-        image = ./.images/wallpapers/golden-ratio.png;
+        # image = ./.images/wallpapers/golden-ratio.png;
+        image = "${inputs.wallpapers}/red-sunset.png";
 
-        base16Scheme = ./themes/irblack.yaml;
+        # base16Scheme = ./themes/irblack.yaml;
+        base16Scheme = "${inputs.tt-schemes}/base16/irblack.yaml";
 
         fonts = {
           sizes = {
@@ -177,18 +179,25 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    # ags.url = "github:Aylur/ags";
-    # matugen.url = "github:InioX/matugen?ref=v2.2.0";
-    # matcha.url = "git+https://codeberg.org/QuincePie/matcha";
-
     # Stylix
     stylix.url = "github:danth/stylix";
+
+    tt-schemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
+
+    wallpapers = {
+      url = "github:andre-brandao/wallpapers";
+      flake = false;
+    };
 
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
 
     };
+
     zen-browser.url = "github:MarceColl/zen-browser-flake";
 
   };

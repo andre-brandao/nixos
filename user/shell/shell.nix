@@ -28,6 +28,9 @@ let
     cm = "git commit --message";
     dl = "http --download get";
 
+    ndev = "nix develop";
+    nshell = "nix-shell";
+
     quit = "exit";
 
     neofetch = "fastfetch";

@@ -779,6 +779,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "spicetify": "spicetify",
         "stylix": "stylix",
+        "tt-schemes": "tt-schemes",
+        "wallpapers": "wallpapers",
         "zen-browser": "zen-browser"
       }
     },
@@ -925,6 +927,38 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
+        "type": "github"
+      }
+    },
+    "tt-schemes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731411556,
+        "narHash": "sha256-Tp1BpaF5qRav7O2TsSGjCfgRzhiasu4IuwROR66gz1o=",
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "rev": "61058a8d2e2bd4482b53d57a68feb56cdb991f0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "type": "github"
+      }
+    },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732832845,
+        "narHash": "sha256-9jixiSivwc3u9SAT25V492TiN41DgvxtI8qG7phVRD0=",
+        "owner": "andre-brandao",
+        "repo": "wallpapers",
+        "rev": "9dc4686005330c2d81eb28d9b4da482fe35efc87",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andre-brandao",
+        "repo": "wallpapers",
         "type": "github"
       }
     },
