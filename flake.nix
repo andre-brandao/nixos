@@ -64,11 +64,8 @@
 
       stylixSettings = {
         polarity = "dark";
-        # image = ./.images/wallpapers/golden-ratio.png;
         image = "${inputs.wallpapers}/red-sunset.png";
-
-        # base16Scheme = ./themes/irblack.yaml;
-        base16Scheme = "${inputs.tt-schemes}/base16/irblack.yaml";
+        base16Scheme = "${inputs.color-schemes}/base16/irblack.yaml";
 
         fonts = {
           sizes = {
@@ -154,8 +151,9 @@
 
     # HyperLand
     hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.42.0?submodules=1";
+      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
+      url = "github:hyprwm/Hyprland";
 
       # url = "github:hyprwm/Hyprland/v0.42.0";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -182,8 +180,8 @@
     # Stylix
     stylix.url = "github:danth/stylix";
 
-    tt-schemes = {
-      url = "github:tinted-theming/schemes";
+    color-schemes = {
+      url = "github:andre-brandao/color-schemes";
       flake = false;
     };
 
