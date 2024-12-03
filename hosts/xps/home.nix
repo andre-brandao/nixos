@@ -97,6 +97,8 @@
     bitwarden # Password manager
     # syncthing
     nautilus # File manager
+    nemo
+    dolphin
 
     # ---- WINDOWS ---- #
     wine
@@ -128,7 +130,6 @@
 
     waveterm
     zed-editor
-
   ];
 
   home.sessionVariables = {

@@ -26,20 +26,22 @@
   ## QEMU + VirtManager
   virtualisation.libvirtd = {
     enable = true;
-    qemu.runAsRoot = false;
     allowedBridges = [
       "nm-bridge"
       "virbr0"
     ];
-    swtpm.enable = true;
-    ovmf = {
-      enable = true;
-      packages = [
-        (pkgs.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        }).fd
-      ];
+    qemu = {
+      runAsRoot = false;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
+      };
     };
 
   };
