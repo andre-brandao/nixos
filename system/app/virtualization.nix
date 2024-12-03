@@ -18,6 +18,7 @@
     virt-manager
     distrobox
     libvirt-glib
+    quickemu
   ];
 
   boot.extraModulePackages = [ config.boot.kernelPackages.virtualbox ];
@@ -30,6 +31,17 @@
       "nm-bridge"
       "virbr0"
     ];
+    swtpm.enable = true;
+    ovmf = {
+      enable = true;
+      packages = [
+        (pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd
+      ];
+    };
+
   };
   programs.virt-manager.enable = true;
 }

@@ -32,6 +32,8 @@
           pkgs.nix
           pkgs.git
           pkgs.nushell
+          pkgs.eza
+          
         ];
       in
       {
@@ -40,19 +42,12 @@
           packages = [
             "nodejs"
             "npm"
-            "python3-dev"
-            "pipx"
+            # "python3-dev"
+            # "pipx"
             "git"
             "wl-clipboard"
           ];
-          init = ''
-            npm install -g corepack
-            corepack enable
-            pipx install poetry
-          '';
           img = "quay.io/toolbx/ubuntu-toolbox:latest";
-          home = "dev";
-          alias = "dev";
         };
         Alpine = {
           inherit

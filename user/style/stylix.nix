@@ -28,8 +28,8 @@
     # fonts = stylixSettings.fonts;
 
     targets = {
-      # gtk.enable = true;
-      # gnome.enable = true;
+      gtk.enable = true;
+      gnome.enable = true;
       hyprland.enable = false;
       rofi.enable = true;
       dunst.enable = true;

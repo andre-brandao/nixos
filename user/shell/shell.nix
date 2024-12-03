@@ -13,7 +13,7 @@ let
     sys-update = "nh os switch ${userSettings.configDir}  -H system";
     # -- REBUILD USER
     # user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
-    user-update = "nh home switch ${userSettings.configDir} -c user";
+    # user-update = "nh home switch ${userSettings.configDir} -c user";
 
     ls = "eza --icons -l -T -L=1";
     cat = "bat";

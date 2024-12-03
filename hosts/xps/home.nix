@@ -127,6 +127,7 @@
     zsh
 
     waveterm
+    zed-editor
 
   ];
 
