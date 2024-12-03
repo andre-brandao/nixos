@@ -33,6 +33,8 @@
     hyprpicker
     hyprpaper
 
+    inputs.hyprsysteminfo.packages.${pkgs.system}.default
+
     pyprland
 
     networkmanagerapplet # network manager

@@ -8,6 +8,7 @@
       nixpkgs-unstable,
       # nixos-hardware,
       home-manager,
+      stylix,
       ...
     }@inputs:
     let
@@ -100,7 +101,27 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
-          modules = [ ./hosts/${systemSettings.profile}/configuration.nix ];
+          modules = [
+            ./hosts/${systemSettings.profile}/configuration.nix
+            home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${userSettings.username} = import ./hosts/${systemSettings.profile}/home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit pkgs-unstable;
+
+                inherit inputs outputs;
+
+                inherit systemSettings;
+                inherit userSettings;
+                inherit stylixSettings;
+              };
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
+            }
+          ];
           specialArgs = {
             inherit pkgs-unstable;
 
@@ -153,18 +174,22 @@
     hyprland = {
       # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.45.2";
 
       # url = "github:hyprwm/Hyprland/v0.42.0";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprshell = {
       url = "github:andre-brandao/hyprshell";
-      inputs.hyprland.follows = "nixpkgs";
+
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
+    };
+    hyprsysteminfo = {
+      url = "github:hyprwm/hyprsysteminfo";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprgrass = {

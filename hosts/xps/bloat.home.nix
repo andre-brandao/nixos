@@ -44,5 +44,6 @@
       stripe-cli
       graphite-cli
       nodePackages_latest.vercel
+      waveterm
     ]);
 }

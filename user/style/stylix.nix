@@ -7,22 +7,9 @@
   stylixSettings,
   ...
 }:
-let
-  themePath = "../../../themes" + ("/" + userSettings.theme + "/" + userSettings.theme) + ".yaml";
-  themePolarity = lib.removeSuffix "\n" (
-    builtins.readFile (./. + "../../../themes" + ("/" + userSettings.theme) + "/polarity.txt")
-  );
-  backgroundUrl = builtins.readFile (
-    ./. + "../../../themes" + ("/" + userSettings.theme) + "/backgroundurl.txt"
-  );
-  backgroundSha256 = builtins.readFile (
-    ./. + "../../../themes/" + ("/" + userSettings.theme) + "/backgroundsha256.txt"
-  );
-
-in
 {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    # inputs.stylix.homeManagerModules.stylix
     ./gtk.nix
     ./qt.nix
   ];
@@ -30,19 +17,19 @@ in
   home.file.".currenttheme".text = userSettings.theme;
   # stylix.autoEnable = false;
   stylix = {
-    enable = true;
-    autoEnable = false;
-    polarity = stylixSettings.polarity;
-    image = stylixSettings.image;
+    # enable = true;
+    # autoEnable = false;
+    # polarity = stylixSettings.polarity;
+    # image = stylixSettings.image;
 
-    # base16Scheme = ./. + themePath;
-    base16Scheme = stylixSettings.base16Scheme;
+    # # base16Scheme = ./. + themePath;
+    # base16Scheme = stylixSettings.base16Scheme;
 
-    fonts = stylixSettings.fonts;
+    # fonts = stylixSettings.fonts;
 
     targets = {
-      gtk.enable = true;
-      gnome.enable = true;
+      # gtk.enable = true;
+      # gnome.enable = true;
       hyprland.enable = false;
       rofi.enable = true;
       dunst.enable = true;

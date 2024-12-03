@@ -126,6 +126,8 @@
 
     zsh
 
+    waveterm
+
   ];
 
   home.sessionVariables = {
