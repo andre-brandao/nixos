@@ -3,7 +3,8 @@
   # Fonts are nice to have
   fonts.packages = with pkgs; [
     # Fonts
-    nerdfonts
+    # nerdfonts
+    nerd-fonts.jetbrains-mono
     powerline
     font-awesome
   ];

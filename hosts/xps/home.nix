@@ -130,6 +130,8 @@
 
     waveterm
     zed-editor
+
+    supabase-cli
   ];
 
   home.sessionVariables = {
