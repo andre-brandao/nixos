@@ -294,6 +294,9 @@
     wallpaper = HDMI-A-1,${config.stylix.image}
 
     wallpaper = DP-1,${config.stylix.image}
+    wallpaper = DP-2,${config.stylix.image}
+    wallpaper = DP-3,${config.stylix.image}
+
   '';
 
   home.file.".config/swappy/config".text = ''
