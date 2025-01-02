@@ -21,7 +21,7 @@
           allowUnfreePredicate = _: true;
         };
         overlays = [
-          #  inputs.hyprpanel.overlay 
+          #  inputs.hyprpanel.overlay
           inputs.hyprland.overlays.default
           # inputs.hyprshell.overlays.default
         ];
@@ -222,6 +222,10 @@
     };
 
     zen-browser.url = "github:MarceColl/zen-browser-flake";
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
 
   };
 }

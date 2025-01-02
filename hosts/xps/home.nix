@@ -124,6 +124,8 @@
     zlib
     glib
 
+    inputs.ghostty.packages.x86_64-linux.default
+
     git
 
     zsh
