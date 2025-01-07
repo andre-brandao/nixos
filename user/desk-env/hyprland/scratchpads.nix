@@ -14,10 +14,16 @@
     [pyprland]
     plugins = ["scratchpads", "magnify"]
 
+    # [scratchpads.term2]
+    # animation = "fromBottom"
+    # command = "${userSettings.term} --class dropterm"
+    # class = "dropterm"
+    # size = "85% 85%"
+
     [scratchpads.term]
     animation = "fromBottom"
-    command = "${userSettings.term} --class dropterm"
-    class = "dropterm"
+    command = "ghostty"
+    class = "com.mitchellh.ghostty"
     size = "85% 85%"
 
     [scratchpads.postman]
