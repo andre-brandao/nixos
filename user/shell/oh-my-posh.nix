@@ -80,7 +80,8 @@
                 "fetch_upstream_icon" = true;
               };
               "style" = "plain";
-              "template" = "[<#ffffff>{{ .UpstreamIcon }}</>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff></> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff></> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff></> {{ .StashCount }}{{ end }}]";
+              "template" =
+                "[<#ffffff>{{ .UpstreamIcon }}</>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff></> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff></> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff></> {{ .StashCount }}{{ end }}]";
               "type" = "git";
             }
             {
@@ -104,7 +105,8 @@
               "type" = "python";
               "style" = "plain";
               "foreground" = "p:Lavender";
-              "template" = "[ {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}]";
+              "template" =
+                "[ {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}]";
             }
             {
               "foreground" = "p:Pink";

@@ -33,7 +33,7 @@
           pkgs.git
           pkgs.nushell
           pkgs.eza
-          
+
         ];
       in
       {

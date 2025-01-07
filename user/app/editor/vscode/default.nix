@@ -89,9 +89,12 @@ in
       # GOT THIS FROM THE INTERNET **
       "code-runner.executorMap" = {
         "javascript" = "${pkgs.nodejs}/bin/node";
-        "java" = "cd $dir && ${pkgs.jre_minimal}/bin/javac $fileName && mv $fileNameWithoutExt $fileNameWithoutExt.o && ${pkgs.jre_minimal}/bin/java $fileNameWithoutExt.o";
-        "c" = "cd $dir && ${pkgs.gcc}/bin/gcc $fileName -o $fileNameWithoutExt.o && $dir$fileNameWithoutExt.o";
-        "cpp" = "cd $dir && ${pkgs.gcc}/bin/g++ $fileName -o $fileNameWithoutExt.o && $dir$fileNameWithoutExt.o";
+        "java" =
+          "cd $dir && ${pkgs.jre_minimal}/bin/javac $fileName && mv $fileNameWithoutExt $fileNameWithoutExt.o && ${pkgs.jre_minimal}/bin/java $fileNameWithoutExt.o";
+        "c" =
+          "cd $dir && ${pkgs.gcc}/bin/gcc $fileName -o $fileNameWithoutExt.o && $dir$fileNameWithoutExt.o";
+        "cpp" =
+          "cd $dir && ${pkgs.gcc}/bin/g++ $fileName -o $fileNameWithoutExt.o && $dir$fileNameWithoutExt.o";
         # "objective-c" = "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt.o && $dir$fileNameWithoutExt.o";
         # "php" = "${pkgs.php}/bin/php";
         # "python" = "${pkgs.python}/bin/python -u";

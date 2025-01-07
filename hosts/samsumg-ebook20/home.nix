@@ -20,7 +20,7 @@
     ../../user/style/gtk.nix # My gtk config
 
     ../../user/app/git/git.nix # My git config
-    # SHELL 
+    # SHELL
     ../../user/shell/shell.nix # My shell config
     # ../../user/shell/cli-collection.nix # Useful CLI apps
 

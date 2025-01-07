@@ -51,7 +51,7 @@ in
       grub.enable = true;
       grub.useImage = true;
 
-      # # 
+      # #
       # hyprland.enable = false;
       # rofi.enable = true;
       # dunst.enable = true;

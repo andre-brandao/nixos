@@ -105,7 +105,8 @@
         border_size = 2;
 
         "col.inactive_border" = "0x33${config.lib.stylix.colors.base03}";
-        "col.active_border" = ''0xff${config.lib.stylix.colors.base0D} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+        "col.active_border" =
+          ''0xff${config.lib.stylix.colors.base0D} 0xff${config.lib.stylix.colors.base0C} 45deg'';
 
         # layout = "dwindle";
         layout = "master";

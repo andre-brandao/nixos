@@ -29,7 +29,7 @@
       "8, on-created-empty:vesktop"
       "9, on-created-empty:thunderbird"
       # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
-      # Smart gaps  
+      # Smart gaps
       "w[tv1], gapsout:0, gapsin:0E"
       "f[1], gapsout:0, gapsin:0"
     ];
