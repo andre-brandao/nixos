@@ -18,7 +18,7 @@
     virt-manager
     distrobox
     libvirt-glib
-    quickemu
+    # quickemu
   ];
 
   boot.extraModulePackages = [ config.boot.kernelPackages.virtualbox ];

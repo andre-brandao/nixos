@@ -172,9 +172,9 @@
 
     # HyperLand
     hyprland = {
-      # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland";
       # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
-      url = "github:hyprwm/Hyprland/v0.45.2";
+      # url = "github:hyprwm/Hyprland/v0.45.2";
 
       # url = "github:hyprwm/Hyprland/v0.42.0";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";

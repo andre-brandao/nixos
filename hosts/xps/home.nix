@@ -80,7 +80,7 @@
     vesktop
     betterdiscordctl
 
-    protonmail-bridge-gui
+    # protonmail-bridge-gui
     # protonmail-desktop
     protonmail-bridge
     # discord-screenaudio
@@ -102,7 +102,7 @@
 
     # ---- WINDOWS ---- #
     wine
-    bottles
+    # bottles
 
     # ---- 3D Modeling ---- #
     # blender
