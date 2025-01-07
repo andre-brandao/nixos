@@ -697,11 +697,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1732831878,
-        "narHash": "sha256-vsfNuFo3WQjPf0KKIh/DlHl7baWOCnr8cV7epjcdxLU=",
+        "lastModified": 1736220989,
+        "narHash": "sha256-GnO5QM/sWbibW5sFvBAADWvApGaWmsbI5QDSNCSEBcE=",
         "owner": "andre-brandao",
         "repo": "hyprshell",
-        "rev": "a4945e3d2cb3b6bf8b5b6d55dd930d428b2372c9",
+        "rev": "bb26e6a1f9afa924b3bb4acfbf822e8fed37221e",
         "type": "github"
       },
       "original": {
