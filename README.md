@@ -1,14 +1,14 @@
 # My NixOS
 
-![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/ashes.png?raw=true)
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/.images/ashes.png?raw=true)
 
-![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/stella.png?raw=true)
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/.images/stella.png?raw=true)
 
-![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/emil.png?raw=true)
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/.images/emil.png?raw=true)
 
-![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/fairy-floss.png?raw=true)
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/.images/fairy-floss.png?raw=true)
 
-![Desktop](https://github.com/andre-brandao/nixos/blob/main/themes/.images/gigavolt.png?raw=true)
+![Desktop](https://github.com/andre-brandao/nixos/blob/main/.images/gigavolt.png?raw=true)
 
 ## Basic Flake Comands
 
@@ -46,7 +46,6 @@ user-update
 
 A nix flake that aplies a BASE16 colorscheme across multiple apps and desktop enviroments
 
-
 Check my stylix config at /user/style and /system/style or https://danth.github.io/stylix/index.html for all options
 
 Check out the themes directory!!
@@ -54,9 +53,7 @@ Check out the themes directory!!
 ## File Strucure
 
 ```bash
-profiles
-|  personal
-|  |  hardware-configurantion.nix # CHANGE THIS!!
+hosts # Hosts configurations
 system
 |  app # System aplications
 |  config # Common system configs
@@ -70,7 +67,6 @@ user
 |  shell # Shell config (tmux + zsh + cli tools)
 |  lang # Programing languages
 |  desk-env # IN PROGRESS
-themes # Base16 colors
 flake.nix
 ```
 
