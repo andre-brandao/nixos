@@ -90,6 +90,7 @@
   users.defaultUserShell = pkgs.zsh;
   programs = {
     zsh.enable = true;
+    # nautilus.enable = true;
   };
   environment.systemPackages = with pkgs; [
     # helix
@@ -97,6 +98,7 @@
     wget
     zsh
     git
+    nautilus
   ];
   security.polkit.enable = true;
 

@@ -96,7 +96,7 @@
     # ---- UTILS ---- #
     bitwarden # Password manager
     # syncthing
-    nautilus # File manager
+    # nautilus # File manager
     nemo
     dolphin
 

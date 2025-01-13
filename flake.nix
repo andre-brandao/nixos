@@ -180,8 +180,9 @@
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprshell = {
-      url = "github:andre-brandao/hyprshell";
-
+      # url = "github:andre-brandao/hyprshell";
+      url = "git+ssh://git@github.com/andre-brandao/marble?ref=dev";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
