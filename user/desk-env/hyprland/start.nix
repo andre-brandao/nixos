@@ -8,6 +8,8 @@
 let
 
   hyprshell = "${inputs.hyprshell.packages.${pkgs.system}.default}/bin/hyprshell";
+  # marble = "${pkgs.gjs}/bin/gjs  -m ${inputs.hyprshell.packages.${pkgs.system}.default}/bin/marble";
+  marble = "${inputs.marble-shell.packages.${pkgs.system}.default}/bin/marble";
 
 in
 {
@@ -26,7 +28,7 @@ in
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
       # "ags run"
-      hyprshell
+      marble
     ];
 
     exec = [

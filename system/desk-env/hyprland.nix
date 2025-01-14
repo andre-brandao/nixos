@@ -78,7 +78,8 @@
       adwaita-icon-theme
       qogir-icon-theme
       loupe
-      nautilus
+      # nautilus
+      
       baobab
       gnome-text-editor
       gnome-calendar
@@ -97,6 +98,8 @@
       libnotify
       rofi-wayland
       # kitty # hyprland default terminal
+      kdePackages.qtwayland
+      kdePackages.qtsvg
     ];
 
     sessionVariables = {
