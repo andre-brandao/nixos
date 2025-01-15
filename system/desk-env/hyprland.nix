@@ -98,8 +98,8 @@
       libnotify
       rofi-wayland
       # kitty # hyprland default terminal
-      kdePackages.qtwayland
-      kdePackages.qtsvg
+      # kdePackages.qtwayland
+      # kdePackages.qtsvg
     ];
 
     sessionVariables = {

@@ -18,8 +18,9 @@ in
     exec-once = [
       # "dunst"
       # "xwaylandvideobridge"
-      "hyprpaper"
+      # "hyprpaper"
       "hypridle"
+      "swww-daemon"
       # "waybar"
       # "nwg-dock-hyprland -d"
       "nm-applet --indicator"
