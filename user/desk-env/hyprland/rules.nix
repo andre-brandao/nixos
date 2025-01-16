@@ -17,12 +17,17 @@
         (f "xdg-desktop-portal-gnome")
         (f "transmission-gtk")
         (f "Bitwarden")
-        (f "Spotify")
+        (f "spotify")
         (f ".blueman-manager-wrapped")
         (f "brave-web.whatsapp.com__-Default")
         (f "brave-chat.openai.com__-Default")
         (f "brave-notion.so__-Default")
         (f "brave-nngceckbapebfimnlniiiahkandclblb-Default") # Bitwarden
+        # (.*)(- Youtube)
+        "float, title:(.*GPT.*)"
+        "float, title:(.*)(WhatsApp — Zen Browser)"
+        "float, title:(.*WhatsApp.*)"
+
       ];
     workspace = [
       #these apps will open on the specified workspace when you firt open them

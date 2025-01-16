@@ -32,11 +32,14 @@
     hyprlock
     hyprpicker
     hyprpaper
+    pyprland
     swww
 
     inputs.hyprsysteminfo.packages.${pkgs.system}.default
 
-    pyprland
+    inputs.marble-shell.packages.${pkgs.system}.default
+    inputs.marble-shell.packages.${pkgs.system}.astal
+
 
     networkmanagerapplet # network manager
     pavucontrol # volume control

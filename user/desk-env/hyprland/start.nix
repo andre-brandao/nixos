@@ -29,7 +29,7 @@ in
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
       # "ags run"
-      marble
+      "marble"
     ];
 
     exec = [

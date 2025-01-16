@@ -3,31 +3,34 @@
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     bind = [
-      # "$mainMod, A, exec, ${userSettings.term}"
+      # "$mainMod, A, exec,            ${userSettings.term}"
 
-      "$mainMod, T, togglefloating"
+      "$mainMod, T,                  togglefloating"
 
-      # "$mainMod, W, exec, ${userSettings.browser}"
+      # "$mainMod, W, exec,            ${userSettings.browser}"
+      "$mainMod, RETURN, exec,       marble toggle launcher"
+      "SUPER, Tab, exec,             marble eval \"launcher('h')\""
+
       # ROFI
-      "$mainMod, R, exec, rofi -show drun -show-icons"
-      "$mainMod, RETURN, exec, rofi -show drun -show-icons"
-      "$mainMod, J, exec, rofi -show window -show-icons"
+      "$mainMod, J, exec,            rofi -show window -show-icons"
+      "$mainMod, R, exec,            rofi -show drun -show-icons"
 
-      "$mainMod, C, killactive"
-      "$mainMod SHIFT, Q, exit"
-      "CTRL ALT, Delete, exit"
+      '',Print,exec,                 grim -g "$(slurp)" - | swappy -f -'' # print screen
+      "$mainMod, Print, exec,        hyprpicker -a -f hex" # color picker
+
+      "$mainMod, F,                  fullscreen" 
+      "$mainMod, C,                  killactive"
+      "$mainMod SHIFT, Q,            exit"
+      "CTRL ALT, Delete,             exit"
 
       # layout
-      "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
-      "$mainMod, M, exec, hyprctl keyword general:layout master"
+      "$mainMod, D, exec,            hyprctl keyword general:layout dwindle"
+      "$mainMod, M, exec,            hyprctl keyword general:layout master"
 
-      '',Print,exec,grim -g "$(slurp)" - | swappy -f -'' # print screen
-      "$mainMod, Print, exec, hyprpicker -a -f hex" # color picker
-
-      "ALT, Tab, cyclenext,"
-      "ALT, Tab, bringactivetotop,"
-      # "ALT SHIFT, Tab, cycleprev,"
-      # "ALT SHIFT, Tab, bringactivetotop,"
+      "ALT, Tab,                     cyclenext,"
+      # "ALT SHIFT, Tab,               cycleprev,"
+      "ALT, Tab,                     bringactivetotop,"
+      # "ALT SHIFT, Tab,               bringactivetotop,"
 
       #  "mainMod, E,hycov:toggleoverview"
 
