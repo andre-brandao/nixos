@@ -15,7 +15,7 @@ let
     # user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
     # user-update = "nh home switch ${userSettings.configDir} -c user";
 
-    ls = "eza --icons -l -T -L=1";
+    lss = "eza --icons -l -T -L=1";
     cat = "bat";
     htop = "btop";
     fd = "fd -Lu";
@@ -53,12 +53,12 @@ in
     # SHELL
     zsh = {
       enable = true;
-      autosuggestion.enable = true;
+      # autosuggestion.enable = true;
 
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-      enableVteIntegration = true;
-      autocd = true;
+      # enableCompletion = true;
+      # syntaxHighlighting.enable = true;
+      # enableVteIntegration = true;
+      # autocd = true;
       # dotDir = ".config/zsh";
       history = {
         expireDuplicatesFirst = true;

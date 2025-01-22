@@ -945,11 +945,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736958494,
-        "narHash": "sha256-RybU7kshRByX8iy94E0la8LHDDwrGmz5TR56QxsH3Aw=",
+        "lastModified": 1737045825,
+        "narHash": "sha256-O7SFYR3HEFyOtS/yMQPzf1tKb/ICuKNzmuqjZu1dCTs=",
         "ref": "dev",
-        "rev": "b75f8e106b090087b18effc023c78e43a29ada60",
-        "revCount": 15,
+        "rev": "c1e1ed6339c5fa0d1048887c7c26a4084575a1ab",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@github.com/andre-brandao/marble"
       },
