@@ -18,7 +18,7 @@
       '',Print,exec,                 grim -g "$(slurp)" - | swappy -f -'' # print screen
       "$mainMod, Print, exec,        hyprpicker -a -f hex" # color picker
 
-      "$mainMod, F,                  fullscreen" 
+      "$mainMod, F,                  fullscreen"
       "$mainMod, C,                  killactive"
       "$mainMod SHIFT, Q,            exit"
       "CTRL ALT, Delete,             exit"
