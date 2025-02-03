@@ -123,6 +123,7 @@
     libffi
     zlib
     glib
+    rpi-imager
 
     inputs.ghostty.packages.x86_64-linux.default
 

@@ -12,6 +12,7 @@
 
     nix-prefetch-git
     nix-prefetch-github
+    nix-output-monitor
     # ---- OTHER CLI ---- #
     gnugrep
     gnused

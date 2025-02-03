@@ -5,7 +5,7 @@
     nodePackages.pnpm
     nodePackages.ts-node
     typescript
-    # bun
+    bun
     typescript
     nodePackages.typescript-language-server
     tailwindcss
