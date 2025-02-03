@@ -945,11 +945,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1737045825,
-        "narHash": "sha256-O7SFYR3HEFyOtS/yMQPzf1tKb/ICuKNzmuqjZu1dCTs=",
+        "lastModified": 1738585769,
+        "narHash": "sha256-UM+hMUGMsHb1xZu4dLiCVF4geTUI7GXI/cVTBlZ4yJ0=",
         "ref": "dev",
-        "rev": "c1e1ed6339c5fa0d1048887c7c26a4084575a1ab",
-        "revCount": 16,
+        "rev": "accef962b336adf5c8dbc60845752b8ce93d5e4f",
+        "revCount": 26,
         "type": "git",
         "url": "ssh://git@github.com/andre-brandao/marble"
       },
@@ -1094,11 +1094,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1736883708,
-        "narHash": "sha256-uQ+NQ0/xYU0N1CnXsa2zghgNaOPxWpMJXSUJJ9W7140=",
+        "lastModified": 1737885589,
+        "narHash": "sha256-Zf0hSrtzaM1DEz8//+Xs51k/wdSajticVrATqDrfQjg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "eb62e6aa39ea67e0b8018ba8ea077efe65807dc8",
+        "rev": "852ff1d9e153d8875a83602e03fdef8a63f0ecf8",
         "type": "github"
       },
       "original": {
