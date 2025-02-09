@@ -76,10 +76,9 @@
     systemPackages = with pkgs; [
       morewaita-icon-theme
       adwaita-icon-theme
-      qogir-icon-theme
       loupe
       # nautilus
-      
+
       baobab
       gnome-text-editor
       gnome-calendar

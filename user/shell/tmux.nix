@@ -15,7 +15,7 @@
         with pkgs.tmuxPlugins; [
           better-mouse-mode
           # catppuccin
-          resurrect
+          # resurrect
 
           # yank
         ];

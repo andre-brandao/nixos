@@ -184,7 +184,7 @@ in
       with nodePackages;
       [
         bash-language-server # BASH
-        lldb # debugger
+        # lldb # debugger
         marksman # Markdown
 
         elixir_ls # Elixir
