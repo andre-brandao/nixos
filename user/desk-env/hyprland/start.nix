@@ -19,17 +19,16 @@ in
       # "dunst"
       # "xwaylandvideobridge"
       # "hyprpaper"
-      "hypridle"
+      # "hypridle"
       # "swww-daemon"
       # "waybar"
       # "nwg-dock-hyprland -d"
-      "nm-applet --indicator"
       "systemctl --user import-environment PATH"
       "protonmail-bridge --noninteractive"
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
-      # "ags run"
       "marble"
+      "nm-applet --indicator"
     ];
 
     exec = [
