@@ -7,6 +7,8 @@
     "$mainMod,G,exec,pypr toggle openai && hyprctl dispatch bringactivetotop"
     "$mainMod,S,exec,pypr toggle music && hyprctl dispatch bringactivetotop"
 
+    "$mainMod,F,exec,pypr toggle nemo && hyprctl dispatch bringactivetotop"
+
     "$mainMod,P,exec,pypr toggle postman && hyprctl dispatch bringactivetotop"
   ];
 
@@ -16,14 +18,21 @@
 
     # [scratchpads.term2]
     # animation = "fromBottom"
-    # command = "${userSettings.term} --class dropterm"
-    # class = "dropterm"
+    # command = "${userSettings.term}"
+    # class = "nemo"
     # size = "85% 85%"
 
     [scratchpads.term]
     animation = "fromBottom"
     command = "ghostty"
     class = "com.mitchellh.ghostty"
+    size = "85% 85%"
+
+    [scratchpads.nemo]
+    animation = "fromBottom"
+    command = "nemo"
+    class = "nemo"
+    lazy = true
     size = "85% 85%"
 
     [scratchpads.postman]

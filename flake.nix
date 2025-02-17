@@ -110,6 +110,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${userSettings.username} = import ./hosts/${systemSettings.profile}/home.nix;
+              home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = {
                 inherit pkgs-unstable;
 

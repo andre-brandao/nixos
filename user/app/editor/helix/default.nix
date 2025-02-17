@@ -203,7 +203,7 @@ in
         rust-analyzer
 
         # PYTHON
-        pyright
+        # pyright
         # (python3.withPackages (
         #   ps: with ps; [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all
         # ))
