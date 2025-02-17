@@ -32,6 +32,7 @@
     ../../user/app/lf
     ../../user/app/spicetify.nix # My spicetify config
     ../../user/app/git/git.nix # My git config
+    ../../user/app/nemo.nix
 
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
@@ -118,6 +119,7 @@
     mediawriter
 
     # ---- DEV UTILS ---- #
+    devbox
     icon-library
     postman
     libffi

@@ -40,7 +40,6 @@
     inputs.marble-shell.packages.${pkgs.system}.default
     inputs.marble-shell.packages.${pkgs.system}.astal
 
-
     networkmanagerapplet # network manager
     pavucontrol # volume control
     pamixer # volume control
@@ -53,6 +52,7 @@
 
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
+    kdePackages.qtsvg
     xdg-utils # for opening files with default applications
 
     # xwaylandvideobridge # screen sharing

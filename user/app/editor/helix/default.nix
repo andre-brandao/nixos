@@ -121,10 +121,10 @@ in
           formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
           language-servers = [ "nixd" ];
         }
-        {
-          name = "python";
-          auto-format = true;
-        }
+        # {
+        #   name = "python";
+        #   auto-format = true;
+        # }
         {
           name = "javascript";
           auto-format = true;
@@ -204,9 +204,9 @@ in
 
         # PYTHON
         pyright
-        (python3.withPackages (
-          ps: with ps; [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all
-        ))
+        # (python3.withPackages (
+        #   ps: with ps; [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all
+        # ))
 
         # JAVASCRIPT AND CIA
         typescript

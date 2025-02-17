@@ -56,6 +56,7 @@
         theme = "miramare"; # selcted theme from my themes directory (./themes/)
         wm = "hyprland"; # Selected window manager or desktop environment; must select one in both ./user/desk-env/ and ./system/desk-env/
         browser = "zen";
+        file-manager = "nemo";
         term = "ghostty"; # Default terminal command;
         shell = "zsh"; # Default shell;
         font = "JetBrains Mono"; # Selected font
