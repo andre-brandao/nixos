@@ -13,7 +13,7 @@ let
     sys-update = "nh os switch ${userSettings.configDir}  -H system";
     # -- REBUILD USER
     # user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
-    # user-update = "nh home switch ${userSettings.configDir} -c user";
+    user-update = "nh home switch ${userSettings.configDir} -c user";
 
     lss = "eza --icons -l -T -L=1";
     cat = "bat";
@@ -27,6 +27,8 @@ let
     ca = "git commit --amend";
     cm = "git commit --message";
     dl = "http --download get";
+
+    k = "kubectl";
 
     ndev = "nix develop";
     nshell = "nix-shell";
