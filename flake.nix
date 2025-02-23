@@ -2,7 +2,7 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       nixpkgs-unstable,
@@ -10,7 +10,7 @@
       home-manager,
       stylix,
       ...
-    }@inputs:
+    }:
     let
       inherit (self) outputs;
       # configure pkgs
@@ -109,7 +109,6 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${userSettings.username} = import ./hosts/${systemSettings.profile}/home.nix;
               home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = {
                 inherit pkgs-unstable;
@@ -120,8 +119,7 @@
                 inherit userSettings;
                 inherit stylixSettings;
               };
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
+              home-manager.users.${userSettings.username} = import ./hosts/${systemSettings.profile}/home.nix;
             }
           ];
           specialArgs = {
