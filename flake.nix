@@ -140,6 +140,7 @@
         user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs; # Home-manager requires 'pkgs' instance
           modules = [
+            ./user/style/stylix.nix
             ./hosts/${systemSettings.profile}/home.nix
 
           ];
