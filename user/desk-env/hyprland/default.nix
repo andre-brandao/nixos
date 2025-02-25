@@ -192,6 +192,7 @@
         #  # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0;
         focus_on_activate = true;
+        # vfr = true;
       };
       debug = {
         disable_logs = false;

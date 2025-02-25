@@ -38,27 +38,6 @@
       grub.enable = true;
       grub.useImage = true;
 
-      # #
-      # hyprland.enable = false;
-      # rofi.enable = true;
-      # dunst.enable = true;
-
-      # kitty.enable = true;
-      # alacritty.enable = true;
-      # tmux.enable = true;
-      # bat.enable = true;
-      # btop.enable = true;
-      # fzf.enable = true;
-      # lazygit.enable = true;
-
-      # vim.enable = true;
-      # #  neovim.enable = true;
-
-      # vscode.enable = true;
-      # mangohud.enable = true;
-      # vesktop.enable = true;
-
-      # spicetify.enable = false;
     };
   };
 

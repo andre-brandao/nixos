@@ -9,7 +9,7 @@
 }:
 {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    # inputs.stylix.homeManagerModules.stylix
     ./gtk.nix
     ./qt.nix
   ];
@@ -17,15 +17,15 @@
   home.file.".currenttheme".text = userSettings.theme;
   # stylix.autoEnable = false;
   stylix = {
-    enable = true;
-    autoEnable = false;
-    polarity = stylixSettings.polarity;
-    image = stylixSettings.image;
+    # enable = true;
+    # autoEnable = false;
+    # polarity = stylixSettings.polarity;
+    # image = stylixSettings.image;
 
-    # # base16Scheme = ./. + themePath;
-    base16Scheme = stylixSettings.base16Scheme;
+    # # # base16Scheme = ./. + themePath;
+    # base16Scheme = stylixSettings.base16Scheme;
 
-    fonts = stylixSettings.fonts;
+    # fonts = stylixSettings.fonts;
 
     targets = {
       gtk.enable = true;
