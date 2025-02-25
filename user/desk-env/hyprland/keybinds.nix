@@ -37,6 +37,9 @@
       # "$mainMod, E, hyprexpo:expo, toggle"
       # "$mainMod, E, overview:toggle"
 
+      "$mainMod, Z, exec,            pypr zoom ++0.5"
+      "$mainMod SHIFT,Z, exec,       pypr zoom"
+
     ];
   };
 }

@@ -8,27 +8,25 @@ let
     optionalString
     ;
 
+  f = key: value: if value != null then "${key} = ${toString value}" else "";
+
   toToml = sp: ''
     [scratchpads.${sp.name}]
-    ${optionalString (sp ? animation) "animation = \"${sp.animation}\""}
+    ${f "animation" sp.animation}
     command = "${sp.command}"
-    class = "${sp.class}"
-    ${optionalString (sp ? size) "size = \"${sp.size}\""}
-    ${optionalString (sp ? max_size) "max_size = \"${sp.max_size}\""}
-    ${optionalString (sp ? position) "position = \"${sp.position}\""}
-    ${optionalString (sp ? multi) "multi = ${if sp.multi then "true" else "false"}"}
-    ${optionalString (sp ? margin) "margin = ${toString sp.margin}"}
-    ${optionalString (sp ? lazy) "lazy = ${if sp.lazy then "true" else "false"}"}
-    ${optionalString (sp ? pinned) "pinned = ${if sp.pinned then "true" else "false"}"}
-    ${optionalString (sp ? unfocus) "unfocus = \"${sp.unfocus}\""}
-  '';
-
-  # Generate the full TOML config
-  pyprlandToml = ''
-    [pyprland]
-    plugins = ["scratchpads", "magnify"]
-
-    ${concatStringsSep "\n\n" (map toToml config.scratchpads)}
+    ${f "class" sp.class}
+    ${f "match_by" sp.match_by}
+    ${f "initialClass" sp.initialClass}
+    ${f "initialTitle" sp.initialTitle}
+    ${f "title" sp.title}
+    ${f "size" sp.size}
+    ${f "max_size" sp.max_size}
+    ${f "position" sp.position}
+    ${f "multi" sp.multi}
+    ${f "margin" sp.margin}
+    ${f "lazy" sp.lazy}
+    ${f "pinned" sp.pinned}
+    ${f "unfocus" sp.unfocus}
   '';
 in
 {
@@ -41,8 +39,10 @@ in
             example = "term";
           };
           bind = mkOption {
-            type = types.str;
+            type = types.nullOr types.str;
             example = "ALT,Z";
+            default = null;
+            description = "The keybinding to toggle the scratchpad.";
           };
           command = mkOption {
             type = types.str;
@@ -50,9 +50,40 @@ in
             description = "This is the command you wish to run in the scratchpad.";
           };
           class = mkOption {
-            type = types.str;
+            type = types.nullOr types.str;
             example = "kitty-dropterm";
+            default = null;
             description = "Allows Pyprland to prepare the window for a correct animation and initial positioning.";
+          };
+          match_by = mkOption {
+            type = types.nullOr (
+              types.enum [
+                "class"
+                "initialClass"
+                "title"
+                "initialTitle"
+              ]
+            );
+            default = null;
+            description = "will match the client window using the provided property instead of the PID of the process";
+          };
+          initialClass = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "kitty";
+            description = "The initial class of the client window.";
+          };
+          initialTitle = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "kitty";
+            description = "The initial title of the client window.";
+          };
+          title = mkOption {
+            type = types.nullOr types.str;
+            default = null;
+            example = "kitty";
+            description = "The title of the client window.";
           };
           animation = mkOption {
             type = types.nullOr (
@@ -68,18 +99,18 @@ in
             description = "Type of animation to use, default value is fromTop.";
           };
           size = mkOption {
-            type = types.str;
+            type = types.strMatching "[0-9]+% [0-9]+%";
             example = "75% 60%";
             description = "Each time the scratchpad is shown, the window will be resized according to the provided values.";
           };
           max_size = mkOption {
-            type = types.nullOr types.str;
+            type = types.nullOr (types.strMatching "[0-9]+(px|%) [0-9]+(px|%)");
             default = null;
             example = "1920px 100%";
             description = "Limits the size of the window accordingly. To ensure a window will not be too large on a wide screen, for instance.";
           };
           position = mkOption {
-            type = types.nullOr types.str;
+            type = types.nullOr (types.strMatching "[0-9]+% [0-9]+%");
             default = null;
             example = "50% 0%";
             description = "Sets the scratchpad client window position relative to the top-left corner.";
@@ -119,10 +150,15 @@ in
   };
 
   config = {
-    home.file.".config/hypr/pyprland.toml".text = pyprlandToml;
+    home.file.".config/hypr/pyprland.toml".text = ''
+      [pyprland]
+      plugins = ["scratchpads", "magnify"]
+
+      ${concatStringsSep "\n\n" (map toToml config.scratchpads)}
+    '';
     wayland.windowManager.hyprland.settings.bind = map (
       s: "${s.bind},exec,pypr toggle ${s.name} && hyprctl dispatch bringactivetotop"
-    ) (builtins.filter (s: lib.hasAttr "bind" s) config.scratchpads);
+    ) (builtins.filter (s: s.bind != null) config.scratchpads);
 
   };
 }
