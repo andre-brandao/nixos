@@ -9,24 +9,25 @@ let
     ;
 
   f = key: value: if value != null then "${key} = ${toString value}" else "";
+  fs = key: value: if value != null then ''${key} = "${toString value}"'' else "";
 
   toToml = sp: ''
     [scratchpads.${sp.name}]
-    ${f "animation" sp.animation}
-    command = "${sp.command}"
-    ${f "class" sp.class}
-    ${f "match_by" sp.match_by}
-    ${f "initialClass" sp.initialClass}
-    ${f "initialTitle" sp.initialTitle}
-    ${f "title" sp.title}
-    ${f "size" sp.size}
-    ${f "max_size" sp.max_size}
-    ${f "position" sp.position}
+    ${fs "animation" sp.animation}
+    ${fs "command" sp.command}
+    ${fs "class" sp.class}
+    ${fs "match_by" sp.match_by}
+    ${fs "initialClass" sp.initialClass}
+    ${fs "initialTitle" sp.initialTitle}
+    ${fs "title" sp.title}
+    ${fs "size" sp.size}
+    ${fs "max_size" sp.max_size}
+    ${fs "position" sp.position}
     ${f "multi" sp.multi}
     ${f "margin" sp.margin}
     ${f "lazy" sp.lazy}
     ${f "pinned" sp.pinned}
-    ${f "unfocus" sp.unfocus}
+    ${fs "unfocus" sp.unfocus}
   '';
 in
 {
