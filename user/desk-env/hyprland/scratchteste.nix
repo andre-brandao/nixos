@@ -56,6 +56,16 @@
       bind = "$mainMod,S";
     }
     {
+      name = "mail";
+      animation = "fromRight";
+      command = "proton-mail";
+      class = "Proton Mail";
+      size = "45% 85%";
+      unfocus = "hide";
+      bind = "$mainMod,M";
+      lazy = true;
+    }
+    {
       name = "openai";
       animation = "fromRight";
       match_by = "title";

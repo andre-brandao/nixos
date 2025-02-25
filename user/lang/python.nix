@@ -3,9 +3,9 @@
 {
   home.packages = with pkgs; [
     # Python setup
-    python3Full
-    imath
-    pystring
+    # python3Full
+    # imath
+    # pystring
   ];
   # ++ (with python3Packages; [
   #   cffi

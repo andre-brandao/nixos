@@ -134,6 +134,7 @@
 
       # waveterm
 
+      protonmail-desktop
     ]
     ++ (with pkgs-unstable; [
       supabase-cli
