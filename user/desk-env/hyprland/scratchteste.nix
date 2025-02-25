@@ -63,6 +63,7 @@
       command = "zen -P Apps --new-window https://chat.openai.com/";
       size = "45% 85%";
       bind = "$mainMod,G";
+      lazy = true;
     }
     {
       name = "whatsapp";
@@ -72,6 +73,7 @@
       command = "zen -P Apps --new-window https://web.whatsapp.com/";
       size = "75% 60%";
       bind = "$mainMod,W";
+      lazy = true;
     }
   ];
 }
