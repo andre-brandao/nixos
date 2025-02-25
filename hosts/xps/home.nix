@@ -25,7 +25,7 @@
     # ../../overlays/hyprland-overlay.nix
     ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
 
-    ../../user/app/browser/${userSettings.browser}.nix # My browser config
+    # ../../user/app/browser/${userSettings.browser}.nix # My browser config
 
     # UTILS
     ../../user/app/rofi
@@ -36,7 +36,7 @@
 
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
-    ../../user/app/virtualization/distrobox.nix # My distrobox config
+    # ../../user/app/virtualization/distrobox.nix # My distrobox config
 
     # TERMINAL EMULATORS
     ../../user/app/terminal/kitty.nix
@@ -88,7 +88,12 @@
       # ---- BROWSERS ---- #
       # brave
       # firefox
-      inputs.zen-browser.packages."${system}".specific
+
+      (import ../../packages/zen.nix {
+        appimageTools = pkgs.appimageTools;
+        fetchurl = pkgs.fetchurl;
+      })
+      # inputs.zen-browser.packages."${system}".specific
 
       # ---- OFFICE ---- #
       # libreoffice-fresh
