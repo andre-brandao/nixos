@@ -28,6 +28,9 @@
           (final: prev: {
             # mesa = pkgs-unstable.mesa;
             # gjs = pkgs-unstable.gjs;
+            hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
+              debug = true;
+            };
           })
         ];
       };
