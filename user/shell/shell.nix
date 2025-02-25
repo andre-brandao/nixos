@@ -32,6 +32,7 @@ let
 
     ndev = "nix develop";
     nshell = "nix-shell";
+    neval = "nix-instantiate --eval";
 
     quit = "exit";
 

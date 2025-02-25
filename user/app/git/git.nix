@@ -9,7 +9,7 @@
     git
     gh
     lazygit
-    github-desktop
+    # github-desktop
   ];
   programs = {
     git = {

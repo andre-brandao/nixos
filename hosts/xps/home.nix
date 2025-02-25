@@ -18,7 +18,7 @@
 
   imports = [
     # STYLES
-    ../../user/style/stylix.nix # Styling and themes for my apps
+    # ../../user/style/stylix.nix # Styling and themes for my apps
     ../../user/style/gtk.nix # My gtk config
 
     # DESKTOP
@@ -30,7 +30,7 @@
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
-    ../../user/app/spicetify.nix # My spicetify config
+    # ../../user/app/spicetify.nix # My spicetify config
     ../../user/app/git/git.nix # My git config
     ../../user/app/nemo.nix
 
@@ -49,8 +49,8 @@
     # PROGRAMMING LANGUAGES
     ../../user/lang/js.nix # My node.js config
     ../../user/lang/go.nix # My go config
-    ../../user/lang/godot.nix
-    ../../user/lang/elixir.nix
+    # ../../user/lang/godot.nix
+    # ../../user/lang/elixir.nix
 
     # EDITORS
     ../../user/app/editor/nvim # My nvim config
@@ -64,84 +64,89 @@
     blueman-applet.enable = true;
   };
 
-  programs = {
+  # programs = {
+  #   chromium = {
+  #     enable = true;
+  #     # package = pkgs.brave;
+  #   };
+  # };
+  home.packages =
+    with pkgs;
+    [
+      # ---- APPS ---- #
+      # spotify
 
-    chromium = {
-      enable = true;
-      # package = pkgs.brave;
-    };
-  };
-  home.packages = with pkgs; [
-    # ---- APPS ---- #
-    # spotify
+      # discord
+      # vesktop
+      betterdiscordctl
 
-    thunderbird # email client
+      # protonmail-bridge-gui
+      # protonmail-desktop
+      protonmail-bridge
+      # discord-screenaudio
 
-    discord
-    vesktop
-    betterdiscordctl
+      # ---- BROWSERS ---- #
+      # brave
+      # firefox
+      inputs.zen-browser.packages."${system}".specific
 
-    # protonmail-bridge-gui
-    # protonmail-desktop
-    protonmail-bridge
-    # discord-screenaudio
+      # ---- OFFICE ---- #
+      # libreoffice-fresh
 
-    # ---- BROWSERS ---- #
-    brave
-    firefox
-    inputs.zen-browser.packages."${system}".specific
+      # ---- UTILS ---- #
+      # bitwarden # Password manager
+      # syncthing
+      # nautilus # File manager
+      # dolphin
 
-    # ---- OFFICE ---- #
-    # libreoffice-fresh
-    obsidian
-    # ---- UTILS ---- #
-    bitwarden # Password manager
-    # syncthing
-    # nautilus # File manager
-    nemo
-    dolphin
+      # ---- WINDOWS ---- #
+      # wine
+      # bottles
 
-    # ---- WINDOWS ---- #
-    wine
-    # bottles
+      # ---- 3D Modeling ---- #
+      # blender
 
-    # ---- 3D Modeling ---- #
-    # blender
+      # ---- MEDIA ---- #
+      ffmpeg
 
-    # ---- MEDIA ---- #
-    ffmpeg
+      obs-studio
+      vlc
+      # kdenlive
 
-    obs-studio
-    vlc
-    # kdenlive
+      blueman
+      mediawriter
 
-    blueman
-    mediawriter
+      # ---- DEV UTILS ---- #
+      devbox
 
-    # ---- DEV UTILS ---- #
-    devbox
+      # icon-library
+      postman
+      libffi
+      zlib
+      glib
+      rpi-imager
 
-    lens
-    kubernetes-helm
-    kustomize
-    icon-library
-    postman
-    libffi
-    zlib
-    glib
-    rpi-imager
+      inputs.ghostty.packages.x86_64-linux.default
 
-    inputs.ghostty.packages.x86_64-linux.default
+      git
 
-    git
+      zsh
 
-    zsh
+      # waveterm
 
-    waveterm
-    zed-editor
-
-    supabase-cli
-  ];
+    ]
+    ++ (with pkgs-unstable; [
+      supabase-cli
+      zed-editor
+      discord
+      thunderbird # email client
+      obsidian
+      # K8s
+      lens
+      kubernetes-helm
+      kustomize
+      nemo
+    ]);
 
   home.sessionVariables = {
     BROWSER = userSettings.browser;

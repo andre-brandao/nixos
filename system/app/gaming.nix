@@ -2,8 +2,8 @@
 
 {
   # OpenGL
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
+  # hardware.opengl.enable = true;
+  # hardware.opengl.enable32Bit = true;
 
   programs = {
     steam = {

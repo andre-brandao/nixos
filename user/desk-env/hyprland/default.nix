@@ -12,7 +12,7 @@
   imports = [
     ./start.nix
     ./keybinds.nix
-    ./scratchpads.nix
+    ./scratchteste.nix
     ./rules.nix
 
     # ../extras/bar/waybar.nix
@@ -28,10 +28,10 @@
   home.packages = with pkgs; [
     # hyprland packages
     hyprland-protocols
-    hypridle
-    hyprlock
-    hyprpicker
-    hyprpaper
+    # hypridle
+    # hyprlock
+    # hyprpicker
+    # hyprpaper
     pyprland
     swww
 
@@ -193,10 +193,10 @@
         force_default_wallpaper = 0;
         focus_on_activate = true;
       };
-      # debug = {
-      #   disable_logs = false;
+      debug = {
+        disable_logs = false;
 
-      # };
+      };
 
       # "$mainMod" = mainMod;
       bind = [

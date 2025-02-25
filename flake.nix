@@ -24,6 +24,11 @@
           #  inputs.hyprpanel.overlay
           inputs.hyprland.overlays.default
           # inputs.hyprshell.overlays.default
+
+          (final: prev: {
+            # mesa = pkgs-unstable.mesa;
+            # gjs = pkgs-unstable.gjs;
+          })
         ];
       };
 
@@ -104,8 +109,8 @@
         system = nixpkgs.lib.nixosSystem {
           modules = [
             ./hosts/${systemSettings.profile}/configuration.nix
-            home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
+            home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -140,7 +145,7 @@
         user = home-manager.lib.homeManagerConfiguration {
           inherit pkgs; # Home-manager requires 'pkgs' instance
           modules = [
-            ./user/style/stylix.nix
+            # ./user/style/stylix.nix
             ./hosts/${systemSettings.profile}/home.nix
 
           ];
@@ -159,17 +164,20 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # Home manager
     home-manager = {
-      # url = "github:nix-community/home-manager/release-24.05";
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
+      # url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Stylix
+    stylix.url = "github:danth/stylix/release-24.11";
 
     # HyperLand
     hyprland = {
@@ -186,7 +194,7 @@
     };
     marble-shell = {
       url = "git+ssh://git@github.com/andre-brandao/marble?ref=dev";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -206,9 +214,6 @@
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
-
-    # Stylix
-    stylix.url = "github:danth/stylix";
 
     color-schemes = {
       url = "github:andre-brandao/color-schemes";

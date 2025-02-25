@@ -28,7 +28,7 @@ in
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
       "marble"
-      "nm-applet --indicator"
+      # "nm-applet --indicator"
     ];
 
     exec = [
