@@ -64,12 +64,12 @@
     blueman-applet.enable = true;
   };
 
-  # programs = {
-  #   chromium = {
-  #     enable = true;
-  #     # package = pkgs.brave;
-  #   };
-  # };
+  programs = {
+    chromium = {
+      enable = true;
+      # package = pkgs.brave;
+    };
+  };
   home.packages =
     with pkgs;
     [
