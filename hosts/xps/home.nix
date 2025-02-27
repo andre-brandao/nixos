@@ -90,7 +90,6 @@
       # firefox
 
       (callPackage ../../packages/zen.nix { })
-      # inputs.zen-browser.packages."${system}".specific
 
       # ---- OFFICE ---- #
       # libreoffice-fresh
@@ -128,8 +127,6 @@
       glib
       rpi-imager
 
-      inputs.ghostty.packages.x86_64-linux.default
-
       git
 
       zsh
@@ -139,6 +136,7 @@
       protonmail-desktop
     ]
     ++ (with pkgs-unstable; [
+      ghostty
       supabase-cli
       zed-editor
       discord

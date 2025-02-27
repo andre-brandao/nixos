@@ -28,9 +28,8 @@
           (final: prev: {
             # mesa = pkgs-unstable.mesa;
             # gjs = pkgs-unstable.gjs;
-            hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
-              debug = true;
-            };
+            hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
+
           })
         ];
       };
@@ -167,7 +166,6 @@
 
   inputs = {
     # Nixpkgs
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -182,42 +180,6 @@
     # Stylix
     stylix.url = "github:danth/stylix/release-24.11";
 
-    # HyperLand
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
-      # url = "github:hyprwm/Hyprland/v0.45.2";
-
-      # url = "github:hyprwm/Hyprland/v0.42.0";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    hyprshell = {
-      url = "github:andre-brandao/hyprshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    marble-shell = {
-      url = "git+ssh://git@github.com/andre-brandao/marble?ref=dev";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprsysteminfo = {
-      url = "github:hyprwm/hyprsysteminfo";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     color-schemes = {
       url = "github:andre-brandao/color-schemes";
       flake = false;
@@ -228,15 +190,50 @@
       flake = false;
     };
 
+    # HyperLand
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
+      # url = "github:hyprwm/Hyprland/v0.45.2";
+      # url = "github:hyprwm/Hyprland/v0.42.0";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprsysteminfo = {
+      url = "github:hyprwm/hyprsysteminfo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    # Hyprland Bars
+    hyprshell = {
+      url = "github:andre-brandao/hyprshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    marble-shell = {
+      url = "git+ssh://git@github.com/andre-brandao/marble?ref=dev";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
 
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
+    # ghostty = {
+    #   url = "github:ghostty-org/ghostty";
+    # };
 
   };
 }
