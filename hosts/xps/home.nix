@@ -136,6 +136,7 @@
       protonmail-desktop
     ]
     ++ (with pkgs-unstable; [
+      superfile
       ghostty
       supabase-cli
       zed-editor

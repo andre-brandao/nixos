@@ -68,7 +68,7 @@
         shell = "zsh"; # Default shell;
         font = "JetBrains Mono"; # Selected font
         fontPkg = pkgs.jetbrains-mono; # Font package
-        editor = "zed"; # Default editor;
+        editor = "hx"; # Default editor;
       };
 
       stylixSettings = {
