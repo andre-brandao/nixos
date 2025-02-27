@@ -228,7 +228,6 @@
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-
     };
 
     # ghostty = {
