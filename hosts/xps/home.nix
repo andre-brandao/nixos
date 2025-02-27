@@ -89,10 +89,7 @@
       # brave
       # firefox
 
-      (import ../../packages/zen.nix {
-        appimageTools = pkgs.appimageTools;
-        fetchurl = pkgs.fetchurl;
-      })
+      (callPackage ../../packages/zen.nix { })
       # inputs.zen-browser.packages."${system}".specific
 
       # ---- OFFICE ---- #

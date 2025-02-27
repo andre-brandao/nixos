@@ -49,9 +49,9 @@
       # PIP
       "float, title:^Picture-in-Picture$"
       "pin, title:^Picture-in-Picture$"
-      # "move 100%-w-20 100%-h-20, title:^Picture-in-Picture$"
       "noinitialfocus, title:^Picture-in-Picture$"
       "move 69% 69%, title:^Picture-in-Picture$"
+      "opacity 1.0 1.0, title:^Picture-in-Picture$"
     ];
 
   };
