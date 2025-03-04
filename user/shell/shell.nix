@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  pkgs-unstable,
   userSettings,
   ...
 }:
@@ -35,6 +36,8 @@ let
     neval = "nix-instantiate --eval";
 
     quit = "exit";
+    spf = "${lib.getExe pkgs-unstable.superfile}";
+    hyprlogs = "tail -f $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log";
 
     neofetch = "fastfetch";
     type-br = "${lib.getExe pkgs.typer} -m --monkeytype-language portuguese";
