@@ -20,7 +20,7 @@ in
       # "xwaylandvideobridge"
       # "hyprpaper"
       # "hypridle"
-      # "swww-daemon"
+      "swww-daemon"
       # "waybar"
       # "nwg-dock-hyprland -d"
       "systemctl --user import-environment PATH"

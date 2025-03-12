@@ -33,7 +33,7 @@ let
 
     ndev = "nix develop";
     nshell = "nix-shell";
-    neval = "nix-instantiate --eval";
+    neval = "nix-instantiate --strict --eval";
 
     quit = "exit";
     spf = "${lib.getExe pkgs-unstable.superfile}";

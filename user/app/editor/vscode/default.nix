@@ -19,6 +19,7 @@ in
     package = pkgs.vscodium.fhs;
     # profiles.default = {
     userSettings = {
+      "java.jdt.ls.java.home" = "${pkgs.jdk17}";
       "files.autoSave" = "afterDelay";
 
       "telemetry.telemetryLevel" = "off";
@@ -148,6 +149,8 @@ in
       with pkgs.vscode-extensions;
       # with pkgs.vscode-marketplace;
       [
+        redhat.java
+
         formulahendry.code-runner
 
         bradlc.vscode-tailwindcss

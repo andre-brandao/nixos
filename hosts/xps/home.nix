@@ -136,6 +136,7 @@
       protonmail-desktop
     ]
     ++ (with pkgs-unstable; [
+
       superfile
       ghostty
       supabase-cli
@@ -148,6 +149,7 @@
       kubernetes-helm
       kustomize
       nemo
+      jetbrains.idea-community-bin
     ]);
 
   home.sessionVariables = {
