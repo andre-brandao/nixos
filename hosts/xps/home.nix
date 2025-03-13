@@ -1,9 +1,8 @@
-{
-  pkgs,
-  pkgs-unstable,
-  userSettings,
-  inputs,
-  ...
+{ pkgs
+, pkgs-unstable
+, userSettings
+, inputs
+, ...
 }:
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -89,8 +88,8 @@
       # brave
       # firefox
 
-      (callPackage ../../packages/zen.nix { })
-
+      # (callPackage ../../packages/zen.nix { })
+      inputs.zen-browser.packages."${system}".twilight
       # ---- OFFICE ---- #
       # libreoffice-fresh
 

@@ -2,14 +2,13 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      # nixos-hardware,
-      home-manager,
-      stylix,
-      ...
+    inputs@{ self
+    , nixpkgs
+    , nixpkgs-unstable
+    , # nixos-hardware,
+      home-manager
+    , stylix
+    , ...
     }:
     let
       inherit (self) outputs;
@@ -229,6 +228,8 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # ghostty = {
     #   url = "github:ghostty-org/ghostty";
