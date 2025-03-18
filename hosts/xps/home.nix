@@ -136,7 +136,7 @@
       protonmail-desktop
     ]
     ++ (with pkgs-unstable; [
-
+      freerdp
       superfile
       ghostty
       supabase-cli

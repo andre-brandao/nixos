@@ -23,7 +23,7 @@
     ../../system/app/cross-compilation.nix
     ../../system/cachix.nix
 
-    # ../../system/app/tailscale.nix
+    ../../system/app/tailscale.nix
     # ../../system/app/wireshark.nix
 
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager

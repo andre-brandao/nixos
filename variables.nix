@@ -4,7 +4,7 @@ rec {
   systemSettings = {
     system = "x86_64-linux"; # system arch
     hostname = "nixos"; # hostname
-    profile = "wsl"; # select a host defined from hosts directory
+    profile = "xps"; # select a host defined from hosts directory
     timezone = "America/Sao_Paulo"; # select timezone
     language = "en_US.UTF-8"; # select language
     locale = "pt_BR.UTF-8"; # select locale
@@ -12,7 +12,7 @@ rec {
   };
 
   userSettings = {
-    username = "nixos"; # username
+    username = "andre"; # username
     git-user = "andre-brandao";
     name = "Andre Brandao"; # name/identifier
     email = "82166576+andre-brandao@users.noreply.github.com";
