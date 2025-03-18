@@ -21,7 +21,7 @@
     inputs.nixos-wsl.nixosModules.default
 
     ../../system/cachix.nix
-   ../../system/style/stylix.nix
+    ../../system/style/stylix.nix
     # styles
     # ../../system/style/stylix.nix
     (fetchTarball {
@@ -34,12 +34,15 @@
   services.vscode-server.enable = true;
 
   programs.nix-ld = {
-      enable = true;
-      # package = pkgs.nix-ld-rs; # only for NixOS 24.05
+    enable = true;
+    # package = pkgs.nix-ld-rs; # only for NixOS 24.05
   };
 
-  wsl.enable = true;
-  wsl.defaultUser = userSettings.username;
+  wsl = {
+    enable = true;
+    defaultUser = userSettings.username;
+    docker-desktop.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     # helix
@@ -48,6 +51,10 @@
     zsh
     git
   ];
+  programs.zsh.enable = true;
+  users.users.${userSettings.username} = {
+    shell = pkgs.zsh;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   nix.settings = {
