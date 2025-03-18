@@ -1,2 +1,3 @@
 ignore.nix
 aws
+variables.nix
