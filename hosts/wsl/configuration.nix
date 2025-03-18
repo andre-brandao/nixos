@@ -10,6 +10,7 @@
   lib,
   pkgs,
   inputs,
+  userSettings,
   ...
 }:
 
@@ -20,24 +21,25 @@
     inputs.nixos-wsl.nixosModules.default
 
     ../../system/cachix.nix
-
+   ../../system/style/stylix.nix
     # styles
     # ../../system/style/stylix.nix
-    # (fetchTarball {
-    #   url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
-    #   sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
+    (fetchTarball {
+      url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
+      sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
 
-    # })
+    })
   ];
 
-  # services.vscode-server.enable = true;
+  services.vscode-server.enable = true;
 
-  # programs.nix-ld = {
-  #     enable = true;
-  #     # package = pkgs.nix-ld-rs; # only for NixOS 24.05
-  # };
+  programs.nix-ld = {
+      enable = true;
+      # package = pkgs.nix-ld-rs; # only for NixOS 24.05
+  };
 
   wsl.enable = true;
+  wsl.defaultUser = userSettings.username;
 
   environment.systemPackages = with pkgs; [
     # helix
