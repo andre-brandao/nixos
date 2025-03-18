@@ -45,7 +45,7 @@
       systemSettings = {
         system = "x86_64-linux"; # system arch
         hostname = "nixos"; # hostname
-        profile = "xps"; # select a host defined from hosts directory
+        profile = "wsl"; # select a host defined from hosts directory
         timezone = "America/Sao_Paulo"; # select timezone
         language = "en_US.UTF-8"; # select language
         locale = "pt_BR.UTF-8"; # select locale
@@ -54,7 +54,7 @@
 
       # ----- USER SETTINGS ----- #
       userSettings = {
-        username = "andre"; # username
+        username = "nixos"; # username
         git-user = "andre-brandao";
         name = "Andre Brandao"; # name/identifier
         email = "82166576+andre-brandao@users.noreply.github.com";
@@ -168,7 +168,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
