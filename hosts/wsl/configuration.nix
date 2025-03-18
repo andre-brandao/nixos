@@ -5,7 +5,13 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, lib, pkgs,inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
 
@@ -20,21 +26,18 @@
     # (fetchTarball {
     #   url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
     #   sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
-      
+
     # })
   ];
 
   # services.vscode-server.enable = true;
-
 
   # programs.nix-ld = {
   #     enable = true;
   #     # package = pkgs.nix-ld-rs; # only for NixOS 24.05
   # };
 
-
   wsl.enable = true;
-
 
   environment.systemPackages = with pkgs; [
     # helix
@@ -43,7 +46,7 @@
     zsh
     git
   ];
-  
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   nix.settings = {
     # Enable flakes and new 'nix' command

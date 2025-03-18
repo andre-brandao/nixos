@@ -71,7 +71,6 @@
   #       shadow_size = 10
   #   }
 
-
   #   input-field {
   #       monitor =
   #       size = 200, 50

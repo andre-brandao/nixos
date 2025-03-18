@@ -2,13 +2,14 @@
   description = "andre-brandao NixOS configuration";
 
   outputs =
-    inputs@{ self
-    , nixpkgs
-    , nixpkgs-unstable
-    , # nixos-hardware,
-      home-manager
-    , stylix
-    , ...
+    inputs@{
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      # nixos-hardware,
+      home-manager,
+      stylix,
+      ...
     }:
     let
       inherit (self) outputs;
@@ -168,7 +169,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";

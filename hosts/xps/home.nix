@@ -1,8 +1,9 @@
-{ pkgs
-, pkgs-unstable
-, userSettings
-, inputs
-, ...
+{
+  pkgs,
+  pkgs-unstable,
+  userSettings,
+  inputs,
+  ...
 }:
 {
   # Home Manager needs a bit of information about you and the paths it should
