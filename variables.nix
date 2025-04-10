@@ -1,4 +1,4 @@
-{inputs, pkgs, ...}:
+{ inputs, pkgs, ... }:
 
 rec {
   systemSettings = {
@@ -25,7 +25,7 @@ rec {
     shell = "zsh"; # Default shell;
     font = "JetBrains Mono"; # Selected font
     fontPkg = pkgs.jetbrains-mono; # Font package
-    editor = "hx"; # Default editor;
+    editor = "zeditor"; # Default editor;
   };
 
   stylixSettings = {

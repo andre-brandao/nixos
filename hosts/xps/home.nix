@@ -92,7 +92,7 @@
       # (callPackage ../../packages/zen.nix { })
       inputs.zen-browser.packages."${system}".twilight
       # ---- OFFICE ---- #
-      # libreoffice-fresh
+      libreoffice-fresh
 
       # ---- UTILS ---- #
       # bitwarden # Password manager
@@ -145,6 +145,8 @@
       thunderbird # email client
       obsidian
       # K8s
+      claude-code
+      railway
       lens
       kubernetes-helm
       kustomize

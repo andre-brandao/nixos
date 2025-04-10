@@ -54,7 +54,7 @@ in
     bash = {
       enable = true;
       enableCompletion = true;
-      shellAliases = aliases;
+      # shellAliases = aliases;
     };
     # SHELL
     zsh = {
