@@ -26,6 +26,7 @@
           # inputs.hyprshell.overlays.default
 
           (final: prev: {
+#              pipewire = pkgs-unstable.pipewire;
             # mesa = pkgs-unstable.mesa;
             # gjs = pkgs-unstable.gjs;
             hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
@@ -139,7 +140,7 @@
       # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
       # url = "github:hyprwm/Hyprland/v0.45.2";
       # url = "github:hyprwm/Hyprland/v0.42.0";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
