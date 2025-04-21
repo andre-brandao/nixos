@@ -17,12 +17,12 @@
     # ../../user/style/gtk.nix # My gtk config
 
     # DESKTOP
-     ../../user/app/lf
-     ../../user/app/git/git.nix
-     ../../user/shell/shell.nix 
-     ../../user/shell/cli-collection.nix
+    ../../user/app/lf
+    ../../user/app/git/git.nix
+    ../../user/shell/shell.nix
+    ../../user/shell/cli-collection.nix
 
-     ../../user/app/editor/helix
+    ../../user/app/editor/helix
   ];
   # home.packages = with pkgs; [
   #   caligula

@@ -1,43 +1,43 @@
 { config, ... }:
 {
 
-  # services.hypridle = {
-  #   enable = true;
+  services.hypridle = {
+    enable = true;
 
-  #   settings = {
-  #     general = {
-  #       lock_cmd = "pidof hyprlock || hyprlock";
-  #       before_sleep_cmd = "loginctl lock-session";
-  #       after_sleep_cmd = "hyprctl dispatch dpms on";
-  #     };
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
 
-  #     listener = [
-  #       {
-  #         timeout = 150;
-  #         on-timeout = "brightnessctl -s set 15";
-  #         on-resume = "brightnessctl -r";
-  #       }
-  #       {
-  #         timeout = 150;
-  #         on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
-  #         on-resume = "brightnessctl -rd rgb:kbd_backlight";
-  #       }
-  #       {
-  #         timeout = 300;
-  #         on-timeout = "loginctl lock-session";
-  #       }
-  #       {
-  #         timeout = 380;
-  #         on-timeout = "hyprctl dispatch dpms off";
-  #         on-resume = "hyprctl dispatch dpms on";
-  #       }
-  #       {
-  #         timeout = 1800;
-  #         on-timeout = "systemctl suspend";
-  #       }
-  #     ];
-  #   };
-  # };
+      listener = [
+        {
+          timeout = 150;
+          on-timeout = "brightnessctl -s set 15";
+          on-resume = "brightnessctl -r";
+        }
+        {
+          timeout = 150;
+          on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
+          on-resume = "brightnessctl -rd rgb:kbd_backlight";
+        }
+        {
+          timeout = 300;
+          on-timeout = "loginctl lock-session";
+        }
+        {
+          timeout = 380;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 1800;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
+  };
 
   # home.file.".config/hypr/hyprlock.conf".text = ''
   #   background {
@@ -103,41 +103,52 @@
   #   }
   # '';
 
-  #    programs.hyprlock = {
-  #     enable = true;
+  programs.hyprlock = {
+    enable = true;
 
-  #     settings = {
-  #       general = {
-  #         hide_cursor = true;
-  #         grace = 2;
-  #       };
+    settings = {
+      general = {
+        hide_cursor = true;
+        grace = 2;
+      };
 
-  #       background = {
-  #         color = "rgba(25, 20, 20, 1.0)";
-  #         path = "screenshot";
-  #         blur_passes = 2;
-  #         brightness = 0.5;
-  #       };
+      background = {
+        color = "rgba(25, 20, 20, 1.0)";
+        path = "screenshot";
+        blur_passes = 2;
+        brightness = 0.5;
+      };
 
-  #       label = {
-  #         text = "パスワードをご入力ください";
-  #         color = "rgba(222, 222, 222, 1.0)";
-  #         font_size = 50;
-  #         font_family = "Noto Sans CJK JP";
-  #         position = "0, 70";
-  #         halign = "center";
-  #         valign = "center";
-  #       };
+      label = [
+        {
+          text = "Hi there $USER";
+          color = "rgba(222, 222, 222, 1.0)";
+          font_size = 50;
+          font_family = "Noto Sans CJK JP";
+          position = "0, 70";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          text = "$TIME12";
+          color = "rgba(222, 222, 222, 1.0)";
+          font_size = 30;
+          font_family = "Noto Sans CJK JP";
+          position = "0, 120";
+          halign = "center";
+          valign = "center";
+        }
+      ];
 
-  #       input-field = {
-  #         size = "50, 50";
-  #         dots_size = 0.33;
-  #         dots_spacing = 0.15;
-  #         outer_color = "rgba(25, 20, 20, 0)";
-  #         inner_color = "rgba(25, 20, 20, 0)";
-  #         font_color = "rgba(222, 222, 222, 1.0)";
-  #         placeholder_text = "パスワード";
-  #       };
-  #     };
-  #   };
+      input-field = {
+        size = "50, 50";
+        dots_size = 0.33;
+        dots_spacing = 0.15;
+        outer_color = "rgba(25, 20, 20, 0)";
+        inner_color = "rgba(25, 20, 20, 0)";
+        font_color = "rgba(222, 222, 222, 1.0)";
+        placeholder_text = "Password";
+      };
+    };
+  };
 }
