@@ -46,21 +46,26 @@
     "ags_2": {
       "inputs": {
         "astal": "astal_2",
+        "gjsx": [
+          "marble-shell",
+          "gjsx"
+        ],
         "nixpkgs": [
           "marble-shell",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1735485506,
-        "narHash": "sha256-7CWr3Q83KnGiLUn0oaboafLMOXQ0X9/fjFRVY1xopbM=",
+        "lastModified": 1744999273,
+        "narHash": "sha256-lO5MWLdOtK8IPOGnp9TP/UzsmEZWTWpX6g7LZr77t8A=",
         "owner": "aylur",
         "repo": "ags",
-        "rev": "251d39413543264361898b02035775aa3e46fe52",
+        "rev": "a0c5df1d96b5303c1aa53e1e7dd06e19e8fc9c24",
         "type": "github"
       },
       "original": {
         "owner": "aylur",
+        "ref": "v3",
         "repo": "ags",
         "type": "github"
       }
@@ -393,6 +398,27 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "gjsx": {
+      "inputs": {
+        "nixpkgs": [
+          "marble-shell",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1745311454,
+        "narHash": "sha256-d0D+hiv1wwZxSxImLbPZi9Rx6sNvbhlqDBpC+AA+fIA=",
+        "owner": "aylur",
+        "repo": "gjsx",
+        "rev": "bc99e05c720df6a6862bbc10a9612e4acf5c132a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aylur",
+        "repo": "gjsx",
         "type": "github"
       }
     },
@@ -950,23 +976,22 @@
     "marble-shell": {
       "inputs": {
         "ags": "ags_2",
-        "matcha": "matcha_2",
-        "matugen": "matugen_2",
+        "gjsx": "gjsx",
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1741688157,
-        "narHash": "sha256-a/KlkLjK8W/vqPpycBVK1leubZUKHhcAY9080tg77mc=",
-        "ref": "dev",
-        "rev": "fc5b832c22a1888587c2d301333d8a9dd4cf9f7c",
-        "revCount": 34,
+        "lastModified": 1744657807,
+        "narHash": "sha256-UPBEVoeOFuo2OuOFw94oFOVGPlHgl64Nde+X9y3MXp8=",
+        "ref": "v3",
+        "rev": "04ce1ca87a8e74dd3079c93cf91ad674e9af9261",
+        "revCount": 37,
         "type": "git",
         "url": "ssh://git@github.com/andre-brandao/marble"
       },
       "original": {
-        "ref": "dev",
+        "ref": "v3",
         "type": "git",
         "url": "ssh://git@github.com/andre-brandao/marble"
       }
@@ -981,24 +1006,6 @@
         "ref": "refs/heads/main",
         "rev": "438da25cacd014b99460de76a59a9fecec04f48a",
         "revCount": 18,
-        "type": "git",
-        "url": "https://codeberg.org/QuincePie/matcha"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://codeberg.org/QuincePie/matcha"
-      }
-    },
-    "matcha_2": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1738448307,
-        "narHash": "sha256-jRmfa28gVEDyS7We881BJDpr6L1kla0AgpEWjZ04tZo=",
-        "ref": "refs/heads/main",
-        "rev": "90721110060e6b870839df847601d79f9a7a6461",
-        "revCount": 28,
         "type": "git",
         "url": "https://codeberg.org/QuincePie/matcha"
       },
@@ -1026,29 +1033,10 @@
         "type": "github"
       }
     },
-    "matugen_2": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_4"
-      },
-      "locked": {
-        "lastModified": 1711657889,
-        "narHash": "sha256-4VX7Rt+ftEH8nwg59eT7TsvHYUf8/euUmwh/JLc4rLc=",
-        "owner": "InioX",
-        "repo": "matugen",
-        "rev": "566277529dadc2b149a8bd8b9859ea791ecdef26",
-        "type": "github"
-      },
-      "original": {
-        "owner": "InioX",
-        "ref": "v2.2.0",
-        "repo": "matugen",
-        "type": "github"
-      }
-    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat_2",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1744290088,
@@ -1115,38 +1103,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1731531548,
-        "narHash": "sha256-sz8/v17enkYmfpgeeuyzniGJU0QQBfmAjlemAUYhfy8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "24f0d4acd634792badd6470134c387a3b039dace",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1691186842,
-        "narHash": "sha256-wxBVCvZUwq+XS4N4t9NqsHV4E64cPVqQ2fdDISpjcw0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "18036c0be90f4e308ae3ebcab0e14aae0336fe42",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
         "lastModified": 1742937945,
         "narHash": "sha256-lWc+79eZRyvHp/SqMhHTMzZVhpxkRvthsP1Qx6UCq0E=",
         "owner": "NixOS",
@@ -1161,7 +1117,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1744440957,
         "narHash": "sha256-FHlSkNqFmPxPJvy+6fNLaNeWnF1lZSgqVCl/eWaJRc4=",
@@ -1177,7 +1133,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1743703532,
         "narHash": "sha256-s1KLDALEeqy+ttrvqV3jx9mBZEvmthQErTVOAzbjHZs=",
@@ -1193,7 +1149,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1743448293,
         "narHash": "sha256-bmEPmSjJakAp/JojZRrUvNcDX2R5/nuX6bm+seVaGhs=",
@@ -1244,7 +1200,7 @@
         "hyprsysteminfo": "hyprsysteminfo",
         "marble-shell": "marble-shell",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "spicetify": "spicetify",
         "stylix": "stylix",
@@ -1285,7 +1241,7 @@
         "git-hooks": "git-hooks",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_5",
         "systems": "systems_5",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
@@ -1491,7 +1447,7 @@
     "zen-browser": {
       "inputs": {
         "home-manager": "home-manager_3",
-        "nixpkgs": "nixpkgs_8"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1745040643,

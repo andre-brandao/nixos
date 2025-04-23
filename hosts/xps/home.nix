@@ -30,7 +30,7 @@
     # UTILS
     ../../user/app/rofi
     ../../user/app/lf
-    # ../../user/app/spicetify.nix # My spicetify coxnfig
+    ../../user/app/spicetify.nix # My spicetify coxnfig
     ../../user/app/git/git.nix # My git config
     ../../user/app/nemo.nix
 

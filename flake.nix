@@ -165,7 +165,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     marble-shell = {
-      url = "git+ssh://git@github.com/andre-brandao/marble?ref=dev";
+      url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
