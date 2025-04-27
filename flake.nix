@@ -123,7 +123,10 @@
 
     # Stylix
     stylix.url = "github:danth/stylix/release-24.11";
-
+    spicetify = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     color-schemes = {
       url = "github:andre-brandao/color-schemes";
       flake = false;
@@ -136,10 +139,11 @@
 
     # HyperLand
     hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # url = "git+https://github.com/hyprwm/Hyprland?tag=v0.45.0?submodules=1";
-      # url = "github:hyprwm/Hyprland/v0.45.2";
-      # url = "github:hyprwm/Hyprland/v0.42.0";
+      # url = "github:hyprwm/Hyprland";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprland-plugins = {
@@ -169,16 +173,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    spicetify = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    # ghostty = {
-    #   url = "github:ghostty-org/ghostty";
-    # };
-
   };
 }
