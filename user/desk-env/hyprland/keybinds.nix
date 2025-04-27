@@ -8,8 +8,10 @@
       "$mainMod, T,                  togglefloating"
 
       # "$mainMod, W, exec,            ${userSettings.browser}"
-      "$mainMod, RETURN, exec,       marble toggle launcher"
-      "SUPER, Tab, exec,             marble eval \"launcher('h')\""
+      "$mainMod, RETURN, exec,       marble-launcher --open"
+      "$CTRL SHIFT, R, exec,         astal -i marble -q; marble"
+
+      "SUPER, Tab, exec,             marble-launcher ':h'"
 
       # ROFI
       "$mainMod, J, exec,            rofi -show window -show-icons"

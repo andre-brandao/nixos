@@ -19,7 +19,6 @@ in
       # "dunst"
       # "hyprpaper"
       # "hypridle"
-      "swww-daemon"
       # "waybar"
       # "nwg-dock-hyprland -d"
       "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -31,8 +30,10 @@ in
       "protonmail-bridge --noninteractive"
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
-      "marble"
-      "marble-launcher"
+      "uwsm app -- marble"
+      "uwsm app -- marble-launcher"
+      "swww-daemon"
+
       # "nm-applet --indicator"
     ];
 
