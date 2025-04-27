@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-    # https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
+  # https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
   home.file.".config/ghostty/config".text = ''
     theme = deep
     # window-theme = ghostty

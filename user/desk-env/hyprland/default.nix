@@ -29,7 +29,7 @@
     comment = "Gnome Control Center";
     icon = "org.gnome.Settings";
     exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-    categories = ["X-Preferences"];
+    categories = [ "X-Preferences" ];
     terminal = false;
   };
   home.packages = with pkgs; [
@@ -37,7 +37,7 @@
     hyprland-protocols
     # hypridle
     # hyprlock
-    # hyprpicker
+    hyprpicker
     # hyprpaper
     pyprland
     swww
@@ -62,7 +62,7 @@
     kdePackages.qtsvg
     xdg-utils # for opening files with default applications
 
-    # xwaylandvideobridge # screen sharing
+    xwaylandvideobridge # screen sharing
     # vesktop # discord client
 
     # waybar
@@ -84,7 +84,7 @@
       xwayland = {
         force_zero_scaling = true;
       };
-      env = "GDK_SCALE,2";
+      env = "GDK_SCALE,1";
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {

@@ -50,25 +50,41 @@
 
   security = {
     polkit.enable = true;
+    pam.services.astal-auth = { };
+
     # pam.services.ags = { };
   };
   xdg = {
     portal = {
       enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      # xdgOpenUsePortal = true;
+      # config = {
+      #   common.default = [ "gtk" ];
+      #   hyprland.default = [
+      #     "gtk"
+      #     "hyprland"
+      #   ];
+      # };
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        # pkgs.xdg-desktop-portal-hyprland
+        # inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+      ];
     };
   };
 
   programs = {
+    kdeconnect.enable = true;
     hyprland = {
       enable = true;
-      package = pkgs.hyprland;
+      withUWSM = true;
+      # package = pkgs.hyprland;
       xwayland = {
         enable = true;
       };
       # portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      # portalPackage =
+      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
   };
 

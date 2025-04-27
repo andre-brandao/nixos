@@ -17,17 +17,22 @@ in
 
     exec-once = [
       # "dunst"
-      # "xwaylandvideobridge"
       # "hyprpaper"
       # "hypridle"
       "swww-daemon"
       # "waybar"
       # "nwg-dock-hyprland -d"
-      "systemctl --user import-environment PATH"
+      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      "dbus-update-activation-environment --systemd --all"
+      "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME"
+      # "systemctl --user import-environment PATH"
+      "xwaylandvideobridge"
+
       "protonmail-bridge --noninteractive"
       # "systemctl --user restart xdg-desktop-portal.service"
       "pypr"
       "marble"
+      "marble-launcher"
       # "nm-applet --indicator"
     ];
 
