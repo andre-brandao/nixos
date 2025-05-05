@@ -16,8 +16,6 @@
     # backupFileExtension = "backup";
   };
 
-
-
   imports = [
     # STYLES
     ../../user/style/stylix.nix # Styling and themes for my apps

@@ -47,7 +47,15 @@
         hide_cursor = true;
         grace = 2;
       };
-
+      animations = {
+        enabled = true;
+        bezier = "linear, 1, 1, 0, 0";
+        animation = [
+          "fadeIn, 1, 5, linear"
+          "fadeOut, 1, 5, linear"
+          "inputFieldDots, 1, 2, linear"
+        ];
+      };
       auth = {
         "pam:enabled" = true;
         # "fingerprint:enabled" = true;
@@ -72,11 +80,31 @@
           valign = "center";
         }
         {
-          text = "$TIME12";
+          text = "$TIME";
           color = "rgba(222, 222, 222, 1.0)";
           font_size = 30;
           font_family = "Noto Sans CJK JP";
           position = "0, 120";
+          halign = "center";
+          valign = "center";
+        }
+        {
+            # monitor =
+            text = ''cmd[update:60000] date +"%A, %d %B %Y"''; # update every 60 seconds
+            font_size = 25;
+            # font_family = $font;
+
+            position = "-30, -150";
+            halign = "right";
+            valign = "top";
+        }
+        {
+          # monitor =
+          text = "$LAYOUT[en,br]";
+          font_size = 24;
+          onclick = "hyprctl switchxkblayout all next";
+
+          position = "250, -20";
           halign = "center";
           valign = "center";
         }

@@ -25,7 +25,7 @@
     ../../user/app/editor/helix
   ];
   home.packages = with pkgs; [
-      devenv
+    devenv
   ];
 
   home.file."teste".text = "testando";
