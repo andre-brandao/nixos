@@ -24,9 +24,9 @@
 
     ../../user/app/editor/helix
   ];
-  # home.packages = with pkgs; [
-  #   caligula
-  # ];
+  home.packages = with pkgs; [
+      devenv
+  ];
 
   home.file."teste".text = "testando";
   home.stateVersion = "22.11"; # Please read the comment before changing.
