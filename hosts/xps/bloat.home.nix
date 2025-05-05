@@ -36,7 +36,7 @@
       # jetbrains.pycharm-professional
     ])
     ++ (with pkgs-unstable; [
-      zed-editor
+      # zed-editor
       # jetbrains.webstorm
       jetbrains-toolbox
       supabase-cli

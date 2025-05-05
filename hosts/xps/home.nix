@@ -16,6 +16,8 @@
     # backupFileExtension = "backup";
   };
 
+
+
   imports = [
     # STYLES
     ../../user/style/stylix.nix # Styling and themes for my apps
@@ -47,8 +49,8 @@
     ../../user/shell/cli-collection.nix # Useful CLI apps
 
     # PROGRAMMING LANGUAGES
-    ../../user/lang/js.nix # My node.js config
-    ../../user/lang/go.nix # My go config
+    # ../../user/lang/js.nix # My node.js config
+    # ../../user/lang/go.nix # My go config
     # ../../user/lang/godot.nix
     # ../../user/lang/elixir.nix
 
@@ -119,6 +121,7 @@
 
       # ---- DEV UTILS ---- #
       devbox
+      devenv
 
       # icon-library
       postman
@@ -152,6 +155,7 @@
       kustomize
       nemo
       jetbrains.idea-community-bin
+      vault
     ]);
 
   home.sessionVariables = {

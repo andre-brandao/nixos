@@ -94,6 +94,7 @@
   users.defaultUserShell = pkgs.zsh;
   programs = {
     zsh.enable = true;
+    nix-ld.enable = true;
     # nautilus.enable = true;
   };
   environment.systemPackages = with pkgs; [

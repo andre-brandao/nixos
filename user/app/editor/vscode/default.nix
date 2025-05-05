@@ -151,7 +151,7 @@ in
       [
         redhat.java
 
-        formulahendry.code-runner
+        # formulahendry.code-runner
 
         bradlc.vscode-tailwindcss
         esbenp.prettier-vscode

@@ -42,12 +42,12 @@
 
     # ---- FETCHERS ---- #
     disfetch
-    neofetch
     onefetch
     starfetch
     # cava
-
+    tree
     # typer
+    wev
   ];
 
   programs = {
