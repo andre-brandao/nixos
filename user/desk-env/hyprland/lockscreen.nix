@@ -44,7 +44,7 @@
 
     settings = {
       general = {
-        hide_cursor = true;
+        hide_cursor = false;
         grace = 2;
       };
       animations = {
@@ -60,6 +60,13 @@
         "pam:enabled" = true;
         # "fingerprint:enabled" = true;
         # "fingerprint:retry_delay" = 250;
+        fingerprint = {
+            enabled = true;
+            retry_delay = 250;
+            ready_message = "Scan fingerprint to unlock";
+            present_message = "Scanning...";
+
+        };
       };
 
       background = {
@@ -79,22 +86,30 @@
           halign = "center";
           valign = "center";
         }
+        # {
+        #   text = "$TIME";
+        #   color = "rgba(222, 222, 222, 1.0)";
+        #   font_size = 30;
+        #   font_family = "Noto Sans CJK JP";
+        #   position = "0, 120";
+        #   halign = "center";
+        #   valign = "center";
+        # }
+        # 
         {
-          text = "$TIME";
-          color = "rgba(222, 222, 222, 1.0)";
-          font_size = 30;
-          font_family = "Noto Sans CJK JP";
-          position = "0, 120";
-          halign = "center";
-          valign = "center";
-        }
+           text = "$TIME"; # ref. https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#variable-substitution
+           font_size = 90;       
+           position = "-30, 0";
+           halign = "right";
+           valign = "top";
+       }
         {
             # monitor =
             text = ''cmd[update:60000] date +"%A, %d %B %Y"''; # update every 60 seconds
             font_size = 25;
             # font_family = $font;
 
-            position = "-30, -150";
+            position = "-20, -150";
             halign = "right";
             valign = "top";
         }
@@ -138,6 +153,8 @@
         inner_color = "rgba(25, 20, 20, 0)";
         font_color = "rgba(222, 222, 222, 1.0)";
         placeholder_text = "Password";
+        fail_text = "$PAMFAIL";
+
       };
     };
   };

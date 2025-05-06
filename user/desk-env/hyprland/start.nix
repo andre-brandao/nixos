@@ -25,7 +25,7 @@ in
       "dbus-update-activation-environment --systemd --all"
       "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME"
       # "systemctl --user import-environment PATH"
-      "xwaylandvideobridge"
+      # "xwaylandvideobridge"
 
       "protonmail-bridge --noninteractive"
       # "systemctl --user restart xdg-desktop-portal.service"

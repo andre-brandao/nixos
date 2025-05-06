@@ -62,7 +62,7 @@
     kdePackages.qtsvg
     xdg-utils # for opening files with default applications
 
-    xwaylandvideobridge # screen sharing
+    # xwaylandvideobridge # screen sharing
     # vesktop # discord client
 
     # waybar
