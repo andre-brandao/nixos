@@ -17,16 +17,6 @@
   home.file.".currenttheme".text = userSettings.theme;
   # stylix.autoEnable = false;
   stylix = {
-    # enable = true;
-    # autoEnable = false;
-    # polarity = stylixSettings.polarity;
-    # image = stylixSettings.image;
-
-    # # # base16Scheme = ./. + themePath;
-    # base16Scheme = stylixSettings.base16Scheme;
-
-    # fonts = stylixSettings.fonts;
-
     targets = {
       gtk.enable = true;
       gnome.enable = true;
@@ -62,22 +52,4 @@
       size = 22;
     };
   };
-
-  # programs = {
-  #   cava = {
-  #     enable = true;
-  #     settings = {
-  #       color = {
-  #         foreground = "'#${config.lib.stylix.colors.base0A}'";
-  #         #background = base3;
-  #         gradient = 1;
-  #         gradient_color_1 = "'#${config.lib.stylix.colors.base0A}'";
-  #         gradient_color_2 = "'#${config.lib.stylix.colors.base0B}'";
-  #         gradient_color_3 = "'#${config.lib.stylix.colors.base0C}'";
-  #         gradient_color_4 = "'#${config.lib.stylix.colors.base0D}'";
-  #         gradient_color_5 = "'#${config.lib.stylix.colors.base0E}'";
-  #       };
-  #     };
-  #   };
-  # };
 }

@@ -17,17 +17,16 @@ let
     user-update = "nh home switch ${userSettings.configDir} -c user";
 
     lss = "eza --icons -l -T -L=1";
-    cat = "bat";
     htop = "btop";
     fd = "fd -Lu";
     cd = "z";
 
-    a = "git add --patch";
-    b = "git switch --create";
     c = "git commit";
     ca = "git commit --amend";
     cm = "git commit --message";
-    dl = "http --download get";
+    # a = "git add --patch";
+    # b = "git switch --create";
+    # dl = "http --download get";
 
     k = "kubectl";
 
@@ -48,7 +47,6 @@ in
   imports = [
     ./tmux.nix
     ./starship.nix
-    # ./oh-my-posh.nix
   ];
   programs = {
     bash = {
@@ -60,7 +58,6 @@ in
     zsh = {
       enable = true;
       # autosuggestion.enable = true;
-
       # enableCompletion = true;
       # syntaxHighlighting.enable = true;
       # enableVteIntegration = true;
@@ -96,22 +93,6 @@ in
       '';
 
       shellAliases = aliases;
-
-      # zplug = {
-      #   enable = true;
-      #   plugins = [
-      #     { name = "zsh-users/zsh-autosuggestions"; }
-      #     { name = "zsh-users/zsh-syntax-highlighting"; }
-      #     { name = "zsh-users/zsh-completions";}
-
-      #     { name = "marlonrichert/zsh-autocomplete"; }
-      #     { name = "chisui/zsh-nix-shell"; }
-      #     { name = "ptavares/zsh-direnv"; }
-
-      #     # { name = "zdharma-continuum/fast-syntax-highlighting"; }
-      #     # { name = "zsh-users/zsh-history-substring-search"; }
-      #   ];
-      # };
       antidote = {
         enable = true;
         plugins = [
@@ -129,13 +110,14 @@ in
 
   home.packages = with pkgs; [
     fastfetch
-    disfetch
-    onefetch
+    # disfetch
+    # onefetch
     gnugrep
     gnused
     bat
     eza
-    bottom
+    devbox
+    devenv
     direnv
     nix-direnv
     nh

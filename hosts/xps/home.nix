@@ -96,8 +96,6 @@
       # kdenlive
       blueman
       # ---- DEV UTILS ---- #
-      devbox
-      devenv
       # icon-library
       postman
       libffi

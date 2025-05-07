@@ -30,7 +30,7 @@ rec {
 
   stylixSettings = {
     polarity = "dark";
-    image = "${inputs.wallpapers}/red-sunset.png";
+    image = "${inputs.wallpapers}/abstract102.png";
     base16Scheme = "${inputs.color-schemes}/base16/irblack.yaml";
 
     fonts = {

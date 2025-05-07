@@ -6,7 +6,7 @@
     nil
     nixd
     nix-tree
-    nix-init
+    # nix-init
     statix
     nixfmt-rfc-style
 
@@ -30,21 +30,15 @@
     btop
     hwinfo
     unzip
-    w3m
     fzf
-    pandoc
+    # pandoc
     pciutils
     ncdu
     tldr
-    expect
+    # expect
     dig
     jq
 
-    # ---- FETCHERS ---- #
-    disfetch
-    onefetch
-    starfetch
-    # cava
     tree
     # typer
     wev
