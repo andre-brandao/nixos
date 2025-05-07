@@ -76,7 +76,7 @@ in
         share = true;
       };
 
-      initExtra = ''
+      initContent = ''
         # Keybindings
         bindkey '^H' backward-kill-word # Ctrl+Backspace
         bindkey '\e[1;5D' backward-word # Ctrl+Left

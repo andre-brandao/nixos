@@ -92,7 +92,7 @@
       # (callPackage ../../packages/zen.nix { })
       inputs.zen-browser.packages."${system}".twilight
       # ---- OFFICE ---- #
-      libreoffice-fresh
+      # libreoffice-fresh
 
       # ---- UTILS ---- #
       # bitwarden # Password manager
@@ -126,7 +126,7 @@
       libffi
       zlib
       glib
-      rpi-imager
+      # rpi-imager
 
       git
 
