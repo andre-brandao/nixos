@@ -29,7 +29,7 @@
             #              pipewire = pkgs-unstable.pipewire;
             # mesa = pkgs-unstable.mesa;
             # gjs = pkgs-unstable.gjs;
-            hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
+            # hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
 
           })
         ];
@@ -139,12 +139,16 @@
 
     # HyperLand
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # # ------
+      # type = "git";
+      # url = "https://github.com/hyprwm/Hyprland";
+      # submodules = true;
+    };
+    hycov = {
+      url = "github:bighu630/hycov";
+      inputs.hyprland.follows = "hyprland";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -158,10 +162,10 @@
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # Hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     # Hyprland Bars
     hyprshell = {

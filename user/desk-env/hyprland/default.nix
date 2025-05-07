@@ -3,6 +3,7 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   config,
   lib,
   userSettings,
@@ -32,7 +33,7 @@
     categories = [ "X-Preferences" ];
     terminal = false;
   };
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
     # hyprland packages
     hyprland-protocols
     # hypridle
@@ -74,7 +75,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    package = pkgs-unstable.hyprland;
 
     systemd.enable = true;
     xwayland.enable = true;

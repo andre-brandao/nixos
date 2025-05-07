@@ -61,10 +61,10 @@
         # "fingerprint:enabled" = true;
         # "fingerprint:retry_delay" = 250;
         fingerprint = {
-            enabled = true;
-            retry_delay = 250;
-            ready_message = "Scan fingerprint to unlock";
-            present_message = "Scanning...";
+          enabled = true;
+          retry_delay = 250;
+          ready_message = "Scan fingerprint to unlock";
+          present_message = "Scanning...";
 
         };
       };
@@ -95,23 +95,23 @@
         #   halign = "center";
         #   valign = "center";
         # }
-        # 
+        #
         {
-           text = "$TIME"; # ref. https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#variable-substitution
-           font_size = 90;       
-           position = "-30, 0";
-           halign = "right";
-           valign = "top";
-       }
+          text = "$TIME"; # ref. https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#variable-substitution
+          font_size = 90;
+          position = "-30, 0";
+          halign = "right";
+          valign = "top";
+        }
         {
-            # monitor =
-            text = ''cmd[update:60000] date +"%A, %d %B %Y"''; # update every 60 seconds
-            font_size = 25;
-            # font_family = $font;
+          # monitor =
+          text = ''cmd[update:60000] date +"%A, %d %B %Y"''; # update every 60 seconds
+          font_size = 25;
+          # font_family = $font;
 
-            position = "-20, -150";
-            halign = "right";
-            valign = "top";
+          position = "-20, -150";
+          halign = "right";
+          valign = "top";
         }
         {
           # monitor =
@@ -123,26 +123,6 @@
           halign = "center";
           valign = "center";
         }
-        # error message label
-        # {
-        #   text = "$PAMPROMPT";
-        #   color = "rgba(222, 222, 222, 1.0)";
-        #   font_size = 30;
-        #   font_family = "Noto Sans CJK JP";
-        #   position = "0, 10";
-        #   halign = "center";
-        #   valign = "center";
-        # }
-
-        # {
-        #   text = "$FPRINTPROMPT";
-        #   color = "rgba(222, 222, 222, 1.0)";
-        #   font_size = 30;
-        #   font_family = "Noto Sans CJK JP";
-        #   position = "0, 20";
-        #   halign = "center";
-        #   valign = "center";
-        # }
       ];
 
       input-field = {

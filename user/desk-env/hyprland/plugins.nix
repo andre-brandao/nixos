@@ -10,11 +10,23 @@
       # inputs.hyprgrass.packages.${pkgs.system}.hyprgrass
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      # inputs.hycov.packages.${pkgs.system}.hycov
     ];
     settings.bind = [
       # "$mainMod, O, overview:toggle"
+      # "ALT,tab,hycov:toggleoverview"
+      # "ALT,left,hycov:movefocus,l"
+      # "ALT,right,hycov:movefocus,r"
+      # "ALT,up,hycov:movefocus,u"
+      # "ALT,down,hycov:movefocus,d"
     ];
     settings.plugin = {
+      # hycov = {
+      #   overview_gappo = 60; # gaps width from screen
+      #   overview_gappi = 24; # gaps width from clients
+      #   hotarea_size = 10; # hotarea size in bottom left,10x10
+      #   enable_hotarea = 1; # enable mouse cursor hotarea
+      # };
       # touch_gestures = {
       #   long_press_delay = 400;
 

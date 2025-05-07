@@ -75,3 +75,5 @@ flake.nix
 [Misterio77's nix-starter-configs](https://github.com/Misterio77/nix-starter-configs)
 
 [librephoenix's nixos-config](https://github.com/librephoenix/nixos-config)
+
+https://nixos-and-flakes.thiscute.world/best-practices/debugging
