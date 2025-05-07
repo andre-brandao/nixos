@@ -21,10 +21,6 @@
           allowUnfreePredicate = _: true;
         };
         overlays = [
-          #  inputs.hyprpanel.overlay
-          inputs.hyprland.overlays.default
-          # inputs.hyprshell.overlays.default
-
           (final: prev: {
             #              pipewire = pkgs-unstable.pipewire;
             # mesa = pkgs-unstable.mesa;
@@ -136,36 +132,6 @@
       url = "github:andre-brandao/wallpapers";
       flake = false;
     };
-
-    # HyperLand
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
-      # # ------
-      # type = "git";
-      # url = "https://github.com/hyprwm/Hyprland";
-      # submodules = true;
-    };
-    hycov = {
-      url = "github:bighu630/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprsysteminfo = {
-      url = "github:hyprwm/hyprsysteminfo";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-    # Hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
 
     # Hyprland Bars
     hyprshell = {

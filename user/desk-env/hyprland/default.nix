@@ -43,7 +43,7 @@
     pyprland
     swww
 
-    inputs.hyprsysteminfo.packages.${pkgs.system}.default
+    hyprsysteminfo
 
     inputs.marble-shell.packages.${pkgs.system}.default
     inputs.marble-shell.packages.${pkgs.system}.astal
