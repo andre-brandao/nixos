@@ -154,6 +154,7 @@
       nemo
       jetbrains.idea-community-bin
       vault
+      cachix
     ]);
 
   home.sessionVariables = {
