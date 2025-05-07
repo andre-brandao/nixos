@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ./modules/scratchpad.nix
+    ../../../modules/home-manager/scratchpad.nix
   ];
 
   scratchpads = [

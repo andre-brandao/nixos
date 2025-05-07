@@ -23,7 +23,7 @@
 
     # DESKTOP
     # ../../overlays/hyprland-overlay.nix
-    ../../user/desk-env/${userSettings.wm} # My window manager selected from flake
+    ../../user/desktop/${userSettings.wm} # My window manager selected from flake
 
     # ../../user/app/browser/${userSettings.browser}.nix # My browser config
 

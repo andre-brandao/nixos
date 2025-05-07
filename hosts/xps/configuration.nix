@@ -21,14 +21,12 @@
     ../../system/app/gaming.nix
 
     ../../system/app/cross-compilation.nix
-    ../../system/cachix.nix
-
     ../../system/app/tailscale.nix
     # ../../system/app/wireshark.nix
 
     # (./. + "../../../system/desk-env" + ("/" + userSettings.wm) + ".nix") # My window manager
     # ../../overlays/hyprland-overlay.nix
-    ../../system/desk-env/${userSettings.wm}.nix
+    ../../system/desktop/${userSettings.wm}.nix
 
     # styles
     ../../system/style/stylix.nix
@@ -50,7 +48,7 @@
         # Deduplicate and optimize nix store
         auto-optimise-store = true;
       };
-      
+
       extraOptions = ''
         trusted-users = root ${userSettings.username}
       '';
