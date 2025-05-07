@@ -6,16 +6,19 @@
       # "$mainMod, A, exec,            ${userSettings.term}"
 
       "$mainMod, T,                  togglefloating"
+      "$mainMod, G,                  togglegroup"
+      "$mainMod, N,                  changegroupactive, n"
+      "$mainMod, B,                  changegroupactive, b"
+
 
       # "$mainMod, W, exec,            ${userSettings.browser}"
       "$mainMod, RETURN, exec,       marble-launcher --open"
       "$CTRL SHIFT, R, exec,         astal -i marble -q; marble"
+      "$mainMod, R, exec,            rofi -show drun -show-icons"
+      # "$mainMod, J, exec,            rofi -show window -show-icons"
 
       "SUPER, Tab, exec,             marble-launcher ':h'"
 
-      # ROFI
-      "$mainMod, J, exec,            rofi -show window -show-icons"
-      "$mainMod, R, exec,            rofi -show drun -show-icons"
 
       '',Print,exec,                 grim -g "$(slurp)" - | swappy -f -'' # print screen
       "$mainMod, Print, exec,        hyprpicker -a -f hex" # color picker

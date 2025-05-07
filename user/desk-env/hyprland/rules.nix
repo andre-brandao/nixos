@@ -38,9 +38,9 @@
       "w[tv1], gapsout:0, gapsin:0E"
       "f[1], gapsout:0, gapsin:0"
     ];
-    # Smart Gaps
     windowrulev2 = [
 
+      # Smart Gaps
       "bordersize 0, floating:0, onworkspace:w[tv1]"
       "rounding 0, floating:0, onworkspace:w[tv1]"
       "bordersize 0, floating:0, onworkspace:f[1]"
@@ -52,6 +52,10 @@
       "noinitialfocus, title:^Picture-in-Picture$"
       "move 69% 69%, title:^Picture-in-Picture$"
       "opacity 1.0 1.0, title:^Picture-in-Picture$"
+
+
+      # other
+      "group set, initialClass:zen-twilight"
     ];
 
   };

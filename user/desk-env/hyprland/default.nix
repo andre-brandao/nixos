@@ -44,6 +44,7 @@
     swww
 
     hyprsysteminfo
+    hyprsunset
 
     inputs.marble-shell.packages.${pkgs.system}.default
     inputs.marble-shell.packages.${pkgs.system}.astal
@@ -196,6 +197,23 @@
         workspace_swipe_direction_lock = false;
       };
 
+      group = {
+          auto_group = true;
+          insert_after_current = true;
+          merge_floated_into_tiled_on_groupbar = true;
+          "col.border_inactive" = "0x33${config.lib.stylix.colors.base03}";
+          "col.border_active" =
+            ''0xff${config.lib.stylix.colors.base0D} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+
+          groupbar = {
+            enabled = true;
+            gradients = true;
+            font_size = 12;
+            "col.active" = "0xff${config.lib.stylix.colors.base0D}";
+            "col.inactive" = "0xff${config.lib.stylix.colors.base03}";
+          };
+      };
+
       misc = {
         #  # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0;
@@ -266,6 +284,7 @@
 
       binds = {
         allow_workspace_cycles = true;
+        movefocus_cycles_groupfirst = true;
       };
 
       bindle =

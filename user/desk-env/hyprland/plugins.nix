@@ -1,16 +1,13 @@
 {
   pkgs,
+  pkgs-unstable,
   config,
   inputs,
   ...
 }:
 {
   wayland.windowManager.hyprland = {
-    plugins = [
-      # inputs.hyprgrass.packages.${pkgs.system}.hyprgrass
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-      # inputs.hycov.packages.${pkgs.system}.hycov
+    plugins = with pkgs; [
     ];
     settings.bind = [
       # "$mainMod, O, overview:toggle"
