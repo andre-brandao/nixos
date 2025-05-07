@@ -53,7 +53,6 @@
       "move 69% 69%, title:^Picture-in-Picture$"
       "opacity 1.0 1.0, title:^Picture-in-Picture$"
 
-
       # other
       "group set, initialClass:zen-twilight"
     ];

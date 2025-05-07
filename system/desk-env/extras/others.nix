@@ -1,9 +1,14 @@
-{ pkgs,pkgs-unstable, inputs, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  ...
+}:
 {
 
   services.gnome.gnome-keyring.enable = true;
 
-#   # hardware.graphics.enable = true;
+  #   # hardware.graphics.enable = true;
   # hardware.graphics = {
 
   #     package = pkgs-unstable.mesa;

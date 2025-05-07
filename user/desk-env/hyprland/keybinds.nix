@@ -10,7 +10,6 @@
       "$mainMod, N,                  changegroupactive, n"
       "$mainMod, B,                  changegroupactive, b"
 
-
       # "$mainMod, W, exec,            ${userSettings.browser}"
       "$mainMod, RETURN, exec,       marble-launcher --open"
       "$CTRL SHIFT, R, exec,         astal -i marble -q; marble"
@@ -18,7 +17,6 @@
       # "$mainMod, J, exec,            rofi -show window -show-icons"
 
       "SUPER, Tab, exec,             marble-launcher ':h'"
-
 
       '',Print,exec,                 grim -g "$(slurp)" - | swappy -f -'' # print screen
       "$mainMod, Print, exec,        hyprpicker -a -f hex" # color picker

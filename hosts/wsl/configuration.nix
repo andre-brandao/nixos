@@ -19,8 +19,7 @@
   imports = [
     # <nixos-wsl/modules> # include NixOS-WSL modules
     inputs.nixos-wsl.nixosModules.default
-
-    ../../system/cachix.nix
+    
     ../../system/style/stylix.nix
     # styles
     # ../../system/style/stylix.nix
