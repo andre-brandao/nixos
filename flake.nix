@@ -121,7 +121,6 @@
     # Stylix
     # stylix.url = "github:danth/stylix/release-24.11";
     stylix.url = "github:danth/stylix";
-
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -130,12 +129,10 @@
       url = "github:andre-brandao/color-schemes";
       flake = false;
     };
-
     wallpapers = {
       url = "github:andre-brandao/wallpapers";
       flake = false;
     };
-
     # Hyprland Bars
     hyprshell = {
       url = "github:andre-brandao/hyprshell";
@@ -145,7 +142,6 @@
       url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
   nixConfig = {

@@ -13,18 +13,13 @@
   imports = [
     ./start.nix
     ./keybinds.nix
-    ./scratchteste.nix
+    ./scratchpad.nix
     ./rules.nix
-
-    # ../extras/bar/waybar.nix
-    # ../extras/bar/ags
-    # ../extras/bar/nwg-dock.nix
-    # ../extras/notification/dunst.nix
     ./monitor.nix
     ./plugins.nix
     ./lockscreen.nix
-    # ./xremap.nix
   ];
+
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";

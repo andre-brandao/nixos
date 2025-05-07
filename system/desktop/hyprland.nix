@@ -10,7 +10,6 @@
     ./extras/fonts.nix
     ./extras/others.nix
     ./extras/ags.nix
-    # ../app/xremap.nix
   ];
 
   services = {
@@ -21,12 +20,6 @@
         variant = "";
         options = "grp:win_space_toggle";
       };
-      # displayManager.gdm = {
-      #   enable = true;
-      #   wayland = true;
-      #   # theme = "chili";
-      # };
-
     };
     greetd =
       let
@@ -58,14 +51,6 @@
   xdg = {
     portal = {
       enable = true;
-      # xdgOpenUsePortal = true;
-      # config = {
-      #   common.default = [ "gtk" ];
-      #   hyprland.default = [
-      #     "gtk"
-      #     "hyprland"
-      #   ];
-      # };
       extraPortals = [
         pkgs.xdg-desktop-portal-gtk
         # pkgs.xdg-desktop-portal-hyprland
@@ -100,10 +85,9 @@
       gnome-boxes
       gnome-system-monitor
       gnome-control-center
-      gnome-weather
       gnome-calculator
       gnome-clocks
-      gnome-software # for flatpak
+      # gnome-software # for flatpak
       wl-clipboard
       wl-gammactl
 
@@ -121,13 +105,4 @@
       WLR_NO_HARDWARE_CURSORS = "1";
     };
   };
-
-  # hardware.opengl.enable = true;
-
-  # services.dbus = {
-  #   enable = true;
-  #   packages = [ pkgs.dconf ];
-  # };
-
-  # programs.dconf = { enable = true; };
 }
