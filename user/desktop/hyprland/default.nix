@@ -114,7 +114,7 @@
 
         "col.inactive_border" = "0x33${config.lib.stylix.colors.base03}";
         "col.active_border" =
-          ''0xff${config.lib.stylix.colors.base0D} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+          ''0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg'';
 
         # layout = "dwindle";
         layout = "master";
@@ -195,16 +195,32 @@
       group = {
         auto_group = true;
         insert_after_current = true;
+        drag_into_group = 2;
         merge_floated_into_tiled_on_groupbar = true;
+        # BORDERS
         "col.border_inactive" = "0x33${config.lib.stylix.colors.base03}";
         "col.border_active" =
-          ''0xff${config.lib.stylix.colors.base0D} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+          ''0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+
 
         groupbar = {
           enabled = true;
           gradients = true;
           font_size = 12;
-          "col.active" = "0xff${config.lib.stylix.colors.base0D}";
+          # font_weight_active = "bold";
+          # indicator_gap = -5;
+          # keep_upper_gap = false;
+          gaps_out = 0;
+          indicator_height = 5;
+          height = 26;
+          rounding = 3;
+          stacked = false;
+          gradient_rounding = 6;
+          text_color = "0xff${config.lib.stylix.colors.base05}";
+          # "col.active" = "0xff${config.lib.stylix.colors.base02}";
+          # BOTH INDICATOR AND BG
+          "col.active" = "0xff${config.lib.stylix.colors.base0B}";
+          # "col.active" = "0xff${config.lib.stylix.colors.base02}";
           "col.inactive" = "0xff${config.lib.stylix.colors.base03}";
         };
       };

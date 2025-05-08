@@ -5,11 +5,12 @@
   # re-evaluate whether this is necessary to set in the future.
   # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   # networking = {
-  #   useNetworkd = true;
+  # # #   useNetworkd = true;
   #   firewall = {
   #     # trace: warning: Strict reverse path filtering breaks Tailscale exit node
   #     # use and some subnet routing setups. Consider setting
   #     # `networking.firewall.checkReversePath` = 'loose'
+  #     # required to connect to Tailscale exit nodes
   #     checkReversePath = "loose";
   #     trustedInterfaces = [ "tailscale0" ];
   #   };

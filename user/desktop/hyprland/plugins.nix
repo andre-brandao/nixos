@@ -8,6 +8,7 @@
 {
   wayland.windowManager.hyprland = {
     plugins = with pkgs; [
+      # hyprlandPlugins.hyprbars
     ];
     settings.bind = [
       # "$mainMod, O, overview:toggle"
@@ -18,6 +19,18 @@
       # "ALT,down,hycov:movefocus,d"
     ];
     settings.plugin = {
+      # hyprbars = {
+      #   # example config
+      #   bar_height = 20;
+      #   bar_color =  "0xff${config.lib.stylix.colors.base03}";
+      #   # example buttons (R -> L)
+      #   # hyprbars-button = color, size, on-click
+      #   # hyprbars-button = [
+      #   #   "rgb(ff4040), 10, 󰖭, hyprctl dispatch killactive"
+      #   #   "rgb(eeee11), 10, , hyprctl dispatch fullscreen 1"
+      #   # ];
+      # };
+
       # hycov = {
       #   overview_gappo = 60; # gaps width from screen
       #   overview_gappi = 24; # gaps width from clients

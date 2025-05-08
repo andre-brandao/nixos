@@ -39,7 +39,7 @@
     # ./bloat.home.nix
   ];
 
- # services.blueman-applet.enable = true;
+  # services.blueman-applet.enable = true;
 
   programs.chromium = {
     enable = true;
