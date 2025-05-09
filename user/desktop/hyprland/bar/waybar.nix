@@ -40,7 +40,7 @@
           "hyprland/language"
 
           # "temperature"
-
+          "custom/notification"
           "tray"
           "group/backlight"
           "group/pulseaudio"
@@ -122,6 +122,27 @@
           "format" = " {} ";
           "exec" = ''echo " " '';
           "interval" = "once";
+        };
+
+        "custom/notification" = {
+          "tooltip" = false;
+          "format" = "{icon}";
+          "format-icons" = {
+            "notification" = "<span foreground='red'><sup></sup></span>";
+            "none" = "";
+            "dnd-notification" = "<span foreground='red'><sup></sup></span>";
+            "dnd-none" = "";
+            "inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+            "inhibited-none" = "";
+            "dnd-inhibited-notification" = "<span foreground='red'><sup></sup></span>";
+            "dnd-inhibited-none" = "";
+          };
+          "return-type" = "json";
+          "exec-if" = "which swaync-client";
+          "exec" = "swaync-client -swb";
+          "on-click" = "swaync-client -t -sw";
+          "on-click-right" = "swaync-client -d -sw";
+          "escape" = true;
         };
         "hyprland/workspaces" = {
           "format" = "{icon}";
@@ -449,7 +470,7 @@
          border-top: 3px solid @fgDefault;
          border-bottom: 3px solid @fgDefault;
        }
-             
+
       #power-profiles-daemon,
       #custom-power,
       #custom-quit,

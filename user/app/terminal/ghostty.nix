@@ -27,6 +27,7 @@
     keybind = ctrl+shift+n=previous_tab
 
     keybind = ctrl+shift+space=toggle_tab_overview
-
+    ## prevent from opening are you sure you want to quit
+    confirm-close-surface = false
   '';
 }

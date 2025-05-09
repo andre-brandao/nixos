@@ -9,6 +9,7 @@
   wayland.windowManager.hyprland = {
     plugins = with pkgs; [
       # hyprlandPlugins.hyprbars
+      # hyprlandPlugins.hyprspace
     ];
     settings.bind = [
       # "$mainMod, O, overview:toggle"

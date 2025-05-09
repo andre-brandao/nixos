@@ -34,17 +34,26 @@
       "8, on-created-empty:discord"
       "9, on-created-empty:thunderbird"
       # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
-      # Smart gaps
-      "w[tv1], gapsout:0, gapsin:0E"
-      "f[1], gapsout:0, gapsin:0"
-    ];
-    windowrulev2 = [
 
-      # Smart Gaps
-      "bordersize 0, floating:0, onworkspace:w[tv1]"
-      "rounding 0, floating:0, onworkspace:w[tv1]"
-      "bordersize 0, floating:0, onworkspace:f[1]"
-      "rounding 0, floating:0, onworkspace:f[1]"
+      # # Smart gaps
+      # "w[tv1], gapsout:0, gapsin:0"
+      # "f[1], gapsout:0, gapsin:0"
+      #
+      "w[tv1]s[false], gapsout:0, gapsin:0"
+      "f[1]s[false], gapsout:0, gapsin:0"
+
+    ];
+    windowrule = [
+      # # Smart Gaps
+      # "bordersize 0, floating:0, onworkspace:w[tv1]"
+      # "rounding 0, floating:0, onworkspace:w[tv1]"
+      # "bordersize 0, floating:0, onworkspace:f[1]"
+      # "rounding 0, floating:0, onworkspace:f[1]"
+      #
+      "bordersize 0, floating:0, onworkspace:w[tv1]s[false]"
+      "rounding 0, floating:0, onworkspace:w[tv1]s[false]"
+      "bordersize 0, floating:0, onworkspace:f[1]s[false]"
+      "rounding 0, floating:0, onworkspace:f[1]s[false]"
 
       # PIP
       "float, title:^Picture-in-Picture$"

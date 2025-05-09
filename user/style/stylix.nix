@@ -26,6 +26,7 @@
 
       kitty.enable = true;
       alacritty.enable = true;
+      ghostty.enable = true;
       tmux.enable = true;
       bat.enable = true;
       btop.enable = true;
@@ -40,6 +41,7 @@
       # vesktop.enable = true;
 
       spicetify.enable = false;
+
     };
 
     opacity = {

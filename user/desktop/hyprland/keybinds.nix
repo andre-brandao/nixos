@@ -3,46 +3,33 @@
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     bind = [
-      # "$mainMod, A, exec,            ${userSettings.term}"
-
-      "$mainMod, T,                  togglefloating"
-      "$mainMod, G,                  togglegroup"
-      "$mainMod, N,                  changegroupactive, n"
-      "$mainMod, B,                  changegroupactive, b"
-
-      # "$mainMod, W, exec,            ${userSettings.browser}"
-      "$mainMod, RETURN, exec,       marble-launcher --open"
-      "$CTRL SHIFT, R, exec,         astal -i marble -q; marble"
-      "$mainMod, R, exec,            rofi -show drun -show-icons"
-      # "$mainMod, J, exec,            rofi -show window -show-icons"
-
-      "SUPER, Tab, exec,             marble-launcher ':h'"
-
-      '',Print,exec,                 grim -g "$(slurp)" - | swappy -f -'' # print screen
-      "$mainMod, Print, exec,        hyprpicker -a -f hex" # color picker
-
-      "$mainMod SHIFT, F,            fullscreen"
-      "$mainMod, C,                  killactive"
-      "$mainMod SHIFT, Q,            exit"
-      "CTRL ALT, Delete,             exit"
-
-      # layout
-      "$mainMod, D, exec,            hyprctl keyword general:layout dwindle"
-      "$mainMod, M, exec,            hyprctl keyword general:layout master"
-
-      "ALT, Tab,                     cyclenext,"
+      # HYPR CONTROLS
+      "$mainMod,         T,                  togglefloating"
+      "$mainMod,         G,                  togglegroup"
+      "$mainMod  SHIFT,  F,                  fullscreen"
+      "$mainMod,         C,                  killactive"
+      "$mainMod,         N,                  changegroupactive, n"
+      "$mainMod,         B,                  changegroupactive, b"
+      "$mainMod,         D,         exec,    hyprctl keyword general:layout dwindle"
+      "$mainMod,         M,         exec,    hyprctl keyword general:layout master"
+      # LAUNCHERS
+      "$mainMod,         RETURN,    exec,    marble-launcher --open"
+      "$CTRL     SHIFT,  R,         exec,    astal -i marble -q; marble"
+      "SUPER,            Tab,       exec,    marble-launcher ':h'"
+      "$mainMod,         R,         exec,    rofi -show drun -show-icons"
+      "$mainMod,         J,         exec,    rofi -show window -show-icons"
+      # ZOOM
+      "$mainMod,         Z,         exec,    pypr zoom ++0.5"
+      "$mainMod  SHIFT,  Z,         exec,    pypr zoom"
+      # OTHER
+      "$mainMod  SHIFT,  Q,                  exit"
+      "CTRL      ALT,    Delete,             exit"
+      "ALT,              Tab,                cyclenext,"
+      "ALT,              Tab,                bringactivetotop,"
       # "ALT SHIFT, Tab,               cycleprev,"
-      "ALT, Tab,                     bringactivetotop,"
       # "ALT SHIFT, Tab,               bringactivetotop,"
-
-      #  "mainMod, E,hycov:toggleoverview"
-
-      # "$mainMod, E, hyprexpo:expo, toggle"
-      # "$mainMod, E, overview:toggle"
-
-      "$mainMod, Z, exec,            pypr zoom ++0.5"
-      "$mainMod SHIFT,Z, exec,       pypr zoom"
-
+      '',                Print,     exec,    grim -g "$(slurp)" - | swappy -f -'' # print screen
+      "$mainMod,         Print,     exec,    hyprpicker -a -f hex" # color picker
     ];
   };
 }

@@ -153,9 +153,43 @@ in
   config = {
     home.file.".config/hypr/pyprland.toml".text = ''
       [pyprland]
-      plugins = ["scratchpads", "magnify"]
+      plugins = ["scratchpads", "magnify", "shortcuts_menu", "fetch_client_menu"]
 
       ${concatStringsSep "\n\n" (map toToml config.scratchpads)}
+
+
+      [shortcuts_menu.entries]
+
+      Relayout = "pypr relayout"
+      "Fetch window" = "pypr fetch_client_menu"
+      "Hyprland socket" = 'kitty  socat - "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"'
+      "Hyprland logs" = 'kitty tail -f $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log'
+
+      "Serial USB Term" = [
+          {name="device", command="ls -1 /dev/ttyUSB*; ls -1 /dev/ttyACM*"},
+          {name="speed", options=["115200", "9600", "38400", "115200", "256000", "512000"]},
+          "kitty miniterm --raw --eol LF [device] [speed]"
+      ]
+
+      "Color picker" = [
+          {name="format", options=["hex", "rgb", "hsv", "hsl", "cmyk"]},
+          "sleep 0.2; hyprpicker --format [format] | wl-copy" # sleep to let the menu close before the picker opens
+      ]
+
+      screenshot = [
+          {name="what", options=["output", "window", "region", "active"]},
+          "hyprshot -m [what] -o /tmp -f shot_[what].png"
+      ]
+
+      annotate = [
+          {name="fname", command="ls /tmp/shot_*.png"},
+          "satty --filename '[fname]' --output-filename '/tmp/annotated.png'"
+      ]
+
+      "Clipboard history" = [
+          {name="entry", command="cliphist list", filter="s/\t.*//"},
+          "cliphist decode '[entry]' | wl-copy"
+      ]
     '';
     wayland.windowManager.hyprland.settings.bind = map (
       s: "${s.bind},exec,pypr toggle ${s.name} && hyprctl dispatch bringactivetotop"

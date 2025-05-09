@@ -20,13 +20,13 @@
       # "xwaylandvideobridge"
 
       # "systemctl --user restart xdg-desktop-portal.service"
+      "swww-daemon"
       "pypr"
 
       # "nm-applet --indicator"
-      "swww-daemon"
-      "protonmail-bridge --noninteractive"
-      "uwsm app -- marble"
-      "uwsm app -- marble-launcher"
+      "uwsm app -- protonmail-bridge --noninteractive"
+      # "uwsm app -- marble"
+      # "uwsm app -- marble-launcher"
       "uwsm finalize"
     ];
 

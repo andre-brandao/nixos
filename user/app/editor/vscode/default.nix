@@ -17,8 +17,7 @@ in
     enable = true;
     # open source version of vscode
     package = pkgs.vscodium.fhs;
-    # profiles.default = {
-    userSettings = {
+    profiles.default.userSettings = {
       "java.jdt.ls.java.home" = "${pkgs.jdk17}";
       "files.autoSave" = "afterDelay";
 
@@ -145,7 +144,7 @@ in
         # "fortran" = "cd $dir && ${pkgs.gfortran}/bin/gfortran $fileName -o $fileNameWithoutExt.o && $dir$fileNameWithoutExt.o";
       };
     };
-    extensions =
+    profiles.default.extensions =
       with pkgs.vscode-extensions;
       # with pkgs.vscode-marketplace;
       [

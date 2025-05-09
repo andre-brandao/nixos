@@ -18,6 +18,9 @@
     ./monitor.nix
     ./plugins.nix
     ./lockscreen.nix
+    ./notification.nix
+    ./deps.nix
+    ./bar/waybar.nix
   ];
 
   xdg.desktopEntries."org.gnome.Settings" = {
@@ -28,52 +31,12 @@
     categories = [ "X-Preferences" ];
     terminal = false;
   };
-  home.packages = with pkgs-unstable; [
-    # hyprland packages
-    hyprland-protocols
-    # hypridle
-    # hyprlock
-    hyprpicker
-    # hyprpaper
-    pyprland
-    swww
-
-    hyprsysteminfo
-    hyprsunset
-
-    inputs.marble-shell.packages.${pkgs.system}.default
-    inputs.marble-shell.packages.${pkgs.system}.astal
-
-    networkmanagerapplet # network manager
-    pavucontrol # volume control
-    pamixer # volume control
-
-    wl-clipboard # clipboard manager
-
-    grim # screenshot
-    swappy
-    slurp
-
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    kdePackages.qtsvg
-    xdg-utils # for opening files with default applications
-
-    # xwaylandvideobridge # screen sharing
-    # vesktop # discord client
-
-    # waybar
-    # dunst
-    # nwg-dock-hyprland
-    # nwg-drawer
-    # nwg-launchers
-  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs-unstable.hyprland;
 
-    systemd.enable = true;
+    systemd.enable = false;
     xwayland.enable = true;
 
     settings = {
@@ -130,12 +93,37 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 6;
-        blur.enabled = false; # disabled for battery life
-        shadow.enabled = false;
-
+        # border_part_of_window = false;
+        # blur.enabled = false; # disabled for battery life
+        # shadow.enabled = false;
         # "col.shadow" = "rgba(1a1a1aee)";
+        #
+        blur = {
+          enabled = true;
+          brightness = 1.0;
+          contrast = 1.0;
+          noise = 0.01;
 
-        inactive_opacity = 0.9;
+          vibrancy = 0.2;
+          vibrancy_darkness = 0.5;
+
+          passes = 4;
+          size = 7;
+
+          popups = true;
+          popups_ignorealpha = 0.2;
+        };
+
+        shadow = {
+          enabled = false;
+          color = "rgba(00000055)";
+          ignore_window = true;
+          offset = "0 15";
+          range = 100;
+          render_power = 2;
+          scale = 0.97;
+        };
+        inactive_opacity = 0.90;
       };
 
       animations = {
@@ -156,18 +144,20 @@
         animation = [
           # "windows, 1, 7, myBezier"
           # "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
+          "border, 1, 2, default"
 
           # "borderangle, 1, 8, default"
           # "fade, 1, 7, default"
-          # "workspaces, 1, 6, default"
           "windowsIn, 1, 6, winIn, popin"
           "windowsOut, 1, 5, winOut, popin"
           "windowsMove, 1, 5, wind, slide"
           "borderangle, 1, 100, linear, loop"
-          "fade, 1, 10, default"
-          "workspaces, 1, 5, wind"
-          "windows, 1, 6, wind, slide"
+          "fade, 1, 4, default"
+          # "workspaces, 1, 6, default"
+          # "workspaces, 1, 5, wind"
+          "workspaces, 1, 2, default, slide"
+          # "windows, 1, 6, wind, slide"
+          "windows, 1, 3, default, popin 80%"
           "specialWorkspace, 1, 6, default, slidefadevert -50%"
         ];
       };
@@ -202,20 +192,19 @@
         "col.border_active" =
           ''0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg'';
 
-
         groupbar = {
           enabled = true;
-          gradients = true;
-          font_size = 12;
+          gradients = false;
+          # font_size = 12;
+          font_size = 0;
+
           # font_weight_active = "bold";
           # indicator_gap = -5;
           # keep_upper_gap = false;
           gaps_out = 0;
-          indicator_height = 5;
-          height = 26;
+          indicator_height = 4;
+          height = 5;
           rounding = 3;
-          stacked = false;
-          gradient_rounding = 6;
           text_color = "0xff${config.lib.stylix.colors.base05}";
           # "col.active" = "0xff${config.lib.stylix.colors.base02}";
           # BOTH INDICATOR AND BG
@@ -229,6 +218,8 @@
         #  # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper = 0;
         focus_on_activate = true;
+        animate_mouse_windowdragging = false;
+
         # vfr = true;
       };
       debug = {
@@ -276,15 +267,6 @@
         "$scratchpadsize,$scratchpad"
         "workspace special silent,$scratchpad"
         "center,$scratchpad"
-
-        # # SCREEN SHARING
-        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
-        "noanim,class:^(xwaylandvideobridge)$"
-        "noinitialfocus,class:^(xwaylandvideobridge)$"
-        "maxsize 1 1,class:^(xwaylandvideobridge)$"
-        "noblur,class:^(xwaylandvideobridge)$"
-
-        # FLOATING WINDOWS
       ];
 
       bindm = [
