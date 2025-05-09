@@ -11,19 +11,40 @@
 }:
 
 {
+  home.packages = with pkgs; [
+      nvd
+    (writeShellScriptBin "update-checker" ''
+       #This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
+       updates="$(cd ~/dotfiles/nixos && nix flake update nixpkgs && nix build .#nixosConfigurations.system.config.system.build.toplevel --option max-jobs 2 && nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)"
+
+       alt="has-updates"
+       if [ $updates -eq 0 ]; then
+           alt="updated"
+       fi
+
+       tooltip="System updated"
+       if [ $updates != 0 ]; then
+      	    tooltip=$(cd ~/dotfiles/nixos && nvd diff /run/current-system ./result | grep -e '\[U' | awk '{ for (i=3; i<NF; i++) printf $i " "; if (NF >= 3) print $NF; }' ORS='\\n' )
+       fi
+
+       echo "{ \"text\":\"$updates\", \"alt\":\"$alt\", \"tooltip\":\"$tooltip\" }"
+    '')
+  ];
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     package = pkgs.waybar;
     settings = {
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 31;
         margin = "7 7 7 7";
         spacing = 4;
 
         modules-left = [
           "custom/os"
+          "custom/nix-updates"
           "cpu"
           "memory"
           "disk"
@@ -122,6 +143,18 @@
           "format" = " {} ";
           "exec" = ''echo " " '';
           "interval" = "once";
+        };
+        "custom/nix-updates" = {
+          "exec" = "update-checker"; # <--- path to script
+          "on-click" = "update-checker && notify-send 'The system has been updated'"; # refresh on click
+          "interval" = 3600; # refresh every hour
+          "tooltip" = true;
+          "return-type" = "json";
+          "format" = "{} {icon}";
+          "format-icons" = {
+            "has-updates" = ""; # icon when updates needed
+            "updated" = ""; # icon when all packages updated
+          };
         };
 
         "custom/notification" = {
@@ -544,6 +577,8 @@
        #taskbar,
        #tray,
        #idle_inhibitor,
+       #custom-notification,
+       #custom-nix-updates,
        #mpd,
        #language {
          padding: 0 10px;

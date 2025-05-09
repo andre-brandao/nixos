@@ -9,14 +9,14 @@
     # hyprpaper
     pyprland
     cliphist
-
+    syshud
     swww
 
     hyprsysteminfo
     hyprsunset
 
-    inputs.marble-shell.packages.${pkgs.system}.default
-    inputs.marble-shell.packages.${pkgs.system}.astal
+    # inputs.marble-shell.packages.${pkgs.system}.default
+    # inputs.marble-shell.packages.${pkgs.system}.astal
 
     networkmanagerapplet # network manager
     pavucontrol # volume control
