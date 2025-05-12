@@ -16,6 +16,7 @@
       "swaync -s"
       "syshud -p right -o v"
       "pypr"
+      "waybar"
 
       # "nm-applet --indicator"
       "uwsm app -- protonmail-bridge --noninteractive"
