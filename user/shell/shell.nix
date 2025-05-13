@@ -99,7 +99,6 @@ in
           "zsh-users/zsh-completions"
           "zsh-users/zsh-syntax-highlighting"
           "zsh-users/zsh-autosuggestions"
-
           "ptavares/zsh-direnv"
           "chisui/zsh-nix-shell"
           # "marlonrichert/zsh-autocomplete"

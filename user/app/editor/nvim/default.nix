@@ -65,7 +65,7 @@
         rust-analyzer
         yaml-language-server
 
-        xclip
+        # xclip
         wl-clipboard
       ];
 

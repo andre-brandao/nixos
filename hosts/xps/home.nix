@@ -73,7 +73,7 @@
 
       # discord
       # vesktop
-      betterdiscordctl
+      # betterdiscordctl
 
       # ---- BROWSERS ---- #
       inputs.zen-browser.packages."${system}".twilight
@@ -99,12 +99,12 @@
       # ---- DEV UTILS ---- #
       # icon-library
       postman
-      libffi
-      zlib
-      glib
+      # libffi
+      # zlib
+      # glib
       git
       zsh
-      protonmail-desktop
+      # protonmail-desktop
     ]);
 
   home.sessionVariables = {

@@ -214,7 +214,7 @@ in
         typescript-language-server
         svelte-language-server
         yaml-language-server
-        stylelint
+        # stylelint
 
         nodePackages."@astrojs/language-server"
 

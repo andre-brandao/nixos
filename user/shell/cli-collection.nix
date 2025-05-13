@@ -7,11 +7,11 @@
     nixd
     nix-tree
     # nix-init
-    statix
+    # statix
     nixfmt-rfc-style
 
-    nix-prefetch-git
-    nix-prefetch-github
+    # nix-prefetch-git
+    # nix-prefetch-github
     nix-output-monitor
     # ---- OTHER CLI ---- #
     gnugrep
@@ -48,9 +48,9 @@
     # BETTER CD
     zoxide.enable = true;
 
-    thefuck = {
-      enable = true;
-      enableZshIntegration = true;
-    };
+    # thefuck = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    # };
   };
 }
