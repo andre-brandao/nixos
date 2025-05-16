@@ -86,7 +86,7 @@
       gnome-system-monitor
       gnome-control-center
       gnome-calculator
-      gnome-clocks
+      # gnome-clocks
       # gnome-software # for flatpak
       wl-clipboard
       wl-gammactl

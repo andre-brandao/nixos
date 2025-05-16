@@ -30,6 +30,12 @@
       # "ALT SHIFT, Tab,               bringactivetotop,"
       '',                Print,     exec,    grim -g "$(slurp)" - | swappy -f -'' # print screen
       "$mainMod,         Print,     exec,    hyprpicker -a -f hex" # color picker
+
+
+
+      "SUPERALT, G, togglespecialworkspace, gromit"
+      ", F8, exec, gromit-mpx --undo"
+      "SHIFT , F8, exec, gromit-mpx --redo"
     ];
   };
 }

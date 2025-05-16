@@ -160,8 +160,8 @@ in
         astro-build.astro-vscode
         svelte.svelte-vscode
         jnoortheen.nix-ide
-        yzhang.markdown-all-in-one
-        shd101wyy.markdown-preview-enhanced
+        # yzhang.markdown-all-in-one
+        # shd101wyy.markdown-preview-enhanced
 
         usernamehw.errorlens
         mechatroner.rainbow-csv

@@ -17,7 +17,7 @@
     virtualbox
     virt-manager
     distrobox
-    libvirt-glib
+    # libvirt-glib
     # quickemu
   ];
 

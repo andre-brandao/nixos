@@ -41,7 +41,8 @@
       #
       "w[tv1]s[false], gapsout:0, gapsin:0"
       "f[1]s[false], gapsout:0, gapsin:0"
-
+      # drawing
+      "special:gromit, gapsin:0, gapsout:0, on-created-empty: gromit-mpx -a"
     ];
     windowrule = [
       # # Smart Gaps
@@ -64,6 +65,16 @@
 
       # other
       "group set, initialClass:zen-twilight"
+
+      # drawing
+      #
+      "noblur, class:^Gromit-mpx$"
+      "noshadow, class:^Gromit-mpx$"
+      "opacity 1 override 1 override, class:^Gromit-mpx$"
+      # "fakefullscreen, class:^(Gromit-mpx)$"
+      # nofullscreenrequest, ^(Gromit-mpx)$
+      "size 100% 100%, class:^Gromit-mpx$"
+      
     ];
 
   };

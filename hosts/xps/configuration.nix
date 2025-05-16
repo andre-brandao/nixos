@@ -82,6 +82,10 @@
           "steam"
           "postman"
         ];
+
+        permittedInsecurePackages = [
+            "beekeeper-studio-5.1.5"
+        ];
     };
   };
 
@@ -112,6 +116,7 @@
     zsh
     git
   ];
+  environment.pathsToLink = [ "/share/zsh" ];
   security.polkit.enable = true;
 
   # firmware updater

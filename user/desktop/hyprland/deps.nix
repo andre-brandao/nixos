@@ -41,5 +41,10 @@
     # nwg-dock-hyprland
     # nwg-drawer
     # nwg-launchers
+    #
+    gromit-mpx
+    (writeShellScriptBin "walpaper-picker" ''
+        ${waypaper}/bin/waypaper --backend swww --folder ~/Pictures/Wallpapers
+    '')
   ];
 }

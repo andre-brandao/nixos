@@ -66,6 +66,7 @@
       nemo
       jetbrains.idea-community-bin
       cachix
+
     ])
     ++ (with pkgs; [
       # ---- APPS ---- #
@@ -102,9 +103,11 @@
       # libffi
       # zlib
       # glib
+      beekeeper-studio
       git
       zsh
       # protonmail-desktop
+
     ]);
 
   home.sessionVariables = {

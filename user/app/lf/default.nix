@@ -48,7 +48,7 @@
   };
 
   home.packages = with pkgs; [
-    glib
+    # glib
     fzf
     bat
     zip
