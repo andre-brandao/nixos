@@ -65,7 +65,6 @@
 
       # other
       "group set, initialClass:zen-twilight"
-
       # drawing
       #
       "noblur, class:^Gromit-mpx$"
@@ -74,6 +73,7 @@
       # "fakefullscreen, class:^(Gromit-mpx)$"
       # nofullscreenrequest, ^(Gromit-mpx)$
       "size 100% 100%, class:^Gromit-mpx$"
+      
       
     ];
 
