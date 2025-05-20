@@ -26,8 +26,8 @@
       "CTRL      ALT,    Delete,             exit"
       "ALT,              Tab,                cyclenext,"
       "ALT,              Tab,                bringactivetotop,"
-      # "ALT SHIFT, Tab,               cycleprev,"
-      # "ALT SHIFT, Tab,               bringactivetotop,"
+      # "ALT SHIFT, Tab,                     cycleprev,"
+      # "ALT SHIFT, Tab,                     bringactivetotop,"
       '',                Print,     exec,    grim -g "$(slurp)" - | swappy -f -'' # print screen
       "$mainMod,         Print,     exec,    hyprpicker -a -f hex" # color picker
 

@@ -75,15 +75,15 @@
     #   bind = "$mainMod,G";
     #   lazy = true;
     # }
-    # {
-    #   name = "whatsapp";
-    #   animation = "fromLeft";
-    #   match_by = "title";
-    #   title = "re:.*WhatsApp — Zen Browser.*";
-    #   command = "zen -P Apps --new-window https://web.whatsapp.com/";
-    #   size = "75% 60%";
-    #   bind = "$mainMod,W";
-    #   lazy = true;
-    # }
+    {
+      name = "whatsapp";
+      animation = "fromLeft";
+      match_by = "title";
+      title = "re:.*WhatsApp — Zen Browser.*";
+      command = "zen -P Apps --new-window https://web.whatsapp.com/";
+      size = "75% 60%";
+      bind = "$mainMod,W";
+      lazy = true;
+    }
   ];
 }

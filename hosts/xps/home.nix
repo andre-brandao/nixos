@@ -15,7 +15,7 @@
     ../../user/desktop/${userSettings.wm} # My window manager selected from flake
     # UTILS
     ../../user/app/rofi
-    ../../user/app/walker.nix
+    # ../../user/app/walker.nix
     ../../user/app/lf
     ../../user/app/spicetify.nix # My spicetify coxnfig
     ../../user/app/git/git.nix # My git config
