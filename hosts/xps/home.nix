@@ -100,6 +100,7 @@
       # ---- DEV UTILS ---- #
       # icon-library
       postman
+      # processing
       # libffi
       # zlib
       # glib
