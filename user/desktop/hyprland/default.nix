@@ -44,7 +44,10 @@
       xwayland = {
         force_zero_scaling = true;
       };
-      env = "GDK_SCALE,1";
+      env =[
+        "GDK_SCALE,1"
+        "QT_QPA_PLATFORM,wayland"
+      ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
       input = {

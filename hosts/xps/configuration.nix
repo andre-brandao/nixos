@@ -115,6 +115,8 @@
     wget
     zsh
     git
+    # (callPackage ../../packages/duckling-appimage.nix)
+
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   security.polkit.enable = true;

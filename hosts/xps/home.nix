@@ -71,7 +71,6 @@
     ++ (with pkgs; [
       # ---- APPS ---- #
       # spotify
-
       # discord
       # vesktop
       # betterdiscordctl
