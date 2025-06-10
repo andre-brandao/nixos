@@ -25,15 +25,15 @@
     # ../../user/app/virtualization/distrobox.nix # My distrobox config
 
     # TERMINAL
-    ../../user/app/terminal/kitty.nix
-    ../../user/app/terminal/alacritty.nix
+    # ../../user/app/terminal/kitty.nix
+    # ../../user/app/terminal/alacritty.nix
 
     # SHELL
     ../../user/shell/shell.nix # My shell config
     ../../user/shell/cli-collection.nix # Useful CLI apps
 
     # EDITORS
-    ../../user/app/editor/nvim # My nvim config
+    # ../../user/app/editor/nvim # My nvim config
     ../../user/app/editor/helix # My helix config
     ../../user/app/editor/vscode # My vscode config
 
@@ -80,7 +80,9 @@
       # ---- OFFICE ---- #
       # libreoffice-fresh
       # ---- UTILS ---- #
-      # bitwarden # Password manager
+      bitwarden # Password manager
+      bitwarden-cli
+      remmina
       # syncthing
       # nautilus # File manager
       # dolphin

@@ -196,11 +196,11 @@ in
         gopls
         gotools
 
-        # C/C++
-        clang-tools
+
+        # clang-tools     # C/C++
         lua-language-server
         # RUST
-        rust-analyzer
+        # rust-analyzer
 
         # PYTHON
         # pyright
@@ -216,9 +216,9 @@ in
         yaml-language-server
         # stylelint
 
-        nodePackages."@astrojs/language-server"
+        # nodePackages."@astrojs/language-server"
 
-        dockerfile-language-server-nodejs
+        # dockerfile-language-server-nodejs
       ];
   };
 }

@@ -20,7 +20,7 @@ let
     htop = "btop";
     fd = "fd -Lu";
     cd = "z";
-
+    wpp = "${lib.getExe pkgs.waypaper} --backend swww --folder ~/Pictures/Wallpapers";
     c = "git commit";
     ca = "git commit --amend";
     cm = "git commit --message";

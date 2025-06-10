@@ -168,8 +168,6 @@ in
         eamodio.gitlens
 
         catppuccin.catppuccin-vsc-icons
-
-        github.copilot
       ];
     # };
   };
