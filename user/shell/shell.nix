@@ -121,7 +121,15 @@ in
     nix-direnv
     nh
   ];
+  programs = {
+    # BETTER CD
+    zoxide.enable = true;
 
+    # thefuck = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    # };
+  };
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
   programs.direnv.nix-direnv.enable = true;

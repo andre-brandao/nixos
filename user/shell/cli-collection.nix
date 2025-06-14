@@ -44,13 +44,5 @@
     wev
   ];
 
-  programs = {
-    # BETTER CD
-    zoxide.enable = true;
 
-    # thefuck = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
-  };
 }
