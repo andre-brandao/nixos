@@ -116,10 +116,10 @@ in
     bat
     eza
     devbox
-    devenv
     direnv
     nix-direnv
     nh
+    # devenv
   ];
   programs = {
     # BETTER CD

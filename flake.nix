@@ -22,11 +22,11 @@
         };
         overlays = [
           (final: prev: {
-            #              pipewire = pkgs-unstable.pipewire;
-            # mesa = pkgs-unstable.mesa;
-            # gjs = pkgs-unstable.gjs;
-            # hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
+            devenv = inputs.devenv.packages.${systemSettings.system}.devenv;
 
+          })
+          (final: prev: {
+            # hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
           })
         ];
       };
@@ -71,9 +71,7 @@
           ];
           specialArgs = {
             inherit pkgs-unstable;
-
             inherit inputs outputs;
-
             inherit systemSettings;
             inherit userSettings;
             inherit stylixSettings;
@@ -93,9 +91,7 @@
           ];
           extraSpecialArgs = {
             inherit pkgs-unstable;
-
             inherit inputs outputs;
-
             inherit systemSettings;
             inherit userSettings;
             inherit stylixSettings;
@@ -120,7 +116,7 @@
 
     # Stylix
     # stylix.url = "github:danth/stylix/release-24.11";
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix/release-25.05";
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -144,6 +140,8 @@
     };
     walker.url = "github:abenz1267/walker";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    devenv.url = "github:cachix/devenv";
+
   };
   nixConfig = {
     extra-substituters = [

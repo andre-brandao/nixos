@@ -76,7 +76,8 @@
       # betterdiscordctl
 
       # ---- BROWSERS ---- #
-      inputs.zen-browser.packages."${system}".twilight
+      inputs.zen-browser.packages.${system}.twilight
+      inputs.devenv.packages.${system}.default
       # ---- OFFICE ---- #
       # libreoffice-fresh
       # ---- UTILS ---- #
