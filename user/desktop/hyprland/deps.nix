@@ -44,7 +44,7 @@
     #
     gromit-mpx
     (writeShellScriptBin "walpaper-picker" ''
-        ${waypaper}/bin/waypaper --backend swww --folder ~/Pictures/Wallpapers
+      ${waypaper}/bin/waypaper --backend swww --folder ~/Pictures/Wallpapers
     '')
   ];
 }

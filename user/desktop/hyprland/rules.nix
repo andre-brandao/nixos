@@ -64,7 +64,6 @@
       "opacity 1 override 1 override, class:^Gromit-mpx$"
       "size 100% 100%, class:^Gromit-mpx$"
 
-
     ];
 
   };

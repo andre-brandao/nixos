@@ -12,7 +12,7 @@
 
 {
   home.packages = with pkgs; [
-      nvd
+    nvd
     (writeShellScriptBin "update-checker" ''
        #This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
        updates="$(cd ~/dotfiles/nixos && nix flake update nixpkgs && nix build .#nixosConfigurations.system.config.system.build.toplevel --option max-jobs 2 && nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)"
@@ -144,8 +144,9 @@
           "exec" = ''echo " " '';
           "interval" = "once";
         };
-        "custom/nix-updates" = let
-            update-checker =  "${(pkgs.writeShellScriptBin "update-checker" ''
+        "custom/nix-updates" =
+          let
+            update-checker = "${(pkgs.writeShellScriptBin "update-checker" ''
                #This script assumes your flake is in ~/.dotfiles and that your flake's nixosConfigurations is named the same as your $hostname
                updates="$(cd ~/dotfiles/nixos && nix flake update nixpkgs && nix build .#nixosConfigurations.system.config.system.build.toplevel --option max-jobs 2 && ${pkgs.nvd}/bin/nvd diff /run/current-system ./result | grep -e '\[U' | wc -l)"
 
@@ -161,18 +162,19 @@
 
                echo "{ \"text\":\"$updates\", \"alt\":\"$alt\", \"tooltip\":\"$tooltip\" }"
             '')}/bin/update-checker";
-        in {
-          "exec" = update-checker; # <--- path to script
-          "on-click" = "${update-checker} && notify-send 'The system has been updated'"; # refresh on click
-          "interval" = 3600; # refresh every hour
-          "tooltip" = true;
-          "return-type" = "json";
-          "format" = "{} {icon}";
-          "format-icons" = {
-            "has-updates" = ""; # icon when updates needed
-            "updated" = ""; # icon when all packages updated
+          in
+          {
+            "exec" = update-checker; # <--- path to script
+            "on-click" = "${update-checker} && notify-send 'The system has been updated'"; # refresh on click
+            "interval" = 3600; # refresh every hour
+            "tooltip" = true;
+            "return-type" = "json";
+            "format" = "{} {icon}";
+            "format-icons" = {
+              "has-updates" = ""; # icon when updates needed
+              "updated" = ""; # icon when all packages updated
+            };
           };
-        };
 
         "custom/notification" = {
           "tooltip" = false;

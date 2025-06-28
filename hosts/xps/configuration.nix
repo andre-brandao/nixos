@@ -83,9 +83,9 @@
           "postman"
         ];
 
-        permittedInsecurePackages = [
-            "beekeeper-studio-5.1.5"
-        ];
+      permittedInsecurePackages = [
+        "beekeeper-studio-5.1.5"
+      ];
     };
   };
 

@@ -44,7 +44,7 @@
       xwayland = {
         force_zero_scaling = true;
       };
-      env =[
+      env = [
         "GDK_SCALE,1"
         "QT_QPA_PLATFORM,wayland"
       ];

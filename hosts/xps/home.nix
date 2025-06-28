@@ -78,6 +78,7 @@
       # ---- BROWSERS ---- #
       inputs.zen-browser.packages.${system}.twilight
       inputs.devenv.packages.${system}.default
+      inputs.quickshell.packages.${system}.default
       # ---- OFFICE ---- #
       # libreoffice-fresh
       # ---- UTILS ---- #
