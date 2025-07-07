@@ -129,6 +129,11 @@
       url = "github:andre-brandao/wallpapers";
       flake = false;
     };
+
+    shell = {
+      url = "github:andre-brandao/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Hyprland Bars
     hyprshell = {
       url = "github:andre-brandao/hyprshell";

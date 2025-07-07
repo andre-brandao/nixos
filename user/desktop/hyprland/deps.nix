@@ -17,7 +17,7 @@
 
     # inputs.marble-shell.packages.${pkgs.system}.default
     # inputs.marble-shell.packages.${pkgs.system}.astal
-
+    # inputs.shell.packages.${pkgs.system}.default
     networkmanagerapplet # network manager
     pavucontrol # volume control
     pamixer # volume control
