@@ -197,23 +197,22 @@
 
         groupbar = {
           enabled = true;
-          gradients = false;
+          gradients = true;
           # font_size = 12;
-          font_size = 0;
-
+          # font_size = 0;
+          render_titles = false;
           # font_weight_active = "bold";
           # indicator_gap = -5;
-          # keep_upper_gap = false;
-          gaps_out = 0;
-          indicator_height = 4;
+          # gaps_out = 0;
+          indicator_height = 0;
           height = 5;
           rounding = 3;
-          text_color = "0xff${config.lib.stylix.colors.base05}";
-          # "col.active" = "0xff${config.lib.stylix.colors.base02}";
-          # BOTH INDICATOR AND BG
-          "col.active" = "0xff${config.lib.stylix.colors.base0B}";
+          text_color = "0xff${config.lib.stylix.colors.base00}";
+          # text_color_inactive = "0xff${config.lib.stylix.colors.base05}";
+          "col.active" = "0xff${config.lib.stylix.colors.base0D}";
           # "col.active" = "0xff${config.lib.stylix.colors.base02}";
           "col.inactive" = "0xff${config.lib.stylix.colors.base03}";
+          keep_upper_gap = false;
         };
       };
 
