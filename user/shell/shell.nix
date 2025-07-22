@@ -17,12 +17,12 @@ let
     user-update = "nh home switch ${userSettings.configDir} -c user";
 
     lss = "eza --icons -l -T -L=1";
-    htop = "btop";
+    # htop = "btop";
     fd = "fd -Lu";
     cd = "z";
     wpp = "${lib.getExe pkgs.waypaper} --backend swww --folder ~/Pictures/Wallpapers";
-    c = "git commit";
-    ca = "git commit --amend";
+    # c = "git commit";
+    # ca = "git commit --amend";
     cm = "git commit --message";
     # a = "git add --patch";
     # b = "git switch --create";

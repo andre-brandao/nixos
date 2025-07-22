@@ -74,7 +74,7 @@
       # discord
       # vesktop
       # betterdiscordctl
-
+      stremio
       # ---- BROWSERS ---- #
       inputs.zen-browser.packages.${system}.twilight
       inputs.devenv.packages.${system}.default

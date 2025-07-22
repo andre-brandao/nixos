@@ -81,6 +81,8 @@
           "steam-unwrapped"
           "steam"
           "postman"
+          "stremio-shell"
+          "stremio-server"
         ];
 
       permittedInsecurePackages = [
