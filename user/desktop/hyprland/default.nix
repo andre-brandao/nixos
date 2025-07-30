@@ -18,9 +18,9 @@
     ./monitor.nix
     ./plugins.nix
     ./lockscreen.nix
-    ./notification.nix
+    # ./notification.nix
     ./deps.nix
-    ./bar/waybar.nix
+    # ./bar/waybar.nix
   ];
 
   xdg.desktopEntries."org.gnome.Settings" = {

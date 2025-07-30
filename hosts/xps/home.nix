@@ -79,7 +79,10 @@
       inputs.zen-browser.packages.${system}.twilight
       inputs.devenv.packages.${system}.default
       inputs.quickshell.packages.${system}.default
+      inputs.caelestia.packages.${system}.default
+
       # ---- OFFICE ---- #
+
       # libreoffice-fresh
       # ---- UTILS ---- #
       bitwarden # Password manager

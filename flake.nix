@@ -143,6 +143,11 @@
       url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    caelestia = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
     walker.url = "github:abenz1267/walker";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     devenv.url = "github:cachix/devenv";
