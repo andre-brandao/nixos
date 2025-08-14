@@ -8,4 +8,9 @@
     powerline
     font-awesome
   ];
+  environment.systemPackages = with pkgs; [
+    material-symbols
+    material-icons
+  ];
+
 }

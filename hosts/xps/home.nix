@@ -79,7 +79,7 @@
       inputs.zen-browser.packages.${system}.twilight
       inputs.devenv.packages.${system}.default
       inputs.quickshell.packages.${system}.default
-      inputs.caelestia.packages.${system}.default
+      # inputs.caelestia.packages.${system}.default
 
       # ---- OFFICE ---- #
 
@@ -114,7 +114,7 @@
       git
       zsh
       # protonmail-desktop
-
+      godot
     ]);
 
   home.sessionVariables = {

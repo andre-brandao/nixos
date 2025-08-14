@@ -1,9 +1,12 @@
-{ userSettings, ... }:
+{ inputs ,userSettings,pkgs, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     bind = [
       # HYPR CONTROLS
+      "SUPER,            L,        exec,     qs -c shell ipc call drawers toggle launcher"
+
+
       "$mainMod,         T,                  togglefloating"
       "$mainMod,         G,                  togglegroup"
       "$mainMod  SHIFT,  F,                  fullscreen"
