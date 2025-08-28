@@ -22,7 +22,7 @@
 
     ../../system/app/cross-compilation.nix
     ../../system/app/tailscale.nix
-
+    ../../system/app/proton-vpn.nix
     ../../system/desktop/${userSettings.wm}.nix
 
     # styles

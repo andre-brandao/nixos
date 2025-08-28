@@ -92,6 +92,7 @@
       # nautilus # File manager
       # dolphin
       protonmail-bridge
+      teams-for-linux
       # ---- WINDOWS ---- #
       # wine
       # bottles
