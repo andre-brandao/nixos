@@ -116,6 +116,8 @@
       zsh
       # protonmail-desktop
       godot
+      gum
+      rclone
     ]);
 
   home.sessionVariables = {
