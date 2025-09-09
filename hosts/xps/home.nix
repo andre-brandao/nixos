@@ -79,6 +79,7 @@
       # ---- BROWSERS ---- #
       firefox-beta
       inputs.devenv.packages.${system}.default
+      inputs.dagger.packages.${system}.dagger
       # inputs.quickshell.packages.${system}.default
       # inputs.caelestia.packages.${system}.default
 

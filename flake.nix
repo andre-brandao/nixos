@@ -130,30 +130,33 @@
       flake = false;
     };
 
-    shell = {
-      url = "github:andre-brandao/shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Hyprland Bars
-    hyprshell = {
-      url = "github:andre-brandao/hyprshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    marble-shell = {
-      url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # shell = {
+    #   url = "github:andre-brandao/shell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # # Hyprland Bars
+    # hyprshell = {
+    #   url = "github:andre-brandao/hyprshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # marble-shell = {
+    #   url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     devenv.url = "github:cachix/devenv";
-    quickshell = {
-          # add ?ref=<tag> to track a tag
-          url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    dagger.url = "github:dagger/nix";
+    dagger.inputs.nixpkgs.follows = "nixpkgs";
 
-          # THIS IS IMPORTANT
-          # Mismatched system dependencies will lead to crashes and other issues.
-          inputs.nixpkgs.follows = "nixpkgs";
-        };
+    # quickshell = {
+    #       # add ?ref=<tag> to track a tag
+    #       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+    #       # THIS IS IMPORTANT
+    #       # Mismatched system dependencies will lead to crashes and other issues.
+    #       inputs.nixpkgs.follows = "nixpkgs";
+    #     };
 
   };
   nixConfig = {
