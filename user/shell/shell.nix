@@ -16,7 +16,6 @@ let
     # user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
     user-update = "nh home switch ${userSettings.configDir} -c user";
 
-
     zed = "zeditor";
 
     lss = "eza --icons -l -T -L=1";

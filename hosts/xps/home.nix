@@ -20,6 +20,7 @@
     ../../user/app/spicetify.nix # My spicetify coxnfig
     ../../user/app/git/git.nix # My git config
     ../../user/app/nemo.nix
+    ../../user/app/browser/zen.nix
     # VIRTUALIZATION
     ../../user/app/virtualization/qemu.nix # My qemu + virt manager
     # ../../user/app/virtualization/distrobox.nix # My distrobox config
@@ -76,9 +77,9 @@
       # betterdiscordctl
       stremio
       # ---- BROWSERS ---- #
-      inputs.zen-browser.packages.${system}.twilight
+      firefox-beta
       inputs.devenv.packages.${system}.default
-      inputs.quickshell.packages.${system}.default
+      # inputs.quickshell.packages.${system}.default
       # inputs.caelestia.packages.${system}.default
 
       # ---- OFFICE ---- #

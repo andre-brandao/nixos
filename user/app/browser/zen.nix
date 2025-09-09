@@ -1,19 +1,44 @@
 { pkgs, inputs, ... }:
 
+let
+  zen-browser = inputs.zen-browser.packages.${pkgs.system}.twilight.override {
+          nativeMessagingHosts = [pkgs.firefoxpwa];
+        };
+in
+
 {
   # Module installing brave as default browser
-  home.packages = [ inputs.zen-browser.packages."${pkgs.system}".specific ];
+  home.packages = [ zen-browser ];
 
-  # xdg.mimeApps.defaultApplications = {
-  # "text/html" = "brave-browser.desktop";
-  # "x-scheme-handler/http" = "brave-browser.desktop";
-  # "x-scheme-handler/https" = "brave-browser.desktop";
-  # "x-scheme-handler/about" = "brave-browser.desktop";
-  # "x-scheme-handler/unknown" = "brave-browser.desktop";
+  # home.sessionVariables = {
+  #   DEFAULT_BROWSER = "zen";
   # };
 
-  home.sessionVariables = {
-    DEFAULT_BROWSER = "zen";
-  };
+
+  xdg.mimeApps = let
+      value = zen-browser.meta.desktopFileName;
+      associations = builtins.listToAttrs (map (name: {
+          inherit name value;
+        }) [
+          "application/x-extension-shtml"
+          "application/x-extension-xhtml"
+          "application/x-extension-html"
+          "application/x-extension-xht"
+          "application/x-extension-htm"
+          "x-scheme-handler/unknown"
+          "x-scheme-handler/mailto"
+          "x-scheme-handler/chrome"
+          "x-scheme-handler/about"
+          "x-scheme-handler/https"
+          "x-scheme-handler/http"
+          "application/xhtml+xml"
+          "application/json"
+          "text/plain"
+          "text/html"
+        ]);
+    in {
+      associations.added = associations;
+      defaultApplications = associations;
+    };
 
 }
