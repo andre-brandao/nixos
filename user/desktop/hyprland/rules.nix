@@ -57,6 +57,14 @@
       "move 69% 69%, title:^Picture-in-Picture$"
       "opacity 1.0 1.0, title:^Picture-in-Picture$"
 
+      # Proton vpn ## title = Proton VPN initialClass = .protonvpn-app-wrapped
+      "float, title:^Proton VPN$"
+      "pin, title:^Proton VPN$"
+      "noinitialfocus, title:^Proton VPN$"
+      "move 10% 10%, title:^Proton VPN$"
+      "opacity 1.0 1.0, title:^Proton VPN$"
+      "size 20% 50%, title:^Proton VPN$"
+
       # other
       "group set, initialClass:zen-twilight"
       # drawing

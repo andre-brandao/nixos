@@ -66,6 +66,7 @@
       obsidian
       nemo
       jetbrains.idea-community-bin
+      # jetbrains.idea-ultimate
       cachix
 
     ])
@@ -75,7 +76,6 @@
       # discord
       # vesktop
       # betterdiscordctl
-      stremio
       # ---- BROWSERS ---- #
       firefox-beta
       inputs.devenv.packages.${system}.default
@@ -109,6 +109,7 @@
       # ---- DEV UTILS ---- #
       # icon-library
       postman
+      insomnia
       # processing
       # libffi
       # zlib
