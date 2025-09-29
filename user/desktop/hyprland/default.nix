@@ -20,6 +20,7 @@
     ./lockscreen.nix
     # ./notification.nix
     ./deps.nix
+    ./gestures.nix
     # ./bar/waybar.nix
   ];
 
@@ -176,14 +177,14 @@
         preserve_split = "yes";
         # no_gaps_when_only = 2;
       };
-      gestures = {
-        # # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = true;
-        workspace_swipe_forever = true;
-        workspace_swipe_cancel_ratio = 0.15;
-        # workspace_swipe_numbered = true;
-        workspace_swipe_direction_lock = false;
-      };
+      # gestures = {
+      #   # # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      #   # workspace_swipe = true;
+      #   workspace_swipe_forever = true;
+      #   workspace_swipe_cancel_ratio = 0.15;
+      #   # workspace_swipe_numbered = true;
+      #   workspace_swipe_direction_lock = false;
+      # };
 
       group = {
         auto_group = true;
