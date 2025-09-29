@@ -18,6 +18,7 @@
       "pypr"
       # "waybar"
       # "uwsm app -- caelestia-shell -d"
+      "nix develop ~/.config/quickshell/shell --command qs -c shell"
 
       # "nm-applet --indicator"
       "uwsm app -- protonmail-bridge --noninteractive"
