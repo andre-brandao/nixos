@@ -14,6 +14,49 @@ rec {
         --copy-command 'wl-copy'
   ''}/bin/screenshot";
 
+  monitor-toggle = "${pkgs.writeShellScriptBin "monitor-toggle" ''
+    # Get monitor information as JSON
+    monitors_json=$(hyprctl -j monitors)
+
+    # Find primary monitor (usually eDP-1 for laptops)
+    primary=$(echo "$monitors_json" | ${pkgs.jq}/bin/jq -r '.[] | select(.name | startswith("eDP")) | .name')
+
+    # Find secondary monitor (not primary and not disabled)
+    secondary=$(echo "$monitors_json" | ${pkgs.jq}/bin/jq -r '.[] | select(.name != "'$primary'" and .disabled == false) | .name' | head -n1)
+
+    if [ -z "$primary" ]; then
+        echo "No primary monitor found"
+        ${pkgs.libnotify}/bin/notify-send "Monitor Toggle" "No primary monitor found" -i display
+        exit 1
+    fi
+
+    if [ -z "$secondary" ]; then
+        echo "No secondary monitor detected"
+        ${pkgs.libnotify}/bin/notify-send "Monitor Toggle" "No secondary monitor detected" -i display
+        exit 1
+    fi
+
+    # Check if secondary monitor is currently mirroring
+    mirror_status=$(echo "$monitors_json" | ${pkgs.jq}/bin/jq -r '.[] | select(.name == "'$secondary'") | .mirrorOf')
+
+    if [ "$mirror_status" != "none" ]; then
+        # Currently mirrored, switch to extended
+        echo "Switching $secondary from mirror to extended mode"
+        hyprctl keyword monitor "$secondary,preferred,auto,1"
+        ${pkgs.libnotify}/bin/notify-send "Monitor Toggle" "Switched to Extended Mode\n$secondary is now extending the desktop" -i display
+    else
+        # Currently extended, switch to mirror
+        echo "Switching $secondary from extended to mirror mode"
+        hyprctl keyword monitor "$secondary,preferred,0x0,1,mirror,$primary"
+        ${pkgs.libnotify}/bin/notify-send "Monitor Toggle" "Switched to Mirror Mode\n$secondary is now mirroring $primary" -i display
+    fi
+
+    # Show current status
+    echo "Primary: $primary"
+    echo "Secondary: $secondary"
+    echo "Mirror status: $mirror_status"
+  ''}/bin/monitor-toggle";
+
   update-checker = "${(pkgs.writeShellScriptBin "update-checker" ''
     #Check the current time, this should only run between 10pm  and 6am
     hour=$(date +%H)

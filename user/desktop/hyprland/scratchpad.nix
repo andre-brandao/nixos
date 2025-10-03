@@ -27,15 +27,15 @@
       size = "85% 85%";
       bind = "$mainMod,F";
     }
-    {
-      name = "postman";
-      animation = "fromRight";
-      command = "postman";
-      class = "Postman";
-      lazy = true;
-      size = "55% 85%";
-      bind = "$mainMod,P";
-    }
+    # {
+    #   name = "postman";
+    #   animation = "fromRight";
+    #   command = "postman";
+    #   class = "Postman";
+    #   lazy = true;
+    #   size = "55% 85%";
+    #   bind = "$mainMod,P";
+    # }
     {
       name = "volume";
       animation = "fromRight";

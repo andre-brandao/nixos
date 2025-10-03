@@ -22,6 +22,8 @@
     ./deps.nix
     ./gestures.nix
     # ./bar/waybar.nix
+    ./defaults/animations.nix
+    ./defaults/keybinds.nix
   ];
 
   xdg.desktopEntries."org.gnome.Settings" = {
@@ -130,42 +132,6 @@
         inactive_opacity = 0.90;
       };
 
-      animations = {
-        enabled = "yes";
-
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
-        bezier = [
-          "myBezier, 0.05, 0.9, 0.1, 1.05"
-          "wind, 0.05, 0.9, 0.1, 1.05"
-          "winIn, 0.1, 1.1, 0.1, 1.0"
-          "winOut, 0.3, -0.3, 0, 1"
-          "liner, 1, 1, 1, 1"
-          "linear, 0.0, 0.0, 1.0, 1.0"
-
-        ];
-
-        animation = [
-          # "windows, 1, 7, myBezier"
-          # "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 2, default"
-
-          # "borderangle, 1, 8, default"
-          # "fade, 1, 7, default"
-          "windowsIn, 1, 6, winIn, popin"
-          "windowsOut, 1, 5, winOut, popin"
-          "windowsMove, 1, 5, wind, slide"
-          "borderangle, 1, 100, linear, loop"
-          "fade, 1, 4, default"
-          # "workspaces, 1, 6, default"
-          # "workspaces, 1, 5, wind"
-          "workspaces, 1, 2, default, slide"
-          # "windows, 1, 6, wind, slide"
-          "windows, 1, 3, default, popin 80%"
-          "specialWorkspace, 1, 6, default, slidefadevert -50%"
-        ];
-      };
-
       master = {
         #  # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         # new_is_master = true;
@@ -177,14 +143,6 @@
         preserve_split = "yes";
         # no_gaps_when_only = 2;
       };
-      # gestures = {
-      #   # # See https://wiki.hyprland.org/Configuring/Variables/ for more
-      #   # workspace_swipe = true;
-      #   workspace_swipe_forever = true;
-      #   workspace_swipe_cancel_ratio = 0.15;
-      #   # workspace_swipe_numbered = true;
-      #   workspace_swipe_direction_lock = false;
-      # };
 
       group = {
         auto_group = true;
@@ -230,39 +188,6 @@
 
       };
 
-      # "$mainMod" = mainMod;
-      bind = [
-        "$mainMod, A, exec, ${userSettings.term}"
-        #WORKSPACE SWITCH
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        #MOVE CURRENT WINDOW TO WORKSPACE
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-        # map scratchpad bindings as an array
-      ];
-
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
       windowrulev2 = [
@@ -272,46 +197,11 @@
         "center,$scratchpad"
       ];
 
-      bindm = [
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
-      ];
-
       binds = {
         allow_workspace_cycles = true;
         movefocus_cycles_groupfirst = true;
       };
 
-      bindle =
-        let
-          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-          pactl = "${pkgs.pulseaudio}/bin/pactl";
-        in
-        [
-
-          ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
-          ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
-          ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
-          ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
-          ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-          ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-        ];
-
-      bindl =
-        let
-          playerctl = "${pkgs.playerctl}/bin/playerctl";
-          pactl = "${pkgs.pulseaudio}/bin/pactl";
-        in
-        [
-          ",XF86AudioPlay,    exec, ${playerctl} play-pause"
-          ",XF86AudioStop,    exec, ${playerctl} pause"
-          ",XF86AudioPause,   exec, ${playerctl} pause"
-          ",XF86AudioPrev,    exec, ${playerctl} previous"
-          ",XF86AudioNext,    exec, ${playerctl} next"
-          ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-          ",XF86AudioMute,    exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-        ];
     };
   };
 

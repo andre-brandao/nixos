@@ -8,7 +8,7 @@
 }:
 let
   scripts = import ./scripts.nix { inherit pkgs pkgs-unstable lib; };
-  inherit (scripts) launcher screenshot;
+  inherit (scripts) launcher screenshot monitor-toggle;
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -16,6 +16,7 @@ in
     bind = [
       # HYPR CONTROLS
       "$mainMod,         RETURN,    exec,    ${launcher}"
+      "SUPER,            P,         exec,    ${monitor-toggle}"
       # "$mainMod,         RETURN,    exec,    marble-launcher --open"
       # "$CTRL     SHIFT,  R,         exec,    astal -i marble -q; marble"
       # "SUPER,            Tab,       exec,    marble-launcher ':h'"
