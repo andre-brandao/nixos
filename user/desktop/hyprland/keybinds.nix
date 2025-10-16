@@ -7,7 +7,14 @@
   ...
 }:
 let
-  scripts = import ./scripts.nix { inherit pkgs pkgs-unstable lib; };
+  scripts = import ./scripts.nix {
+    inherit
+      pkgs
+      pkgs-unstable
+      lib
+      userSettings
+      ;
+  };
   inherit (scripts) launcher screenshot monitor-toggle;
 in
 {
@@ -24,7 +31,7 @@ in
       "$mainMod,         T,                  togglefloating"
       "$mainMod,         G,                  togglegroup"
       "$mainMod  SHIFT,  F,                  fullscreen"
-      "$mainMod,         C,                  killactive"
+      "$mainMod,         W,                  killactive"
       "$mainMod,         N,                  changegroupactive, n"
       "$mainMod,         B,                  changegroupactive, b"
       "$mainMod,         D,         exec,    hyprctl keyword general:layout dwindle"

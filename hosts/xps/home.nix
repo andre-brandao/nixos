@@ -78,6 +78,7 @@
       # betterdiscordctl
       # ---- BROWSERS ---- #
       firefox-beta
+      brave
       inputs.devenv.packages.${system}.default
       inputs.dagger.packages.${system}.dagger
       # inputs.quickshell.packages.${system}.default

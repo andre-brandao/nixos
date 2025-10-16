@@ -113,9 +113,6 @@
       # url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Stylix
-    # stylix.url = "github:danth/stylix/release-24.11";
     stylix.url = "github:danth/stylix/release-25.05";
     spicetify = {
       url = "github:Gerg-L/spicetify-nix";
@@ -130,15 +127,6 @@
       flake = false;
     };
 
-    # shell = {
-    #   url = "github:andre-brandao/shell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # # Hyprland Bars
-    # hyprshell = {
-    #   url = "github:andre-brandao/hyprshell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     # marble-shell = {
     #   url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
     #   inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -148,16 +136,6 @@
     devenv.url = "github:cachix/devenv";
     dagger.url = "github:dagger/nix";
     dagger.inputs.nixpkgs.follows = "nixpkgs";
-
-    # quickshell = {
-    #       # add ?ref=<tag> to track a tag
-    #       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
-    #       # THIS IS IMPORTANT
-    #       # Mismatched system dependencies will lead to crashes and other issues.
-    #       inputs.nixpkgs.follows = "nixpkgs";
-    #     };
-
   };
   nixConfig = {
     extra-substituters = [

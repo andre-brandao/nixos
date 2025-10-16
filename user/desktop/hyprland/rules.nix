@@ -1,35 +1,17 @@
 { userSettings, ... }:
 {
   wayland.windowManager.hyprland.settings = {
-    # windowrule =
-    #   let
-    #     f = regex: "float, ^(${regex})$";
-    #   in
-    #   [
-    #     (f "org.gnome.Calculator")
-    #     (f "org.gnome.Nautilus")
-    #     (f "pavucontrol")
-    #     (f "nm-connection-editor")
-    #     (f "blueberry.py")
-    #     (f "org.gnome.Settings")
-    #     (f "org.gnome.design.Palette")
-    #     (f "xdg-desktop-portal")
-    #     (f "xdg-desktop-portal-gnome")
-    #     (f "transmission-gtk")
-    #     (f "Bitwarden")
-    #     (f "spotify")
-    #     (f ".blueman-manager-wrapped")
-    #     (f "brave-web.whatsapp.com__-Default")
-    #     (f "brave-chat.openai.com__-Default")
-    #     (f "brave-notion.so__-Default")
-    #     (f "brave-nngceckbapebfimnlniiiahkandclblb-Default") # Bitwarden
-    #     # (.*)(- Youtube)
-    #     "float, title:(.*GPT.*)"
-    #     "float, title:(.*)(WhatsApp — Zen Browser)"
-    #     "float, title:(.*WhatsApp.*)"
-
-    #   ];
     workspace = [
+      "1, monitor:eDP-1"
+      "2, monitor:eDP-1"
+      "3, monitor:DP-3"
+      "4, monitor:DP-3"
+      "5, monitor:DP-3"
+      "6, monitor:DP-3"
+      "7, monitor:DP-3"
+      "8, monitor:DP-3"
+      "9, monitor:DP-3"
+
       #these apps will open on the specified workspace when you firt open them
       "8, on-created-empty:discord"
       "9, on-created-empty:thunderbird"
@@ -48,6 +30,7 @@
       "bordersize 0, floating:0, onworkspace:f[1]s[false]"
       "rounding 0, floating:0, onworkspace:f[1]s[false]"
 
+      # Deds Launcher
       "float, title:^DedsLauncher$"
       "pin, title:^DedsLauncher$"
       # PIP

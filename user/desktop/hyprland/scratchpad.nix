@@ -27,15 +27,6 @@
       size = "85% 85%";
       bind = "$mainMod,F";
     }
-    # {
-    #   name = "postman";
-    #   animation = "fromRight";
-    #   command = "postman";
-    #   class = "Postman";
-    #   lazy = true;
-    #   size = "55% 85%";
-    #   bind = "$mainMod,P";
-    # }
     {
       name = "volume";
       animation = "fromRight";
@@ -51,6 +42,7 @@
       animation = "fromRight";
       command = "spotify";
       class = "spotify";
+      lazy = true;
       size = "45% 85%";
       unfocus = "hide";
       bind = "$mainMod,S";
@@ -79,10 +71,10 @@
       name = "whatsapp";
       animation = "fromLeft";
       match_by = "title";
-      title = "re:.*WhatsApp — Zen Browser.*";
-      command = "zen -P Apps --new-window https://web.whatsapp.com/";
+      title = "re:web.whatsapp.com.*";
+      command = "chromium --app=https://web.whatsapp.com/";
       size = "75% 60%";
-      bind = "$mainMod,W";
+      bind = "ALT,W";
       lazy = true;
     }
   ];
