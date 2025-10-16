@@ -101,9 +101,7 @@
     };
 
   inputs = {
-    # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
@@ -132,6 +130,7 @@
     #   inputs.nixpkgs.follows = "nixpkgs-unstable";
     # };
 
+    caelestia-shell.url = "github:caelestia-dots/shell";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     devenv.url = "github:cachix/devenv";
     dagger.url = "github:dagger/nix";

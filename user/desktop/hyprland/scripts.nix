@@ -1,13 +1,16 @@
-{ pkgs, pkgs-unstable, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  userSettings,
+  ...
+}:
 rec {
-  caelestia-shell = "nix develop ~/.config/quickshell/shell --command qs -c shell";
-
-  launcher = "${caelestia-shell} ipc call drawers toggle launcher";
+  launcher = "caelestia-shell ipc call drawers toggle launcher";
 
   screenshot = "${pkgs.writeShellScriptBin "screenshot" ''
     ${pkgs.hyprshot}/bin/hyprshot -m region --raw |
       ${pkgs-unstable.satty}/bin/satty --filename - \
-        --output-filename "~/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png" \
+        --output-filename "/home/${userSettings.username}/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png" \
         --early-exit \
         --actions-on-enter save-to-clipboard \
         --save-after-copy \
@@ -16,7 +19,7 @@ rec {
 
   monitor-toggle = "${pkgs.writeShellScriptBin "monitor-toggle" ''
     # Get monitor information as JSON
-    monitors_json=$(hyprctl -j monitors)
+    monitors_json=$(hyprctl -j monitors all)
 
     # Find primary monitor (usually eDP-1 for laptops)
     primary=$(echo "$monitors_json" | ${pkgs.jq}/bin/jq -r '.[] | select(.name | startswith("eDP")) | .name')
