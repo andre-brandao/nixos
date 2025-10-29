@@ -15,7 +15,7 @@
     hyprsysteminfo
     hyprsunset
 
-    (inputs.caelestia-shell.packages.${pkgs.system}.default.override { withCli = true; })
+    # (inputs.caelestia-shell.packages.${pkgs.system}.default.override { withCli = true; })
     # inputs.marble-shell.packages.${pkgs.system}.default
     # inputs.marble-shell.packages.${pkgs.system}.astal
     # inputs.shell.packages.${pkgs.system}.default
