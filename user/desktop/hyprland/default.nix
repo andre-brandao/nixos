@@ -18,7 +18,7 @@
     ./monitor.nix
     ./plugins.nix
     ./lockscreen.nix
-    # ./notification.nix
+    ./notification.nix
     ./deps.nix
     ./gestures.nix
     # ./bar/waybar.nix
