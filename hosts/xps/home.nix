@@ -36,7 +36,7 @@
     # EDITORS
     # ../../user/app/editor/nvim # My nvim config
     ../../user/app/editor/helix # My helix config
-    ../../user/app/editor/vscode # My vscode config
+    # ../../user/app/editor/vscode # My vscode config
 
     # ./bloat.home.nix
   ];

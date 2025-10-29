@@ -22,6 +22,7 @@
     ./deps.nix
     ./gestures.nix
     # ./bar/waybar.nix
+    ./bar/ashell.nix
     ./defaults/animations.nix
     ./defaults/keybinds.nix
   ];

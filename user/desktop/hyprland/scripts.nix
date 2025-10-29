@@ -5,7 +5,9 @@
   ...
 }:
 rec {
-  launcher = "caelestia-shell ipc call drawers toggle launcher";
+  # launcher = "caelestia-shell ipc call drawers toggle launcher";
+
+  launcher = ''echo "Hello"'';
 
   screenshot = "${pkgs.writeShellScriptBin "screenshot" ''
     ${pkgs.hyprshot}/bin/hyprshot -m region --raw |

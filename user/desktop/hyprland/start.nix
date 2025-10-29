@@ -18,7 +18,7 @@
       "pypr"
       # "waybar"
       # "uwsm app -- caelestia-shell -d"
-      "uwsm app -- caelestia-shell -d"
+      "uwsm app -- ashell"
 
       # "nm-applet --indicator"
       "uwsm app -- protonmail-bridge --noninteractive"
