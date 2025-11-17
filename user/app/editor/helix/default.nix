@@ -187,7 +187,7 @@ in
         # lldb # debugger
         marksman # Markdown
 
-        elixir_ls # Elixir
+        elixir-ls # Elixir
 
         # # NIX
         # nixpkgs-fmt:

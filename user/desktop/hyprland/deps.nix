@@ -12,6 +12,7 @@
     syshud
     swww
 
+    blueberry
     hyprsysteminfo
     hyprsunset
 
