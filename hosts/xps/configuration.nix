@@ -83,9 +83,9 @@
           "postman"
         ];
 
-      permittedInsecurePackages = [
-        "beekeeper-studio-5.1.5"
-      ];
+      # permittedInsecurePackages = [
+      #   "beekeeper-studio-5.1.5"
+      # ];
     };
   };
 
@@ -124,6 +124,14 @@
   # firmware updater
   services.fwupd.enable = true;
 
+  fileSystems."/mnt/deds_drive" = {
+    device = "truenas.fable-company.ts.net:/mnt/default/drives/deds";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+    ];
+  };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

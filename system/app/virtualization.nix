@@ -22,6 +22,8 @@
   ];
 
   boot.extraModulePackages = [ config.boot.kernelPackages.virtualbox ];
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "andre" ];
 
   ## QEMU + VirtManager
   virtualisation.libvirtd = {
@@ -33,15 +35,6 @@
     qemu = {
       runAsRoot = false;
       swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [
-          (pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          }).fd
-        ];
-      };
     };
 
   };

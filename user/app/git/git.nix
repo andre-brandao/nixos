@@ -15,21 +15,18 @@
     git = {
       enable = true;
       lfs.enable = true; # git config http.postBuffer 524288000
-      userName = userSettings.git-user;
-      userEmail = userSettings.email;
+      settings = {
+        user.name = userSettings.git-user;
+        user.email = userSettings.email;
 
-      aliases = {
-        ci = "commit";
-        co = "checkout";
-        s = "status";
-      };
-      extraConfig = {
-        # credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
-        # push = { autoSetupRemote = true; };
+        alias = {
+          ci = "commit";
+          co = "checkout";
+          s = "status";
+        };
         color.ui = true;
         credential.helper = "store";
         github.user = userSettings.git-user;
-
       };
     };
 

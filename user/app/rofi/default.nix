@@ -4,7 +4,7 @@ let
 in
 {
   xdg.configFile."rofi/config.rasi".text = t "fullscreen";
-  home.packages = with pkgs; [ rofi-wayland ];
+  home.packages = with pkgs; [ rofi ];
 
   # programs.rofi = {
   #   enable = true;

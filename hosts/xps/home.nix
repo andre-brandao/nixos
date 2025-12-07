@@ -68,7 +68,7 @@
       jetbrains.idea-community-bin
       # jetbrains.idea-ultimate
       cachix
-
+      typescript-go
     ])
     ++ (with pkgs; [
       # ---- APPS ---- #
@@ -88,7 +88,7 @@
 
       # libreoffice-fresh
       # ---- UTILS ---- #
-      bitwarden # Password manager
+      bitwarden-desktop # Password manager
       bitwarden-cli
       remmina
       # syncthing
@@ -115,7 +115,7 @@
       # libffi
       # zlib
       # glib
-      beekeeper-studio
+      # beekeeper-studio
       git
       zsh
       # protonmail-desktop

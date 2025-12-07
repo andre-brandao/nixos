@@ -23,7 +23,7 @@
     };
     greetd =
       let
-        tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+        tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
         session = "Hyprland";
       in
 
@@ -94,7 +94,7 @@
       pavucontrol
       brightnessctl
       libnotify
-      rofi-wayland
+      rofi
       # kitty # hyprland default terminal
       # kdePackages.qtwayland
       # kdePackages.qtsvg
