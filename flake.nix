@@ -1,145 +1,24 @@
 {
-  description = "andre-brandao NixOS configuration";
-
-  outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      # nixos-hardware,
-      home-manager,
-      stylix,
-      ...
-    }:
-    let
-      inherit (self) outputs;
-      # configure pkgs
-      pkgs = import nixpkgs {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-        overlays = [
-          (final: prev: {
-            devenv = inputs.devenv.packages.${systemSettings.system}.devenv;
-          })
-          (final: prev: {
-            # hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
-          })
-        ];
-      };
-
-      pkgs-unstable = import nixpkgs-unstable {
-        system = systemSettings.system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
-        };
-      };
-
-      vars = import ./variables.nix { inherit inputs pkgs; };
-      inherit (vars) systemSettings userSettings stylixSettings;
-    in
-    {
-      formatter.${systemSettings.system} = pkgs.nixfmt-rfc-style;
-
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        system = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/${systemSettings.profile}/configuration.nix
-            stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = {
-                inherit pkgs-unstable;
-
-                inherit inputs outputs;
-
-                inherit systemSettings;
-                inherit userSettings;
-                inherit stylixSettings;
-              };
-              home-manager.users.${userSettings.username} = import ./hosts/${systemSettings.profile}/home.nix;
-            }
-          ];
-          specialArgs = {
-            inherit pkgs-unstable;
-            inherit inputs outputs;
-            inherit systemSettings;
-            inherit userSettings;
-            inherit stylixSettings;
-          };
-        };
-      };
-
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
-      # homeConfigurations = {
-      #   user = home-manager.lib.homeManagerConfiguration {
-      #     inherit pkgs; # Home-manager requires 'pkgs' instance
-      #     modules = [
-      #       # ./user/style/stylix.nix
-      #       ./hosts/${systemSettings.profile}/home.nix
-
-      #     ];
-      #     extraSpecialArgs = {
-      #       inherit pkgs-unstable;
-      #       inherit inputs outputs;
-      #       inherit systemSettings;
-      #       inherit userSettings;
-      #       inherit stylixSettings;
-      #     };
-      #   };
-      # };
-
-      packages.x86_64-linux = {
-        git-server = inputs.nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          modules = [
-            # you can include your own nixos configuration here, i.e.
-            ./hosts/proxmox/configuration.nix
-          ];
-          format = "proxmox-lxc";
-
-          # optional arguments:
-          # explicit nixpkgs and lib:
-          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          # lib = nixpkgs.legacyPackages.x86_64-linux.lib;
-          # additional arguments to pass to modules:
-          # specialArgs = { myExtraArg = "foobar"; };
-
-          # you can also define your own custom formats
-          # customFormats = { "myFormat" = <myFormatModule>; ... };
-          # format = "myFormat";
-        };
-      };
-    };
+  description = "deds flake ";
 
   inputs = {
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-
+    #     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Home manager
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    colmena.url = "github:zhaofengli/colmena";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       # url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix.url = "github:danth/stylix/release-25.11";
-    spicetify = {
-      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     color-schemes = {
@@ -150,18 +29,85 @@
       url = "github:andre-brandao/wallpapers";
       flake = false;
     };
-
-    # marble-shell = {
-    #   url = "git+ssh://git@github.com/andre-brandao/marble?ref=v3";
-    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
-    # };
-
-    caelestia-shell.url = "github:caelestia-dots/shell";
+    stylix.url = "github:danth/stylix/release-25.11";
+    spicetify = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     devenv.url = "github:cachix/devenv";
-    dagger.url = "github:dagger/nix";
-    dagger.inputs.nixpkgs.follows = "nixpkgs";
+    dagger = {
+      url = "github:dagger/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
+
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      inherit (self) outputs;
+
+      system = "x86_64-linux";
+      pkgsConfig = {
+        allowUnfree = false;
+        allowUnfreePredicate =
+          pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) [
+            "spotify"
+            "steam-unwrapped"
+            "steam"
+            "discord"
+            "obsidian"
+          ];
+      };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          (final: prev: {
+            devenv = inputs.devenv.packages.${system}.devenv;
+          })
+        ];
+        config = pkgsConfig;
+      };
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config = pkgsConfig;
+      };
+
+      settings = {
+        username = "andre";
+        editor = "zeditor";
+        terminal = "ghostty";
+        timezone = "America/Sao_Paulo";
+        language = "en_US.UTF-8";
+        locale = "pt_BR.UTF-8";
+        hostname = "nixos";
+        git = {
+          user = "andre-brandao";
+          email = "82166576+andre-brandao@users.noreply.github.com";
+        };
+        configDir = "/home/andre/dotfiles/nixos/v2";
+      };
+    in
+    {
+      formatter.${system} = pkgs.nixfmt-rfc-style;
+
+      nixosConfigurations = {
+        xps = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/xps/configuration.nix
+            inputs.stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+      };
+    };
   nixConfig = {
     extra-substituters = [
       # "https://nix-gaming.cachix.org"
@@ -176,5 +122,4 @@
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
     ];
   };
-
 }

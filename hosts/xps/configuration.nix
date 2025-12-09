@@ -2,11 +2,13 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
-  userSettings,
-
+  pkgs-unstable,
+  # userSettings,
+  settings,
   ...
 }:
 {
@@ -14,24 +16,20 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../system/config
+    ../../nixos/config
 
-    ../../system/app/virtualization.nix
-    ../../system/app/docker.nix
-    ../../system/app/gaming.nix
+    ../../nixos/virtualization.nix
+    ../../nixos/docker.nix
+    ../../nixos/gaming.nix
 
-    ../../system/app/cross-compilation.nix
-    ../../system/app/tailscale.nix
-    ../../system/app/proton-vpn.nix
-    ../../system/desktop/${userSettings.wm}.nix
+    ../../nixos/desktop/hyprland.nix
 
     # styles
-    ../../system/style/stylix.nix
+    ../../nixos/style.nix
 
   ];
 
   nix = {
-
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
     registry = (lib.mapAttrs (_: flake: { inherit flake; })) (
@@ -47,7 +45,7 @@
     };
 
     extraOptions = ''
-      trusted-users = root ${userSettings.username}
+      trusted-users = root ${settings.username}
     '';
   };
 
@@ -80,7 +78,8 @@
           "spotify"
           "steam-unwrapped"
           "steam"
-          "postman"
+          "discord"
+          "obsidian"
         ];
 
       # permittedInsecurePackages = [
@@ -91,9 +90,9 @@
 
   fonts.fontDir.enable = true;
   # USERS
-  users.users.${userSettings.username} = {
+  users.users.${settings.username} = {
     isNormalUser = true;
-    description = userSettings.name;
+    # description = settings.name;
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -101,6 +100,18 @@
     shell = pkgs.zsh;
 
     packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    users.${settings.username} = import ./home.nix;
+    extraSpecialArgs = {
+      inherit pkgs-unstable;
+      inherit inputs outputs;
+      inherit settings;
+    };
   };
 
   environment.shells = with pkgs; [ zsh ];
@@ -115,6 +126,8 @@
     wget
     zsh
     git
+    wireguard-tools
+    protonvpn-gui
     # (callPackage ../../packages/duckling-appimage.nix)
 
   ];
@@ -123,15 +136,23 @@
 
   # firmware updater
   services.fwupd.enable = true;
-
-  fileSystems."/mnt/deds_drive" = {
-    device = "truenas.fable-company.ts.net:/mnt/default/drives/deds";
-    fsType = "nfs";
-    options = [
-      "x-systemd.automount"
-      "noauto"
-    ];
+  services = {
+    tailscale.enable = true;
+    resolved = {
+      enable = true;
+      dnssec = "false";
+    };
   };
+  # cross compilation for aarch64
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # fileSystems."/mnt/deds_drive" = {
+  #   device = "truenas.fable-company.ts.net:/mnt/default/drives/deds";
+  #   fsType = "nfs";
+  #   options = [
+  #     "x-systemd.automount"
+  #     "noauto"
+  #   ];
+  # };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

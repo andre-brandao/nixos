@@ -11,7 +11,7 @@ let
   aliases = {
     # -- REBUILD SYSTEM
     # sys-update = "sudo nixos-rebuild switch --flake ${userSettings.configDir}/nixos#system ";
-    sys-update = "nh os switch ${settings.configDir}  -H system";
+    sys-update = "nh os switch ${settings.configDir}  -H xps";
     # -- REBUILD USER
     # user-update = "home-manager switch --flake ${userSettings.configDir}/nixos#user";
     # user-update = "nh home switch ${settings.configDir} -c user";

@@ -1,7 +1,8 @@
 {
   pkgs,
   pkgs-unstable,
-  userSettings,
+  # userSettings,
+  settings,
   inputs,
   ...
 }:
@@ -9,20 +10,19 @@
 
   imports = [
     # STYLES
-    ../../user/style/stylix.nix # Styling and themes for my apps
-    ../../user/style/gtk.nix # My gtk config
+    ../../home-manager/style.nix # Styling and themes for my apps
     # DESKTOP
-    ../../user/desktop/${userSettings.wm} # My window manager selected from flake
+    ../../home-manager/desktop/hyprland # My window manager selected from flake
     # UTILS
-    ../../user/app/rofi
+    ../../home-manager/rofi
     # ../../user/app/walker.nix
-    ../../user/app/lf
-    ../../user/app/spicetify.nix # My spicetify coxnfig
-    ../../user/app/git/git.nix # My git config
-    ../../user/app/nemo.nix
-    ../../user/app/browser/zen.nix
+    ../../home-manager/lf
+    ../../home-manager/spicetify.nix # My spicetify coxnfig
+    ../../home-manager/git.nix # My git config
+    # ../../user/app/nemo.nix
+    ../../home-manager/browser/zen.nix
     # VIRTUALIZATION
-    ../../user/app/virtualization/qemu.nix # My qemu + virt manager
+    ../../home-manager/qemu.nix # My qemu + virt manager
     # ../../user/app/virtualization/distrobox.nix # My distrobox config
 
     # TERMINAL
@@ -30,12 +30,12 @@
     # ../../user/app/terminal/alacritty.nix
 
     # SHELL
-    ../../user/shell/shell.nix # My shell config
-    ../../user/shell/cli-collection.nix # Useful CLI apps
+    ../../home-manager/shell/shell.nix # My shell config
+    ../../home-manager/shell/cli-collection.nix # Useful CLI apps
 
     # EDITORS
     # ../../user/app/editor/nvim # My nvim config
-    ../../user/app/editor/helix # My helix config
+    ../../home-manager/editor/helix # My helix config
     # ../../user/app/editor/vscode # My vscode config
 
     # ./bloat.home.nix
@@ -53,22 +53,22 @@
   };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = userSettings.username;
-  home.homeDirectory = "/home/" + userSettings.username;
+  home.username = settings.username;
+  home.homeDirectory = "/home/" + settings.username;
   home.packages =
     (with pkgs-unstable; [
       freerdp
       superfile
       ghostty
       zed-editor
-      discord
       thunderbird # email client
-      obsidian
       nemo
       jetbrains.idea-community-bin
       # jetbrains.idea-ultimate
       cachix
       typescript-go
+      discord
+      obsidian
     ])
     ++ (with pkgs; [
       # ---- APPS ---- #
@@ -109,7 +109,7 @@
       blueman
       # ---- DEV UTILS ---- #
       # icon-library
-      postman
+      # postman
       insomnia
       # processing
       # libffi
@@ -119,20 +119,20 @@
       git
       zsh
       # protonmail-desktop
-      godot
+      # godot
       gum
       rclone
     ]);
 
   home.sessionVariables = {
-    BROWSER = userSettings.browser;
-    TERM = userSettings.term;
-    EDITOR = userSettings.editor;
+    # BROWSER = userSettings.browser;
+    # TERM = userSettings.term;
+    EDITOR = settings.editor;
     SPAWNEDITOR = (
-      if (userSettings.editor == "hx" || userSettings.editor == "nvim") then
-        "exec ${userSettings.term} -e ${userSettings.editor}"
+      if (settings.editor == "hx" || settings.editor == "nvim") then
+        "exec ${settings.term} -e ${settings.editor}"
       else
-        userSettings.editor
+        settings.editor
     );
   };
 
