@@ -87,7 +87,7 @@
           user = "andre-brandao";
           email = "82166576+andre-brandao@users.noreply.github.com";
         };
-        configDir = "/home/andre/dotfiles/nixos/v2";
+        configDir = "/home/andre/dotfiles/nixos";
       };
     in
     {
@@ -105,6 +105,26 @@
             inherit settings;
             inherit inputs outputs;
           };
+        };
+        wsl = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/wsl/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+      };
+      packages.${system} = {
+        proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
+          inherit system;
+          modules = [
+            ./hosts/proxmox-lxc-template/configuration.nix
+          ];
+          format = "proxmox-lxc";
         };
       };
     };

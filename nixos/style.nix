@@ -60,7 +60,7 @@
       nixos-icons.enable = true;
       chromium.enable = true;
       grub.enable = true;
-      grub.useImage = true;
+      grub.useWallpaper = true;
 
     };
   };
