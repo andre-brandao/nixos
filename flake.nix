@@ -23,7 +23,6 @@
         overlays = [
           (final: prev: {
             devenv = inputs.devenv.packages.${systemSettings.system}.devenv;
-
           })
           (final: prev: {
             # hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland; # .override {debug = true;};
@@ -81,21 +80,43 @@
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs; # Home-manager requires 'pkgs' instance
-          modules = [
-            # ./user/style/stylix.nix
-            ./hosts/${systemSettings.profile}/home.nix
+      # homeConfigurations = {
+      #   user = home-manager.lib.homeManagerConfiguration {
+      #     inherit pkgs; # Home-manager requires 'pkgs' instance
+      #     modules = [
+      #       # ./user/style/stylix.nix
+      #       ./hosts/${systemSettings.profile}/home.nix
 
+      #     ];
+      #     extraSpecialArgs = {
+      #       inherit pkgs-unstable;
+      #       inherit inputs outputs;
+      #       inherit systemSettings;
+      #       inherit userSettings;
+      #       inherit stylixSettings;
+      #     };
+      #   };
+      # };
+
+      packages.x86_64-linux = {
+        git-server = inputs.nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          modules = [
+            # you can include your own nixos configuration here, i.e.
+            ./hosts/proxmox/configuration.nix
           ];
-          extraSpecialArgs = {
-            inherit pkgs-unstable;
-            inherit inputs outputs;
-            inherit systemSettings;
-            inherit userSettings;
-            inherit stylixSettings;
-          };
+          format = "proxmox-lxc";
+
+          # optional arguments:
+          # explicit nixpkgs and lib:
+          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          # lib = nixpkgs.legacyPackages.x86_64-linux.lib;
+          # additional arguments to pass to modules:
+          # specialArgs = { myExtraArg = "foobar"; };
+
+          # you can also define your own custom formats
+          # customFormats = { "myFormat" = <myFormatModule>; ... };
+          # format = "myFormat";
         };
       };
     };
@@ -105,6 +126,11 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
