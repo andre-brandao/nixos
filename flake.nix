@@ -17,24 +17,33 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      systems,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
 
-      system = "x86_64-linux";
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = false;
-      };
-
       settings = import ./settings.nix;
       lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
     in
     {
-      formatter.${system} = pkgs.nixfmt-rfc-style;
-      devShells.${system} = import ./shell.nix { inherit pkgs; };
-      overlays = import ./overlays { inherit inputs system; };
+      # formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
+      # devShells.${system} = import ./shell.nix { inherit pkgs; };
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      overlays = import ./overlays { inherit inputs outputs; };
 
       nixosConfigurations = {
         xps = nixpkgs.lib.nixosSystem {
@@ -44,7 +53,6 @@
             inputs.home-manager.nixosModules.home-manager
           ];
           specialArgs = {
-            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs lib;
           };
@@ -70,7 +78,6 @@
 
           ];
           specialArgs = {
-            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
@@ -83,16 +90,15 @@
             { nixpkgs.hostPlatform = "x86_64-linux"; }
           ];
           specialArgs = {
-            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
         };
 
       };
-      packages.${system} = {
+      packages."x86_64-linux" = {
         proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
-          inherit system;
+          system = "x86_64-linux";
           modules = [
             ./hosts/proxmox-lxc-template/configuration.nix
             inputs.home-manager.nixosModules.home-manager
@@ -105,7 +111,6 @@
           # additional arguments to pass to modules:
           specialArgs = {
             # myExtraArg = "foobar";
-            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
@@ -121,6 +126,7 @@
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
     #     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
