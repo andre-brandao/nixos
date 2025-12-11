@@ -27,6 +27,11 @@ let
           ];
       };
 
+      stable = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = false;
+      };
+
       # from unstable
       hyprland = unstable.hyprland;
       xdg-desktop-portal-hyprland = unstable.xdg-desktop-portal-hyprland;
