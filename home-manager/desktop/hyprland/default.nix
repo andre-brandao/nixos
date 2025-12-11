@@ -24,6 +24,7 @@
     ./bar/ashell.nix
     ./defaults/animations.nix
     ./defaults/keybinds.nix
+    ./preview-share.nix
   ];
 
   xdg.desktopEntries."org.gnome.Settings" = {

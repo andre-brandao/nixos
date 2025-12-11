@@ -1,7 +1,12 @@
-{pkgs,pkgs-unstable,lib,...}:
+{
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}:
 let
-scripts = import ./scripts.nix { inherit pkgs pkgs-unstable lib; };
-inherit (scripts) launcher;
+  scripts = import ./scripts.nix { inherit pkgs pkgs-unstable lib; };
+  inherit (scripts) launcher;
 in
 {
   wayland.windowManager.hyprland.settings.gesture = [

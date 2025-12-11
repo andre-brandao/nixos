@@ -1,4 +1,10 @@
 ignore.nix
 aws
-variables.nix
 result
+
+.envrc
+.direnv
+
+.terraform
+
+terraform_oracle

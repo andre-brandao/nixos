@@ -1,6 +1,146 @@
 {
   description = "deds flake ";
 
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      inherit (self) outputs;
+
+      system = "x86_64-linux";
+
+      pkgsConfig = {
+        allowUnfree = false;
+        allowUnfreePredicate =
+          pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) [
+            "spotify"
+            "steam-unwrapped"
+            "steam"
+            "discord"
+            "obsidian"
+          ];
+      };
+
+      pkgs = import nixpkgs {
+        inherit system;
+
+        overlays = [
+          # (final: prev: {
+          #   devenv = inputs.devenv.packages.${system}.devenv;
+          # })
+          self.overlays.default
+        ];
+        config = pkgsConfig;
+      };
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config = pkgsConfig;
+      };
+
+      settings = import ./settings.nix;
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+    in
+    {
+      formatter.${system} = pkgs.nixfmt-rfc-style;
+      devShells.${system} = import ./shell.nix { inherit pkgs; };
+      overlays = import ./overlays { inherit inputs system; };
+
+      nixosConfigurations = {
+        xps = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/xps/configuration.nix
+            inputs.stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs lib;
+          };
+        };
+        wsl = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/wsl/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+        iso = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/iso/configuration.nix
+            # inputs.home-manager.nixosModules.home-manager
+            # inputs.disko.nixosModules.disko
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+
+          ];
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+
+        vault = nixpkgs.lib.nixosSystem {
+          modules = [
+            ./hosts/pve-vault/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
+          ];
+          specialArgs = {
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+
+      };
+      packages.${system} = {
+        proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
+          inherit system;
+          modules = [
+            ./hosts/proxmox-lxc-template/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+          format = "proxmox-lxc";
+          # optional arguments:
+          # explicit nixpkgs and lib:
+          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          # lib = nixpkgs.legacyPackages.x86_64-linux.lib;
+          # additional arguments to pass to modules:
+          specialArgs = {
+            # myExtraArg = "foobar";
+            inherit pkgs-unstable;
+            inherit settings;
+            inherit inputs outputs;
+          };
+
+          # you can also define your own custom formats
+          # customFormats = { "myFormat" = <myFormatModule>; ... };
+          # format = "myFormat";
+        };
+      };
+    };
+
+  nixConfig = {
+    extra-substituters = [
+      # "https://nix-gaming.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://nix-community.cachix.org/"
+      "https://devenv.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+  };
+
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
@@ -15,7 +155,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     colmena.url = "github:zhaofengli/colmena";
-
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       # url = "github:nix-community/home-manager";
@@ -41,105 +184,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-  };
-
-  outputs =
-    { self, nixpkgs, ... }@inputs:
-    let
-      inherit (self) outputs;
-
-      system = "x86_64-linux";
-      pkgsConfig = {
-        allowUnfree = false;
-        allowUnfreePredicate =
-          pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) [
-            "spotify"
-            "steam-unwrapped"
-            "steam"
-            "discord"
-            "obsidian"
-          ];
-      };
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          (final: prev: {
-            devenv = inputs.devenv.packages.${system}.devenv;
-          })
-        ];
-        config = pkgsConfig;
-      };
-      pkgs-unstable = import inputs.nixpkgs-unstable {
-        inherit system;
-        config = pkgsConfig;
-      };
-
-      settings = {
-        username = "andre";
-        editor = "zeditor";
-        terminal = "ghostty";
-        timezone = "America/Sao_Paulo";
-        language = "en_US.UTF-8";
-        locale = "pt_BR.UTF-8";
-        hostname = "nixos";
-        git = {
-          user = "andre-brandao";
-          email = "82166576+andre-brandao@users.noreply.github.com";
-        };
-        configDir = "/home/andre/dotfiles/nixos";
-      };
-    in
-    {
-      formatter.${system} = pkgs.nixfmt-rfc-style;
-
-      nixosConfigurations = {
-        xps = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/xps/configuration.nix
-            inputs.stylix.nixosModules.stylix
-            inputs.home-manager.nixosModules.home-manager
-          ];
-          specialArgs = {
-            inherit pkgs-unstable;
-            inherit settings;
-            inherit inputs outputs;
-          };
-        };
-        wsl = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./hosts/wsl/configuration.nix
-            inputs.home-manager.nixosModules.home-manager
-          ];
-          specialArgs = {
-            inherit pkgs-unstable;
-            inherit settings;
-            inherit inputs outputs;
-          };
-        };
-      };
-      packages.${system} = {
-        proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
-          inherit system;
-          modules = [
-            ./hosts/proxmox-lxc-template/configuration.nix
-          ];
-          format = "proxmox-lxc";
-        };
-      };
-    };
-  nixConfig = {
-    extra-substituters = [
-      # "https://nix-gaming.cachix.org"
-      "https://hyprland.cachix.org"
-      "https://nix-community.cachix.org/"
-      "https://devenv.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
   };
 }

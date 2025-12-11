@@ -9,6 +9,7 @@
 {
   imports = [
     ../../modules/nixos/pve-lxc.nix
+    ./vaultwarden.nix
   ];
   environment.systemPackages = [
     pkgs.helix
