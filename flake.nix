@@ -51,6 +51,7 @@
             ./hosts/xps/configuration.nix
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
+            inputs.nixos-hardware.nixosModules.dell-xps-13-9300
           ];
           specialArgs = {
             inherit settings;
@@ -125,13 +126,30 @@
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default-linux";
-    #     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    # The next two are for pinning to stable vs unstable regardless of what the above is set to
+    # This is particularly useful when an upcoming stable release is in beta because you can effectively
+    # keep 'nixpkgs-stable' set to stable for critical packages while setting 'nixpkgs' to the beta branch to
+    # get a jump start on deprecation changes.
+    # See also 'stable-packages' and 'unstable-packages' overlays at 'overlays/default.nix"
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      # url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # ===== UTILS ======
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -141,11 +159,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
-      # url = "github:nix-community/home-manager";
+    devenv.url = "github:cachix/devenv";
+    dagger = {
+      url = "github:dagger/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # ====== STYLES ========
     color-schemes = {
       url = "github:andre-brandao/color-schemes";
       flake = false;
@@ -160,11 +179,5 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    devenv.url = "github:cachix/devenv";
-    dagger = {
-      url = "github:dagger/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 }
