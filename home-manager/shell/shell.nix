@@ -3,7 +3,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   settings,
   ...
 }:
@@ -37,7 +36,7 @@ let
     neval = "nix-instantiate --strict --eval";
 
     quit = "exit";
-    spf = "${lib.getExe pkgs-unstable.superfile}";
+    spf = "${lib.getExe pkgs.unstable.superfile}";
     hyprlogs = "tail -f $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/hyprland.log";
 
     neofetch = "fastfetch";

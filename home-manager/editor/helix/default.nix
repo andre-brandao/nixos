@@ -1,7 +1,4 @@
-{ pkgs-unstable, ... }:
-let
-  pkgs = pkgs-unstable;
-in
+{ pkgs, ... }:
 {
   programs.helix = {
     enable = true;

@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-unstable,
+
   settings,
   ...
 }:
@@ -11,7 +11,7 @@ rec {
 
   screenshot = "${pkgs.writeShellScriptBin "screenshot" ''
     ${pkgs.hyprshot}/bin/hyprshot -m region --raw |
-      ${pkgs-unstable.satty}/bin/satty --filename - \
+      ${pkgs.unstable.satty}/bin/satty --filename - \
         --output-filename "/home/${settings.username}/Pictures/Screenshots/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png" \
         --early-exit \
         --actions-on-enter save-to-clipboard \

@@ -1,5 +1,20 @@
 {
-  description = "deds flake ";
+  description = "deds flake";
+
+  nixConfig = {
+    extra-substituters = [
+      # "https://nix-gaming.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://nix-community.cachix.org/"
+      "https://devenv.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+    ];
+  };
 
   outputs =
     { self, nixpkgs, ... }@inputs:
@@ -8,33 +23,9 @@
 
       system = "x86_64-linux";
 
-      pkgsConfig = {
-        allowUnfree = false;
-        allowUnfreePredicate =
-          pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) [
-            "spotify"
-            "steam-unwrapped"
-            "steam"
-            "discord"
-            "obsidian"
-          ];
-      };
-
       pkgs = import nixpkgs {
         inherit system;
-
-        overlays = [
-          # (final: prev: {
-          #   devenv = inputs.devenv.packages.${system}.devenv;
-          # })
-          self.overlays.default
-        ];
-        config = pkgsConfig;
-      };
-      pkgs-unstable = import inputs.nixpkgs-unstable {
-        inherit system;
-        config = pkgsConfig;
+        config.allowUnfree = false;
       };
 
       settings = import ./settings.nix;
@@ -53,7 +44,7 @@
             inputs.home-manager.nixosModules.home-manager
           ];
           specialArgs = {
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs lib;
           };
@@ -64,7 +55,7 @@
             inputs.home-manager.nixosModules.home-manager
           ];
           specialArgs = {
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
@@ -79,7 +70,7 @@
 
           ];
           specialArgs = {
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
@@ -92,7 +83,7 @@
             { nixpkgs.hostPlatform = "x86_64-linux"; }
           ];
           specialArgs = {
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
@@ -114,7 +105,7 @@
           # additional arguments to pass to modules:
           specialArgs = {
             # myExtraArg = "foobar";
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
             inherit settings;
             inherit inputs outputs;
           };
@@ -125,21 +116,6 @@
         };
       };
     };
-
-  nixConfig = {
-    extra-substituters = [
-      # "https://nix-gaming.cachix.org"
-      "https://hyprland.cachix.org"
-      "https://nix-community.cachix.org/"
-      "https://devenv.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-    ];
-  };
 
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";

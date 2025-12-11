@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
-  home.packages = with pkgs-unstable; [ ashell ];
+  home.packages = with pkgs; [ unstable.ashell ];
 }

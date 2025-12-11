@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   inputs,
   settings,
   ...
@@ -63,8 +62,8 @@
     kdeconnect.enable = true;
     hyprland = {
       enable = true;
-      package = pkgs-unstable.hyprland;
-      portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
+      package = pkgs.unstable.hyprland;
+      portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
       withUWSM = true;
       xwayland = {
         enable = true;

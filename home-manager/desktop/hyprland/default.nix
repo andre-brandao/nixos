@@ -3,7 +3,6 @@
 {
   inputs,
   pkgs,
-  pkgs-unstable,
   config,
   lib,
   ...
@@ -38,7 +37,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs-unstable.hyprland;
+    package = pkgs.unstable.hyprland;
 
     systemd.enable = false;
     xwayland.enable = true;

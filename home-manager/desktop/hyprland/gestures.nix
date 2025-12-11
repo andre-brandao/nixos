@@ -1,11 +1,10 @@
 {
   pkgs,
-  pkgs-unstable,
   lib,
   ...
 }:
 let
-  scripts = import ./scripts.nix { inherit pkgs pkgs-unstable lib; };
+  scripts = import ./scripts.nix { inherit pkgs lib; };
   inherit (scripts) launcher;
 in
 {

@@ -1,7 +1,7 @@
 {
   inputs,
   settings,
-  pkgs-unstable,
+
   pkgs,
   lib,
   ...
@@ -10,7 +10,7 @@ let
   scripts = import ./scripts.nix {
     inherit
       pkgs
-      pkgs-unstable
+
       lib
       settings
       ;

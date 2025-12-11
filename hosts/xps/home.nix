@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  pkgs-unstable,
+  # pkgs-unstable,
   # userSettings,
   settings,
   inputs,
@@ -59,7 +59,7 @@
   home.username = settings.username;
   home.homeDirectory = "/home/" + settings.username;
   home.packages =
-    (with pkgs-unstable; [
+    (with pkgs.unstable; [
       freerdp
       superfile
       ghostty
