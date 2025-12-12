@@ -19,6 +19,9 @@
       neovim
       sops
       opentofu
+      (writeShellScriptBin "build-iso" ''
+        nix build .#nixosConfigurations.iso.config.system.build.isoImage
+      '')
     ];
   };
 }

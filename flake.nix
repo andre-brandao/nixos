@@ -71,14 +71,14 @@
             inherit inputs outputs;
           };
         };
+        # nix build .#nixosConfigurations.iso.config.system.build.isoImage
         iso = lib.nixosSystem {
+          system = "x86_64-linux";
           modules = [
-            ./hosts/iso/configuration.nix
-            # inputs.home-manager.nixosModules.home-manager
-            # inputs.disko.nixosModules.disko
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-
+            ./hosts/iso/configuration.nix
+            # { nixpkgs.hostPlatform = "x86_64-linux"; }
           ];
           specialArgs = {
             inherit settings;
