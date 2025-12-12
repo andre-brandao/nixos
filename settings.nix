@@ -1,7 +1,5 @@
 {
   username = "andre";
-  editor = "zeditor";
-  terminal = "ghostty";
   timezone = "America/Sao_Paulo";
   language = "en_US.UTF-8";
   locale = "pt_BR.UTF-8";

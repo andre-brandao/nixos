@@ -69,11 +69,30 @@
     {
       name = "whatsapp";
       animation = "fromLeft";
-      match_by = "title";
-      title = "re:web.whatsapp.com.*";
-      command = "chromium --app=https://web.whatsapp.com/";
+      match_by = "class";
+      process_tracking = false;
+      # match_by = "initialClass";
+      # initialTitle = "web.whatsapp.com_/";
+      # initialClass = "brave-web.whatsapp.com__-Default";
+      class = "brave-web.whatsapp.com__-Default";
+      # title = "re:web.whatsapp.com.*";
+      command = "brave --app=https://web.whatsapp.com/";
       size = "75% 60%";
       bind = "ALT,W";
+      lazy = true;
+    }
+    {
+      name = "a3chat";
+      animation = "fromLeft";
+      process_tracking = false;
+      # match_by = "class";
+      match_by = "initialClass";
+      # initialTitle = "web.whatsapp.com_/";
+      initialClass = "brave-mail.google.com__chat_-A3";
+      class = "brave-mail.google.com__chat_-A3";
+      command = "brave --profile-directory=A3 --app=https://mail.google.com/chat/";
+      size = "85% 70%";
+      bind = "ALT,C";
       lazy = true;
     }
   ];

@@ -17,6 +17,7 @@
       "home-manager/desktop/hyprland" # My window manager selected from flake
       # UTILS
       "home-manager/rofi"
+      "home-manager/walker.nix"
       # user/app/walker.nix
       "home-manager/lf"
       "home-manager/spicetify.nix" # My spicetify coxnfig
@@ -129,17 +130,19 @@
       rclone
     ]);
 
-  home.sessionVariables = {
-    # BROWSER = userSettings.browser;
-    # TERM = userSettings.term;
-    EDITOR = settings.editor;
-    SPAWNEDITOR = (
-      if (settings.editor == "hx" || settings.editor == "nvim") then
-        "exec ${settings.term} -e ${settings.editor}"
-      else
-        settings.editor
-    );
-  };
+  home.sessionVariables =
+    let
+      editor = "zeditor";
+      terminal = "ghostty";
+    in
+    {
+      # BROWSER = userSettings.browser;
+      TERM = terminal;
+      EDITOR = editor;
+      SPAWNEDITOR = (
+        if (editor == "hx" || editor == "nvim") then "exec ${terminal} -e ${editor}" else editor
+      );
+    };
 
   home.stateVersion = "22.11"; # Please read the comment before changing.
 }

@@ -43,7 +43,7 @@
 
   security = {
     polkit.enable = true;
-    pam.services.astal-auth = { };
+    # pam.services.astal-auth = { };
 
     # pam.services.ags = { };
   };

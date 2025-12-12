@@ -7,12 +7,16 @@
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org/"
       "https://devenv.cachix.org"
+      "https://walker.cachix.org"
+      "https://walker-git.cachix.org"
     ];
     extra-trusted-public-keys = [
       # "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
     ];
   };
 
@@ -39,14 +43,12 @@
       );
     in
     {
-      # formatter.${system} = pkgs.nixfmt-rfc-style;
       formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
-      # devShells.${system} = import ./shell.nix { inherit pkgs; };
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       overlays = import ./overlays { inherit inputs outputs; };
 
       nixosConfigurations = {
-        xps = nixpkgs.lib.nixosSystem {
+        xps = lib.nixosSystem {
           modules = [
             ./hosts/xps/configuration.nix
             inputs.stylix.nixosModules.stylix
@@ -58,7 +60,7 @@
             inherit inputs outputs lib;
           };
         };
-        wsl = nixpkgs.lib.nixosSystem {
+        wsl = lib.nixosSystem {
           modules = [
             ./hosts/wsl/configuration.nix
             inputs.home-manager.nixosModules.home-manager
@@ -69,7 +71,7 @@
             inherit inputs outputs;
           };
         };
-        iso = nixpkgs.lib.nixosSystem {
+        iso = lib.nixosSystem {
           modules = [
             ./hosts/iso/configuration.nix
             # inputs.home-manager.nixosModules.home-manager
@@ -84,7 +86,7 @@
           };
         };
 
-        vault = nixpkgs.lib.nixosSystem {
+        vault = lib.nixosSystem {
           modules = [
             ./hosts/pve-vault/configuration.nix
             inputs.home-manager.nixosModules.home-manager
@@ -126,10 +128,7 @@
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     systems.url = "github:nix-systems/default-linux";
     # The next two are for pinning to stable vs unstable regardless of what the above is set to
     # This is particularly useful when an upcoming stable release is in beta because you can effectively
@@ -179,5 +178,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    elephant.url = "github:abenz1267/elephant";
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
+
   };
 }

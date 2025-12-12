@@ -10,6 +10,7 @@ let
 
   f = key: value: if value != null then "${key} = ${toString value}" else "";
   fs = key: value: if value != null then ''${key} = "${toString value}"'' else "";
+  fb = key: value: if value != null then "${key} = ${if value then "true" else "false"}" else "";
 
   toToml = sp: ''
     [scratchpads.${sp.name}]
@@ -23,11 +24,13 @@ let
     ${fs "size" sp.size}
     ${fs "max_size" sp.max_size}
     ${fs "position" sp.position}
-    ${f "multi" sp.multi}
+    ${fb "multi" sp.multi}
     ${f "margin" sp.margin}
-    ${f "lazy" sp.lazy}
-    ${f "pinned" sp.pinned}
+    ${fb "lazy" sp.lazy}
+    ${fb "pinned" sp.pinned}
     ${fs "unfocus" sp.unfocus}
+    ${fb "process_tracking" sp.process_tracking}
+
   '';
 in
 {
@@ -143,6 +146,12 @@ in
             default = null;
             example = "hide";
             description = "When set to 'hide', allows hiding the window when focus is lost.";
+          };
+          process_tracking = mkOption {
+            type = types.bool;
+            default = true;
+            example = true;
+            description = "";
           };
         };
       }

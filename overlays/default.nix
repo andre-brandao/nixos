@@ -38,6 +38,8 @@ let
       # from inputs
       devenv = inputs.devenv.packages.${system}.default;
       dagger = inputs.dagger.packages.${system}.dagger;
+      walker = inputs.walker.packages.${system}.walker;
+      # elephant =
       # zen-browser = inputs.zen-browser.packages.${system}.twilight;
     };
 

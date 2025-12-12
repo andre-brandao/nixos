@@ -50,6 +50,13 @@
 
       # other
       "group set, initialClass:zen-twilight"
+
+      # bitwarden
+      "float, title:^Bitwarden$"
+      "float, initialClass:brave-nngceckbapebfimnlniiiahkandclblb-Default"
+      # brave
+      "float, initialClass:brave-web.whatsapp.com__-Default"
+      "float, initialClass:brave-mail.google.com__chat_-A3"
       # drawing
       #
       "noblur, class:^Gromit-mpx$"

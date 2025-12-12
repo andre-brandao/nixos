@@ -37,7 +37,7 @@ in
       "$mainMod,         D,         exec,    hyprctl keyword general:layout dwindle"
       "$mainMod,         M,         exec,    hyprctl keyword general:layout master"
       # LAUNCHERS
-      "$mainMod,         R,         exec,    rofi -show drun -show-icons"
+      "$mainMod,         R,         exec,    walker --minwidth 700 --minheight 600"
       "$mainMod,         J,         exec,    rofi -show window -show-icons"
       # ZOOM
       "$mainMod,         Z,         exec,    pypr zoom ++0.5"

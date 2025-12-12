@@ -7,7 +7,7 @@
 rec {
   # launcher = "caelestia-shell ipc call drawers toggle launcher";
 
-  launcher = ''echo "Hello"'';
+  launcher = ''walker --minwidth 700 --minheight 600'';
 
   screenshot = "${pkgs.writeShellScriptBin "screenshot" ''
     ${pkgs.hyprshot}/bin/hyprshot -m region --raw |
