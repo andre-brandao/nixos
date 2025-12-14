@@ -22,6 +22,7 @@
 
       # "nm-applet --indicator"
       "uwsm app -- protonmail-bridge --noninteractive"
+      "systemctl --user start elephant.service"
       # "uwsm app -- marble"
       # "uwsm app -- marble-launcher"
       "uwsm finalize"

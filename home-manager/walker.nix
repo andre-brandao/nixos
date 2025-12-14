@@ -55,13 +55,13 @@
       };
       providers = {
         actions = {
-          files = [
-            {
-              action = ''%${pkgs.dragon-drop}/bin/xdragon -a -x "$fx"'';
-              bind = "ctrl d";
-              label = "Drag and Drop";
-            }
-          ];
+          # files = [
+          #   {
+          #     action = ''%${pkgs.dragon-drop}/bin/xdragon -a -x "$fx"'';
+          #     bind = "ctrl d";
+          #     label = "Drag and Drop";
+          #   }
+          # ];
         };
         # prefixes = [
         #   # {
