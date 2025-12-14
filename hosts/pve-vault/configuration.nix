@@ -8,8 +8,10 @@
 
 {
   imports = [
-    ../../modules/nixos/pve-lxc.nix
+    ../../modules/nixos/pve-vm.nix
     ./vaultwarden.nix
+    ./disko.nix
+    ./sops.nix
   ];
   environment.systemPackages = [
     pkgs.helix

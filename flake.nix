@@ -86,10 +86,11 @@
           };
         };
 
-        vault = lib.nixosSystem {
+        pve-vault = lib.nixosSystem {
           modules = [
             ./hosts/pve-vault/configuration.nix
             inputs.home-manager.nixosModules.home-manager
+            inputs.disko.nixosModules.disko
             { nixpkgs.hostPlatform = "x86_64-linux"; }
           ];
           specialArgs = {
@@ -102,25 +103,29 @@
       packages."x86_64-linux" = {
         proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
           system = "x86_64-linux";
+          format = "proxmox-lxc";
           modules = [
             ./hosts/proxmox-lxc-template/configuration.nix
             inputs.home-manager.nixosModules.home-manager
           ];
-          format = "proxmox-lxc";
-          # optional arguments:
-          # explicit nixpkgs and lib:
-          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          # lib = nixpkgs.legacyPackages.x86_64-linux.lib;
-          # additional arguments to pass to modules:
           specialArgs = {
             # myExtraArg = "foobar";
             inherit settings;
             inherit inputs outputs;
           };
-
-          # you can also define your own custom formats
-          # customFormats = { "myFormat" = <myFormatModule>; ... };
-          # format = "myFormat";
+        };
+        proxmox-vma-template = inputs.nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          format = "proxmox";
+          modules = [
+            ./hosts/pve-vma/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+          specialArgs = {
+            # myExtraArg = "foobar";
+            inherit settings;
+            inherit inputs outputs;
+          };
         };
       };
     };
