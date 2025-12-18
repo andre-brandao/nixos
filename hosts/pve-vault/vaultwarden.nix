@@ -11,7 +11,7 @@
     image = "vaultwarden/server";
     autoStart = true;
     ports = [
-      "8080:80/tcp"
+      "8081:80/tcp"
     ];
     volumes = [
       "/srv/data/vaultwarden:/data"
@@ -25,12 +25,12 @@
 
   };
 
-  services.nginx.virtualHosts."vault.fable-company.ts.net" = {
-    enableACME = true;
-    forceSSL = true;
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString 8080}";
-    };
-  };
+  # services.nginx.virtualHosts."vault.fable-company.ts.net" = {
+  #   enableACME = true;
+  #   forceSSL = true;
+  #   locations."/" = {
+  #     proxyPass = "http://127.0.0.1:${toString 8080}";
+  #   };
+  # };
 
 }

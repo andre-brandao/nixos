@@ -11,10 +11,11 @@
   imports = [
     ../../modules/nixos/pve-vm.nix
     ../../modules/nixos/nix.nix
-    ./vaultwarden.nix
-    ./disko.nix
-    # ./hardware-configuration.nix
     ../../nixos/style.nix
+    ./vaultwarden.nix
+    ./traefik.nix
+    ./podman.nix
+    ./disko.nix
     ./sops.nix
   ];
   environment.systemPackages = [
@@ -34,9 +35,9 @@
       inherit settings;
     };
   };
+  users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
   environment.shells = with pkgs; [ zsh ];
-  users.defaultUserShell = pkgs.zsh;
   environment.pathsToLink = [ "/share/zsh" ];
 
   services = {

@@ -31,6 +31,17 @@
 
   ];
 
+  environment.systemPackages = with pkgs; [
+    # helix
+    vim
+    wget
+    zsh
+    git
+    wireguard-tools
+    protonvpn-gui
+
+  ];
+
   fonts.fontDir.enable = true;
   # USERS
   users.users.${settings.username} = {
@@ -41,8 +52,6 @@
       "wheel"
     ];
     shell = pkgs.zsh;
-
-    packages = [ inputs.home-manager.packages.${pkgs.system}.default ];
   };
 
   home-manager = {
@@ -63,17 +72,6 @@
     zsh.enable = true;
     nix-ld.enable = true;
   };
-  environment.systemPackages = with pkgs; [
-    # helix
-    vim
-    wget
-    zsh
-    git
-    wireguard-tools
-    protonvpn-gui
-    # (callPackage ../../packages/duckling-appimage.nix)
-
-  ];
   environment.pathsToLink = [ "/share/zsh" ];
   security.polkit.enable = true;
 
@@ -88,14 +86,6 @@
   };
   # cross compilation for aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  # fileSystems."/mnt/deds_drive" = {
-  #   device = "truenas.fable-company.ts.net:/mnt/default/drives/deds";
-  #   fsType = "nfs";
-  #   options = [
-  #     "x-systemd.automount"
-  #     "noauto"
-  #   ];
-  # };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }
