@@ -121,7 +121,7 @@
           system = "x86_64-linux";
           format = "proxmox-lxc";
           modules = [
-            ./hosts/proxmox-lxc-template/configuration.nix
+            ./hosts/pve-lxc-template/configuration.nix
             inputs.home-manager.nixosModules.home-manager
           ];
           specialArgs = {

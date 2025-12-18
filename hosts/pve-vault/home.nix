@@ -6,8 +6,8 @@
 }:
 {
   imports = (
-    map lib.custom.relativeToRoot [
-      "home-manager/shell/shell.nix"
+    map lib.custom.relativeToHomeModules [
+      "shell/shell.nix"
     ]
   );
 
