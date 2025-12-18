@@ -90,6 +90,21 @@
           modules = [
             ./hosts/pve-vault/configuration.nix
             inputs.home-manager.nixosModules.home-manager
+            inputs.sops-nix.nixosModules.sops
+            inputs.stylix.nixosModules.stylix
+            inputs.disko.nixosModules.disko
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
+          ];
+          specialArgs = {
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+        pve-git = lib.nixosSystem {
+          modules = [
+            ./hosts/pve-git/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
             inputs.disko.nixosModules.disko
             { nixpkgs.hostPlatform = "x86_64-linux"; }
