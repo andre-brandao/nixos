@@ -9,4 +9,11 @@
     email = "82166576+andre-brandao@users.noreply.github.com";
   };
   configDir = "/home/andre/dotfiles/nixos";
+  allowUnfree = [
+    "spotify"
+    "steam-unwrapped"
+    "steam"
+    "discord"
+    "obsidian"
+  ];
 }

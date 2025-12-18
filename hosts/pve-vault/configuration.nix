@@ -1,7 +1,8 @@
 {
   pkgs,
   lib,
-  modulesPath,
+  inputs,
+  outputs,
   settings,
   ...
 }:
@@ -9,21 +10,42 @@
 {
   imports = [
     ../../modules/nixos/pve-vm.nix
+    ../../modules/nixos/nix.nix
     ./vaultwarden.nix
     ./disko.nix
+    # ./hardware-configuration.nix
+    ../../nixos/style.nix
     ./sops.nix
   ];
   environment.systemPackages = [
     pkgs.helix
   ];
 
+  networking.hostName = "vault";
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
     users.${settings.username} = ./home.nix;
     backupFileExtension = "backup";
+    extraSpecialArgs = {
+      # inherit pkgs-unstable;
+      inherit inputs outputs;
+      inherit settings;
+    };
   };
   programs.zsh.enable = true;
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
+  environment.pathsToLink = [ "/share/zsh" ];
+
+  services = {
+    tailscale.enable = true;
+    resolved = {
+      enable = true;
+      dnssec = "false";
+    };
+  };
 
   system.stateVersion = "25.11";
 }

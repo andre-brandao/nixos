@@ -90,6 +90,7 @@
           modules = [
             ./hosts/pve-vault/configuration.nix
             inputs.home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
             inputs.disko.nixosModules.disko
             { nixpkgs.hostPlatform = "x86_64-linux"; }
           ];

@@ -17,12 +17,17 @@
   };
 
   # Use the boot drive for grub
-  boot.loader.grub.enable = lib.mkDefault true;
+  # boot.loader.grub.enable = lib.mkDefault true;
   # boot.loader.grub.devices = [ "nodev" ];
   # boot.growPartition = lib.mkDefault true;
 
-
-  ader.efi.canTouchEfiVariables = false;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
+  boot.loader.efi.canTouchEfiVariables = false; # For VMs without EFI vars (Proxmox default)
 
   programs.zsh.enable = true;
   users.users.${settings.username} = {
@@ -40,6 +45,7 @@
     ];
   };
   nix.settings.trusted-users = [ settings.username ];
+  nix.settings.experimental-features = "nix-command flakes";
   services = {
     qemuGuest.enable = true;
     openssh = {

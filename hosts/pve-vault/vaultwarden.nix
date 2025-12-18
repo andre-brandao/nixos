@@ -5,7 +5,7 @@
   ];
   sops.secrets."vaultwarden-domain" = { };
   sops.templates."vaultwarden.env".content = ''
-    DOMAIN=${config.sops.placeholder."vaultwarden-domain"}
+    DOMAIN=https://${config.sops.placeholder."vaultwarden-domain"}
   '';
   virtualisation.oci-containers.containers."vaultwarden" = {
     image = "vaultwarden/server";
@@ -24,4 +24,13 @@
     ];
 
   };
+
+  services.nginx.virtualHosts."vault.fable-company.ts.net" = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString 8080}";
+    };
+  };
+
 }
