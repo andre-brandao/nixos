@@ -1,5 +1,6 @@
 resource "proxmox_virtual_environment_vm" "nixos_vm" {
-  name        = "nixos-vm"
+  name        = "secret-vault"
+  tags        = ["terraform", "nixos", "vault", "vaultwarden"]
   node_name   = "pve"
   description = "NixOS VM"
   # bios = "ovmf"

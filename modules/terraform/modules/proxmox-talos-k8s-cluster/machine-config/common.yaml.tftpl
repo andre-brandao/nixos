@@ -1,0 +1,36 @@
+machine:
+  nodeLabels:
+    topology.kubernetes.io/region: ${cluster_name}
+    topology.kubernetes.io/zone: ${node_name}
+  kubelet:
+    extraMounts:
+      - destination: /var/mnt/longhorn
+        type: bind
+        source: /var/mnt/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+  network:
+    hostname: ${hostname}
+    interfaces:
+      - deviceSelector:
+          physical: true
+        addresses:
+          - ${ip}/${subnet_mask}
+        routes:
+          - network: 0.0.0.0/0
+            gateway: ${gateway}
+        dhcp: false
+%{ if vip != null }
+        vip:
+          ip: ${vip}
+%{ endif }
+    nameservers:
+      - 1.1.1.1
+      - 1.0.0.1
+      - 8.8.8.8
+  install:
+    extensions:
+      - image: ghcr.io/siderolabs/iscsi-tools
+      - image: ghcr.io/siderolabs/util-linux-tools
