@@ -40,6 +40,12 @@
       "move 69% 69%, title:^Picture-in-Picture$"
       "opacity 1.0 1.0, title:^Picture-in-Picture$"
 
+      "float, title:^Picture in picture$"
+      "pin, title:^Picture in picture$"
+      "noinitialfocus, title:^Picture in picture$"
+      "move 69% 69%, title:^Picture in picture$"
+      "opacity 1.0 1.0, title:^Picture in picture$"
+
       # Proton vpn ## title = Proton VPN initialClass = .protonvpn-app-wrapped
       "float, title:^Proton VPN$"
       "pin, title:^Proton VPN$"

@@ -22,7 +22,7 @@ in
     "$mainMod" = "SUPER";
     bind = [
       # HYPR CONTROLS
-      "$mainMod,         RETURN,    exec,    ${launcher}"
+      "$mainMod,         SPACE,    exec,    ${launcher}"
       "SUPER,            P,         exec,    ${monitor-toggle}"
       # "$mainMod,         RETURN,    exec,    marble-launcher --open"
       # "$CTRL     SHIFT,  R,         exec,    astal -i marble -q; marble"

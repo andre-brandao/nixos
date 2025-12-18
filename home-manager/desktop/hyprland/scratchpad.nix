@@ -46,26 +46,6 @@
       unfocus = "hide";
       bind = "$mainMod,S";
     }
-    # {
-    #   name = "mail";
-    #   animation = "fromRight";
-    #   command = "proton-mail";
-    #   class = "Proton Mail";
-    #   size = "45% 85%";
-    #   unfocus = "hide";
-    #   bind = "$mainMod,M";
-    #   lazy = true;
-    # }
-    # {
-    #   name = "openai";
-    #   animation = "fromRight";
-    #   match_by = "title";
-    #   title = "re:.*ChatGPT — Zen Browser.*";
-    #   command = "zen -P Apps --new-window https://chat.openai.com/";
-    #   size = "45% 85%";
-    #   bind = "$mainMod,G";
-    #   lazy = true;
-    # }
     {
       name = "whatsapp";
       animation = "fromLeft";
@@ -76,7 +56,7 @@
       # initialClass = "brave-web.whatsapp.com__-Default";
       class = "brave-web.whatsapp.com__-Default";
       # title = "re:web.whatsapp.com.*";
-      command = "brave --app=https://web.whatsapp.com/";
+      command = "brave --profile-directory=Default --app=https://web.whatsapp.com/";
       size = "75% 60%";
       bind = "ALT,W";
       lazy = true;
