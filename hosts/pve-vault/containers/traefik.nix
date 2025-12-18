@@ -20,6 +20,7 @@
     80
     443
   ];
+  services.tailscale.permitCertUid = "traefik";
   services.traefik = {
     enable = true;
 
@@ -60,13 +61,6 @@
       api.basepath = "/traefik";
       # Access the Traefik dashboard on <Traefik IP>:8080 of your server
       # api.insecure = true;
-      tls.certificates = [
-        {
-          certFile = "${config.services.traefik.dataDir}/certs/vault.fable-company.ts.net.crt";
-          keyFile = "${config.services.traefik.dataDir}/certs/vault.fable-company.ts.net.key";
-
-        }
-      ];
     };
 
     dynamicConfigOptions = {

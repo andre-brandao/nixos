@@ -15,5 +15,6 @@
     "steam"
     "discord"
     "obsidian"
+    "vault-bin"
   ];
 }

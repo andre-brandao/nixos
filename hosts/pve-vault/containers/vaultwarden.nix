@@ -24,14 +24,25 @@
   };
 
   services.traefik.dynamicConfigOptions.http = {
-    middlewares.vaultwarden-stripprefix.stripprefix = {
-      prefixes = [ "/warden" ];
-      forceSlash = true;
+    middlewares = {
+      vaultwarden-stripprefix.stripprefix = {
+        prefixes = [ "/warden" ];
+        forceSlash = true;
+      };
+      # vaultwarden-redirect.redirectRegex = {
+      #   # Use ''$ to escape the dollar sign in Nix
+      #   regex = "^(.*)/warden$";
+      #   replacement = "\${1}/warden/";
+      #   permanent = true;
+      # };
     };
     routers.vaultwarden = {
       rule = "Host(`vault.fable-company.ts.net`) && PathPrefix(`/warden`)";
       service = "vaultwarden";
-      middlewares = [ "vaultwarden-stripprefix" ];
+      middlewares = [
+        "vaultwarden-stripprefix"
+        # "vaultwarden-redirect"
+      ];
       tls = {
         certResolver = "vpnresolver";
       };

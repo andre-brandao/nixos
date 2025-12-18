@@ -14,6 +14,7 @@
     ../../nixos/style.nix
     ./containers/vaultwarden.nix
     ./containers/traefik.nix
+    ./containers/vault.nix
     ./containers/podman.nix
     ./disko.nix
     ./sops.nix

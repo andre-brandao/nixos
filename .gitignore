@@ -8,3 +8,4 @@ result
 .terraform
 
 terraform_oracle
+vault-secrets

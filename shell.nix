@@ -18,6 +18,7 @@
       git
       neovim
       sops
+      vault
       opentofu
       (writeShellScriptBin "build-iso" ''
         nix build .#nixosConfigurations.iso.config.system.build.isoImage
