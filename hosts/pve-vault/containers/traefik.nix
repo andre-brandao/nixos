@@ -72,31 +72,11 @@
     dynamicConfigOptions = {
       http = {
         routers = {
-          vaultwarden = {
-            rule = "Host(`vault.fable-company.ts.net`)";
-            service = "vaultwarden";
-            tls = {
-              certResolver = "vpnresolver";
-            };
-          };
           api = {
             rule = "Host(`vault.fable-company.ts.net`) && PathPrefix(`/traefik`)";
             service = "api@internal";
             # middlewares = [ "auth" ];
-            tls = {
-              certResolver = "vpnresolver";
-            };
-          };
-        };
-        services = {
-          vaultwarden = {
-            loadBalancer = {
-              servers = [
-                {
-                  url = "http://localhost:8081";
-                }
-              ];
-            };
+            tls.certResolver = "vpnresolver";
           };
         };
       };

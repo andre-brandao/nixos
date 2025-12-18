@@ -12,9 +12,9 @@
     ../../modules/nixos/pve-vm.nix
     ../../modules/nixos/nix.nix
     ../../nixos/style.nix
-    ./vaultwarden.nix
-    ./traefik.nix
-    ./podman.nix
+    ./containers/vaultwarden.nix
+    ./containers/traefik.nix
+    ./containers/podman.nix
     ./disko.nix
     ./sops.nix
   ];
