@@ -16,18 +16,13 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../nixos/config
-
-    ../../nixos/virtualization.nix
-    ../../nixos/docker.nix
-    ../../nixos/gaming.nix
-
-    ../../nixos/desktop/hyprland.nix
-
-    # styles
-    ../../nixos/style.nix
-
+    ../../modules/nixos/config
     ../../modules/nixos/nix.nix
+    ../../modules/nixos/style.nix
+    ../../modules/nixos/docker.nix
+    ../../modules/nixos/gaming.nix
+    ../../modules/nixos/virtualization.nix
+    ../../modules/nixos/desktop/hyprland.nix
 
   ];
 

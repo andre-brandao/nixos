@@ -3,6 +3,10 @@ rec {
   # use path relative to the root of the project
   relativeToRoot = lib.path.append ../.;
 
+  relativeToHomeModules = lib.path.append ../modules/home-manager;
+
+  relativeToNixOSModules = lib.path.append ../modules/nixos;
+
   # Imports any .nix file in the specific directory, and any folder. Note this
   # means that a folder containing `default.nix` and other *.nix files is expected
   # to use the other *.nix files in that folder as supplementary, and not distinct

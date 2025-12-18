@@ -10,22 +10,22 @@
 {
 
   imports = (
-    map lib.custom.relativeToRoot [
+    map lib.custom.relativeToHomeModules [
       # STYLES
-      "home-manager/style.nix" # Styling and themes for my apps
+      "style.nix" # Styling and themes for my apps
       # DESKTOP
-      "home-manager/desktop/hyprland" # My window manager selected from flake
+      "desktop/hyprland" # My window manager selected from flake
       # UTILS
-      "home-manager/rofi"
-      "home-manager/walker.nix"
+      "rofi"
+      "walker.nix"
       # user/app/walker.nix
-      "home-manager/lf"
-      "home-manager/spicetify.nix" # My spicetify coxnfig
-      "home-manager/git.nix" # My git config
+      "lf"
+      "spicetify.nix" # My spicetify coxnfig
+      "git.nix" # My git config
       # user/app/nemo.nix
-      "home-manager/browser/zen.nix"
+      "browser/zen.nix"
       # VIRTUALIZATION
-      "home-manager/qemu.nix" # My qemu + virt manager
+      "qemu.nix" # My qemu + virt manager
       # user/app/virtualization/distrobox.nix # My distrobox config
 
       # TERMINAL
@@ -33,12 +33,12 @@
       # user/app/terminal/alacritty.nix
 
       # SHELL
-      "home-manager/shell/shell.nix" # My shell config
-      "home-manager/shell/cli-collection.nix" # Useful CLI apps
+      "shell/shell.nix" # My shell config
+      "shell/cli-collection.nix" # Useful CLI apps
 
       # EDITORS
       # user/app/editor/nvim # My nvim config
-      "home-manager/editor/helix" # My helix config
+      "editor/helix" # My helix config
       # user/app/editor/vscode # My vscode config
 
       # ./bloat.home.nix

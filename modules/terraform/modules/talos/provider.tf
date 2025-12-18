@@ -10,8 +10,8 @@ terraform {
     skip_metadata_api_check     = true
     skip_region_validation      = true
     force_path_style            = true # Required for MinIO
-    access_key                  = var.s3_acess_key  # "minio"
-    secret_key                  = var.s3_secret_key  # "M3o8^KM5GVrHRHJH"
+    access_key                  = var.s3_acess_key
+    secret_key                  = var.s3_secret_key
 
     # Access credentials (use environment variables for security)
     # access_key = "your-access-key"  # Better to use AWS_ACCESS_KEY_ID env var

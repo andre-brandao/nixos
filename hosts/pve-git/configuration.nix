@@ -11,7 +11,7 @@
   imports = [
     ../../modules/nixos/pve-vm.nix
     ../../modules/nixos/nix.nix
-    ../../nixos/style.nix
+    ../../modules/nixos/style.nix
     ./containers/git.nix
     ./containers/traefik.nix
     ./containers/podman.nix

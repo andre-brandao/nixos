@@ -11,7 +11,7 @@
   imports = [
     ../../modules/nixos/pve-vm.nix
     ../../modules/nixos/nix.nix
-    ../../nixos/style.nix
+    ../../modules/nixos/style.nix
     ./containers/vaultwarden.nix
     ./containers/traefik.nix
     ./containers/vault.nix
