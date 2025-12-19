@@ -12,16 +12,17 @@
     ../../modules/nixos/pve-vm.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/style.nix
+    ./containers/git.nix
+    ./containers/traefik.nix
+    ./containers/podman.nix
     ./disko.nix
     ./sops.nix
-  ]
-  ++ lib.custom.scanPaths ./services;
-
+  ];
   environment.systemPackages = [
     pkgs.helix
   ];
 
-  networking.hostName = "git";
+  networking.hostName = "monitoring";
 
   home-manager = {
     useUserPackages = true;

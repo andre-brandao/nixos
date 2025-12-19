@@ -12,13 +12,11 @@
     ../../modules/nixos/pve-vm.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/style.nix
-    ./containers/vaultwarden.nix
-    ./containers/traefik.nix
-    ./containers/vault.nix
-    ./containers/podman.nix
     ./disko.nix
     ./sops.nix
-  ];
+  ]
+  ++ lib.custom.scanPaths ./services;
+
   environment.systemPackages = [
     pkgs.helix
   ];
