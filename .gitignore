@@ -2,9 +2,9 @@ ignore.nix
 aws
 result
 
-.envrc
+#.envrc
 .direnv
-
+.env
 .terraform
 
 terraform_oracle

@@ -88,6 +88,7 @@
       # inputs.quickshell.packages.${system}.default
       # inputs.caelestia.packages.${system}.default
       devenv
+      unstable.secretspec
       dagger
 
       # ---- OFFICE ---- #
