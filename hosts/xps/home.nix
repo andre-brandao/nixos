@@ -129,6 +129,11 @@
       # godot
       gum
       rclone
+      (wineWowPackages.full.override {
+        wineRelease = "staging";
+        mingwSupport = true;
+      })
+      winetricks
     ]);
 
   home.sessionVariables =
