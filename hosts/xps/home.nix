@@ -98,6 +98,7 @@
       bitwarden-desktop # Password manager
       bitwarden-cli
       remmina
+      vault
       # syncthing
       # nautilus # File manager
       # dolphin

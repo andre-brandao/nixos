@@ -115,6 +115,20 @@
           };
         };
 
+        pve-mine = lib.nixosSystem {
+          modules = [
+            ./hosts/pve-mine/configuration.nix
+            # inputs.home-manager.nixosModules.home-manager
+            inputs.sops-nix.nixosModules.sops
+            inputs.disko.nixosModules.disko
+            { nixpkgs.hostPlatform = "x86_64-linux"; }
+          ];
+          specialArgs = {
+            inherit settings;
+            inherit inputs outputs;
+          };
+        };
+
       };
       packages."x86_64-linux" = {
         proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
@@ -184,6 +198,7 @@
       url = "github:dagger/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # ====== STYLES ========
     color-schemes = {
       url = "github:andre-brandao/color-schemes";

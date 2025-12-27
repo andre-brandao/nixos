@@ -16,6 +16,7 @@
     "discord"
     "obsidian"
     "vault-bin"
+    "minecraft-server"
   ];
 
   sshPublicKeys = [
