@@ -10,9 +10,9 @@
   services.tailscale.permitCertUid = "traefik";
   services.traefik = {
     enable = true;
-    environmentFiles = [
-      config.sops.secrets."cloudflare_env".path
-    ];
+    # environmentFiles = [
+    #   config.sops.secrets."cloudflare_env".path
+    # ];
 
     staticConfigOptions = {
       entryPoints = {
@@ -30,6 +30,14 @@
           asDefault = true;
           http.tls.certResolver = "letsencrypt";
         };
+        mc-java = {
+          address = ":25566";
+        };
+        mc-bedrock = {
+          address = ":19132/udp";
+
+        };
+
       };
 
       log = {

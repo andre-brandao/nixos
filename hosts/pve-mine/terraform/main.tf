@@ -1,6 +1,6 @@
 resource "proxmox_virtual_environment_vm" "nixos_vm" {
   name        = "mine-server"
-  tags        = ["terraform", "nixos", "git"]
+  tags        = ["terraform", "nixos", "minecraft"]
   node_name   = "pve"
   description = "NixOS VM"
   # bios = "ovmf"
@@ -18,7 +18,8 @@ resource "proxmox_virtual_environment_vm" "nixos_vm" {
   }
 
   memory {
-    dedicated = 1024 * 8
+    floating  = 1024 * 16
+    dedicated = 1024 * 16
   }
 
   operating_system {
@@ -67,13 +68,19 @@ module "disko" {
   #attribute      = "config.system.build.diskoScript"
 }
 
+locals {
+  use_tailnet = true
+  target_host = local.use_tailnet ? "mine" : proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
+}
+
+
 
 module "install" {
   source            = "github.com/nix-community/nixos-anywhere//terraform/install"
   nixos_system      = module.system-build.result.out
   nixos_partitioner = module.disko.result.out
   # target_host       = local.ipv4
-  target_host = proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
+  target_host = local.target_host
   target_user       = "andre"
 }
 
@@ -86,7 +93,7 @@ module "nixos-rebuild" {
   source       = "github.com/nix-community/nixos-anywhere//terraform/nixos-rebuild"
   nixos_system = module.system-build.result.out
   # target_host  = "192.168.0.228"
-  target_host        = proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
+  target_host        = local.target_host
   target_user        = "andre"
 }
 
