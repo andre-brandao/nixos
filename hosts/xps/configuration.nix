@@ -16,7 +16,7 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../modules/nixos/config
+    ../../modules/nixos/core/config
     ../../modules/nixos/nix.nix
     ../../modules/nixos/style.nix
     ../../modules/nixos/gaming.nix
