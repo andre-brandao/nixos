@@ -31,7 +31,14 @@
       inherit (self) outputs;
 
       settings = import ./settings.nix;
-      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+      lib = nixpkgs.lib.extend (
+        self: super: {
+          custom = import ./lib {
+            inherit (nixpkgs) lib;
+            inherit inputs;
+          };
+        }
+      );
 
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
@@ -88,7 +95,7 @@
 
         pve-vault = lib.nixosSystem {
           modules = [
-            ./hosts/pve-vault/configuration.nix
+            ./hosts/pve/vault/configuration.nix
             inputs.home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
@@ -102,7 +109,7 @@
         };
         pve-git = lib.nixosSystem {
           modules = [
-            ./hosts/pve-git/configuration.nix
+            ./hosts/pve/git/configuration.nix
             inputs.home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             inputs.stylix.nixosModules.stylix
@@ -117,7 +124,7 @@
 
         pve-mine = lib.nixosSystem {
           modules = [
-            ./hosts/pve-mine/configuration.nix
+            ./hosts/pve/mine/configuration.nix
             # inputs.home-manager.nixosModules.home-manager
             inputs.sops-nix.nixosModules.sops
             inputs.disko.nixosModules.disko

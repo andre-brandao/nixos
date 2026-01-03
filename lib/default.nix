@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 rec {
   # use path relative to the root of the project
   relativeToRoot = lib.path.append ../.;
@@ -6,6 +6,24 @@ rec {
   relativeToHomeModules = lib.path.append ../modules/home-manager;
 
   relativeToNixOSModules = lib.path.append ../modules/nixos;
+
+  pve-nixosSystem =
+    host:
+    lib.nixosSystem {
+      modules = [
+        ../hosts/${host}/configuration.nix
+        inputs.home-manager.nixosModules.home-manager
+        inputs.sops-nix.nixosModules.sops
+        inputs.stylix.nixosModules.stylix
+        inputs.disko.nixosModules.disko
+        { nixpkgs.hostPlatform = "x86_64-linux"; }
+      ];
+      specialArgs = {
+        inherit host;
+      };
+    };
+
+  # Scans ../hosts/pve/ folder and creates an dict of nixosSystems for each host (pve-*) using the above function to create each system
 
   # Imports any .nix file in the specific directory, and any folder. Note this
   # means that a folder containing `default.nix` and other *.nix files is expected
