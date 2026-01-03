@@ -16,6 +16,8 @@
     "discord"
     "obsidian"
     "vault-bin"
+    "vault"
+    "idea"
     "minecraft-server"
   ];
 

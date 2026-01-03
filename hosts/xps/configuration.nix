@@ -19,9 +19,9 @@
     ../../modules/nixos/config
     ../../modules/nixos/nix.nix
     ../../modules/nixos/style.nix
-    ../../modules/nixos/docker.nix
     ../../modules/nixos/gaming.nix
-    ../../modules/nixos/virtualization.nix
+    ../../modules/nixos/programs/docker.nix
+    ../../modules/nixos/programs/virtualization.nix
     ../../modules/nixos/desktop/hyprland.nix
 
   ];

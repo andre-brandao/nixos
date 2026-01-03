@@ -45,7 +45,7 @@
     {
       formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      overlays = import ./overlays { inherit inputs outputs; };
+      overlays = import ./overlays { inherit inputs outputs settings; };
 
       nixosConfigurations = {
         xps = lib.nixosSystem {

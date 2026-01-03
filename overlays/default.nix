@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, settings, ... }:
 let
   additions = final: prev: {
     hyprland-preview-share-picker = final.callPackage ../pkgs/hyprland-preview-share-picker { };
@@ -17,14 +17,7 @@ let
         inherit system;
         config.allowUnfree = false;
         config.allowUnfreePredicate =
-          pkg:
-          builtins.elem (inputs.nixpkgs.lib.getName pkg) [
-            "spotify"
-            "steam-unwrapped"
-            "steam"
-            "discord"
-            "obsidian"
-          ];
+          pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) settings.allowUnfree;
       };
 
       stable = import inputs.nixpkgs {

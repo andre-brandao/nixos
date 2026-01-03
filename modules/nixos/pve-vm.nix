@@ -11,6 +11,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
+    ./admin.nix
   ];
   networking = {
     networkmanager.enable = true;
@@ -28,21 +29,6 @@
     efiInstallAsRemovable = true;
   };
   boot.loader.efi.canTouchEfiVariables = false; # For VMs without EFI vars (Proxmox default)
-
-  programs.zsh.enable = true;
-  users.users.${settings.username} = {
-    isNormalUser = true;
-    # hashedPasswordFile = config.sops.secrets.password.path;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [ ];
-    openssh.authorizedKeys.keys = settings.sshPublicKeys;
-  };
-  nix.settings.trusted-users = [ settings.username ];
-  nix.settings.experimental-features = "nix-command flakes";
   services = {
     qemuGuest.enable = true;
     openssh = {
@@ -78,17 +64,5 @@
   networking.hostName = lib.mkDefault "nixos";
 
   # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
-
-  security.sudo.extraRules = [
-    {
-      users = [ settings.username ];
-      commands = [
-        {
-          command = "ALL";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

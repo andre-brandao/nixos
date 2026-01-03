@@ -67,7 +67,7 @@
       zed-editor
       thunderbird # email client
       nemo
-      jetbrains.idea-community-bin
+      jetbrains.idea
       # jetbrains.idea-ultimate
       cachix
       typescript-go

@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  style = with config.lib.stylix.colors.withHashtag; ''
+  style = with config.lib.stylix.colors.withHashtag; /* css */ ''
     @define-color base00 ${base00}; @define-color base01 ${base01};
     @define-color base02 ${base02}; @define-color base03 ${base03};
     @define-color base04 ${base04}; @define-color base05 ${base05};
@@ -107,6 +107,28 @@
 
     progressbar {
       background-color: rgba(255,255,255,.1);
+    }
+
+    /* Sliders */
+    scale trough {
+      min-height: 8px;
+      min-width: 70px;
+      border-radius: 12px;
+      background-color: @background-alt;
+    }
+
+    trough slider {
+      min-height: 20px;
+      min-width: 20px;
+      margin: -6px;
+      border-radius: 12px;
+      background-color: @selected;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+    }
+
+    trough slider:hover {
+      background-color: @selected;
+      box-shadow: 0 0 8px @selected;
     }
 
     /* Notifications expanded-group */
@@ -222,12 +244,16 @@
         margin:  20px 6px;
     }
 
-      /* NOTE: Background need *opacity 1* otherwise will turn into the album art blurred  */
     .widget-mpris-player {
-        background-color: @background-sec;
+        background: @background-sec;
         border-radius: 22px;
         padding: 6px 14px;
         margin: 6px;
+    }
+
+    .mpris-overlay {
+        background-color: @background-sec;
+        padding: 6px 14px;
     }
 
     .widget-mpris > box > button {
@@ -259,11 +285,34 @@
 
     /* Volume */
     .widget-volume {
-      background: @background-sec;
-      color: @background;
       padding: 4px;
       margin: 6px;
-      border-radius: 6px;
+    }
+
+    .widget-volume label {
+      color: @text;
+      padding: 0 1rem;
+      font-size: 1rem;
+    }
+
+    .widget-volume trough highlight {
+      background: @selected;
+    }
+
+    /* Brightness */
+    .widget-backlight {
+      padding: 4px;
+      margin: 6px;
+    }
+
+    .widget-backlight label {
+      color: @text;
+      padding: 0 1rem;
+      font-size: 1rem;
+    }
+
+    .widget-backlight trough highlight {
+      background: @base0A;
     }
 
 
@@ -291,10 +340,10 @@
     }
 
     .floating-notifications.background .notification-row .notification-background {
-      background: alpha(@background, .55);
+      background: alpha(@background, .69);
       box-shadow: 0 0 8px 0 rgba(0,0,0,.6);
       border-radius: 24px;
-      margin: 16px;
+      margin: 8px;
       padding: 0;
     }
 

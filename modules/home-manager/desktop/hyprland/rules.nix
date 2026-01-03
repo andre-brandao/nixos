@@ -23,53 +23,30 @@
       # drawing
       "special:gromit, gapsin:0, gapsout:0, on-created-empty: gromit-mpx -a"
     ];
+
     windowrule = [
-      # # Smart Gaps
-      "bordersize 0, floating:0, onworkspace:w[tv1]s[false]"
-      "rounding 0, floating:0, onworkspace:w[tv1]s[false]"
-      "bordersize 0, floating:0, onworkspace:f[1]s[false]"
-      "rounding 0, floating:0, onworkspace:f[1]s[false]"
-
+      # Smart Gaps
+      "border_size 0, rounding 0, match:float 0, match:workspace w[tv1]s[false]"
+      "border_size 0, match:float 0, match:workspace f[1]zs[false]"
+      "rounding 0, match:float 0, match:workspace f[1]s[false]"
       # Deds Launcher
-      "float, title:^DedsLauncher$"
-      "pin, title:^DedsLauncher$"
+      "float on, pin on, match:title ^DedsLauncher$"
       # PIP
-      "float, title:^Picture-in-Picture$"
-      "pin, title:^Picture-in-Picture$"
-      "noinitialfocus, title:^Picture-in-Picture$"
-      "move 69% 69%, title:^Picture-in-Picture$"
-      "opacity 1.0 1.0, title:^Picture-in-Picture$"
-
-      "float, title:^Picture in picture$"
-      "pin, title:^Picture in picture$"
-      "noinitialfocus, title:^Picture in picture$"
-      "move 69% 69%, title:^Picture in picture$"
-      "opacity 1.0 1.0, title:^Picture in picture$"
-
-      # Proton vpn ## title = Proton VPN initialClass = .protonvpn-app-wrapped
-      "float, title:^Proton VPN$"
-      "pin, title:^Proton VPN$"
-      "noinitialfocus, title:^Proton VPN$"
-      "move 10% 10%, title:^Proton VPN$"
-      "opacity 1.0 1.0, title:^Proton VPN$"
-      "size 20% 50%, title:^Proton VPN$"
-
+      "float on, pin on, no_initial_focus on, move ((monitor_w*0.69)) ((monitor_h*0.69)), opacity 1.0 1.0, match:title ^Picture-in-Picture$"
+      "float on, pin on, no_initial_focus on, move ((monitor_w*0.69)) ((monitor_h*0.69)), opacity 1.0 1.0, match:title ^Picture in picture$"
+      # proton vpn
+      "float on, pin on, no_initial_focus on, move ((monitor_w*0.1)) ((monitor_h*0.1)), opacity 1.0 1.0, size (monitor_w*0.2) (monitor_h*0.5), match:title ^Proton VPN$"
       # other
-      "group set, initialClass:zen-twilight"
-
-      # bitwarden
-      "float, title:^Bitwarden$"
-      "float, initialClass:brave-nngceckbapebfimnlniiiahkandclblb-Default"
-      # brave
-      "float, initialClass:brave-web.whatsapp.com__-Default"
-      "float, initialClass:brave-mail.google.com__chat_-A3"
+      "group set, match:initial_class zen-twilight"
+      "float on, match:title ^Bitwarden$"
+      "float on, match:initial_class brave-nngceckbapebfimnlniiiahkandclblb-Default"
+      "float on, match:initial_class brave-web.whatsapp.com__-Default"
+      "float on, match:initial_class brave-mail.google.com__chat_-A3"
       # drawing
-      #
-      "noblur, class:^Gromit-mpx$"
-      "noshadow, class:^Gromit-mpx$"
-      "opacity 1 override 1 override, class:^Gromit-mpx$"
-      "size 100% 100%, class:^Gromit-mpx$"
+      "no_blur on, no_shadow on, opacity 1 override 1 override, size (monitor_w*1) (monitor_h*1), match:class ^Gromit-mpx$"
 
+      # "float on, workspace special silent, center on, $scratchpad"
+      # "$scratchpadsize, $scratchpad"
     ];
 
   };

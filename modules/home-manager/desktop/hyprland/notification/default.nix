@@ -13,7 +13,7 @@
       control-center-margin-left = 10;
       control-center-margin-right = 10;
       control-center-margin-top = 10;
-      control-center-width = 500;
+      control-center-width = 420;
       control-center-height = 1025;
       notification-2fa-action = true;
       # notification-inline-replies = false;
@@ -31,7 +31,7 @@
       hide-on-clear = false;
       hide-on-action = true;
       script-fail-notify = true;
-      notification-window-width = 500;
+      notification-window-width = 420;
       widget-config = {
         backlight = {
           label = "󰃟";

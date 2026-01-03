@@ -37,7 +37,7 @@
       vscode.enable = true;
       mangohud.enable = true;
       # vesktop.enable = true;
-      swaync.enable = true;
+      swaync.enable = false;
       spicetify.enable = false;
 
     };
