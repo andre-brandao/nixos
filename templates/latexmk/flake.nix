@@ -22,9 +22,6 @@
       );
     in
     {
-      # packages = forAllSystems (system: {
-      #   default = pkgs.${system}.callPackage ./default.nix { };
-      # });
       packages = forEachSystem (pkgs: {
         default = pkgs.callPackage ./default.nix { };
       });

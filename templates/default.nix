@@ -13,4 +13,14 @@
     path = ./latexmk;
     description = "A simple LaTeX template for writing documents with latexmk";
   };
+
+  go = {
+    path = ./go;
+    description = "Go Template";
+    welcomeText = ''
+      # Getting started
+      - Run `nix develop`
+      - Run `go run main.go`
+    '';
+  };
 }
