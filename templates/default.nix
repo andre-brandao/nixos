@@ -23,4 +23,14 @@
       - Run `go run main.go`
     '';
   };
+
+  bun-desktop = {
+    path = ./bun/desktop;
+    description = "A development shell for bun desktop applications";
+    welcomeText = ''
+      # Getting started
+      - Run `nix develop`
+      - Run `bun run <your-file>.ts`
+    '';
+  };
 }
