@@ -1,16 +1,27 @@
 { config, inputs, ... }:
+
+let
+  version = "1.35.1";
+in
 {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
 
-  sops.secrets."vaultwarden-domain" = { };
+  sops.secrets."vaultwarden-domain" = {
+    restartUnits = [ "podman-vaultwarden.service" ];
+  };
+  sops.secrets."vaultwarden-admin-token" = {
+    restartUnits = [ "podman-vaultwarden.service" ];
+  };
+
   sops.templates."vaultwarden.env".content = ''
-    DOMAIN=https://${config.sops.placeholder."vaultwarden-domain"}
+    DOMAIN=https://${config.sops.placeholder."vaultwarden-domain"}/warden
+    ADMIN_TOKEN=${config.sops.placeholder."vaultwarden-admin-token"}
   '';
 
   virtualisation.oci-containers.containers."vaultwarden" = {
-    image = "vaultwarden/server";
+    image = "vaultwarden/server:${version}";
     autoStart = true;
     ports = [
       "8081:80/tcp"
@@ -24,25 +35,9 @@
   };
 
   services.traefik.dynamicConfigOptions.http = {
-    middlewares = {
-      vaultwarden-stripprefix.stripprefix = {
-        prefixes = [ "/warden" ];
-        forceSlash = true;
-      };
-      # vaultwarden-redirect.redirectRegex = {
-      #   # Use ''$ to escape the dollar sign in Nix
-      #   regex = "^(.*)/warden$";
-      #   replacement = "\${1}/warden/";
-      #   permanent = true;
-      # };
-    };
     routers.vaultwarden = {
       rule = "Host(`vault.fable-company.ts.net`) && PathPrefix(`/warden`)";
       service = "vaultwarden";
-      middlewares = [
-        "vaultwarden-stripprefix"
-        # "vaultwarden-redirect"
-      ];
       tls = {
         certResolver = "vpnresolver";
       };

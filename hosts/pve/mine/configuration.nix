@@ -6,11 +6,8 @@
 }:
 {
   imports = [
-    ./mine.nix
     ./disko.nix
     ./sops.nix
-    ./traefik.nix
-    ./cloudflared.nix
   ]
   ++ map lib.custom.relativeToNixOSModules [
     "pve-vm.nix"

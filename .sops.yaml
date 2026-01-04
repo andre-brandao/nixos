@@ -1,7 +1,7 @@
 keys:
   - &primary age1dc03z4d7y8ra07jeyqn2l0jn3ed0aq07k3947j5pkx8fsuhkhpcs9eqr35
 creation_rules:
-  - path_regex: hosts/[^/]+/secrets\.yaml$
+  - path_regex: hosts/.*/secrets\.yaml$
     key_groups:
       - age:
           - *primary

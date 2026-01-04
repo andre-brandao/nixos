@@ -9,11 +9,13 @@
 
 {
   imports = [
-    ../../modules/nixos/pve-vm.nix
-    ../../modules/nixos/nix.nix
-    ../../modules/nixos/style.nix
     ./disko.nix
     ./sops.nix
+  ]
+  ++ map lib.custom.relativeToNixOSModules [
+    "pve-vm.nix"
+    "nix.nix"
+    "style.nix"
   ]
   ++ lib.custom.scanPaths ./services;
 
