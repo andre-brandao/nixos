@@ -36,7 +36,7 @@
     /* CONTROL CENTER ------------------------------------------------------------------------ */
 
     .control-center {
-      background: alpha(@background, .55);
+      background: alpha(@background, .69);
       border-radius: 24px;
       border: 1px solid @selected;
       box-shadow: 0 0 10px 0 rgba(0,0,0,.6);
@@ -92,11 +92,11 @@
     }
 
     .control-center .notification-row .notification-background .close-button:hover {
-      background-color: @selected;
+      background-color: @urgent;
     }
 
     .control-center .notification-row .notification-background .close-button:active {
-      background-color: @selected;
+      background-color: @urgent;
     }
 
     progressbar,
@@ -340,7 +340,8 @@
     }
 
     .floating-notifications.background .notification-row .notification-background {
-      background: alpha(@background, .69);
+      /*background: alpha(@background, .69);*/
+      background: @background;
       box-shadow: 0 0 8px 0 rgba(0,0,0,.6);
       border-radius: 24px;
       margin: 8px;
@@ -403,11 +404,11 @@
     }
 
     .floating-notifications.background .notification-row .notification-background .close-button:hover {
-      background-color: @selected;
+      background-color: @urgent;
     }
 
     .floating-notifications.background .notification-row .notification-background .close-button:active {
-      background-color: @selected;
+      background-color: @urgent;
       color: @background;
     }
 
@@ -508,11 +509,11 @@
     }
 
     .floating-notifications.background .notification-row .notification-background .close-button:hover {
-      background-color: @selected;
+      background-color: @urgent;
     }
 
     .floating-notifications.background .notification-row .notification-background .close-button:active {
-      background-color: @selected;
+      background-color: @urgent;
       color: @background;
     }
 

@@ -7,11 +7,18 @@
 }:
 {
   wayland.windowManager.hyprland = {
-    plugins = with pkgs; [
+    plugins = with pkgs.unstable.hyprlandPlugins; [
       # hyprlandPlugins.hyprbars
       # hyprlandPlugins.hyprspace
+      hyprexpo
+      hyprscrolling
+      xtra-dispatchers
+    ];
+    settings.gesture = [
+      "3, up, dispatcher, hyprexpo:expo, toggle"
     ];
     settings.bind = [
+      "$mainMod, E, hyprexpo:expo, toggle"
       # "$mainMod, O, overview:toggle"
       # "ALT,tab,hycov:toggleoverview"
       # "ALT,left,hycov:movefocus,l"
@@ -54,18 +61,18 @@
       #   # hyprgrass-bind = "";
 
       # };
-      #     hyprexpo = {
-      #       columns = 3;
-      #       gap_size = 5;
-      #       bg_col = "0x33 ${config.lib.stylix.colors.base00}";
-      #       workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
+      hyprexpo = {
+        columns = 3;
+        gap_size = 5;
+        bg_col = "0x33${config.lib.stylix.colors.base00}";
+        workspace_method = "first 1"; # [center/first] [workspace] e.g. first 1 or center m+1
 
-      #       enable_gesture = true; # laptop touchpad, 4 fingers
-      #       gesture_fingers = 3; # 3 or 4
+        enable_gesture = true; # laptop touchpad, 4 fingers
+        gesture_fingers = 3; # 3 or 4
 
-      #       gesture_distance = 300; # how far is the "max"
-      #       gesture_positive = false; # positive = swipe down. Negative = swipe up.
-      #     };
+        gesture_distance = 300; # how far is the "max"
+        gesture_positive = false; # positive = swipe down. Negative = swipe up.
+      };
       #     # overview = {
 
       #     # };

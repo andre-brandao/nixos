@@ -11,52 +11,35 @@
 
   imports = (
     map lib.custom.relativeToHomeModules [
-      # STYLES
-      "style.nix" # Styling and themes for my apps
-      # DESKTOP
-      "desktop/hyprland" # My window manager selected from flake
-      # UTILS
-      "rofi"
-      "walker.nix"
-      # user/app/walker.nix
-      "lf"
-      "spicetify.nix" # My spicetify coxnfig
-      "git.nix" # My git config
-      # user/app/nemo.nix
-      "browser/zen.nix"
-      # VIRTUALIZATION
-      "qemu.nix" # My qemu + virt manager
-      # user/app/virtualization/distrobox.nix # My distrobox config
+      "style.nix"
+      "qemu.nix"
 
-      # TERMINAL
-      # user/app/terminal/kitty.nix
-      # user/app/terminal/alacritty.nix
+      "desktop/hyprland"
 
-      # SHELL
-      "shell/shell.nix" # My shell config
-      "shell/cli-collection.nix" # Useful CLI apps
+      "programs/browser/zen.nix"
+      "programs/spicetify.nix"
+      "programs/rofi"
+      "programs/walker.nix"
+      "programs/editors/helix"
+      "programs/editors/helix/lsp.nix"
 
-      # EDITORS
-      # user/app/editor/nvim # My nvim config
-      "editor/helix" # My helix config
-      # user/app/editor/vscode # My vscode config
-
-      # ./bloat.home.nix
+      "terminal/shell"
+      "terminal/programs/lf"
+      "terminal/programs/nix.nix"
+      "terminal/programs/git.nix"
+      "terminal/programs/zoxide.nix"
+      "terminal/programs/cli-collection.nix"
     ]
   );
 
-  # services.blueman-applet.enable = true;
+  programs = {
+    chromium.enable = true;
+    home-manager = {
+      enable = true;
+      # backupFileExtension = "backup";
+    };
+  };
 
-  programs.chromium = {
-    enable = true;
-    # package = pkgs.brave;
-  };
-  programs.home-manager = {
-    enable = true;
-    # backupFileExtension = "backup";
-  };
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = settings.username;
   home.homeDirectory = "/home/" + settings.username;
   home.packages =

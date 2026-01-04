@@ -2,17 +2,7 @@
 {
   # Collection of useful CLI apps
   home.packages = with pkgs; [
-    # ---- NIX UTILS ---- #
-    nil
-    nixd
-    nix-tree
-    # nix-init
-    # statix
-    nixfmt-rfc-style
 
-    # nix-prefetch-git
-    # nix-prefetch-github
-    nix-output-monitor
     # ---- OTHER CLI ---- #
     gnugrep
     gnused

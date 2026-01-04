@@ -19,6 +19,7 @@
     "vault"
     "idea"
     "minecraft-server"
+    "unrar"
   ];
 
   sshPublicKeys = [

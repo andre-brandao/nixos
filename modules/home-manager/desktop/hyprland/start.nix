@@ -19,6 +19,7 @@
       # "waybar"
       # "uwsm app -- caelestia-shell -d"
       "uwsm app -- ashell"
+      "hyprsunset"
 
       # "nm-applet --indicator"
       "uwsm app -- protonmail-bridge --noninteractive"
