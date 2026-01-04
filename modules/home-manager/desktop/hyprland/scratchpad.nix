@@ -75,5 +75,26 @@
       bind = "ALT,C";
       lazy = true;
     }
+    {
+      name = "claudinho";
+      animation = "fromRight";
+      process_tracking = false;
+      # match_by = "class";
+      match_by = "initialClass";
+      # initialTitle = "web.whatsapp.com_/";
+      initialClass = "brave-claude.ai__new_-Default";
+      class = "brave-claude.ai__new_-Default";
+      command = "brave --profile-directory=Default --app=https://claude.ai/new/";
+      size = "45% 85%";
+      bind = "$mainMod,C";
+      lazy = true;
+    }
+  ];
+
+  wayland.windowManager.hyprland.settings.windowrule = [
+    "float on, match:initial_class brave-nngceckbapebfimnlniiiahkandclblb-Default"
+    "float on, match:initial_class brave-web.whatsapp.com__-Default"
+    "float on, match:initial_class brave-mail.google.com__chat_-A3"
+    "float on, match:initial_class brave-claude.ai__new_-Default"
   ];
 }

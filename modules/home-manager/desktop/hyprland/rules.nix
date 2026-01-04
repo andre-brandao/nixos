@@ -39,9 +39,7 @@
       # other
       "group set, match:initial_class zen-twilight"
       "float on, match:title ^Bitwarden$"
-      "float on, match:initial_class brave-nngceckbapebfimnlniiiahkandclblb-Default"
-      "float on, match:initial_class brave-web.whatsapp.com__-Default"
-      "float on, match:initial_class brave-mail.google.com__chat_-A3"
+
       # drawing
       "no_blur on, no_shadow on, opacity 1 override 1 override, size (monitor_w*1) (monitor_h*1), match:class ^Gromit-mpx$"
 

@@ -31,14 +31,8 @@
       inherit (self) outputs;
 
       settings = import ./settings.nix;
-      lib = nixpkgs.lib.extend (
-        self: super: {
-          custom = import ./lib {
-            inherit (nixpkgs) lib;
-            inherit inputs;
-          };
-        }
-      );
+
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
 
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
@@ -93,78 +87,47 @@
           };
         };
 
-        pve-vault = lib.nixosSystem {
-          modules = [
-            ./hosts/pve/vault/configuration.nix
-            inputs.home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-            inputs.stylix.nixosModules.stylix
-            inputs.disko.nixosModules.disko
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-          ];
-          specialArgs = {
-            inherit settings;
-            inherit inputs outputs;
-          };
+      }
+      // lib.custom.scanPveHosts {
+        specialArgs = {
+          inherit settings lib;
+          inherit inputs outputs;
         };
-        pve-git = lib.nixosSystem {
-          modules = [
-            ./hosts/pve/git/configuration.nix
-            inputs.home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-            inputs.stylix.nixosModules.stylix
-            inputs.disko.nixosModules.disko
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-          ];
-          specialArgs = {
-            inherit settings;
-            inherit inputs outputs;
-          };
-        };
-
-        pve-mine = lib.nixosSystem {
-          modules = [
-            ./hosts/pve/mine/configuration.nix
-            # inputs.home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-            inputs.disko.nixosModules.disko
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-          ];
-          specialArgs = {
-            inherit settings;
-            inherit inputs outputs;
-          };
-        };
-
+        extraModules = [
+          inputs.home-manager.nixosModules.home-manager
+          inputs.sops-nix.nixosModules.sops
+          inputs.stylix.nixosModules.stylix
+          inputs.disko.nixosModules.disko
+        ];
       };
-      packages."x86_64-linux" = {
-        proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          format = "proxmox-lxc";
-          modules = [
-            ./hosts/pve-lxc-template/configuration.nix
-            inputs.home-manager.nixosModules.home-manager
-          ];
-          specialArgs = {
-            # myExtraArg = "foobar";
-            inherit settings;
-            inherit inputs outputs;
-          };
-        };
-        proxmox-vma-template = inputs.nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          format = "proxmox";
-          modules = [
-            ./hosts/pve-vma/configuration.nix
-            inputs.home-manager.nixosModules.home-manager
-          ];
-          specialArgs = {
-            # myExtraArg = "foobar";
-            inherit settings;
-            inherit inputs outputs;
-          };
-        };
-      };
+      # packages."x86_64-linux" = {
+      #   proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
+      #     system = "x86_64-linux";
+      #     format = "proxmox-lxc";
+      #     modules = [
+      #       ./hosts/__bkp__/pve-lxc-template/configuration.nix
+      #       inputs.home-manager.nixosModules.home-manager
+      #     ];
+      #     specialArgs = {
+      #       # myExtraArg = "foobar";
+      #       inherit settings;
+      #       inherit inputs outputs;
+      #     };
+      #   };
+      #   proxmox-vma-template = inputs.nixos-generators.nixosGenerate {
+      #     system = "x86_64-linux";
+      #     format = "proxmox";
+      #     modules = [
+      #       ./hosts/__bkp__/pve-vma/configuration.nix
+      #       inputs.home-manager.nixosModules.home-manager
+      #     ];
+      #     specialArgs = {
+      #       # myExtraArg = "foobar";
+      #       inherit settings;
+      #       inherit inputs outputs;
+      #     };
+      #   };
+      # };
     };
 
   inputs = {

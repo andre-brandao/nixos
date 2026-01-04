@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 rec {
   # use path relative to the root of the project
   relativeToRoot = lib.path.append ../.;
@@ -7,23 +7,38 @@ rec {
 
   relativeToNixOSModules = lib.path.append ../modules/nixos;
 
-  pve-nixosSystem =
-    host:
+  pveNixVM =
+    {
+      host,
+      specialArgs,
+      extraModules,
+    }:
     lib.nixosSystem {
       modules = [
-        ../hosts/${host}/configuration.nix
-        inputs.home-manager.nixosModules.home-manager
-        inputs.sops-nix.nixosModules.sops
-        inputs.stylix.nixosModules.stylix
-        inputs.disko.nixosModules.disko
+        ../hosts/pve/${host}/configuration.nix
         { nixpkgs.hostPlatform = "x86_64-linux"; }
-      ];
-      specialArgs = {
-        inherit host;
-      };
+      ]
+      ++ extraModules;
+      inherit specialArgs;
     };
 
   # Scans ../hosts/pve/ folder and creates an dict of nixosSystems for each host (pve-*) using the above function to create each system
+  scanPveHosts =
+    {
+      specialArgs,
+      extraModules,
+    }:
+    lib.pipe (builtins.readDir ../hosts/pve) [
+      (lib.attrsets.filterAttrs (_path: type: type == "directory"))
+      (lib.mapAttrsToList (key: value: key))
+      (builtins.map (host: {
+        name = "pve-${host}";
+        value = pveNixVM {
+          inherit host specialArgs extraModules;
+        };
+      }))
+      builtins.listToAttrs
+    ];
 
   # Imports any .nix file in the specific directory, and any folder. Note this
   # means that a folder containing `default.nix` and other *.nix files is expected

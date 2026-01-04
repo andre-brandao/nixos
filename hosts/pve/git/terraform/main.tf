@@ -63,7 +63,7 @@ resource "proxmox_virtual_environment_vm" "nixos_vm" {
 module "system-build" {
   source = "github.com/nix-community/nixos-anywhere//terraform/nix-build"
   # with flakes
-  attribute = "../../#nixosConfigurations.pve-git.config.system.build.toplevel"
+  attribute = "../../../../#nixosConfigurations.pve-git.config.system.build.toplevel"
   # without flakes
   # file can use (pkgs.nixos []) function from nixpkgs
   #file                = "${path.module}/../.."
@@ -74,7 +74,7 @@ module "system-build" {
 module "disko" {
   source = "github.com/nix-community/nixos-anywhere//terraform/nix-build"
   # with flakes
-  attribute = "../../#nixosConfigurations.pve-git.config.system.build.diskoScript"
+  attribute = "../../../../#nixosConfigurations.pve-git.config.system.build.diskoScript"
   # without flakes
   # file can use (pkgs.nixos []) function from nixpkgs
   #file           = "${path.module}/../.."
