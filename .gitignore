@@ -1,4 +1,13 @@
 ignore.nix
 aws
-variables.nix
 result
+tmp
+#.envrc
+.direnv
+.env
+.terraform
+
+terraform_oracle
+vault-secrets
+
+local.tfvars

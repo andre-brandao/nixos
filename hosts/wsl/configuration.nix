@@ -10,7 +10,7 @@
   lib,
   pkgs,
   inputs,
-  userSettings,
+  settings,
   ...
 }:
 
@@ -39,7 +39,7 @@
 
   wsl = {
     enable = true;
-    defaultUser = userSettings.username;
+    defaultUser = settings.username;
     docker-desktop.enable = true;
   };
 
@@ -51,7 +51,7 @@
     git
   ];
   programs.zsh.enable = true;
-  users.users.${userSettings.username} = {
+  users.users.${settings.username} = {
     shell = pkgs.zsh;
   };
 

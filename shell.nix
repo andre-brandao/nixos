@@ -1,14 +1,28 @@
 {
-  pkgs ? (import ./nixpkgs.nix) { },
+  pkgs ?
+    let
+      lock = (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.nixpkgs.locked;
+      nixpkgs = fetchTarball {
+        url = "https://github.com/nixos/nixpkgs/archive/${lock.rev}.tar.gz";
+        sha256 = lock.narHash;
+      };
+    in
+    import nixpkgs { overlays = [ ]; },
 }:
 {
   default = pkgs.mkShell {
     NIX_CONFIG = "experimental-features = nix-command flakes";
     nativeBuildInputs = with pkgs; [
       nix
-      home-manager
+      # home-manager
       git
       neovim
+      sops
+      vault
+      opentofu
+      (writeShellScriptBin "build-iso" ''
+        nix build .#nixosConfigurations.iso.config.system.build.isoImage
+      '')
     ];
   };
 }

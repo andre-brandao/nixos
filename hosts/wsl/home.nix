@@ -3,13 +3,13 @@
   config,
   pkgs,
   dconf,
-  userSettings,
+  settings,
   ...
 }:
 {
   # Home Manager needs a bit of information about you and the paths it should
-  home.username = userSettings.username;
-  home.homeDirectory = "/home/" + userSettings.username;
+  home.username = settings.username;
+  home.homeDirectory = "/home/" + settings.username;
   programs.home-manager.enable = true;
   imports = [
     # STYLES

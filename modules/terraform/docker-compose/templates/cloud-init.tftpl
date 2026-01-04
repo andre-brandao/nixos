@@ -1,0 +1,42 @@
+#cloud-config
+hostname: ${hostname}
+timezone: ${timezone}
+users:
+  - default
+  - name: docker
+    groups:
+      - sudo
+    shell: /bin/bash
+    ssh_authorized_keys:
+%{ for key in ssh_keys ~}
+      - ${key}
+%{ endfor ~}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+package_update: true
+
+packages:
+  - qemu-guest-agent
+  - net-tools
+  - curl
+%{ for package in additional_packages ~}
+  - ${package}
+%{ endfor ~}
+
+runcmd:
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+  - apt install -y ca-certificates curl
+  - install -m 0755 -d /etc/apt/keyrings
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  - chmod a+r /etc/apt/keyrings/docker.asc
+  - echo "Types: deb" > /etc/apt/sources.list.d/docker.sources
+  - echo "URIs: https://download.docker.com/linux/ubuntu" >> /etc/apt/sources.list.d/docker.sources
+  - echo "Suites: $(. /etc/os-release && echo "$${UBUNTU_CODENAME:-$VERSION_CODENAME}")" >> /etc/apt/sources.list.d/docker.sources
+  - echo "Components: stable" >> /etc/apt/sources.list.d/docker.sources
+  - echo "Signed-By: /etc/apt/keyrings/docker.asc" >> /etc/apt/sources.list.d/docker.sources
+  - apt update
+  - apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  - usermod -aG docker docker
+  - echo "done" > /tmp/cloud-config.done
+  - reboot

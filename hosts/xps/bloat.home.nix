@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
 
   home.packages =
@@ -46,7 +46,7 @@
       # waveterm
       #       claude-code
     ])
-    ++ (with pkgs-unstable; [
+    ++ (with pkgs.unstable; [
       # zed-editor
       # jetbrains.webstorm
       jetbrains-toolbox
