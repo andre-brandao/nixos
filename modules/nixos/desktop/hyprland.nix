@@ -8,7 +8,7 @@
   imports = [
     ./extras/fonts.nix
     ./extras/others.nix
-    ./extras/ags.nix
+    ../services/ags.nix
   ];
 
   services = {
