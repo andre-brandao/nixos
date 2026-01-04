@@ -15,8 +15,9 @@
     }:
     let
 
-      forAllSystems = nixpkgs.lib.genAttrs (import systems);
+      forAllSystems = pkgs: nixpkgs.lib.genAttrs (import systems);
       pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
+      # pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
     in
     {
       packages = forAllSystems (

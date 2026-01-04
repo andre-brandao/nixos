@@ -8,4 +8,9 @@
       - Run `poetry run python -m sample_package`
     '';
   };
+
+  latexmk = {
+    path = ./latexmk;
+    description = "A simple LaTeX template for writing documents with latexmk";
+  };
 }

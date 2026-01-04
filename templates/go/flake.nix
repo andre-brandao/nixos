@@ -1,5 +1,6 @@
 {
-  description = "A simple LaTeX template for writing documents with latexmk";
+  description = "Go Template";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
@@ -7,9 +8,9 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       systems,
+      ...
     }:
     let
       forEachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f pkgsFor.${system});
@@ -22,11 +23,27 @@
       );
     in
     {
-      # packages = forAllSystems (system: {
-      #   default = pkgs.${system}.callPackage ./default.nix { };
-      # });
+      devShells = forEachSystem (pkgs: {
+        default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            go
+            gopls
+          ];
+
+          buildInputs = with pkgs; [ ];
+        };
+      });
       packages = forEachSystem (pkgs: {
-        default = pkgs.callPackage ./default.nix { };
+        default = pkgs.buildGoModule {
+          pname = "template";
+          version = "0.1.0";
+
+          src = ./.;
+
+          buildInputs = with pkgs; [ ];
+
+          vendorHash = null;
+        };
       });
     };
 }

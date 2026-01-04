@@ -1,7 +1,7 @@
 ignore.nix
 aws
 result
-
+tmp
 #.envrc
 .direnv
 .env
