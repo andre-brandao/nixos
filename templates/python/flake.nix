@@ -14,35 +14,27 @@
       poetry2nix,
     }:
     let
-
-      forAllSystems = pkgs: nixpkgs.lib.genAttrs (import systems);
-      pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
-      # pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
+      forAllSystems = f: nixpkgs.lib.foldl' nixpkgs.lib.recursiveUpdate { } (map f (import systems));
     in
-    {
-      packages = forAllSystems (
-        system:
-        let
-          inherit (poetry2nix.lib.mkPoetry2Nix { pkgs = pkgs.${system}; }) mkPoetryApplication;
-        in
-        {
-          default = mkPoetryApplication { projectDir = self; };
-        }
-      );
+    forAllSystems (
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+        inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
+      in
+      {
 
-      devShells = forAllSystems (
-        system:
-        let
-          inherit (poetry2nix.lib.mkPoetry2Nix { pkgs = pkgs.${system}; }) mkPoetryEnv;
-        in
-        {
-          default = pkgs.${system}.mkShellNoCC {
-            packages = with pkgs.${system}; [
-              (mkPoetryEnv { projectDir = self; })
-              poetry
-            ];
-          };
-        }
-      );
-    };
+        packages.${system}.default = mkPoetryApplication { projectDir = self; };
+
+        devShells.${system}.default = pkgs.mkShellNoCC {
+          packages = with pkgs; [
+            (mkPoetryApplication { projectDir = self; })
+            poetry
+          ];
+        };
+
+      }
+    );
 }

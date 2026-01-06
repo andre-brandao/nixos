@@ -79,6 +79,30 @@
       dnssec = "false";
     };
   };
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024; # 32GB in MB
+    }
+  ];
+  boot.kernelParams = [
+    "resume_offset=14204928"
+    "mem_sleep_default=deep"
+  ];
+
+  boot.resumeDevice = "/dev/disk/by-uuid/4b1ea965-befe-439d-9e3d-d84bdc35bae0";
+
+  powerManagement.enable = true;
+  services.power-profiles-daemon.enable = true;
+  # Suspend first then hibernate when closing the lid
+  services.logind.lidSwitch = "suspend-then-hibernate";
+  # Hibernate on power button pressed
+  services.logind.powerKey = "hibernate";
+  services.logind.powerKeyLongPress = "poweroff";
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
   # cross compilation for aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

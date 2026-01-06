@@ -48,6 +48,7 @@
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       overlays = import ./overlays { inherit inputs outputs settings; };
       templates = import ./templates;
+      lib = import ./lib { inherit (nixpkgs) lib; };
 
       nixosConfigurations = {
         xps = lib.nixosSystem {

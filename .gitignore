@@ -11,3 +11,4 @@ terraform_oracle
 vault-secrets
 
 local.tfvars
+bun/

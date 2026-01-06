@@ -13,37 +13,36 @@
       ...
     }:
     let
-      forEachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = nixpkgs.lib.genAttrs (import systems) (
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      );
-    in
-    {
-      devShells = forEachSystem (pkgs: {
-        default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            go
-            gopls
-          ];
+      forAllSystems = f: nixpkgs.lib.foldl' nixpkgs.lib.recursiveUpdate { } (map f (import systems));
 
-          buildInputs = with pkgs; [ ];
+    in
+    forAllSystems (
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
         };
-      });
-      packages = forEachSystem (pkgs: {
-        default = pkgs.buildGoModule {
+        nativeBuildInputs = with pkgs; [
+          go
+          gopls
+        ];
+        buildInputs = with pkgs; [ ];
+      in
+
+      {
+        packages.${system}.default = pkgs.buildGoModule {
           pname = "template";
           version = "0.1.0";
 
           src = ./.;
 
-          buildInputs = with pkgs; [ ];
+          inherit buildInputs;
 
           vendorHash = null;
+
         };
-      });
-    };
+
+        devShells.${system}.default = pkgs.mkShell { inherit nativeBuildInputs buildInputs; };
+      }
+    );
 }

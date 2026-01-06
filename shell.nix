@@ -18,11 +18,13 @@
       git
       neovim
       sops
-      vault
+      # vault
       opentofu
       (writeShellScriptBin "build-iso" ''
         nix build .#nixosConfigurations.iso.config.system.build.isoImage
       '')
+
+      (import ./pkgs/template-cli { inherit pkgs; })
     ];
   };
 }
