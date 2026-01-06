@@ -12,18 +12,19 @@
       systems,
     }:
     let
-      forEachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = nixpkgs.lib.genAttrs (import systems) (
-        system:
-        import nixpkgs {
+      forAllSystems = f: nixpkgs.lib.foldl' nixpkgs.lib.recursiveUpdate { } (map f (import systems));
+    in
+    forAllSystems (
+      system:
+      let
+        pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-        }
-      );
-    in
-    {
-      packages = forEachSystem (pkgs: {
-        default = pkgs.callPackage ./default.nix { };
-      });
-    };
+        };
+      in
+
+      {
+        packages.${system}.default = pkgs.callPackage ./default.nix { };
+      }
+    );
 }
