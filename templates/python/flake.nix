@@ -1,7 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    poetry2nix.url = "github:nix-community/poetry2nix";
+    poetry2nix = {
+      url = "github:nix-community/poetry2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default";
 
   };
@@ -23,16 +26,27 @@
           inherit system;
         };
         inherit (poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryApplication;
+        myPythonApp = mkPoetryApplication {
+          projectDir = ./.;
+          meta = {
+            mainProgram = "sample_package";
+          };
+        };
       in
       {
 
-        packages.${system}.default = mkPoetryApplication { projectDir = self; };
+        packages.${system}.default = myPythonApp;
 
         devShells.${system}.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
-            (mkPoetryApplication { projectDir = self; })
+            myPythonApp
             poetry
           ];
+        };
+
+        apps.${system}.default = {
+          type = "app";
+          program = "${nixpkgs.lib.getExe myPythonApp}";
         };
 
       }

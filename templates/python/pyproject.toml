@@ -1,13 +1,17 @@
 [tool.poetry]
-name = "sample-project"
+name = "sample_package"
 version = "0.1.0"
 description = ""
 authors = ["Author Name <author@example.com>"]
 # readme = "README.md"
 # license = "BSD"
+
 packages = [
   { include = "sample_package" }
 ]
+
+[tool.poetry.scripts]
+sample_package = "sample_package:main"
 
 [tool.poetry.dependencies]
 python = "^3.10"
