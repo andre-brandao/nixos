@@ -40,7 +40,7 @@
           server-port = 25565;
           difficulty = 3;
           gamemode = 0;
-          max-players = 5;
+          max-players = 10;
           motd = "Turtle mine server!";
           # white-list = true;
           # allow-cheats = false;
@@ -52,12 +52,9 @@
 
         };
         jvmOpts =
-          let
-            memory = builtins.toString (8 * 1024);
-          in
           # "-Xms${memory}"
           # "-Xmx${memory}"
-          "-Xms6G -Xmx6G";
+          "-Xms12G -Xmx12G";
         symlinks = {
           mods = pkgs.linkFarmFromDrvs "mods" (
             builtins.attrValues {
