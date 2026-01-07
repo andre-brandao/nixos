@@ -1,0 +1,27 @@
+{
+  "name": "otel",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "start": "bun --bun --preload ./src/instrument.ts ./src/cluster.ts",
+    "postinstall": "bun2nix -o bun.nix"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.67.3",
+    "@opentelemetry/context-zone": "^2.2.0",
+    "@opentelemetry/instrumentation-document-load": "^0.54.0",
+    "@opentelemetry/sdk-metrics": "^2.2.0",
+    "@opentelemetry/sdk-node": "^0.208.0",
+    "@opentelemetry/sdk-trace-node": "^2.2.0",
+    "@opentelemetry/sdk-trace-web": "^2.2.0"
+  }
+}

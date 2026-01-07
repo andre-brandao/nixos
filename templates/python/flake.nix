@@ -35,7 +35,16 @@
       in
       {
 
-        packages.${system}.default = myPythonApp;
+        packages.${system} = {
+          default = myPythonApp;
+          docker-image = pkgs.dockerTools.buildImage {
+            name = "my-python-app";
+            # tag = "latest";
+            config = {
+              Cmd = [ "${nixpkgs.lib.getExe myPythonApp}" ];
+            };
+          };
+        };
 
         devShells.${system}.default = pkgs.mkShellNoCC {
           packages = with pkgs; [

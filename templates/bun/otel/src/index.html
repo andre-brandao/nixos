@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="document-load.ts"></script>
+    <title>Roll Dice</title>
+
+    <meta name="traceparent" content="TRACE_ID" />
+  </head>
+  <body>
+    <h1>Roll a Dice</h1>
+    <button id="rollButton">Roll Dice</button>
+    <label for="numRools">
+      N Rolls
+      <input id="numRools" type="text" value="4" />
+    </label>
+    <p id="result"></p>
+
+    <script>
+      document
+        .getElementById('rollButton')
+        .addEventListener('click', async () => {
+          const numRools = document.getElementById('numRools').value
+          const url = new URL('/rolldice', window.location.origin)
+          url.searchParams.append('rolls', numRools)
+          console.log('Fetching', url.toString())
+          const response = await fetch(url)
+          const result = await response.text()
+          document.getElementById('result').innerText = 'You rolled: ' + result
+        })
+    </script>
+  </body>
+</html>
