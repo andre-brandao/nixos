@@ -85,6 +85,8 @@
       size = 32 * 1024; # 32GB in MB
     }
   ];
+
+  # ---- deep sleep ----
   boot.kernelParams = [
     "resume_offset=14204928"
     "mem_sleep_default=deep"
@@ -103,8 +105,36 @@
     HibernateDelaySec=30m
     SuspendState=mem
   '';
+
+  # ---- deep sleep ----
   # cross compilation for aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+
+  security.sudo.extraRules = [
+    {
+      users = [ "andre" ]; # Replace with your username
+      commands = [
+        {
+          command = "/opt/sst/tunnel tunnel start *";
+          options = [
+            "NOPASSWD"
+            "SETENV"
+          ];
+        }
+      ];
+    }
+  ];
+
+  # --- sst ---
+  systemd.tmpfiles.rules = [
+    "d /opt/sst 0755 root root -"
+  ];
+
+  # system.activationScripts.sstTunnel = ''
+  #   mkdir -p /opt/sst
+  #   chmod 755 /opt/sst
+  # '';
+  #  --- sst ---
   system.stateVersion = "23.11";
 }

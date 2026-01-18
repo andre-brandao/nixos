@@ -85,7 +85,7 @@
       initialClass = "brave-claude.ai__new_-Default";
       class = "brave-claude.ai__new_-Default";
       command = "brave --profile-directory=Default --app=https://claude.ai/new/";
-      size = "45% 85%";
+      size = "90% 90%";
       bind = "$mainMod,C";
       lazy = true;
     }
