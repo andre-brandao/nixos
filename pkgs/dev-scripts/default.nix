@@ -21,8 +21,8 @@ let
       pkgs ? [ ],
     }:
     ''
-      cp ${name}.sh $out/bin/${name}.sh
-      wrapProgram $out/bin/${name}.sh --prefix PATH : ${lib.makeBinPath (basePkgs ++ pkgs)}
+      cp ${name}.sh $out/bin/${name}
+      wrapProgram $out/bin/${name} --prefix PATH : ${lib.makeBinPath (basePkgs ++ pkgs)}
     '';
 in
 stdenv.mkDerivation {
@@ -38,7 +38,7 @@ stdenv.mkDerivation {
       name = "templates";
       pkgs = [ jq ];
     }}
+    ${mkDevScript { name = "branches"; }}
+    ${mkDevScript { name = "stage"; }}
   '';
-  # cp commit.sh $out/bin/commit.sh
-  # wrapProgram $out/bin/commit.sh --prefix PATH : ${lib.makeBinPath basePkgs}
 }

@@ -24,7 +24,7 @@
         nix build .#nixosConfigurations.iso.config.system.build.isoImage
       '')
 
-      (import ./pkgs/template-cli { inherit pkgs; })
+      (callPackage ./pkgs/dev-scripts { })
     ];
   };
 }
