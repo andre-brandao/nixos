@@ -6,27 +6,39 @@
   makeWrapper,
   gum,
   git,
+  jq,
 }:
-stdenv.mkDerivation {
-  pname = "github-downloader";
-  version = "08049f6";
-  src = ./.;
-  buildInputs = [
+let
+  basePkgs = [
     bash
     git
     gum
   ];
+
+  mkDevScript =
+    {
+      name,
+      pkgs ? [ ],
+    }:
+    ''
+      cp ${name}.sh $out/bin/${name}.sh
+      wrapProgram $out/bin/${name}.sh --prefix PATH : ${lib.makeBinPath (basePkgs ++ pkgs)}
+    '';
+in
+stdenv.mkDerivation {
+  pname = "dev-scripts";
+  version = "4.2.0";
+  src = ./.;
+  buildInputs = basePkgs;
   nativeBuildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir -p $out/bin
-    cp commit.sh $out/bin/commit.sh
-    wrapProgram $out/bin/commit.sh \
-      --prefix PATH : ${
-        lib.makeBinPath [
-          bash
-          git
-          gum
-        ]
-      }
+    ${mkDevScript { name = "commit"; }}
+    ${mkDevScript {
+      name = "templates";
+      pkgs = [ jq ];
+    }}
   '';
+  # cp commit.sh $out/bin/commit.sh
+  # wrapProgram $out/bin/commit.sh --prefix PATH : ${lib.makeBinPath basePkgs}
 }
