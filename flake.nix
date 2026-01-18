@@ -49,6 +49,9 @@
       overlays = import ./overlays { inherit inputs outputs settings; };
       templates = import ./templates;
       lib = import ./lib { inherit (nixpkgs) lib; };
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+
+      # packages
 
       nixosConfigurations = {
         xps = lib.nixosSystem {
