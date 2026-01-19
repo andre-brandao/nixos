@@ -25,7 +25,7 @@
     # ../../system/style/stylix.nix
     (fetchTarball {
       url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
-      sha256 = "09j4kvsxw1d5dvnhbsgih0icbrxqv90nzf0b589rb5z6gnzwjnqf";
+      sha256 = "sha256:1rdn70jrg5mxmkkrpy2xk8lydmlc707sk0zb35426v1yxxka10by";
 
     })
   ];
