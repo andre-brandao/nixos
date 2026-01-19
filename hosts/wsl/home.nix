@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  lib,
   dconf,
   settings,
   ...
@@ -11,19 +12,31 @@
   home.username = settings.username;
   home.homeDirectory = "/home/" + settings.username;
   programs.home-manager.enable = true;
-  imports = [
-    # STYLES
-    # ../../user/style/stylix.nix # Styling and themes for my apps
-    # ../../user/style/gtk.nix # My gtk config
+  # imports = [
+  #   # STYLES
+  #   # ../../user/style/stylix.nix # Styling and themes for my apps
+  #   # ../../user/style/gtk.nix # My gtk config
 
-    # DESKTOP
-    # ../../user/app/lf
-    ../../user/app/git/git.nix
-    ../../user/shell/shell.nix
-    # ../../user/shell/cli-collection.nix
+  #   # DESKTOP
+  #   # ../../user/app/lf
+  #   ../../user/app/git/git.nix
+  #   ../../user/shell/shell.nix
+  #   # ../../user/shell/cli-collection.nix
 
-    # ../../user/app/editor/helix
-  ];
+  #   # ../../user/app/editor/helix
+  # ];
+
+  imports = (
+    map lib.custom.relativeToHomeModules [
+      "style.nix"
+      "terminal/shell"
+      "terminal/programs/lf"
+      "terminal/programs/nix.nix"
+      "terminal/programs/git.nix"
+      "terminal/programs/zoxide.nix"
+      "programs/editors/helix"
+    ]
+  );
   home.packages = with pkgs; [
     devenv
   ];

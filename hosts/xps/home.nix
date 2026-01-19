@@ -110,7 +110,7 @@
       git
       zsh
       # protonmail-desktop
-      # godot
+      godot
       gum
       rclone
       (wineWowPackages.full.override {
@@ -118,6 +118,8 @@
         mingwSupport = true;
       })
       winetricks
+
+      # (callPackage ../../pkgs/dev-scripts { })
     ]);
 
   home.sessionVariables =

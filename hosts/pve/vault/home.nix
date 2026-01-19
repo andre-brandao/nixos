@@ -7,7 +7,7 @@
 {
   imports = (
     map lib.custom.relativeToHomeModules [
-      "shell/shell.nix"
+      "terminal/shell"
     ]
   );
 
