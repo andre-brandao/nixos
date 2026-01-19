@@ -74,7 +74,7 @@
           specialArgs = {
             # inherit pkgs-unstable;
             inherit settings;
-            inherit inputs outputs;
+            inherit inputs outputs lib;
           };
         };
         # nix build .#nixosConfigurations.iso.config.system.build.isoImage
@@ -158,7 +158,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
