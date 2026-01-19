@@ -69,6 +69,7 @@
         wsl = lib.nixosSystem {
           modules = [
             ./hosts/wsl/configuration.nix
+            inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
           ];
           specialArgs = {
