@@ -159,7 +159,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.11";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
