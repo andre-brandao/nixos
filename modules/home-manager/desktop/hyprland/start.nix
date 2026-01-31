@@ -23,7 +23,10 @@
 
       # "nm-applet --indicator"
       "uwsm app -- protonmail-bridge --noninteractive"
+
       "systemctl --user start elephant.service"
+      "walker --gapplication-service"
+
       "tailscale systray"
       # "uwsm app -- marble"
       # "uwsm app -- marble-launcher"

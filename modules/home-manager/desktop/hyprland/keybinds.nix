@@ -26,6 +26,22 @@ in
       # "$mainMod,         RETURN,    exec,    ${launcher}"
       # "$mainMod,         R,         exec,    walker --width 700 --height 600"
       # "$mainMod,         J,         exec,    rofi -show window -show-icons"
+      # VIM NAVIGATION
+      "$mainMod,         H,         layoutmsg, focus left"
+      "$mainMod,         J,         layoutmsg, focus down"
+      "$mainMod,         K,         layoutmsg, focus up"
+      "$mainMod,         L,         layoutmsg, focus right"
+      "$mainMod SHIFT,   H,         layoutmsg, movewindowto l"
+      "$mainMod SHIFT,   K,         layoutmsg, movewindowto u"
+      "$mainMod SHIFT,   J,         layoutmsg, movewindowto d"
+      "$mainMod SHIFT,   L,         layoutmsg, movewindowto r"
+
+      "$mainMod,         period,    layoutmsg, move +col"
+      "$mainMod,         comma,     layoutmsg, move -col"
+      "$mainMod SHIFT,   period,    layoutmsg, movewindowto r"
+      "$mainMod SHIFT,   comma,     layoutmsg, movewindowto l"
+      # "$mainMod SHIFT, up, layoutmsg, movewindowto u"
+      # "$mainMod SHIFT, down, layoutmsg, movewindowto d"
 
       "SUPER,            P,         exec,    ${monitor-toggle}"
       # "$mainMod,         RETURN,    exec,    marble-launcher --open"
@@ -42,12 +58,6 @@ in
       "$mainMod,         M,         exec,    hyprctl keyword general:layout master"
       "$mainMod,         S,         exec,    hyprctl keyword general:layout scrolling"
 
-      "$mainMod, period, layoutmsg, move +col"
-      "$mainMod, comma, layoutmsg, move -col"
-      "$mainMod SHIFT, period, layoutmsg, movewindowto r"
-      "$mainMod SHIFT, comma, layoutmsg, movewindowto l"
-      # "$mainMod SHIFT, up, layoutmsg, movewindowto u"
-      # "$mainMod SHIFT, down, layoutmsg, movewindowto d"
       # LAUNCHERS
       # ZOOM
       "$mainMod,         Z,         exec,    pypr zoom ++0.5"
