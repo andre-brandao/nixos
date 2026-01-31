@@ -73,6 +73,13 @@
         gesture_distance = 300; # how far is the "max"
         gesture_positive = false; # positive = swipe down. Negative = swipe up.
       };
+      hyprscrolling = {
+        column_width = 0.7;
+        fullscreen_on_one_column = true;
+        focus_fit_method = 0; # 0 - center, 1 - fit
+        follow_debounce_ms = 50;
+      };
+
       #     # overview = {
 
       #     # };

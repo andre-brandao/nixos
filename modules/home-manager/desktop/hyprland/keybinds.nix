@@ -20,9 +20,13 @@ in
 {
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
+    bindr = [ "SUPER, SUPER_L, exec, pkill ${launcher} || ${launcher}" ];
     bind = [
       # HYPR CONTROLS
-      "$mainMod,         RETURN,    exec,    ${launcher}"
+      # "$mainMod,         RETURN,    exec,    ${launcher}"
+      # "$mainMod,         R,         exec,    walker --width 700 --height 600"
+      # "$mainMod,         J,         exec,    rofi -show window -show-icons"
+
       "SUPER,            P,         exec,    ${monitor-toggle}"
       # "$mainMod,         RETURN,    exec,    marble-launcher --open"
       # "$CTRL     SHIFT,  R,         exec,    astal -i marble -q; marble"
@@ -36,9 +40,15 @@ in
       "$mainMod,         B,                  changegroupactive, b"
       "$mainMod,         D,         exec,    hyprctl keyword general:layout dwindle"
       "$mainMod,         M,         exec,    hyprctl keyword general:layout master"
+      "$mainMod,         S,         exec,    hyprctl keyword general:layout scrolling"
+
+      "$mainMod, period, layoutmsg, move +col"
+      "$mainMod, comma, layoutmsg, move -col"
+      "$mainMod SHIFT, period, layoutmsg, movewindowto r"
+      "$mainMod SHIFT, comma, layoutmsg, movewindowto l"
+      # "$mainMod SHIFT, up, layoutmsg, movewindowto u"
+      # "$mainMod SHIFT, down, layoutmsg, movewindowto d"
       # LAUNCHERS
-      "$mainMod,         R,         exec,    walker --width 700 --height 600"
-      "$mainMod,         J,         exec,    rofi -show window -show-icons"
       # ZOOM
       "$mainMod,         Z,         exec,    pypr zoom ++0.5"
       "$mainMod  SHIFT,  Z,         exec,    pypr zoom"
@@ -49,7 +59,7 @@ in
       "ALT,              Tab,                bringactivetotop,"
       # "ALT SHIFT, Tab,                     cycleprev,"
       # "ALT SHIFT, Tab,                     bringactivetotop,"
-      '',                Print,     exec,    ${screenshot}'' # print screen
+      ",                Print,     exec,    ${screenshot}" # print screen
       "$mainMod,         Print,     exec,    hyprpicker -a -f hex" # color picker
 
       "SUPERALT,         G,                  togglespecialworkspace, gromit"

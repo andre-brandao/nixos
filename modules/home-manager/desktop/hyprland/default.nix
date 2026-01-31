@@ -83,10 +83,10 @@
 
         "col.inactive_border" = "0x33${config.lib.stylix.colors.base03}";
         "col.active_border" =
-          ''0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+          "0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg";
 
         # layout = "dwindle";
-        layout = "master";
+        layout = "scrolling";
 
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
         allow_tearing = false;
@@ -152,7 +152,7 @@
         # BORDERS
         "col.border_inactive" = "0x33${config.lib.stylix.colors.base03}";
         "col.border_active" =
-          ''0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg'';
+          "0xff${config.lib.stylix.colors.base0B} 0xff${config.lib.stylix.colors.base0C} 45deg";
 
         groupbar = {
           enabled = true;
@@ -190,12 +190,12 @@
 
       "$scratchpadsize" = "size 80% 85%";
       "$scratchpad" = "class:^(scratchpad)$";
-      windowrulev2 = [
-        "float,$scratchpad"
-        "$scratchpadsize,$scratchpad"
-        "workspace special silent,$scratchpad"
-        "center,$scratchpad"
-      ];
+      # windowrulev2 = [
+      #   "float,$scratchpad"
+      #   "$scratchpadsize,$scratchpad"
+      #   "workspace special silent,$scratchpad"
+      #   "center,$scratchpad"
+      # ];
 
       binds = {
         allow_workspace_cycles = true;

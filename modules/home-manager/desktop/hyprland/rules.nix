@@ -14,8 +14,9 @@
 
       #these apps will open on the specified workspace when you firt open them
       "8, on-created-empty:discord"
-      "9, on-created-empty:thunderbird"
+      # "9, on-created-empty:thunderbird"
       # "special:exposed,gapsout:60,gapsin:30,bordersize:5,border:true,shadow:false"
+      # "2, layoutopt:orientation:top"
 
       # # Smart gaps
       "w[tv1]s[false], gapsout:0, gapsin:0"

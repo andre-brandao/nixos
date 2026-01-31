@@ -44,7 +44,7 @@
       lazy = true;
       size = "45% 85%";
       unfocus = "hide";
-      bind = "$mainMod,S";
+      bind = "ALT,S";
     }
     {
       name = "whatsapp";
