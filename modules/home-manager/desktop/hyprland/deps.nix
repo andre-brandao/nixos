@@ -9,7 +9,7 @@
     # hyprpaper
     pyprland
     cliphist
-    syshud
+    # syshud
     swww
 
     blueberry

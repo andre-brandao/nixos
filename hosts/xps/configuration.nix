@@ -97,10 +97,10 @@
   powerManagement.enable = true;
   services.power-profiles-daemon.enable = true;
   # Suspend first then hibernate when closing the lid
-  services.logind.lidSwitch = "suspend-then-hibernate";
+  services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
   # Hibernate on power button pressed
-  services.logind.powerKey = "hibernate";
-  services.logind.powerKeyLongPress = "poweroff";
+  services.logind.settings.Login.HandlePowerKey = "hibernate";
+  services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=30m
     SuspendState=mem

@@ -20,10 +20,13 @@ in
 {
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
-    bindr = [ "SUPER, SUPER_L, exec, pkill ${launcher} || ${launcher}" ];
+    bindr = [
+      # "SUPER, SUPER_L, exec, pkill ${launcher} || ${launcher}"
+      "SUPER, SUPER_L, exec, gpuishell"
+    ];
     bind = [
       # HYPR CONTROLS
-      # "$mainMod,         RETURN,    exec,    ${launcher}"
+      "$mainMod,           R,         exec,    pkill ${launcher} || ${launcher}"
       # "$mainMod,         R,         exec,    walker --width 700 --height 600"
       # "$mainMod,         J,         exec,    rofi -show window -show-icons"
       # VIM NAVIGATION
@@ -49,14 +52,14 @@ in
       # "SUPER,            Tab,       exec,    marble-launcher ':h'"
 
       "$mainMod,         T,                  togglefloating"
-      "$mainMod,         G,                  togglegroup"
       "$mainMod  SHIFT,  F,                  fullscreen"
       "$mainMod,         W,                  killactive"
-      "$mainMod,         N,                  changegroupactive, n"
-      "$mainMod,         B,                  changegroupactive, b"
-      "$mainMod,         D,         exec,    hyprctl keyword general:layout dwindle"
-      "$mainMod,         M,         exec,    hyprctl keyword general:layout master"
-      "$mainMod,         S,         exec,    hyprctl keyword general:layout scrolling"
+      # "$mainMod,         G,                  togglegroup"
+      # "$mainMod,         N,                  changegroupactive, n"
+      # "$mainMod,         B,                  changegroupactive, b"
+      # "$mainMod,         D,         exec,    hyprctl keyword general:layout dwindle"
+      # "$mainMod,         M,         exec,    hyprctl keyword general:layout master"
+      # "$mainMod,         S,         exec,    hyprctl keyword general:layout scrolling"
 
       # LAUNCHERS
       # ZOOM

@@ -14,11 +14,11 @@
       # "systemctl --user import-environment PATH"
       "swww-daemon"
       "swaync -s"
-      "syshud -p right -o v"
+      # "syshud -p right -o v"
       "pypr"
       # "waybar"
       # "uwsm app -- caelestia-shell -d"
-      "uwsm app -- ashell"
+      "uwsm app -- gpuishell"
       "hyprsunset"
 
       # "nm-applet --indicator"

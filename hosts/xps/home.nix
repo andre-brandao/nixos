@@ -70,6 +70,7 @@
       # inputs.dagger.packages.${system}.dagger
       # inputs.quickshell.packages.${system}.default
       # inputs.caelestia.packages.${system}.default
+      inputs.shell.packages.${system}.default
       devenv
       unstable.secretspec
       dagger
@@ -113,11 +114,11 @@
       godot
       gum
       rclone
-      (wineWowPackages.full.override {
-        wineRelease = "staging";
-        mingwSupport = true;
-      })
-      winetricks
+      # (wineWowPackages.full.override {
+      #   wineRelease = "staging";
+      #   mingwSupport = true;
+      # })
+      # winetricks
 
       # (callPackage ../../pkgs/dev-scripts { })
     ]);
