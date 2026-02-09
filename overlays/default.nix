@@ -23,6 +23,8 @@ let
       stable = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = false;
+        config.allowUnfreePredicate =
+          pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) settings.allowUnfree;
       };
 
       # from unstable

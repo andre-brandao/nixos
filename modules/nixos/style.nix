@@ -24,7 +24,7 @@
     # };
 
     # base16Scheme = ./. + themePath;
-    base16Scheme = "${inputs.color-schemes}/base16/irblack.yaml";
+    base16Scheme = "${inputs.color-schemes}/base16/default-dark.yaml";
 
     fonts = {
       sizes = {

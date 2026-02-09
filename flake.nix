@@ -106,34 +106,6 @@
           inputs.disko.nixosModules.disko
         ];
       };
-      # packages."x86_64-linux" = {
-      #   proxmox-lxc-template = inputs.nixos-generators.nixosGenerate {
-      #     system = "x86_64-linux";
-      #     format = "proxmox-lxc";
-      #     modules = [
-      #       ./hosts/__bkp__/pve-lxc-template/configuration.nix
-      #       inputs.home-manager.nixosModules.home-manager
-      #     ];
-      #     specialArgs = {
-      #       # myExtraArg = "foobar";
-      #       inherit settings;
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      #   proxmox-vma-template = inputs.nixos-generators.nixosGenerate {
-      #     system = "x86_64-linux";
-      #     format = "proxmox";
-      #     modules = [
-      #       ./hosts/__bkp__/pve-vma/configuration.nix
-      #       inputs.home-manager.nixosModules.home-manager
-      #     ];
-      #     specialArgs = {
-      #       # myExtraArg = "foobar";
-      #       inherit settings;
-      #       inherit inputs outputs;
-      #     };
-      #   };
-      # };
     };
 
   inputs = {

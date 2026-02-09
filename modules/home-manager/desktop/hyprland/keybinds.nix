@@ -1,7 +1,7 @@
 {
   inputs,
   settings,
-
+  config,
   pkgs,
   lib,
   ...
@@ -16,6 +16,29 @@ let
       ;
   };
   inherit (scripts) launcher screenshot monitor-toggle;
+
+  mkMenu =
+    menu:
+    let
+      inherit (config.lib.stylix.colors.withHashtag) base00 base05 base0D;
+      configFile = pkgs.writeText "config.yaml" (
+        lib.generators.toYAML { } {
+          anchor = "bottom-right";
+          background = base00;
+          color = base05;
+          border = base0D;
+          margin_right = 25;
+          margin_bottom = 25;
+          margin_left = 25;
+          margin_top = 25;
+
+          inherit menu;
+        }
+      );
+    in
+    pkgs.writeShellScriptBin "my-menu" "
+    exec ${lib.getExe pkgs.wlr-which-key} ${configFile}
+  ";
 in
 {
   wayland.windowManager.hyprland.settings = {
@@ -27,6 +50,47 @@ in
     bind = [
       # HYPR CONTROLS
       "$mainMod,           R,         exec,    pkill ${launcher} || ${launcher}"
+      (
+        "$mainMod,         D,         exec, "
+        + lib.getExe (mkMenu [
+          {
+            key = "f";
+            desc = "Firefox";
+            cmd = "firefox";
+          }
+          {
+            key = "t";
+            desc = "Terminal";
+            cmd = "ghostty";
+          }
+          {
+            key = "r";
+            desc = "Remote Desktop";
+            cmd = "remmina";
+          }
+          {
+            key = "p";
+            desc = "Power";
+            submenu = [
+              {
+                key = "s";
+                desc = "Sleep";
+                cmd = "systemctl suspend";
+              }
+              {
+                key = "r";
+                desc = "Reboot";
+                cmd = "reboot";
+              }
+              {
+                key = "o";
+                desc = "Off";
+                cmd = "poweroff";
+              }
+            ];
+          }
+        ])
+      )
       # "$mainMod,         R,         exec,    walker --width 700 --height 600"
       # "$mainMod,         J,         exec,    rofi -show window -show-icons"
       # VIM NAVIGATION
