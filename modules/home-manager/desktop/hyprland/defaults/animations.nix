@@ -30,7 +30,9 @@
         "fade, 1, 4, default"
         # "workspaces, 1, 6, default"
         # "workspaces, 1, 5, wind"
-        "workspaces, 1, 2, default, slide"
+
+        # "workspaces, 1, 2, default, slide" # horizontal slide
+        "workspaces, 1, 2, default, slidevert" # vertical slide
         # "windows, 1, 6, wind, slide"
         "windows, 1, 3, default, popin 80%"
         "specialWorkspace, 1, 6, default, slidefadevert -50%"

@@ -15,7 +15,7 @@
       xtra-dispatchers
     ];
     settings.gesture = [
-      "3, up, dispatcher, hyprexpo:expo, toggle"
+      "4, up, dispatcher, hyprexpo:expo, toggle"
     ];
     settings.bind = [
       "$mainMod, E, hyprexpo:expo, toggle"

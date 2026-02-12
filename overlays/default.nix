@@ -31,7 +31,8 @@ let
       hyprland = unstable.hyprland;
       xdg-desktop-portal-hyprland = unstable.xdg-desktop-portal-hyprland;
       # from inputs
-      devenv = inputs.devenv.packages.${system}.default;
+      # devenv = inputs.devenv.packages.${system}.default;
+      devenv = unstable.devenv;
       dagger = inputs.dagger.packages.${system}.dagger;
       walker = inputs.walker.packages.${system}.walker;
       # elephant =
