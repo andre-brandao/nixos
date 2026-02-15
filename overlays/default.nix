@@ -34,8 +34,8 @@ let
       # from inputs
       # devenv = inputs.devenv.packages.${system}.default;
       devenv = unstable.devenv;
-      dagger = inputs.dagger.packages.${system}.dagger;
-      walker = inputs.walker.packages.${system}.walker;
+      # dagger = inputs.dagger.packages.${system}.dagger;
+      # walker = inputs.walker.packages.${system}.walker;
       gpuishell = inputs.shell.packages.${system}.default;
       # calelestia = inputs.caelestia.packages.${system}.default;
       # elephant =

@@ -5,6 +5,14 @@
   config,
   ...
 }:
+let
+  nix-minecraft = import (
+    builtins.fetchTarball {
+      url = "https://github.com/Infinidoge/nix-minecraft/archive/refs/heads/main.tar.gz";
+      sha256 = lib.fakeSha256;
+    }
+  );
+in
 {
   imports = [
     inputs.nix-minecraft.nixosModules.minecraft-servers

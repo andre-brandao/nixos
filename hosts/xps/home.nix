@@ -16,7 +16,6 @@
       "programs/niri"
 
       "programs/qemu.nix"
-      "programs/spicetify.nix"
       "programs/editors/helix"
       "programs/editors/helix/lsp.nix"
 
@@ -39,83 +38,62 @@
 
   home.username = settings.username;
   home.homeDirectory = "/home/" + settings.username;
-  home.packages =
-    (with pkgs.unstable; [
-      freerdp
-      superfile
-      ghostty
-      zed-editor
-      thunderbird # email client
-      nemo
-      jetbrains.idea
-      # jetbrains.idea-ultimate
-      cachix
-      typescript-go
-      discord
-      obsidian
-    ])
-    ++ (with pkgs; [
-      nixd
-      # ---- APPS ---- #
-      # spotify
-      # discord
-      # vesktop
-      # betterdiscordctl
-      # ---- BROWSERS ---- #
-      firefox-beta
-      brave
+  home.packages = with pkgs; [
+    firefox-beta
+    brave
+    unstable.spotify
+    unstable.discord
+    teams-for-linux
 
-      devenv
-      unstable.secretspec
-      dagger
+    # ---- OFFICE ---- #
+    # unstable.thunderbird # email client
+    unstable.nemo
+    unstable.superfile
 
-      # ---- OFFICE ---- #
+    # libreoffice-fresh
+    # ---- UTILS ---- #
+    unstable.secretspec
+    bitwarden-desktop # Password manager
+    bitwarden-cli
+    vault
 
-      # libreoffice-fresh
-      # ---- UTILS ---- #
-      bitwarden-desktop # Password manager
-      bitwarden-cli
-      remmina
-      vault
-      # syncthing
-      # nautilus # File manager
-      # dolphin
-      protonmail-bridge
-      teams-for-linux
-      # ---- WINDOWS ---- #
-      # wine
-      # bottles
-      # ---- 3D Modeling ---- #
-      # blender
-      # ---- MEDIA ---- #
-      ffmpeg
-      obs-studio
-      vlc
-      # kdenlive
-      blueman
-      # ---- DEV UTILS ---- #
-      # icon-library
-      # postman
-      insomnia
-      # processing
-      # libffi
-      # zlib
-      # glib
-      # beekeeper-studio
-      git
-      zsh
-      # protonmail-desktop
-      godot
-      gum
-      rclone
-      # (wineWowPackages.full.override {
-      #   wineRelease = "staging";
-      #   mingwSupport = true;
-      # })
-      # winetricks
+    protonmail-bridge
+    # ---- WINDOWS ---- #
+    # wine
+    # bottles
+    # ---- 3D Modeling ---- #
+    # blender
+    # ---- MEDIA ---- #
+    ffmpeg
+    obs-studio
+    vlc
+    blueman
+    # kdenlive
+    # ---- DEV UTILS ---- #
+    unstable.ghostty
+    unstable.zed-editor
+    unstable.jetbrains.idea
+    godot
+    # icon-library
+    # postman
+    # (wineWowPackages.full.override {
+    #   wineRelease = "staging";
+    #   mingwSupport = true;
+    # })
+    # winetricks
+    nixd
+    devenv
+    insomnia
+    git
+    zsh
+    gum
+    rclone
+    # unstable.cachix
+    unstable.obsidian
 
-      # (callPackage ../../pkgs/dev-scripts { })
-    ]);
+    unstable.freerdp
+    remmina
+  ];
 
   home.sessionVariables =
     let
