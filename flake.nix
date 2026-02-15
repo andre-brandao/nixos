@@ -131,21 +131,15 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.11";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena.url = "github:zhaofengli/colmena";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # devenv.url = "github:cachix/devenv";
-    dagger = {
-      url = "github:dagger/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # ====== STYLES ========
     color-schemes = {
@@ -157,21 +151,28 @@
       flake = false;
     };
     stylix.url = "github:danth/stylix/release-25.11";
-    spicetify = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     shell = {
       url = "github:andre-brandao/gpui-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    elephant.url = "github:abenz1267/elephant";
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
-    };
+
+    # nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.11";
+    # dagger = {
+    #   url = "github:dagger/nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # colmena.url = "github:zhaofengli/colmena";
+    # spicetify = {
+    #   url = "github:Gerg-L/spicetify-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    # elephant.url = "github:abenz1267/elephant";
+    # walker = {
+    #   url = "github:abenz1267/walker";
+    #   inputs.elephant.follows = "elephant";
+    # };
 
   };
 }

@@ -13,21 +13,33 @@
   settings,
   ...
 }:
+let
+  vs-code-server = (
+    fetchTarball {
+      url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
+      sha256 = "sha256:1rdn70jrg5mxmkkrpy2xk8lydmlc707sk0zb35426v1yxxka10by";
 
+    }
+  );
+
+  nixos-wsl = import (
+    builtins.fetchTarball {
+      url = "https://github.com/nix-community/NixOS-WSL/archive/refs/heads/release-25.11.tar.gz";
+      sha256 = lib.fakeSha256;
+    }
+  );
+
+in
 {
 
   imports = [
     # <nixos-wsl/modules> # include NixOS-WSL modules
-    inputs.nixos-wsl.nixosModules.default
+    nixos-wsl.nixosModules.default
 
     ../../modules/nixos/style.nix
     # styles
     # ../../system/style/stylix.nix
-    (fetchTarball {
-      url = "https://github.com/nix-community/nixos-vscode-server/tarball/master";
-      sha256 = "sha256:1rdn70jrg5mxmkkrpy2xk8lydmlc707sk0zb35426v1yxxka10by";
-
-    })
+    vs-code-server
   ];
 
   services.vscode-server.enable = true;
@@ -39,7 +51,7 @@
 
   wsl = {
     enable = true;
-    defaultUser = settings.username;
+    defaultUser = "nixos";
     docker-desktop.enable = true;
   };
 
@@ -51,7 +63,7 @@
     git
   ];
   programs.zsh.enable = true;
-  users.users.${settings.username} = {
+  users.users.nixos = {
     shell = pkgs.zsh;
   };
 

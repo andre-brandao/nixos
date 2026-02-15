@@ -12,14 +12,11 @@
   imports = (
     map lib.custom.relativeToHomeModules [
       "style.nix"
-      "qemu.nix"
 
-      "desktop/niri"
+      "programs/niri"
 
-      "programs/browser/zen.nix"
+      "programs/qemu.nix"
       "programs/spicetify.nix"
-      "programs/rofi"
-      "programs/walker.nix"
       "programs/editors/helix"
       "programs/editors/helix/lsp.nix"
 
@@ -67,11 +64,7 @@
       # ---- BROWSERS ---- #
       firefox-beta
       brave
-      # inputs.devenv.packages.${system}.default
-      # inputs.dagger.packages.${system}.dagger
-      # inputs.quickshell.packages.${system}.default
-      # inputs.caelestia.packages.${system}.default
-      inputs.shell.packages.${system}.default
+
       devenv
       unstable.secretspec
       dagger

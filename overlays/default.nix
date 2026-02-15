@@ -36,6 +36,8 @@ let
       devenv = unstable.devenv;
       dagger = inputs.dagger.packages.${system}.dagger;
       walker = inputs.walker.packages.${system}.walker;
+      gpuishell = inputs.shell.packages.${system}.default;
+      # calelestia = inputs.caelestia.packages.${system}.default;
       # elephant =
       # zen-browser = inputs.zen-browser.packages.${system}.twilight;
     };
