@@ -14,7 +14,7 @@
       "style.nix"
       "qemu.nix"
 
-      "desktop/hyprland"
+      "desktop/niri"
 
       "programs/browser/zen.nix"
       "programs/spicetify.nix"

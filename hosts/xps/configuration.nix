@@ -22,7 +22,8 @@
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/programs/docker.nix
     ../../modules/nixos/programs/virtualization.nix
-    ../../modules/nixos/desktop/hyprland.nix
+
+    ../../modules/nixos/desktop/niri.nix
 
   ];
 
