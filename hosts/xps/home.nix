@@ -56,6 +56,7 @@
       typescript-go
       discord
       obsidian
+      nixd
     ])
     ++ (with pkgs; [
       # ---- APPS ---- #

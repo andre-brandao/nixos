@@ -65,10 +65,10 @@
     };
   };
 
-  services.xserver.displayManager.lightdm = {
-    greeters.slick.enable = true;
-    greeters.slick.theme.name = lib.mkForce "Adwaita-dark";
-  };
+  # services.xserver.displayManager.lightdm = {
+  #   greeters.slick.enable = true;
+  #   greeters.slick.theme.name = lib.mkForce "Adwaita-dark";
+  # };
 }
 
 /*

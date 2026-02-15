@@ -16,7 +16,13 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../modules/nixos/core/config
+    ../../modules/nixos/bootloader.nix
+    ./services/networking.nix
+    ../../modules/nixos/locale.nix
+    ../../modules/nixos/sound.nix
+    ../../modules/nixos/gc.nix
+    ../../modules/nixos/bluetooth.nix
+
     ../../modules/nixos/nix.nix
     ../../modules/nixos/style.nix
     ../../modules/nixos/gaming.nix
