@@ -56,9 +56,9 @@
       typescript-go
       discord
       obsidian
-      nixd
     ])
     ++ (with pkgs; [
+      nixd
       # ---- APPS ---- #
       # spotify
       # discord

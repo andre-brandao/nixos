@@ -5,16 +5,13 @@
   ...
 }:
 {
-  imports = [
-    ./disko.nix
-    ./sops.nix
-  ]
-  ++ map lib.custom.relativeToNixOSModules [
-    "pve-vm.nix"
-    "nix.nix"
-    # "style.nix"
-  ]
-  ++ lib.custom.scanPaths ./services;
+  imports =
+    map lib.custom.relativeToNixOSModules [
+      "pve-vm.nix"
+      "nix.nix"
+      # "style.nix"
+    ]
+    ++ lib.custom.scanPaths ./modules;
 
   environment.systemPackages = with pkgs; [
     vim

@@ -6,9 +6,8 @@
 }:
 {
   imports = [
-    ./extras/fonts.nix
-    ./extras/others.nix
-    ../services/ags.nix
+    ../fonts.nix
+    ./ags.nix
   ];
 
   services = {

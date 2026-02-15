@@ -6,7 +6,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   # userSettings,
   settings,
   ...
@@ -16,22 +15,21 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ../../modules/nixos/bootloader.nix
-    ./services/networking.nix
-    ../../modules/nixos/locale.nix
-    ../../modules/nixos/sound.nix
-    ../../modules/nixos/gc.nix
-    ../../modules/nixos/bluetooth.nix
-
-    ../../modules/nixos/nix.nix
-    ../../modules/nixos/style.nix
-    ../../modules/nixos/gaming.nix
-    ../../modules/nixos/programs/docker.nix
-    ../../modules/nixos/programs/virtualization.nix
-
-    ../../modules/nixos/desktop/niri.nix
-
-  ];
+  ]
+  ++ map lib.custom.relativeToNixOSModules [
+    "programs/gaming.nix"
+    "programs/docker.nix"
+    "programs/virtualization.nix"
+    "programs/niri.nix"
+    "style.nix"
+    "nix.nix"
+    "bluetooth.nix"
+    "gc.nix"
+    "sound.nix"
+    "locale.nix"
+    "bootloader.nix"
+  ]
+  ++ lib.custom.scanPaths ./modules;
 
   environment.systemPackages = with pkgs; [
     # helix
@@ -86,62 +84,10 @@
       dnssec = "false";
     };
   };
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 32 * 1024; # 32GB in MB
-    }
-  ];
 
-  # ---- deep sleep ----
-  boot.kernelParams = [
-    "resume_offset=14204928"
-    "mem_sleep_default=deep"
-  ];
-
-  boot.resumeDevice = "/dev/disk/by-uuid/4b1ea965-befe-439d-9e3d-d84bdc35bae0";
-
-  powerManagement.enable = true;
-  services.power-profiles-daemon.enable = true;
-  # Suspend first then hibernate when closing the lid
-  services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
-  # Hibernate on power button pressed
-  services.logind.settings.Login.HandlePowerKey = "hibernate";
-  services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
-
-  # ---- deep sleep ----
   # cross compilation for aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 
-  security.sudo.extraRules = [
-    {
-      users = [ "andre" ]; # Replace with your username
-      commands = [
-        {
-          command = "/opt/sst/tunnel tunnel start *";
-          options = [
-            "NOPASSWD"
-            "SETENV"
-          ];
-        }
-      ];
-    }
-  ];
-
-  # --- sst ---
-  systemd.tmpfiles.rules = [
-    "d /opt/sst 0755 root root -"
-  ];
-
-  # system.activationScripts.sstTunnel = ''
-  #   mkdir -p /opt/sst
-  #   chmod 755 /opt/sst
-  # '';
-  #  --- sst ---
   system.stateVersion = "23.11";
 }
