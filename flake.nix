@@ -116,7 +116,7 @@
     # This is particularly useful when an upcoming stable release is in beta because you can effectively
     # keep 'nixpkgs-stable' set to stable for critical packages while setting 'nixpkgs' to the beta branch to
     # get a jump start on deprecation changes.
-    # See also 'stable-packages' and 'unstable-packages' overlays at 'overlays/default.nix"
+    # See also overlays at 'overlays/default.nix"
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -126,10 +126,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # ===== UTILS ======
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -8,17 +8,17 @@
 let
   nix-minecraft = import (
     builtins.fetchTarball {
-      url = "https://github.com/Infinidoge/nix-minecraft/archive/refs/heads/main.tar.gz";
-      sha256 = lib.fakeSha256;
+      url = "https://github.com/Infinidoge/nix-minecraft/archive/master.tar.gz";
+      sha256 = "sha256:16ggcvd78am3y8xnx9d0ns17zrqx0qj6abh8ffhd379ykwa77i2n";
     }
   );
 in
 {
   imports = [
-    inputs.nix-minecraft.nixosModules.minecraft-servers
+    nix-minecraft.nixosModules.minecraft-servers
   ];
 
-  nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+  nixpkgs.overlays = [ nix-minecraft.overlay ];
 
   # Minecraft server settings
   services.minecraft-servers = {
