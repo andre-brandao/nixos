@@ -363,11 +363,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1771207463,
-        "narHash": "sha256-77iBBWQ4j3IKO17Uhs7Qr0hBDospdqsHou8Y2f+uPzw=",
+        "lastModified": 1771255868,
+        "narHash": "sha256-/ru0Q0NsLNhyF+GAeFBWtUJuVlHP96I4dDIngaQ+5mM=",
         "owner": "andre-brandao",
         "repo": "gpui-shell",
-        "rev": "25e02d1bacfdbfcc3582d842245c82ff0d8647fc",
+        "rev": "eef15be188f25f0a1b3cfa92fa387afc49e0a8b4",
         "type": "github"
       },
       "original": {
