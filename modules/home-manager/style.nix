@@ -23,7 +23,7 @@
       dunst.enable = true;
 
       kitty.enable = true;
-      alacritty.enable = true;
+      alacritty.enable = false;
       ghostty.enable = true;
       tmux.enable = true;
       bat.enable = true;
