@@ -14,6 +14,7 @@
         # the tradeoff is increased power consumption. Defaults to
         # 'false'.
         FastConnectable = true;
+        # ControllerMode = "bredr"; # Fix frequent Bluetooth audio dropouts
       };
       Policy = {
         # Enable all controllers when they are found. This includes
@@ -25,6 +26,6 @@
   };
 
   # hardware.pulseaudio.enable = true;
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
 
 }

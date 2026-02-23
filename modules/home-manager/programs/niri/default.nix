@@ -9,7 +9,8 @@
 
   home.packages = with pkgs; [
     niri-scratchpad
-    networkmanagerapplet
+    # networkmanagerapplet
     gpuishell
+    unstable.wayscriber
   ];
 }

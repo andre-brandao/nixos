@@ -66,7 +66,7 @@
 
       swww
       nautilus
-      alacritty
+      # alacritty
       # kdePackages.qtwayland
       # kdePackages.qtsvg
     ];

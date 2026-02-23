@@ -67,7 +67,7 @@
     ffmpeg
     obs-studio
     vlc
-    blueman
+    # blueman
     # kdenlive
     # ---- DEV UTILS ---- #
     unstable.ghostty
