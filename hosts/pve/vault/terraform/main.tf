@@ -1,3 +1,9 @@
+locals {
+  use_tailnet = true
+  target_host = local.use_tailnet ? "vault" : proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
+}
+
+
 resource "proxmox_virtual_environment_vm" "nixos_vm" {
   name        = "secret-vault"
   tags        = ["terraform", "nixos", "vault", "vaultwarden"]
@@ -39,8 +45,8 @@ resource "proxmox_virtual_environment_vm" "nixos_vm" {
   }
 
   cdrom {
-    file_id = "local:iso/nixos-minimal-25.11.20251209.09eb77e-x86_64-linux.iso"
-    interface    = "ide2"
+    file_id   = "local:iso/nixos-minimal-25.11.20251209.09eb77e-x86_64-linux.iso"
+    interface = "ide2"
   }
 
   network_device {
@@ -87,8 +93,8 @@ module "install" {
   nixos_system      = module.system-build.result.out
   nixos_partitioner = module.disko.result.out
   # target_host       = local.ipv4
-  target_host = proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
-  target_user       = "andre"
+  target_host = local.target_host
+  target_user = "andre"
 }
 
 
@@ -100,8 +106,8 @@ module "nixos-rebuild" {
   source       = "github.com/nix-community/nixos-anywhere//terraform/nixos-rebuild"
   nixos_system = module.system-build.result.out
   # target_host  = "192.168.0.228"
-  target_host        = proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
-  target_user        = "andre"
+  target_host = local.target_host
+  target_user = "andre"
 }
 
 output "machine_ip" {
