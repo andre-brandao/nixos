@@ -1,74 +1,78 @@
 {
   config,
   lib,
+  pkgs,
   settings,
   ...
 }:
+let
+  domain = "git.fable-company.ts.net";
+  httpPort = 3001;
+in
 {
-  # services.nginx.virtualHosts."git.my-domain.tld" = {
-  #   enableACME = true;
-  #   forceSSL = true;
-  #   locations."/" = {
-  #     proxyPass = "http://localhost:3001/";
-  #   };
-  # };
+  sops.secrets."forgejo/runner_token" = { };
 
-  # services.postgresql = {
-  #   ensureDatabases = [ config.services.gitea.user ];
-  #   ensureUsers = [
-  #     {
-  #       name = config.services.gitea.database.user;
-  #       # ensurePermissions."DATABASE ${config.services.gitea.database.name}" = "ALL PRIVILEGES";
-  #     }
-  #   ];
-  # };
-
-  # sops.secrets."postgres/gitea_dbpass" = {
-  #   owner = config.services.gitea.user;
-  # };
-
-  services.gitea = rec {
+  services.forgejo = {
     enable = true;
-    domain = "git.fable-company.ts.net";
-    appName = "My awesome Gitea server"; # Give the site a name
-    rootUrl = "https://${domain}";
-    httpPort = 3001;
-    stateDir = "/srv/gitea";
-    user = "git";
-    database = {
-      # type = "postgres";
-      # passwordFile = config.sops.secrets."postgres/gitea_dbpass".path;
-      type = "sqlite3";
-      inherit user;
-      path = "${stateDir}/gitea.db";
-    };
-    ssh = {
-      clonePort = lib.head config.services.openssh.ports;
-    };
-    lfs = {
-      enable = true;
-      contentDir = "${stateDir}/lfs";
-    };
-    cookieSecure = true;
+    stateDir = "/srv/forgejo";
+    lfs.enable = true;
+    database.type = "sqlite3";
     settings = {
       server = {
-        SSH_USER = "git";
-        SSH_DOMAIN = "git.${domain}";
-        # SSH_TRUSTED_USER_CA_KEYS = lib.concatStringsSep "," [
-        #   # (builtins.readFile "${inputs.ssh}/ca.pub")
-        # ];
+        DOMAIN = domain;
+        ROOT_URL = "https://${domain}/";
+        HTTP_PORT = httpPort;
+        SSH_PORT = lib.head config.services.openssh.ports;
         OFFLINE_MODE = true;
       };
+      service.DISABLE_REGISTRATION = true;
+      actions = {
+        ENABLED = true;
+        DEFAULT_ACTIONS_URL = "github";
+      };
+      ui = {
+        DEFAULT_THEME = "custom";
+        THEMES = "forgejo-auto,forgejo-dark,forgejo-light,custom";
+      };
     };
-    log.rootPath = "${stateDir}/log";
+  };
+
+  systemd.tmpfiles.rules =
+    let
+      cfg = config.services.forgejo;
+    in
+    [
+      "d '${cfg.customDir}/templates' - forgejo forgejo - -"
+      "d '${cfg.customDir}/public/assets/css' - forgejo forgejo - -"
+      "C+ '${cfg.customDir}/public/assets/css/theme-custom.css' - forgejo forgejo - ${../git-theme/theme-custom.css}"
+      "C+ '${cfg.customDir}/templates/home.tmpl' - forgejo forgejo - ${../git-theme/home.tmpl}"
+    ];
+
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-runner;
+    instances.default = {
+      enable = true;
+      name = "git";
+      url = "https://${domain}";
+      # tokenFile must contain: TOKEN=<secret>
+      tokenFile = config.sops.secrets."forgejo/runner_token".path;
+      labels = [
+        "ubuntu-latest:docker://node:16-bullseye"
+        "ubuntu-22.04:docker://node:16-bullseye"
+        "ubuntu-20.04:docker://node:16-bullseye"
+        "ubuntu-18.04:docker://node:16-buster"
+        ## optionally provide native execution on the host:
+        # "native:host"
+      ];
+    };
   };
 
   users.users.git = {
     isSystemUser = true;
     useDefaultShell = true;
     group = "git";
-    extraGroups = [ "gitea" ];
-    home = config.services.gitea.stateDir;
+    extraGroups = [ "forgejo" ];
+    home = config.services.forgejo.stateDir;
     openssh.authorizedKeys.keys = settings.sshPublicKeys;
   };
   users.groups.git = { };
@@ -76,20 +80,12 @@
   # reverse proxy
   services.traefik.dynamicConfigOptions.http = {
     routers.git = {
-      rule = "Host(`git.fable-company.ts.net`)";
+      rule = "Host(`${domain}`)";
       service = "git";
-      tls = {
-        certResolver = "vpnresolver";
-      };
+      tls.certResolver = "vpnresolver";
     };
-    services.git = {
-      loadBalancer = {
-        servers = [
-          {
-            url = "http://localhost:3001";
-          }
-        ];
-      };
-    };
+    services.git.loadBalancer.servers = [
+      { url = "http://localhost:${toString httpPort}"; }
+    ];
   };
 }
