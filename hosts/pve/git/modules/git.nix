@@ -14,6 +14,7 @@ in
 
   services.forgejo = {
     enable = true;
+    package = pkgs.forgejo;
     stateDir = "/srv/forgejo";
     lfs.enable = true;
     database.type = "sqlite3";
@@ -57,7 +58,7 @@ in
       # tokenFile must contain: TOKEN=<secret>
       tokenFile = config.sops.secrets."forgejo/runner_token".path;
       labels = [
-        "ubuntu-latest:docker://node:16-bullseye"
+        "ubuntu-latest:docker://node:20-bullseye"
         "ubuntu-22.04:docker://node:16-bullseye"
         "ubuntu-20.04:docker://node:16-bullseye"
         "ubuntu-18.04:docker://node:16-buster"
