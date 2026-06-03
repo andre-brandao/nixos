@@ -1,4 +1,9 @@
-{ pkgs, settings, ... }:
+{
+  pkgs,
+  settings,
+  lib,
+  ...
+}:
 {
   imports = [
     ../fonts.nix
@@ -32,6 +37,7 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      # intel-media-sdk
       # Required for modern Intel GPUs (Xe iGPU and ARC)
       intel-media-driver # VA-API (iHD) userspace
       vpl-gpu-rt # oneVPL (QSV) runtime
@@ -45,10 +51,19 @@
 
   # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
   hardware.enableRedistributableFirmware = true;
-  boot.kernelParams = [ "i915.enable_guc=3" ];
+  boot.kernelParams = [
+    "i915.enable_guc=3"
+    # "i915.force_probe=8a52"
+    "i915.enable_psr=0" # Disable Panel Self Refresh — causes black screen on external monitors
+    "i915.enable_dc=0" # Disable display C-states (DC5/DC6/DC9) — causes external monitor to go black on Tiger Lake
+  ];
 
   # May help services that have trouble accessing /dev/dri (e.g., jellyfin/plex):
   # users.users.<service>.extraGroups = [ "video" "render" ];
+  users.users.${settings.username}.extraGroups = [
+    "video"
+    "render"
+  ];
 
   environment = {
     systemPackages = with pkgs; [
@@ -76,7 +91,7 @@
       WLR_NO_HARDWARE_CURSORS = "1";
       LIBVA_DRIVER_NAME = "iHD"; # Prefer the modern iHD backend
       # VDPAU_DRIVER = "va_gl";      # Only if using libvdpau-va-gl
-
+      # WLR_DRM_NO_ATOMIC = "1"; # Disable atomic KMS — was causing no framebuffer output on external monitor
     };
   };
 }

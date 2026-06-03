@@ -4,6 +4,10 @@ let
     hyprland-preview-share-picker = final.callPackage ../pkgs/hyprland-preview-share-picker { };
     niri-scratchpad = final.callPackage ../pkgs/niri-scratchpad { };
 
+    steam = prev.steam.override {
+      extraArgs = "-cef-disable-gpu-compositing";
+    };
+
   };
 
   overlay-unstable =
