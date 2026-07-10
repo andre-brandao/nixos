@@ -32,7 +32,7 @@
 
       settings = import ./settings.nix;
 
-      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+      lib = nixpkgs.lib.extend (self: super: { custom = (import ./lib { inherit (nixpkgs) lib; }); });
 
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
@@ -44,7 +44,7 @@
       );
     in
     {
-      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
+      formatter = forEachSystem (pkgs: pkgs.nixfmt);
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       overlays = import ./overlays { inherit inputs outputs settings; };
       templates = import ./templates;
@@ -110,19 +110,19 @@
 
   inputs = {
     systems.url = "github:nix-systems/default-linux";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # The next two are for pinning to stable vs unstable regardless of what the above is set to
     # This is particularly useful when an upcoming stable release is in beta because you can effectively
     # keep 'nixpkgs-stable' set to stable for critical packages while setting 'nixpkgs' to the beta branch to
     # get a jump start on deprecation changes.
     # See also overlays at 'overlays/default.nix"
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       # url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # ===== UTILS ======
@@ -143,16 +143,16 @@
       url = "github:andre-brandao/wallpapers";
       flake = false;
     };
-    stylix.url = "github:danth/stylix/release-25.11";
+    stylix.url = "github:danth/stylix/release-26.05";
 
     shell = {
-      url = "github:andre-brandao/gpui-shell";
+      url = "github:andre-brandao/gpui-shell/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # devenv.url = "github:cachix/devenv";
     # nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-    # nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.11";
+    # nixos-wsl.url = "github:nix-community/NixOS-WSL/release-26.05";
     # dagger = {
     #   url = "github:dagger/nix";
     #   inputs.nixpkgs.follows = "nixpkgs";

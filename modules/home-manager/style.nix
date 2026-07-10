@@ -17,7 +17,7 @@
   stylix = {
     targets = {
       gtk.enable = true;
-      gnome.enable = true;
+      gnome.enable = false;
       hyprland.enable = false;
       rofi.enable = true;
       dunst.enable = true;

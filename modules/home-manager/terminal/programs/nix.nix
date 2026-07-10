@@ -19,7 +19,7 @@
     nix-tree
     # nix-init
     # statix
-    nixfmt-rfc-style
+    nixfmt
     # nix-prefetch-git
     # nix-prefetch-github
     nix-output-monitor

@@ -23,6 +23,9 @@ let
         config.allowUnfree = false;
         config.allowUnfreePredicate =
           pkg: builtins.elem (inputs.nixpkgs.lib.getName pkg) settings.allowUnfree;
+        config.permittedInsecurePackages = [
+          "electron-39.8.10"
+        ];
       };
 
       stable = import inputs.nixpkgs {

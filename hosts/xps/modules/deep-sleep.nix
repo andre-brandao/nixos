@@ -14,10 +14,10 @@
   # Hibernate on power button pressed
   services.logind.settings.Login.HandlePowerKey = "hibernate";
   services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "30m";
+    SuspendState = "mem";
+  };
 
   # ---- deep sleep ----
 

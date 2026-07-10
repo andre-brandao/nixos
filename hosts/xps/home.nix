@@ -43,7 +43,7 @@
     brave
     unstable.spotify
     unstable.discord
-    teams-for-linux
+    unstable.teams-for-linux
 
     # ---- OFFICE ---- #
     # unstable.thunderbird # email client
@@ -53,7 +53,7 @@
     # libreoffice-fresh
     # ---- UTILS ---- #
     unstable.secretspec
-    bitwarden-desktop # Password manager
+    unstable.bitwarden-desktop # Password manager
     bitwarden-cli
     vault
 
@@ -84,7 +84,7 @@
     # winetricks
     nixd
     devenv
-    insomnia
+    unstable.insomnia
     git
     zsh
     gum

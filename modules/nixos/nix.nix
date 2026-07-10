@@ -42,9 +42,10 @@
       # Enable unfree packages you want to use
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) settings.allowUnfree;
 
-      # permittedInsecurePackages = [
-      #   "beekeeper-studio-5.1.5"
-      # ];
+      permittedInsecurePackages = [
+        # "beekeeper-studio-5.1.5"
+        "electron-39.8.10"
+      ];
     };
   };
 

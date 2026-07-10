@@ -3,16 +3,16 @@
   programs.helix = {
     languages = {
       language-server = {
-        astro-ls = {
-          command = "${pkgs.nodePackages."@astrojs/language-server"}/bin/astro-ls";
-          args = [ "--stdio" ];
-        };
+        # astro-ls = {
+        #   command = "${pkgs.nodePackages.\"@astrojs/language-server\"}/bin/astro-ls";
+        #   args = [ "--stdio" ];
+        # };
       };
       language = [
         {
           name = "nix";
           auto-format = true;
-          formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
           language-servers = [ "nixd" ];
         }
         # {
@@ -73,45 +73,42 @@
       ];
     };
     # ***** LSP packages *****
-    extraPackages =
-      with pkgs;
-      with nodePackages;
-      [
-        bash-language-server # BASH
-        # lldb # debugger
-        marksman # Markdown
+    extraPackages = with pkgs; [
+      bash-language-server # BASH
+      # lldb # debugger
+      marksman # Markdown
 
-        elixir-ls # Elixir
+      elixir-ls # Elixir
 
-        # # NIX
-        # nixpkgs-fmt:
-        nil
-        # GO
-        gopls
-        gotools
+      # # NIX
+      # nixpkgs-fmt:
+      nil
+      # GO
+      gopls
+      gotools
 
-        # clang-tools     # C/C++
-        lua-language-server
-        # RUST
-        # rust-analyzer
+      # clang-tools     # C/C++
+      lua-language-server
+      # RUST
+      # rust-analyzer
 
-        # PYTHON
-        # pyright
-        # (python3.withPackages (
-        #   ps: with ps; [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all
-        # ))
+      # PYTHON
+      # pyright
+      # (python3.withPackages (
+      #   ps: with ps; [ python-lsp-server ] ++ python-lsp-server.optional-dependencies.all
+      # ))
 
-        # JAVASCRIPT AND CIA
-        typescript
-        # vscode-langservers-extracted
-        typescript-language-server
-        svelte-language-server
-        yaml-language-server
-        # stylelint
+      # JAVASCRIPT AND CIA
+      typescript
+      # vscode-langservers-extracted
+      typescript-language-server
+      svelte-language-server
+      yaml-language-server
+      # stylelint
 
-        # nodePackages."@astrojs/language-server"
+      # nodePackages."@astrojs/language-server"
 
-        # dockerfile-language-server-nodejs
-      ];
+      # dockerfile-language-server-nodejs
+    ];
   };
 }
