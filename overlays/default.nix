@@ -3,6 +3,7 @@ let
   additions = final: prev: {
     hyprland-preview-share-picker = final.callPackage ../pkgs/hyprland-preview-share-picker { };
     niri-scratchpad = final.callPackage ../pkgs/niri-scratchpad { };
+    buzz = final.callPackage ../pkgs/buzz-app/buzz.nix { };
 
     steam = prev.steam.override {
       extraArgs = "-cef-disable-gpu-compositing";

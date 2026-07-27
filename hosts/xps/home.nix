@@ -85,6 +85,7 @@
     nixd
     devenv
     unstable.insomnia
+    buzz
     git
     zsh
     gum
