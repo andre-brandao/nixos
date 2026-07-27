@@ -17,6 +17,15 @@ in
 appimageTools.wrapType2 {
   inherit pname version src;
 
+  # Linked by the bundled binaries but absent from both the AppImage and the
+  # default appimageTools FHS environment.
+  extraPkgs =
+    pkgs: with pkgs; [
+      zstd # libzstd.so.1
+      elfutils # libelf.so.1
+      libffi # libffi.so.8
+    ];
+
   extraInstallCommands = ''
     install -Dm444 ${appimageContents}/Buzz.desktop -t $out/share/applications
     substituteInPlace $out/share/applications/Buzz.desktop \
