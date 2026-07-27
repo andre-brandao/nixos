@@ -5,11 +5,18 @@
   dpkg,
   autoPatchelfHook,
   wrapGAppsHook3,
+  bash,
+  coreutils,
+  findutils,
+  git,
+  gnugrep,
+  gnused,
   alsa-lib,
   gtk3,
   gdk-pixbuf,
   cairo,
   glib,
+  glib-networking,
   webkitgtk_4_1,
   libsoup_3,
   gst_all_1,
@@ -29,11 +36,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "buzz-desktop";
-  version = "0.4.25";
+  version = "0.4.26";
 
   src = fetchurl {
     url = "https://github.com/block/buzz/releases/download/v${version}/Buzz_${version}_amd64.deb";
-    hash = "sha256-Wy6ybnXcG+IBVOBEomj3HAzu16VgoDKnP5du1D1s/oc=";
+    hash = "sha256-G1IHVuz8KK2BmBos1cxmiPeF9Eez9djVU1RJBvWb9SE=";
   };
 
   nativeBuildInputs = [
@@ -48,6 +55,10 @@ stdenv.mkDerivation rec {
     gdk-pixbuf
     cairo
     glib
+    # GIO TLS backend (libgiognutls). Without it WebKit's fetch() fails every
+    # https:// request with "Load failed" — the WebSocket still works because
+    # Tauri routes it through Rust, not the webview.
+    glib-networking
     webkitgtk_4_1
     libsoup_3
     libglvnd
@@ -101,8 +112,26 @@ stdenv.mkDerivation rec {
   preFixup = ''
     # Wrap buzz-desktop with WebKit software rendering fallback
     # Hardware GL compositing fails in NixOS FHS sandbox
+    #
+    # BUZZ_SHELL / PATH: managed agents shell out via buzz-dev-mcp, which spawns
+    # bare `bash` off the PATH it inherits from this process. Buzz normally
+    # widens that PATH by probing a login shell, but login_shell_candidates()
+    # hardcodes /bin/zsh and /bin/bash (discovery.rs:779) — neither exists on
+    # NixOS, so the probe fails and the agent is left with the launcher's PATH.
+    # Pin a real bash and append the tools agents actually invoke.
     gappsWrapperArgs+=(
       --set WEBKIT_DISABLE_COMPOSITING_MODE 1
+      --set-default BUZZ_SHELL ${bash}/bin/bash
+      --suffix PATH : ${
+        lib.makeBinPath [
+          bash
+          coreutils
+          findutils
+          git
+          gnugrep
+          gnused
+        ]
+      }
     )
   '';
 
