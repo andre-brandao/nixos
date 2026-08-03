@@ -52,7 +52,7 @@
 
     # libreoffice-fresh
     # ---- UTILS ---- #
-    unstable.secretspec
+    # unstable.secretspec
     unstable.bitwarden-desktop # Password manager
     bitwarden-cli
     vault
@@ -84,7 +84,8 @@
     # winetricks
     nixd
     devenv
-    unstable.insomnia
+    # unstable.insomnia
+    unstable.bruno
     buzz
     git
     zsh
