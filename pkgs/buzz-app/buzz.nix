@@ -36,12 +36,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "buzz-desktop";
-  version = "0.5.4";
+  version = "0.5.5";
 
   src = fetchurl {
-    #      https://github.com/block/buzz/releases/download/desktop-v0.5.4/Buzz_0.5.4_amd64.deb
     url = "https://github.com/block/buzz/releases/download/desktop-v${version}/Buzz_${version}_amd64.deb";
-    hash = "sha256-nC8N9FicCGmN2UDgnZEYhKVGjDUWnRBo/GzMkwEr/v8=";
+    hash = "sha256-S9EVpauoNt462ZWth9jLBNAr0KEzxw9kyiMlxlOAjc0=";
   };
 
   nativeBuildInputs = [
