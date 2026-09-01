@@ -96,6 +96,8 @@
 
     unstable.freerdp
     remmina
+
+    unstable.herdr
   ];
 
   home.sessionVariables =

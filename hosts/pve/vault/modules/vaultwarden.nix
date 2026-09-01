@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 let
-  version = "1.35.1";
+  version = "1.37.1";
 in
 {
   imports = [
@@ -15,10 +15,15 @@ in
     restartUnits = [ "podman-vaultwarden.service" ];
   };
 
-  sops.templates."vaultwarden.env".content = ''
-    DOMAIN=https://${config.sops.placeholder."vaultwarden-domain"}/warden
-    ADMIN_TOKEN=${config.sops.placeholder."vaultwarden-admin-token"}
-  '';
+  # vaultwarden mounts its routes under the path component of DOMAIN, so the
+  # container must restart whenever this template changes
+  sops.templates."vaultwarden.env" = {
+    restartUnits = [ "podman-vaultwarden.service" ];
+    content = ''
+      DOMAIN=https://${config.sops.placeholder."vaultwarden-domain"}
+      ADMIN_TOKEN=${config.sops.placeholder."vaultwarden-admin-token"}
+    '';
+  };
 
   virtualisation.oci-containers.containers."vaultwarden" = {
     image = "vaultwarden/server:${version}";
@@ -36,7 +41,9 @@ in
 
   services.traefik.dynamicConfigOptions.http = {
     routers.vaultwarden = {
-      rule = "Host(`vault.fable-company.ts.net`) && PathPrefix(`/warden`)";
+      # served at the root; more specific routers (/vault, /traefik) win on
+      # traefik's default rule-length priority
+      rule = "Host(`vault.fable-company.ts.net`)";
       service = "vaultwarden";
       tls = {
         certResolver = "vpnresolver";

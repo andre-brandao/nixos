@@ -14,6 +14,7 @@
     "steam-unwrapped"
     "steam"
     "discord"
+    "discord-unwrapped"
     "obsidian"
     "vault-bin"
     "vault"

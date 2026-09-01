@@ -10,7 +10,7 @@ in
     storageBackend = "file";
     storagePath = "/var/lib/vault";
     extraConfig = ''
-      api_addr     = "https://${hostname}"
+      api_addr     = "https://${hostname}/vault"
       disable_clustering = true
       ui           = true
     '';
@@ -20,13 +20,14 @@ in
 
   services.traefik.dynamicConfigOptions.http = {
     routers.vault = {
-      rule = "Host(`${hostname}`)";
+      rule = "Host(`${hostname}`) && PathPrefix(`/vault`)";
       service = "vault";
-      # middlewares = [ "vault-stripprefix" ];
+      middlewares = [ "vault-stripprefix" ];
       tls = {
         certResolver = "vpnresolver";
       };
     };
+    middlewares.vault-stripprefix.stripPrefix.prefixes = [ "/vault" ];
     services.vault = {
       loadBalancer = {
         servers = [

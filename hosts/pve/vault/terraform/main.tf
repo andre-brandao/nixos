@@ -1,5 +1,5 @@
 locals {
-  use_tailnet = false
+  use_tailnet = true
   target_host = local.use_tailnet ? "vault" : proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
 }
 
