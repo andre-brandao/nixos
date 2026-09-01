@@ -36,11 +36,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "buzz-desktop";
-  version = "0.5.6";
+  version = "0.5.20";
 
   src = fetchurl {
     url = "https://github.com/block/buzz/releases/download/desktop-v${version}/Buzz_${version}_amd64.deb";
-    hash = "sha256-MWPxrGK+vIN1XFdD+5SS++n1l1qmLkxnqJT3cClFRjE=";
+    hash = "sha256-VcfeQrwZau1pWXsBwls9r3iqiEDw8zF011NOh8rHFCQ=";
   };
 
   nativeBuildInputs = [
@@ -116,8 +116,9 @@ stdenv.mkDerivation rec {
     # BUZZ_SHELL / PATH: managed agents shell out via buzz-dev-mcp, which spawns
     # bare `bash` off the PATH it inherits from this process. Buzz normally
     # widens that PATH by probing a login shell, but login_shell_candidates()
-    # hardcodes /bin/zsh and /bin/bash (discovery.rs:779) — neither exists on
-    # NixOS, so the probe fails and the agent is left with the launcher's PATH.
+    # hardcodes /bin/zsh and /bin/bash (discovery.rs:765, verified at 0.5.6) —
+    # neither exists on NixOS, so the probe fails and build_augmented_path()
+    # falls back to appending the launcher's own PATH (runtime/path.rs:50).
     # Pin a real bash and append the tools agents actually invoke.
     gappsWrapperArgs+=(
       --set WEBKIT_DISABLE_COMPOSITING_MODE 1
