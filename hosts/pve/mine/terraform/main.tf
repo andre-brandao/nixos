@@ -69,7 +69,7 @@ module "disko" {
 }
 
 locals {
-  use_tailnet = true
+  use_tailnet = false
   target_host = local.use_tailnet ? "mine" : proxmox_virtual_environment_vm.nixos_vm.ipv4_addresses[1][0]
 }
 

@@ -9,7 +9,7 @@ let
   nix-minecraft = import (
     builtins.fetchTarball {
       url = "https://github.com/Infinidoge/nix-minecraft/archive/master.tar.gz";
-      sha256 = "sha256:007m7raki0jx2w3g3fz8z22j78kc651f9d5272m98wn5i3iy1f02";
+      sha256 = "sha256:1hsw597bdcxpm7d9qvsj74jvbwwg6264a87ai37s6dwn7yb9fqjr";
     }
   );
 in

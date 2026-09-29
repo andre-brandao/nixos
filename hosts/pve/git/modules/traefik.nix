@@ -38,7 +38,7 @@
         websecure = {
           address = ":443";
           asDefault = true;
-          http.tls.certResolver = "letsencrypt";
+          http.tls.certResolver = "vpnresolver";
         };
       };
 

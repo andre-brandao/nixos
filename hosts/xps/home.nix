@@ -72,7 +72,7 @@
     # ---- DEV UTILS ---- #
     unstable.ghostty
     unstable.zed-editor
-    unstable.jetbrains.idea
+    # unstable.jetbrains.idea
     unstable.affine
     godot
     # icon-library

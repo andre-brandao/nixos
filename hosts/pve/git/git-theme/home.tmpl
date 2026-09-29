@@ -1,13 +1,146 @@
 {{template "base/head" .}}
-<div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home"}}{{end}}" class="page-content home">
-	<div class="tw-mb-8 tw-px-8">
-		<div class="center">
-			<div class="hero">
-				<h1 class="ui icon header title">
-					Forgejo hosted on NixOS for Deds
-				</h1>
+<div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home"}}{{end}}" class="page-content home dh-home">
+
+	<section class="dh-hero">
+		<div class="dh-shell dh-hero-grid">
+			<div>
+				<span class="dh-host"><span class="dh-host-dot" aria-hidden="true"></span>{{AppDomain}}</span>
+				<h1 class="dh-title">Forgejo hosted on NixOS for Deds</h1>
+				<p class="dh-lede">
+					Private Git hosting for the team. Repositories, issues, pull requests and
+					Actions in one place, reachable only over the tailnet.
+				</p>
+				<div class="dh-actions">
+					{{if .IsSigned}}
+						<a class="dh-btn dh-btn-primary" href="{{AppSubUrl}}/">{{svg "octicon-repo" 17}} Open dashboard</a>
+					{{else}}
+						<a class="dh-btn dh-btn-primary" href="{{AppSubUrl}}/user/login">{{svg "octicon-sign-in" 17}} Sign in</a>
+					{{end}}
+					<a class="dh-btn" href="{{AppSubUrl}}/explore/repos">{{svg "octicon-telescope" 17}} Explore repositories</a>
+				</div>
+			</div>
+
+			<figure class="dh-graph" aria-label="Example commit history">
+				<div class="dh-graph-inner">
+					<div class="dh-graph-bar">{{svg "octicon-git-branch" 14}} <b>main</b> 6 commits</div>
+					<div class="dh-graph-rows-wrap">
+						<svg class="dh-lines" viewBox="0 0 84 264" width="84" height="264" aria-hidden="true">
+							<path class="l-main" d="M24 242V22" style="--len:220;--d:0ms"/>
+							<path class="l-feat" d="M24 242C24 224 48 222 48 204V66C48 44 24 44 24 26" style="--len:240;--d:150ms"/>
+							<path class="l-fix" d="M24 242C24 220 72 220 72 198V154C72 128 24 136 24 112" style="--len:190;--d:300ms"/>
+							<circle class="c-main" cx="24" cy="242" r="5" style="--d:250ms"/>
+							<circle class="c-feat" cx="48" cy="198" r="5" style="--d:420ms"/>
+							<circle class="c-fix" cx="72" cy="154" r="5" style="--d:590ms"/>
+							<circle class="c-main" cx="24" cy="110" r="5" style="--d:760ms"/>
+							<circle class="c-feat" cx="48" cy="66" r="5" style="--d:930ms"/>
+							<circle class="c-head" cx="24" cy="22" r="6" style="--d:1100ms"/>
+						</svg>
+						<ol class="dh-graph-rows">
+							<li style="--d:1100ms"><span class="msg">Merge #42: cache runner dependencies</span><span class="dh-ref">main</span></li>
+							<li style="--d:930ms"><span class="msg">Cache node_modules between Actions jobs</span><span class="sha">9c1e4fa</span></li>
+							<li style="--d:760ms"><span class="msg">Merge #41: LFS pushes through the proxy</span><span class="dh-ref ok">v1.2.1</span></li>
+							<li style="--d:590ms"><span class="msg">Raise Traefik body limit for LFS</span><span class="sha">3b07d2e</span></li>
+							<li style="--d:420ms"><span class="msg">Pin forgejo-runner labels</span><span class="sha">e58a9c0</span></li>
+							<li style="--d:250ms"><span class="msg">Serve the custom home page</span><span class="sha">04c746e</span></li>
+						</ol>
+					</div>
+				</div>
+			</figure>
+		</div>
+	</section>
+
+	<section class="dh-section">
+		<div class="dh-shell">
+			<div class="dh-head">
+				<h2 class="dh-h2">Everything the team keeps in Git, on a server we run</h2>
+				<p class="dh-sub">The same Forgejo you would get anywhere, set up for a small team that wants its code close.</p>
+			</div>
+			<div class="dh-pillars">
+				<article class="dh-pillar">
+					<div class="dh-pillar-icon">{{svg "octicon-server" 20}}</div>
+					<h3 class="dh-h3">Declared in Nix</h3>
+					<p>Forgejo, the Actions runner and the reverse proxy are one NixOS configuration. Rebuild the VM and the same forge comes back.</p>
+				</article>
+				<article class="dh-pillar">
+					<div class="dh-pillar-icon">{{svg "octicon-shield-lock" 20}}</div>
+					<h3 class="dh-h3">Only on the tailnet</h3>
+					<p>Served over HTTPS with Tailscale certificates. Nothing here is exposed to the public internet, and accounts are created by an admin.</p>
+				</article>
+				<article class="dh-pillar">
+					<div class="dh-pillar-icon">{{svg "octicon-play" 20}}</div>
+					<h3 class="dh-h3">Actions built in</h3>
+					<p>A runner lives on the same host. Workflows written for GitHub Actions run here on the <code>ubuntu-latest</code> label, with Git LFS for large files.</p>
+				</article>
+				<article class="dh-pillar">
+					<div class="dh-pillar-icon">{{svg "octicon-code" 20}}</div>
+					<h3 class="dh-h3">Free software</h3>
+					<p>Forgejo is community-run and copyleft. Read the source or report a bug on <a href="https://codeberg.org/forgejo/forgejo" target="_blank" rel="noopener noreferrer">Codeberg</a>.</p>
+				</article>
 			</div>
 		</div>
-	</div>
+	</section>
+
+	<section class="dh-section">
+		<div class="dh-shell dh-steps-wrap">
+			<div class="dh-head">
+				<h2 class="dh-h2">Push your first repository</h2>
+				<p class="dh-sub">Three steps from a fresh account to code on the server. Ask an admin for an account if you don't have one yet.</p>
+			</div>
+			<ol class="dh-steps">
+				<li class="dh-step">
+					<div>
+						<h3 class="dh-h3">Add your SSH key</h3>
+						<p>Paste your public key in <a href="{{AppSubUrl}}/user/settings/keys">Settings, SSH keys</a>, then check that the server knows you.</p>
+						<pre class="dh-code"><span class="p">$ </span>ssh -T git@{{AppDomain}}</pre>
+					</div>
+				</li>
+				<li class="dh-step">
+					<div>
+						<h3 class="dh-h3">Create a repository</h3>
+						<p>Start one from <a href="{{AppSubUrl}}/repo/create">New repository</a>, under your user or an organization. Leave it empty if you already have code locally.</p>
+					</div>
+				</li>
+				<li class="dh-step">
+					<div>
+						<h3 class="dh-h3">Push</h3>
+						<p>Point your local repository at the forge and push. Actions start on the first push if a workflow is present.</p>
+						<pre class="dh-code"><span class="p">$ </span>git remote add origin git@{{AppDomain}}:<span class="c">you/project</span>.git
+<span class="p">$ </span>git push -u origin main</pre>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="dh-section dh-night">
+		<div class="dh-shell">
+			<div class="dh-head">
+				<h2 class="dh-h2">Browse what's already here</h2>
+				<p class="dh-sub">Repositories you can read, the people who push to them, and the organizations that group them.</p>
+			</div>
+			<div class="dh-explore">
+				<a class="dh-tile" href="{{AppSubUrl}}/explore/repos">
+					{{svg "octicon-repo" 22}}
+					<strong>Repositories</strong>
+					<span>Search by name, topic or language.</span>
+				</a>
+				<a class="dh-tile" href="{{AppSubUrl}}/explore/users">
+					{{svg "octicon-people" 22}}
+					<strong>Users</strong>
+					<span>See who works here and what they maintain.</span>
+				</a>
+				<a class="dh-tile" href="{{AppSubUrl}}/explore/organizations">
+					{{svg "octicon-organization" 22}}
+					<strong>Organizations</strong>
+					<span>Shared repositories and teams.</span>
+				</a>
+			</div>
+			<div class="dh-night-foot">
+				<span>Forgejo {{AppVerNoMetadata}}</span>
+				<span>Running on NixOS</span>
+			</div>
+		</div>
+	</section>
+
 </div>
 {{template "base/footer" .}}
