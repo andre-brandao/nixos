@@ -33,7 +33,7 @@ in
       };
       ui = {
         DEFAULT_THEME = "custom";
-        THEMES = "forgejo-auto,forgejo-dark,forgejo-light,custom";
+        THEMES = "custom";
       };
     };
   };
@@ -43,7 +43,11 @@ in
       cfg = config.services.forgejo;
     in
     [
+      # every level must be owned by forgejo: tmpfiles refuses to copy through
+      # a root-owned parent under the forgejo-owned customDir ("unsafe path transition")
       "d '${cfg.customDir}/templates' - forgejo forgejo - -"
+      "d '${cfg.customDir}/public' - forgejo forgejo - -"
+      "d '${cfg.customDir}/public/assets' - forgejo forgejo - -"
       "d '${cfg.customDir}/public/assets/css' - forgejo forgejo - -"
       "C+ '${cfg.customDir}/public/assets/css/theme-custom.css' - forgejo forgejo - ${../git-theme/theme-custom.css}"
       "C+ '${cfg.customDir}/templates/home.tmpl' - forgejo forgejo - ${../git-theme/home.tmpl}"

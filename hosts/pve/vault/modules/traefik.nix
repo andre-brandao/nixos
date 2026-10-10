@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
 
   # sops.secrets = {
@@ -21,6 +21,15 @@
     443
   ];
   services.tailscale.permitCertUid = "traefik";
+  # traefik fetches the tailscale cert once at startup and doesn't retry, so
+  # wait until tailscaled is up and logged in or it falls back to its default cert
+  systemd.services.traefik = {
+    after = [ "tailscaled.service" ];
+    wants = [ "tailscaled.service" ];
+    serviceConfig.ExecStartPre = [
+      "${pkgs.bash}/bin/bash -c 'until ${config.services.tailscale.package}/bin/tailscale status --peers=false >/dev/null 2>&1; do sleep 1; done'"
+    ];
+  };
   services.traefik = {
     enable = true;
 
